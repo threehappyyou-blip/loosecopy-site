@@ -58,7 +58,8 @@ LinkedIn post: 100 to 200 words, natural paragraph breaks, no hashtag spam, ends
     });
 
     if (!apiRes.ok) {
-      return new Response(JSON.stringify({ error: 'Generation failed upstream. Try again in a moment.' }), { status: 502, headers: cors });
+      const errText = await apiRes.text();
+      return new Response(JSON.stringify({ error: 'Upstream ' + apiRes.status + ': ' + errText.slice(0, 400) }), { status: 502, headers: cors });
     }
 
     const data = await apiRes.json();
