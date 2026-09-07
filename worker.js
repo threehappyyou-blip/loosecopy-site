@@ -85,8 +85,8 @@ async function callClaudeWithRetry(env, systemPrompt, content, attempt = 1) {
     })
   });
 
-  if (!apiRes.ok && attempt < 4) {
-    await new Promise(r => setTimeout(r, 500 * attempt));
+  if (!apiRes.ok && attempt < 2) {
+    await new Promise(r => setTimeout(r, 3000));
     return callClaudeWithRetry(env, systemPrompt, content, attempt + 1);
   }
 
