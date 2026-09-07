@@ -42,21 +42,7 @@ Twitter thread: 4 to 6 numbered tweets ("1/", "2/", ...), each under 280 charact
 LinkedIn post: 100 to 200 words, natural paragraph breaks, no hashtag spam, ends with one genuine question or takeaway \u2014 not "thoughts?".`;
 
   try {
-    const apiRes = await fetch('https://gateway.ai.cloudflare.com/v1/00ef26b84c4145eeb5224b57252e6273/loosecopy/anthropic/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-5',
-        max_tokens: 1024,
-        system: systemPrompt,
-        messages: [{ role: 'user', content }]
-      })
-    });
+    const apiRes = await callClaudeWithRetry(env, systemPrompt, content);
 
     if (!apiRes.ok) {
       const errText = await apiRes.text();
@@ -80,4 +66,29 @@ LinkedIn post: 100 to 200 words, natural paragraph breaks, no hashtag spam, ends
   } catch (err) {
     return new Response(JSON.stringify({ error: 'Something went wrong. Please try again.' }), { status: 500, headers: cors });
   }
+}
+
+async function callClaudeWithRetry(env, systemPrompt, content, attempt = 1) {
+  const apiRes = await fetch('https://gateway.ai.cloudflare.com/v1/00ef26b84c4145eeb5224b57252e6273/loosecopy/anthropic/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': env.ANTHROPIC_API_KEY,
+      'anthropic-version': '2023-06-01',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-5',
+      max_tokens: 1024,
+      system: systemPrompt,
+      messages: [{ role: 'user', content }]
+    })
+  });
+
+  if (!apiRes.ok && attempt < 4) {
+    await new Promise(r => setTimeout(r, 500 * attempt));
+    return callClaudeWithRetry(env, systemPrompt, content, attempt + 1);
+  }
+
+  return apiRes;
 }
