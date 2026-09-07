@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loosecopy — Try it</title>
+<meta name="description" content="Paste a blog post or your notes. Get a Twitter thread and a LinkedIn post drafted in your voice.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:56ch;}
+
+  textarea{
+    width:100%;
+    min-height:220px;
+    padding:16px;
+    border:1px solid var(--border);
+    background:var(--paper-card);
+    border-radius:2px;
+    font-family:'Public Sans',sans-serif;
+    font-size:1rem;
+    color:var(--ink);
+    resize:vertical;
+  }
+  .count-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
+  .muted{color:var(--ink-soft);font-size:0.88rem;}
+
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer; margin-top:16px;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+  .btn-primary:disabled{background:var(--ink-soft);cursor:not-allowed;}
+
+  .error{
+    display:none; margin-top:16px; padding:12px 16px; background:var(--redline-wash);
+    border-left:3px solid var(--redline); font-size:0.95rem; color:#5c231f;
+  }
+
+  .results{display:none; margin-top:44px;}
+  .disclosure{
+    font-family:'Fraunces',serif; font-style:italic; color:var(--redline);
+    font-size:1rem; margin-bottom:28px; padding-bottom:20px; border-bottom:1px solid var(--border);
+  }
+  .draft-block{margin-bottom:36px;}
+  .draft-block h2{font-size:1.15rem; margin-bottom:4px;}
+  .draft-block .sub{color:var(--ink-soft); font-size:0.88rem; margin-bottom:14px;}
+
+  .tweet{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:12px 14px; margin-bottom:10px;
+  }
+  .tweet textarea{
+    min-height:70px; border:none; background:transparent; padding:0;
+    font-family:'Space Mono',monospace; font-size:0.94rem;
+  }
+  .tweet .count-row{margin-top:6px;}
+  .tweet .over{color:var(--redline); font-weight:700;}
+
+  .linkedin-box textarea{
+    min-height:220px; font-family:'Space Mono',monospace; font-size:0.94rem;
+  }
+
+  .copy-btn{
+    background:none; border:1px solid var(--border); color:var(--ink);
+    padding:6px 12px; border-radius:2px; font-size:0.85rem; cursor:pointer;
+    font-family:'Public Sans',sans-serif;
+  }
+  .copy-btn:hover{border-color:var(--ink);}
+
+  .loading{display:none; margin-top:20px; color:var(--ink-soft); font-style:italic;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Paste something you wrote</h1>
+  <p class="lede">A blog post, an article, rough notes — whatever you've got. You'll get a Twitter thread and a LinkedIn post back, ready to edit.</p>
+
+  <textarea id="input" placeholder="Paste your blog post or notes here..."></textarea>
+  <div class="count-row">
+    <span class="muted" id="inputCount">0 characters</span>
+    <span class="muted">min 50, max 8,000</span>
+  </div>
+
+  <button class="btn-primary" id="generateBtn">Generate drafts</button>
+  <p class="loading" id="loading">Reading it, pulling out the actual points...</p>
+  <div class="error" id="errorBox"></div>
+
+  <div class="results" id="results">
+    <p class="disclosure">These are AI-generated first drafts. Read them, make them sound like you, and disclose AI assistance if the platform you're posting to asks for it.</p>
+
+    <div class="draft-block">
+      <h2>Twitter / X thread</h2>
+      <p class="sub">Each tweet is its own box — edit freely, red count means over 280.</p>
+      <div id="tweetContainer"></div>
+    </div>
+
+    <div class="draft-block linkedin-box">
+      <h2>LinkedIn post</h2>
+      <p class="sub">One post, edit inline.</p>
+      <textarea id="linkedinText"></textarea>
+      <div class="count-row">
+        <span class="muted" id="linkedinCount">0 characters</span>
+        <button class="copy-btn" data-copy="linkedinText">Copy</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+const input = document.getElementById('input');
+const inputCount = document.getElementById('inputCount');
+const generateBtn = document.getElementById('generateBtn');
+const loading = document.getElementById('loading');
+const errorBox = document.getElementById('errorBox');
+const results = document.getElementById('results');
+const tweetContainer = document.getElementById('tweetContainer');
+const linkedinText = document.getElementById('linkedinText');
+const linkedinCount = document.getElementById('linkedinCount');
+
+input.addEventListener('input', () => {
+  inputCount.textContent = input.value.length + ' characters';
+});
+
+function renderTweets(threadText) {
+  tweetContainer.innerHTML = '';
+  const tweets = threadText.split('\n').map(t => t.trim()).filter(Boolean);
+  tweets.forEach((t) => {
+    const box = document.createElement('div');
+    box.className = 'tweet';
+    const ta = document.createElement('textarea');
+    ta.value = t;
+    const row = document.createElement('div');
+    row.className = 'count-row';
+    const count = document.createElement('span');
+    count.className = 'muted';
+    function updateCount(){
+      const len = ta.value.length;
+      count.textContent = len + ' / 280';
+      count.className = len > 280 ? 'muted over' : 'muted';
+    }
+    ta.addEventListener('input', updateCount);
+    updateCount();
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'copy-btn';
+    copyBtn.textContent = 'Copy';
+    copyBtn.addEventListener('click', () => navigator.clipboard.writeText(ta.value));
+    row.appendChild(count);
+    row.appendChild(copyBtn);
+    box.appendChild(ta);
+    box.appendChild(row);
+    tweetContainer.appendChild(box);
+  });
+}
+
+linkedinText.addEventListener('input', () => {
+  linkedinCount.textContent = linkedinText.value.length + ' characters';
+});
+
+document.querySelectorAll('.copy-btn[data-copy]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const el = document.getElementById(btn.dataset.copy);
+    navigator.clipboard.writeText(el.value);
+  });
+});
+
+generateBtn.addEventListener('click', async () => {
+  errorBox.style.display = 'none';
+  const content = input.value.trim();
+  if (content.length < 50) {
+    errorBox.textContent = 'Paste at least a few sentences of real content.';
+    errorBox.style.display = 'block';
+    return;
+  }
+
+  generateBtn.disabled = true;
+  loading.style.display = 'block';
+  results.style.display = 'none';
+
+  try {
+    const res = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content })
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || 'Something went wrong.');
+    }
+
+    renderTweets(data.twitter || '');
+    linkedinText.value = data.linkedin || '';
+    linkedinCount.textContent = linkedinText.value.length + ' characters';
+    results.style.display = 'block';
+
+  } catch (err) {
+    errorBox.textContent = err.message || 'Something went wrong. Please try again.';
+    errorBox.style.display = 'block';
+  } finally {
+    generateBtn.disabled = false;
+    loading.style.display = 'none';
+  }
+});
+</script>
+
+</body>
+</html>

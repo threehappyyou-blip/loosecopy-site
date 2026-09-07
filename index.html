@@ -271,7 +271,10 @@
 <header class="site">
   <div class="wrap">
     <div class="wordmark">Loose<em>·</em>copy</div>
-    <a class="nav-cta" href="#join">Join waitlist</a>
+    <div style="display:flex;align-items:center;gap:18px;">
+      <a href="app.html" style="font-size:0.9rem;font-weight:600;color:var(--ink);text-decoration:none;">Try it &rarr;</a>
+      <a class="nav-cta" href="#join">Join waitlist</a>
+    </div>
   </div>
 </header>
 
@@ -280,8 +283,8 @@
     <div>
       <h1>One draft.<br>Every platform.<br>Still sounds like you.</h1>
       <p class="sub">Paste a blog post or your rough notes. Get a Twitter thread and a LinkedIn post drafted in minutes — ready for you to polish, disclose, and publish yourself.</p>
-      <form class="hero-form" id="join">
-        <input type="email" placeholder="you@email.com" required aria-label="Email address">
+      <form class="hero-form" id="join" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
         <button class="btn-primary" type="submit">Get early access</button>
       </form>
       <p class="form-note" id="formNote">Free for 5 drafts a month. No credit card.</p>
@@ -366,9 +369,22 @@
 <script>
   document.getElementById('join').addEventListener('submit', function(e){
     e.preventDefault();
-    document.getElementById('formNote').style.display='none';
-    document.getElementById('formThanks').style.display='block';
-    // TODO: wire this up to a real email capture (Cloudflare Worker + KV, Buttondown, ConvertKit, etc.) before going live.
+    var form = e.target;
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res){
+      if (res.ok) {
+        document.getElementById('formNote').style.display='none';
+        document.getElementById('formThanks').style.display='block';
+        form.reset();
+      } else {
+        alert('Something went wrong — please try again.');
+      }
+    }).catch(function(){
+      alert('Something went wrong — please try again.');
+    });
   });
 </script>
 
