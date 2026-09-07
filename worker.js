@@ -42,7 +42,7 @@ Twitter thread: 4 to 6 numbered tweets ("1/", "2/", ...), each under 280 charact
 LinkedIn post: 100 to 200 words, natural paragraph breaks, no hashtag spam, ends with one genuine question or takeaway \u2014 not "thoughts?".`;
 
   try {
-    const apiRes = await fetch('https://api.anthropic.com/v1/messages', {
+    const apiRes = await fetch('https://gateway.ai.cloudflare.com/v1/00ef26b84c4145eeb5224b57252e6273/loosecopy/anthropic/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
