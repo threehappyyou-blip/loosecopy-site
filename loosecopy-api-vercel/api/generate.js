@@ -80,6 +80,6 @@ LinkedIn post: 100 to 200 words, natural paragraph breaks, no hashtag spam, ends
     return new Response(JSON.stringify(drafts), { headers: CORS });
 
   } catch (err) {
-    return new Response(JSON.stringify({ error: 'Something went wrong. Please try again.' }), { status: 500, headers: CORS });
+    return new Response(JSON.stringify({ error: 'Server error: ' + (err && err.message ? err.message : String(err)) }), { status: 500, headers: CORS });
   }
 }
