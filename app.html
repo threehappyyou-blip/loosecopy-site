@@ -211,7 +211,7 @@ generateBtn.addEventListener('click', async () => {
   results.style.display = 'none';
 
   try {
-    const res = await fetch('https://YOUR-VERCEL-PROJECT.vercel.app/api/generate', {
+    const res = await fetch('https://loosecopy-site.vercel.app/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ content })
