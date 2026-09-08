@@ -73,7 +73,7 @@ LinkedIn post: 100 to 200 words, natural paragraph breaks, no hashtag spam, ends
       drafts = JSON.parse(raw);
     } catch {
       const match = raw.match(/\{[\s\S]*\}/);
-      if (!match) throw new Error('no json in response');
+      if (!match) throw new Error('No JSON found. Raw response was: ' + JSON.stringify(raw).slice(0, 500));
       drafts = JSON.parse(match[0]);
     }
 
