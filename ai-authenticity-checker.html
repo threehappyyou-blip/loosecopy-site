@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Does This Sound Like AI? — Free Checker by Loosecopy</title>
+<style>
+  :root{
+    --lc-bg:#fafaf8; --lc-surface:#ffffff; --lc-ink:#16181d; --lc-muted:#5b6270;
+    --lc-border:#e6e4de; --lc-accent:#e8622c; --lc-accent-soft:#fdeee6;
+    --lc-mark:#fff2b8; --lc-mark-border:#e8c559;
+    --lc-radius:14px; --lc-font:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--lc-bg);color:var(--lc-ink);font-family:var(--lc-font);line-height:1.6;padding:40px 20px 80px;}
+  .wrap{max-width:760px;margin:0 auto;}
+  .eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--lc-accent);margin-bottom:12px;}
+  h1{font-size:clamp(26px,4vw,36px);line-height:1.2;margin:0 0 12px;letter-spacing:-0.01em;}
+  .sub{font-size:16px;color:var(--lc-muted);max-width:60ch;margin:0 0 28px;}
+  textarea{
+    width:100%;min-height:220px;padding:16px;border:1px solid var(--lc-border);border-radius:var(--lc-radius);
+    font-family:var(--lc-font);font-size:15px;line-height:1.6;color:var(--lc-ink);background:var(--lc-surface);
+    resize:vertical;
+  }
+  textarea:focus{outline:2px solid var(--lc-accent);outline-offset:1px;}
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  button{
+    background:var(--lc-accent);color:#fff;border:none;border-radius:10px;padding:12px 22px;
+    font-size:15px;font-weight:600;cursor:pointer;font-family:var(--lc-font);
+  }
+  button:hover{filter:brightness(0.95);}
+  button:disabled{opacity:.5;cursor:not-allowed;}
+  .wordcount{font-size:13.5px;color:var(--lc-muted);}
+  .results{margin-top:32px;display:none;}
+  .verdict{
+    padding:18px 20px;border-radius:var(--lc-radius);border:1px solid var(--lc-border);background:var(--lc-surface);
+    font-size:15.5px;margin-bottom:20px;
+  }
+  .verdict strong{display:block;font-size:17px;margin-bottom:4px;}
+  .highlighted{
+    white-space:pre-wrap;padding:18px 20px;border:1px solid var(--lc-border);border-radius:var(--lc-radius);
+    background:var(--lc-surface);font-size:15px;line-height:1.75;margin-bottom:20px;
+  }
+  mark{background:var(--lc-mark);border-bottom:2px solid var(--lc-mark-border);padding:1px 2px;border-radius:3px;}
+  .findings{display:grid;gap:10px;margin-bottom:24px;}
+  .finding{
+    display:flex;justify-content:space-between;gap:12px;padding:12px 16px;border:1px solid var(--lc-border);
+    border-radius:10px;background:var(--lc-surface);font-size:14.5px;
+  }
+  .finding .cat{color:var(--lc-muted);font-size:13px;}
+  .finding .cnt{font-weight:700;color:var(--lc-accent);white-space:nowrap;}
+  .callout{
+    display:flex;gap:14px;align-items:flex-start;background:var(--lc-accent-soft);border:1px solid var(--lc-mark-border);
+    border-radius:var(--lc-radius);padding:18px 20px;font-size:14.5px;
+  }
+  .callout a{color:var(--lc-accent);font-weight:700;text-decoration:none;}
+  .callout a:hover{text-decoration:underline;}
+  .disclaimer{font-size:12.5px;color:var(--lc-muted);margin-top:28px;line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">Free tool by Loosecopy</span>
+  <h1>Does this sound like AI?</h1>
+  <p class="sub">
+    Paste your draft below. We'll flag the phrases and patterns that make readers
+    (and Reddit mods) go "yeah, that's AI" — so you can fix them before you post.
+  </p>
+
+  <textarea id="input" placeholder="Paste your tweet, post, or paragraph here..."></textarea>
+  <div class="row">
+    <button id="checkBtn">Check my text</button>
+    <span class="wordcount" id="wordcount"></span>
+  </div>
+
+  <div class="results" id="results">
+    <div class="verdict" id="verdict"></div>
+    <div class="highlighted" id="highlighted"></div>
+    <div class="findings" id="findings"></div>
+    <div class="callout">
+      <div>
+        This isn't a certified AI detector — no such thing exists. It's just the
+        patterns real readers notice. Loosecopy's drafts start out sounding like
+        this too, by default — that's exactly why we built a required
+        review-and-edit step before anything gets published.
+        <a href="https://loosecopy.com" target="_blank" rel="noopener">See how Loosecopy works →</a>
+      </div>
+    </div>
+  </div>
+
+  <p class="disclaimer">
+    Heuristic pattern-matcher, not a machine-learning classifier — it can't read intent
+    or verify authorship, only flag phrasing that's become a cliché in AI-generated text.
+    False positives happen (some of these phrases are just... normal English sometimes).
+  </p>
+</div>
+
+<script>
+(function(){
+  // 카테고리별 AI-클리셰 문구 목록. 필요하면 자유롭게 추가/삭제하세요.
+  const PHRASES = [
+    // [phrase, category]
+    ["in today's fast-paced world","클리셰 도입부"], ["in this day and age","클리셰 도입부"],
+    ["in an era where","클리셰 도입부"], ["in a world where","클리셰 도입부"],
+    ["in conclusion","클리셰 마무리"], ["in summary","클리셰 마무리"], ["to sum up","클리셰 마무리"],
+    ["at the end of the day","클리셰 마무리"], ["overall,","클리셰 마무리"],
+    ["game-changer","과장 표현"], ["game changer","과장 표현"], ["revolutionize","과장 표현"],
+    ["cutting-edge","과장 표현"], ["state-of-the-art","과장 표현"], ["unparalleled","과장 표현"],
+    ["unprecedented","과장 표현"], ["supercharge","과장 표현"], ["turbocharge","과장 표현"],
+    ["robust","막연한 강조어"], ["seamless","막연한 강조어"], ["seamlessly","막연한 강조어"],
+    ["leverage","막연한 강조어"], ["leveraging","막연한 강조어"], ["elevate","막연한 강조어"],
+    ["elevating","막연한 강조어"], ["unlock","막연한 강조어"], ["unleash","막연한 강조어"],
+    ["empower","막연한 강조어"], ["empowering","막연한 강조어"],
+    ["furthermore","형식적 접속어"], ["moreover","형식적 접속어"], ["additionally,","형식적 접속어"],
+    ["it's important to note","형식적 접속어"], ["it is important to note","형식적 접속어"],
+    ["it's worth noting","형식적 접속어"], ["that being said","형식적 접속어"],
+    ["myriad","막연한 규모 표현"], ["plethora","막연한 규모 표현"], ["a wide range of","막연한 규모 표현"],
+    ["a vast array of","막연한 규모 표현"], ["countless","막연한 규모 표현"],
+    ["embark on","여정 은유"], ["navigate the complexities","여정 은유"],
+    ["navigating the complexities","여정 은유"], ["the realm of","여정 은유"], ["in the realm of","여정 은유"],
+    ["delve into","여정 은유"], ["dive into","여정 은유"], ["let's dive in","여정 은유"],
+    ["unpack","여정 은유"], ["deep dive","여정 은유"],
+    ["as an ai language model","AI 자기 언급"], ["as an ai,","AI 자기 언급"],
+    ["i hope this helps","클리셰 맺음말"], ["feel free to","클리셰 맺음말"], ["food for thought","클리셰 맺음말"],
+    ["plays a crucial role","중요성 과장"], ["crucial role in","중요성 과장"], ["pivotal role","중요성 과장"],
+    ["paramount","중요성 과장"], ["cannot be overstated","중요성 과장"],
+    ["a testament to","클리셰 비유"], ["tapestry of","클리셰 비유"], ["underscores the","클리셰 비유"],
+  ];
+
+  function escapeHtml(s){
+    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+
+  function analyze(text){
+    const wordCount = (text.trim().match(/\S+/g) || []).length;
+    const lower = text.toLowerCase();
+    const counts = {}; // phrase -> {category, count}
+    let totalHits = 0;
+
+    PHRASES.forEach(([phrase, cat]) => {
+      const re = new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"), "gi");
+      const m = lower.match(re);
+      if (m && m.length){
+        counts[phrase] = {category:cat, count:m.length};
+        totalHits += m.length;
+      }
+    });
+
+    // 구조적 패턴: em-dash 남용
+    const emDashCount = (text.match(/—/g) || []).length;
+    if (wordCount > 0 && emDashCount / (wordCount/100) > 1.2){
+      counts["em dash (—) 남용"] = {category:"구조 패턴", count:emDashCount};
+      totalHits += emDashCount;
+    }
+
+    // 구조적 패턴: "X, Y, and Z" 삼항 나열 반복
+    const triplets = text.match(/\b\w+,\s*\w+,?\s*and\s+\w+\b/gi) || [];
+    if (triplets.length >= 3){
+      counts["세 단어 나열 반복 (X, Y, and Z)"] = {category:"구조 패턴", count:triplets.length};
+      totalHits += triplets.length;
+    }
+
+    const density = wordCount > 0 ? totalHits / (wordCount/100) : 0;
+    return {wordCount, counts, totalHits, density};
+  }
+
+  function highlight(text){
+    let html = escapeHtml(text);
+    PHRASES.forEach(([phrase]) => {
+      const re = new RegExp("("+phrase.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")", "gi");
+      html = html.replace(re, "<mark>$1</mark>");
+    });
+    return html.replace(/\n/g, "<br>");
+  }
+
+  function verdictFor(density){
+    if (density < 1) return ["Reads pretty clean.", "0~1 patterns per 100 words — not much here that screams AI."];
+    if (density < 3) return ["A few things stood out.", "Worth a quick pass before you post — nothing major."];
+    if (density < 6) return ["Quite a few AI patterns here.", "Might be worth editing a bit more before you publish."];
+    return ["Lots of common AI tells.", "This could use a real rewrite pass, not just a tweak."];
+  }
+
+  const input = document.getElementById("input");
+  const wordcountEl = document.getElementById("wordcount");
+  const btn = document.getElementById("checkBtn");
+  const results = document.getElementById("results");
+  const verdictEl = document.getElementById("verdict");
+  const highlightedEl = document.getElementById("highlighted");
+  const findingsEl = document.getElementById("findings");
+
+  input.addEventListener("input", () => {
+    const wc = (input.value.trim().match(/\S+/g) || []).length;
+    wordcountEl.textContent = wc + " words";
+  });
+
+  btn.addEventListener("click", () => {
+    const text = input.value;
+    if (!text.trim()) return;
+    const {wordCount, counts, totalHits, density} = analyze(text);
+    const [headline, detail] = verdictFor(density);
+
+    verdictEl.innerHTML = `<strong>${headline}</strong>${detail} Found ${totalHits} flagged instance${totalHits===1?"":"s"} in ~${wordCount} words.`;
+    highlightedEl.innerHTML = highlight(text);
+
+    const rows = Object.entries(counts).sort((a,b) => b[1].count - a[1].count);
+    findingsEl.innerHTML = rows.length
+      ? rows.map(([phrase, v]) => `
+          <div class="finding">
+            <div>"${escapeHtml(phrase)}" <span class="cat">— ${v.category}</span></div>
+            <div class="cnt">×${v.count}</div>
+          </div>`).join("")
+      : `<div class="finding">No specific phrases flagged — nice and clean.</div>`;
+
+    results.style.display = "block";
+  });
+})();
+</script>
+</body>
+</html>
