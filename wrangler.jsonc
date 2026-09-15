@@ -5,11 +5,18 @@
   "assets": {
     "directory": ".",
     "binding": "ASSETS"
-  },
-  // 초안 수정률 통계용 KV. 아직 네임스페이스가 없다면:
-  // Cloudflare 대시보드 → Workers & Pages → KV → Create namespace (이름 아무거나, 예: loosecopy-stats)
-  // → 생성되는 네임스페이스 ID를 아래 "id"에 붙여넣으세요. (또는 `wrangler kv namespace create STATS_KV`)
-  "kv_namespaces": [
-    { "binding": "STATS_KV", "id": "PASTE_YOUR_KV_NAMESPACE_ID_HERE" }
-  ]
+  }
+  // 초안 수정률 통계용 KV — 임시로 꺼둠(2026-09-15).
+  // "PASTE_YOUR_KV_NAMESPACE_ID_HERE"는 실제 존재하는 네임스페이스가 아니라서
+  // 이 값이 들어간 채로는 배포(deploy) 자체가 계속 실패했고, 그 여파로 다른 파일
+  // (index.html의 Formspree 수정본 등)도 같이 배포가 안 되고 있었음 — 확인 후 제거.
+  //
+  // 나중에 통계 기능을 켜려면:
+  // 1) Cloudflare 대시보드 → Workers & Pages → KV → Create namespace (이름 예: loosecopy-stats)
+  //    (또는 `wrangler kv namespace create STATS_KV`)
+  // 2) 아래 주석을 풀고 "id" 값을 실제 생성된 네임스페이스 ID로 교체
+  //
+  // "kv_namespaces": [
+  //   { "binding": "STATS_KV", "id": "실제_네임스페이스_ID" }
+  // ]
 }
