@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do I Need to Disclose AI Use? — Loosecopy</title>
+<meta name="description" content="Answer two questions and get a plain-language answer on whether you need to disclose AI assistance — grounded in each platform's actual policy.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 36px;max-width:60ch;}
+
+  .q-block{margin-bottom:32px;}
+  .q-block h2{font-size:1.05rem; margin-bottom:14px;}
+  .options{display:flex; flex-direction:column; gap:8px;}
+  .opt{
+    display:flex; align-items:center; gap:12px; background:var(--paper-card); border:1px solid var(--border);
+    border-radius:2px; padding:13px 16px; cursor:pointer; font-size:0.95rem;
+  }
+  .opt input{width:17px; height:17px; flex-shrink:0; accent-color:var(--bluepencil);}
+  .opt.selected{border-left:3px solid var(--bluepencil); background:#F3F5F1;}
+
+  .result{
+    margin-top:8px; padding:22px 24px; border-radius:2px; background:var(--bluepencil-wash);
+    display:none;
+  }
+  .result.show{display:block;}
+  .result h2{font-size:1.05rem; margin-bottom:10px;}
+  .result p{margin:0 0 10px; font-size:0.97rem;}
+  .result p:last-child{margin-bottom:0;}
+  .result.override{background:var(--redline-wash); color:#5c231f;}
+
+  .placeholder{
+    margin-top:8px; padding:18px 20px; border:1px dashed var(--border); border-radius:2px;
+    color:var(--ink-soft); font-size:0.9rem;
+  }
+
+  .source-note{font-size:0.82rem; color:var(--ink-soft); margin-top:36px;}
+  .source-note a{color:var(--bluepencil);}
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:14px;}
+  .also a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Do I actually need to disclose this?</h1>
+  <p class="lede">Answer two questions, get a straight answer — built on the same sourced research as our <a href="/ai-disclosure-policies.html">full policy breakdown</a>, just aimed at your specific case.</p>
+
+  <div class="q-block">
+    <h2>1. Where is this going?</h2>
+    <div class="options" id="q1">
+      <label class="opt"><input type="radio" name="platform" value="x"> X (Twitter)</label>
+      <label class="opt"><input type="radio" name="platform" value="linkedin"> LinkedIn</label>
+      <label class="opt"><input type="radio" name="platform" value="meta"> Instagram, Facebook, or Threads</label>
+      <label class="opt"><input type="radio" name="platform" value="google"> My own blog or site (shows up in Google)</label>
+      <label class="opt"><input type="radio" name="platform" value="other"> Somewhere else, or not sure</label>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <h2>2. Does this have its own rule you'd have to follow anyway — a school policy, a client contract, a contest, your employer?</h2>
+    <div class="options" id="q2">
+      <label class="opt"><input type="radio" name="context" value="yes"> Yes, there's a specific rule</label>
+      <label class="opt"><input type="radio" name="context" value="no"> No, this is just for me</label>
+      <label class="opt"><input type="radio" name="context" value="unsure"> Not sure</label>
+    </div>
+  </div>
+
+  <div class="placeholder" id="placeholder">Answer both questions to see your answer.</div>
+  <div class="result" id="result"></div>
+
+  <p class="source-note">Platform answers are based on official policy pages as of September 2026 — see <a href="/ai-disclosure-policies.html">sources and dates →</a>. This isn't legal advice.</p>
+  <p class="also">Ready to write your own line? <a href="/ai-disclosure-helper.html">Copy a ready-made disclosure phrase →</a></p>
+</main>
+
+<script>
+const platformAnswers = {
+  x: "X's official policy covers fabricated media — images, video, audio of real people — not text. There's no disclosure requirement for a text-only post or thread.",
+  linkedin: "LinkedIn doesn't require a label. Its own guidance instead makes you responsible for reviewing and standing behind whatever you post — treat that as the real requirement, label or not.",
+  meta: "Meta's “AI Info” label is automatic and only triggers on images or video carrying AI-generation metadata. A plain text post or caption isn't covered by it at all.",
+  google: "Google has said disclosure isn't a ranking factor. What they act against is mass-producing low-value content at scale — not the fact that a tool helped you draft it.",
+  other: "We've only actually researched X, LinkedIn, Meta, and Google. For anywhere else, check that platform's own current help pages before assuming the same logic applies."
+};
+
+const contextAnswers = {
+  yes: {
+    text: "That rule wins, regardless of the platform answer above. Follow it — we can't know its specifics, and “the platform didn't require it” isn't a defense against a rule you separately agreed to.",
+    override: true
+  },
+  no: {
+    text: "Then the platform answer above is likely all that applies — though disclosing anyway is still a reasonable choice, just not a requirement.",
+    override: false
+  },
+  unsure: {
+    text: "Worth ten minutes to check before you assume. A school's academic-integrity policy, a client contract, a contest's rules, or an employer's guidelines can all require disclosure even when the platform itself doesn't.",
+    override: false
+  }
+};
+
+const placeholder = document.getElementById('placeholder');
+const result = document.getElementById('result');
+
+function updateSelectedStyle(groupId){
+  document.querySelectorAll('#' + groupId + ' .opt').forEach(opt => {
+    opt.classList.toggle('selected', opt.querySelector('input').checked);
+  });
+}
+
+function render(){
+  const platform = document.querySelector('input[name="platform"]:checked');
+  const context = document.querySelector('input[name="context"]:checked');
+
+  if (!platform || !context) {
+    placeholder.style.display = 'block';
+    result.classList.remove('show', 'override');
+    return;
+  }
+
+  placeholder.style.display = 'none';
+  const platformText = platformAnswers[platform.value];
+  const contextInfo = contextAnswers[context.value];
+
+  result.innerHTML = '<h2>Here’s the honest answer</h2>' +
+    '<p>' + platformText + '</p>' +
+    '<p>' + contextInfo.text + '</p>';
+  result.classList.add('show');
+  result.classList.toggle('override', contextInfo.override);
+}
+
+document.querySelectorAll('input[name="platform"]').forEach(el => {
+  el.addEventListener('change', () => { updateSelectedStyle('q1'); render(); });
+});
+document.querySelectorAll('input[name="context"]').forEach(el => {
+  el.addEventListener('change', () => { updateSelectedStyle('q2'); render(); });
+});
+</script>
+
+</body>
+</html>

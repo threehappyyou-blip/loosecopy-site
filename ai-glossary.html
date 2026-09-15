@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Content Glossary — Loosecopy</title>
+<meta name="description" content="Plain-language definitions for terms that come up around AI-written content, disclosure, and detection — sourced, and added to over time.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 8px;max-width:62ch;}
+  .verified{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.82rem;
+    color:var(--ink-soft); background:var(--paper-card); border:1px solid var(--border);
+    border-radius:2px; padding:6px 12px; margin:14px 0 28px;
+  }
+
+  #filter{
+    width:100%; padding:12px 14px; font-size:0.98rem; font-family:'Public Sans',sans-serif;
+    border:1px solid var(--border); border-radius:2px; background:var(--paper-card); color:var(--ink);
+    margin-bottom:28px;
+  }
+  #filter:focus{border-color:var(--bluepencil);}
+
+  .term{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:18px 20px; margin-bottom:12px;
+  }
+  .term h2{font-size:1.05rem; margin-bottom:8px;}
+  .term p{margin:0 0 8px; font-size:0.95rem;}
+  .term .source{font-size:0.8rem; color:var(--ink-soft); margin:0;}
+  .term .source a{color:var(--bluepencil);}
+  .term .see-also{font-size:0.82rem; color:var(--ink-soft); margin:0;}
+  .term .see-also a{color:var(--bluepencil);}
+  .no-match{display:none; color:var(--ink-soft); font-size:0.92rem; padding:20px 0;}
+
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:32px;}
+  .also a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Terms that come up around AI content</h1>
+  <p class="lede">Short, plain-language definitions — not a full dictionary, just the words you actually run into around AI-written content, disclosure, and detection. This list only grows; nothing here gets removed, only added to or corrected.</p>
+  <div class="verified">Last updated: September 2026 &middot; 9 terms</div>
+
+  <input type="text" id="filter" placeholder="Search terms…" aria-label="Search glossary terms">
+
+  <div id="terms">
+
+    <div class="term" data-term="ai slop">
+      <h2>AI slop</h2>
+      <p>Low-effort content made by AI, produced for volume rather than for the reader — the AI-era equivalent of a content mill. Researchers describe it as having "superficial competence, asymmetric effort, and mass producibility": it reads fine at a glance but has nothing underneath. The distinction from AI-<em>assisted</em> content is intent and oversight — one has a human directing and checking it, the other doesn't.</p>
+      <p class="source">Source: <a href="https://en.wikipedia.org/wiki/AI_slop" target="_blank" rel="noopener">Wikipedia — AI slop</a></p>
+    </div>
+
+    <div class="term" data-term="content credentials c2pa provenance">
+      <h2>Content Credentials (C2PA)</h2>
+      <p>Often described as "a nutrition label for digital content." A technical standard (from the Coalition for Content Provenance and Authenticity) that attaches cryptographically signed, tamper-evident metadata to a file: who made it, when, what tools were involved, and whether generative AI played a part. It doesn't block or restrict the content — it just makes its history checkable.</p>
+      <p class="source">Source: <a href="https://contentauthenticity.org/how-it-works" target="_blank" rel="noopener">Content Authenticity Initiative — How it works</a></p>
+    </div>
+
+    <div class="term" data-term="false positive false negative detection">
+      <h2>False positive / false negative</h2>
+      <p>In AI-detection terms: a <strong>false positive</strong> is human-written text incorrectly flagged as AI-generated. A <strong>false negative</strong> is AI-generated text that gets waved through as human. Every detector makes both kinds of mistakes — the question is always which kind it makes more often, and to whom. See our <a href="/ai-detectors-explained.html">detector reliability breakdown →</a> for real numbers.</p>
+    </div>
+
+    <div class="term" data-term="hallucination">
+      <h2>Hallucination</h2>
+      <p>When an AI model states something false or fabricated — a quote that was never said, a source that doesn't exist, a fact that's simply wrong — with the same fluent confidence as something true. It's not the model "lying" in any intentional sense; it's a known limitation of how these systems generate text. It's also the main reason a human review step matters more than how polished a draft sounds.</p>
+    </div>
+
+    <div class="term" data-term="human in the loop">
+      <h2>Human-in-the-loop</h2>
+      <p>A workflow where a person reviews, edits, or approves an AI's output before it's used or published — as opposed to a fully automated pipeline where AI output goes straight out the door. It's less a specific technology than a design choice. It's also the one design choice this entire product refuses to remove: see <a href="/trust.html">the pledge this is built on →</a>.</p>
+    </div>
+
+    <div class="term" data-term="perplexity detection">
+      <h2>Perplexity</h2>
+      <p>A statistical measure of how predictable a piece of text is to a language model — simpler, more repetitive phrasing scores as more predictable ("lower perplexity"), while more varied or complex phrasing scores as less predictable. Most AI-text detectors lean heavily on this number. The catch: simpler, more repetitive phrasing is also common in non-native English writing, which is a documented reason those writers get falsely flagged far more often. Details on <a href="/ai-detectors-explained.html">the detector reliability page →</a>.</p>
+    </div>
+
+    <div class="term" data-term="provenance content credentials">
+      <h2>Provenance</h2>
+      <p>The traceable history of a piece of content — who made it, when, with what tools, and what's changed since. In the AI-content world, "provenance" is increasingly the alternative strategy to "detection": instead of trying to guess whether something is AI-made after the fact, attach a verifiable record at the moment it's created. Content Credentials (C2PA) is the leading technical approach to this.</p>
+    </div>
+
+    <div class="term" data-term="scaled content abuse google spam">
+      <h2>Scaled content abuse</h2>
+      <p>Google's own term for its policy against mass-producing low-value pages — "many pages generated for the primary purpose of manipulating search rankings and not helping users," their own wording specifically names doing this with generative AI as an example. The target is the mass-production-without-value pattern, not the fact that a tool was involved in drafting. More on Google's actual stance on <a href="/ai-disclosure-policies.html">the policy breakdown page →</a>.</p>
+      <p class="source">Source: <a href="https://developers.google.com/search/docs/essentials/spam-policies" target="_blank" rel="noopener">developers.google.com — Google Search spam policies</a></p>
+    </div>
+
+    <div class="term" data-term="synthetic media deepfake">
+      <h2>Synthetic media</h2>
+      <p>Media — images, video, or audio — that's been wholly or partly generated or manipulated by AI, especially where it depicts a real person doing or saying something they didn't. This is the category most platform "manipulated media" policies are actually built around, and notably, most of those policies (X included) are written for images/video/audio specifically, not plain text — see <a href="/ai-disclosure-policies.html">how each platform actually draws that line →</a>.</p>
+    </div>
+
+  </div>
+
+  <p class="no-match" id="noMatch">No terms match that search.</p>
+
+  <p class="also">Something missing you keep running into? This list is meant to grow — the next update adds whatever term actually comes up.</p>
+</main>
+
+<script>
+const filterInput = document.getElementById('filter');
+const terms = document.querySelectorAll('.term');
+const noMatch = document.getElementById('noMatch');
+
+filterInput.addEventListener('input', () => {
+  const q = filterInput.value.trim().toLowerCase();
+  let visibleCount = 0;
+  terms.forEach(t => {
+    const haystack = (t.dataset.term + ' ' + t.textContent).toLowerCase();
+    const match = haystack.includes(q);
+    t.style.display = match ? '' : 'none';
+    if (match) visibleCount++;
+  });
+  noMatch.style.display = visibleCount === 0 ? 'block' : 'none';
+});
+</script>
+
+</body>
+</html>

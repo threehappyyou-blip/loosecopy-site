@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why AI Detectors Get It Wrong — Loosecopy</title>
+<meta name="description" content="Getting flagged as 'AI-written' isn't proof of anything. A sourced look at what the research actually says about AI-text-detector accuracy.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 8px;max-width:62ch;}
+
+  .verified{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.82rem;
+    color:var(--ink-soft); background:var(--paper-card); border:1px solid var(--border);
+    border-radius:2px; padding:6px 12px; margin:14px 0 20px;
+  }
+
+  .origin{
+    background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--bluepencil);
+    border-radius:2px; padding:16px 20px; margin-bottom:36px; font-size:0.95rem; color:var(--ink);
+  }
+
+  .finding{margin-bottom:28px; background:var(--paper-card); border:1px solid var(--border); border-radius:2px; padding:20px 22px;}
+  .finding h2{font-size:1.1rem; margin-bottom:10px;}
+  .finding p{margin:0 0 10px; font-size:0.96rem;}
+  .stat-row{display:flex; flex-wrap:wrap; gap:12px; margin:12px 0;}
+  .stat{
+    font-family:'Space Mono',monospace; background:#F3F5F1; border:1px solid var(--border);
+    border-radius:2px; padding:10px 14px; font-size:0.85rem; color:var(--ink); flex:1 1 200px;
+  }
+  .stat b{display:block; font-size:1.3rem; color:var(--redline); font-family:'Fraunces',serif; font-weight:500;}
+  .takeaway{
+    border-left:3px solid var(--bluepencil); padding:8px 14px; margin:12px 0; font-size:0.92rem;
+    background:#F3F5F1; color:var(--ink);
+  }
+  .source{font-size:0.82rem; color:var(--ink-soft);}
+  .source a{color:var(--bluepencil);}
+
+  .so-what{
+    margin-top:8px; padding:20px 22px; background:var(--bluepencil-wash); border-radius:2px;
+  }
+  .so-what h2{font-size:1.15rem; margin-bottom:10px;}
+  .so-what ul{margin:10px 0 0; padding-left:20px;}
+  .so-what li{margin-bottom:8px; font-size:0.96rem;}
+
+  .legal-note{
+    margin-top:24px; padding:16px 20px; border-left:3px solid var(--redline); background:var(--redline-wash);
+    font-size:0.88rem; color:#5c231f; border-radius:2px;
+  }
+
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:32px;}
+  .also a{color:var(--bluepencil);}
+
+  @media (max-width:520px){ .stat-row{flex-direction:column;} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Getting flagged doesn't mean what you think it means</h1>
+  <p class="lede">"This looks AI-generated" is a guess dressed up as a verdict. Here's what the actual research says about how good that guess is — sourced, dated, and linked so you can check it yourself.</p>
+  <div class="verified">Last verified: September 2026</div>
+
+  <div class="origin">
+    This page exists because of how Loosecopy started: a founder here got a piece of writing flagged as "AI-written" on Reddit — the tool that should've existed to help with disclosure and review didn't, so we built it. That experience is the reason this page is honest about the flip side too: the tools that do the flagging are a lot less reliable than the confident percentage they show you.
+  </div>
+
+  <div class="finding">
+    <h2>Non-native English writers get flagged far more often</h2>
+    <p>A Stanford study tested seven widely-used AI detectors on real TOEFL essays written by non-native English speakers, alongside essays from US eighth-graders. The detectors weren't just slightly worse on non-native writing — they were dramatically worse.</p>
+    <div class="stat-row">
+      <div class="stat"><b>61.22%</b>of real, human-written TOEFL essays were flagged as AI-generated</div>
+      <div class="stat"><b>97%</b>of those essays were flagged by at least one of the seven detectors tested</div>
+      <div class="stat"><b>~0%</b>false-positive rate on the native-English eighth-grade essays</div>
+    </div>
+    <p>The researchers found the cause: detectors lean heavily on "perplexity" — how statistically predictable your word choices and sentence structure are. Simpler vocabulary and more repetitive grammar (common in non-native writing) score as more "AI-like," regardless of who actually wrote it or how.</p>
+    <div class="takeaway">Takeaway: if English isn't your first language, these tools are measurably more likely to flag your own writing as fake — before AI is ever involved.</div>
+    <p class="source">Source: <a href="https://hai.stanford.edu/news/ai-detectors-biased-against-non-native-english-writers" target="_blank" rel="noopener">Stanford HAI — "AI-Detectors Biased Against Non-Native English Writers" (May 2023)</a></p>
+  </div>
+
+  <div class="finding">
+    <h2>OpenAI gave up on its own detector</h2>
+    <p>OpenAI — the company with the most direct financial and reputational interest in solving this — built and shipped its own AI-text classifier, then shut it down a few months later.</p>
+    <div class="stat-row">
+      <div class="stat"><b>26%</b>of actual AI-written text was correctly identified</div>
+      <div class="stat"><b>9%</b>of genuinely human-written text was incorrectly flagged as AI</div>
+    </div>
+    <p>It also performed worse on short passages, could be defeated by light editing, and was unreliable outside English. OpenAI's own retirement notice cited "a low rate of accuracy" as the reason.</p>
+    <div class="takeaway">Takeaway: if the maker of the models themselves couldn't build a detector worth trusting, a browser extension probably can't either.</div>
+    <p class="source">Source: <a href="https://openai.com/index/new-ai-classifier-for-indicating-ai-written-text/" target="_blank" rel="noopener">openai.com — New AI classifier for indicating AI-written text</a></p>
+  </div>
+
+  <div class="finding">
+    <h2>Vendors self-report much better numbers than that</h2>
+    <p>Not every detector is as bad as OpenAI's discontinued tool — Turnitin, for instance, states it maintains a false-positive rate under 1% on its own testing. But Turnitin's own blog post about that number is careful to add real caveats: the risk isn't zero, a score alone shouldn't be treated as proof of misconduct, and instructors are told to apply judgment and assume good faith rather than act on the score in isolation.</p>
+    <div class="takeaway">Takeaway: even the vendor with the best self-reported numbers tells you, in its own words, not to treat its score as a verdict.</div>
+    <p class="source">Source: <a href="https://www.turnitin.com/blog/understanding-false-positives-within-our-ai-writing-detection-capabilities" target="_blank" rel="noopener">turnitin.com — Understanding false positives within our AI writing detection capabilities</a></p>
+  </div>
+
+  <div class="finding">
+    <h2>Independent researchers think reliable detection may be impossible</h2>
+    <p>Soheil Feizi, a computer science professor at the University of Maryland working with the NSF-funded TRAILS institute, has studied why detection keeps falling short. His conclusion is blunter than any vendor's: no publicly available detector is reliable enough for real decisions, and running AI text through a simple paraphrasing tool can knock accuracy down to roughly a coin flip.</p>
+    <p>The deeper problem: as language models keep improving, AI-written and human-written text are converging, not diverging. Feizi argues the gap the detectors are trying to measure is shrinking every year — meaning this doesn't get easier to solve over time. It gets harder.</p>
+    <div class="takeaway">Takeaway: this isn't a bug that better engineering fixes next year. By the researchers' own account, the underlying signal may be disappearing.</div>
+    <p class="source">Source: <a href="https://www.trails.umd.edu/news/detecting-ai-may-be-impossible-thats-a-big-problem-for-teachers" target="_blank" rel="noopener">TRAILS (Univ. of Maryland) — "Detecting AI May Be Impossible. That's a Big Problem For Teachers."</a></p>
+  </div>
+
+  <div class="so-what">
+    <h2>So what should you actually do with this?</h2>
+    <ul>
+      <li>Don't treat a detector score — yours or someone else's — as proof of anything. The research above says the tools themselves don't support that level of confidence.</li>
+      <li>Disclosure beats hoping you pass a scan. A short, honest line ("drafted with AI, edited by me") holds up regardless of what any detector says. <a href="/ai-disclosure-helper.html">Grab a ready-made one →</a></li>
+      <li>The review step is what actually matters — not for fooling a detector, but because it's the difference between AI drafting and you publishing. <a href="/trust.html">That's the one rule we don't bend on →</a></li>
+      <li>If you were flagged and you didn't use AI (or used it and then genuinely rewrote it), you're not imagining that the system got it wrong. The research above says it does — a lot, especially if English isn't your first language.</li>
+    </ul>
+  </div>
+
+  <div class="legal-note">
+    This page is about how reliable the <em>detection</em> is — it isn't an argument for hiding AI use somewhere it's explicitly required (a class policy, a publication's rules, a client contract). If a specific policy requires disclosure, follow it regardless of what a detector would or wouldn't catch.
+  </div>
+
+  <p class="also">
+    Want to check your own writing before you post it? <a href="/ai-authenticity-checker.html">Run our free checker →</a>
+    Curious what platforms actually require? <a href="/ai-disclosure-policies.html">See the sourced policy breakdown →</a>
+    Ran into an unfamiliar term above? <a href="/ai-glossary.html">Check the glossary →</a>
+  </p>
+</main>
+
+</body>
+</html>

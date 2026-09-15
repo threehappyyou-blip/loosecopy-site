@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changelog — Loosecopy</title>
+<meta name="description" content="Every real, dated change to Loosecopy and the rule it's built on — published as it happens, not cleaned up after the fact.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 12px;max-width:62ch;}
+  .meta-note{
+    font-size:0.85rem; color:var(--ink-soft); background:var(--paper-card); border:1px solid var(--border);
+    border-radius:2px; padding:10px 14px; margin:14px 0 40px; max-width:62ch;
+  }
+
+  .day{margin-bottom:38px;}
+  .day .date-head{
+    font-family:'Space Mono',monospace; font-size:0.95rem; color:var(--ink);
+    border-bottom:1px solid var(--border); padding-bottom:8px; margin-bottom:14px;
+  }
+  .entry{display:flex; gap:12px; align-items:flex-start; margin-bottom:10px;}
+  .tag{
+    flex-shrink:0; font-family:'Space Mono',monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.03em;
+    padding:3px 8px; border-radius:2px; border:1px solid var(--border); background:var(--paper-card);
+    margin-top:2px; white-space:nowrap;
+  }
+  .tag.added{color:var(--bluepencil); border-color:var(--bluepencil);}
+  .tag.fixed{color:var(--redline); border-color:var(--redline);}
+  .tag.policy{color:var(--ink); border-color:var(--ink-soft); font-weight:700;}
+  .tag.origin{color:var(--ink-soft); font-style:italic;}
+  .entry p{margin:0; font-size:0.96rem;}
+
+  .end-note{
+    margin-top:8px; padding:18px 20px; background:var(--paper-card); border-left:3px solid var(--bluepencil);
+    border-radius:2px; font-size:0.92rem; color:var(--ink-soft);
+  }
+
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:36px;}
+  .also a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Every real change, dated</h1>
+  <p class="lede">Not a highlight reel — the actual log, including the bugs. A claim like "we take this seriously" means nothing on its own; a dated record you can check against reality means something. This page is that record, and it only grows.</p>
+  <div class="meta-note">Newest first. Nothing here is backdated or removed after the fact — if something needs correcting, it gets a new dated entry, not a silent edit.</div>
+
+  <div class="day">
+    <div class="date-head">2026-09-15</div>
+    <div class="entry"><span class="tag policy">Policy</span><p>Published <a href="/trust.html">the trust page</a>: a permanent, dated commitment to never auto-publish on your behalf.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/pre-publish-checklist.html">A 7-point pre-publish checklist</a> — a last check before anything goes out.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/ai-disclosure-policies.html">A sourced, dated guide</a> to what X, LinkedIn, Meta, and Google actually require around AI disclosure.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/ai-disclosure-helper.html">A free disclosure-phrase generator</a> — copy a ready-made line instead of writing one from scratch.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p>A live readiness check in the drafting tool that tells you if your input is too thin or too long, before you generate anything.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p>A mandatory review checkbox on every draft — copy buttons stay disabled until you confirm you've read and edited it, and it resets every time you regenerate.</p></div>
+    <div class="entry"><span class="tag fixed">Fixed</span><p>The waitlist signup form, which had been silently failing for every visitor since launch.</p></div>
+    <div class="entry"><span class="tag fixed">Fixed</span><p>A deployment misconfiguration that had been quietly blocking every site update, with no visible error to visitors or to us.</p></div>
+  </div>
+
+  <div class="day">
+    <div class="date-head">2026-09-14</div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/ai-authenticity-checker.html">A free, standalone AI-tell checker</a> — works on any writing, not just Loosecopy's own drafts.</p></div>
+    <div class="entry"><span class="tag policy">Policy</span><p>Set a permanent internal rule: a feature doesn't ship if its main effect is letting someone publish without reviewing first.</p></div>
+  </div>
+
+  <div class="day">
+    <div class="date-head">2026-09-10</div>
+    <div class="entry"><span class="tag policy">Policy</span><p>Turned "no auto-publish" from a marketing line into an explicit product rule: no publish API, no write-access login to any platform, no auto-scheduling — permanently out of scope.</p></div>
+  </div>
+
+  <div class="day">
+    <div class="date-head">2026-09-04</div>
+    <div class="entry"><span class="tag added">Added</span><p>Wrote publicly about why this product exists.</p></div>
+  </div>
+
+  <div class="day">
+    <div class="date-head">2026-09-02</div>
+    <div class="entry"><span class="tag origin">Origin</span><p>A piece of writing got flagged as "AI-written" on Reddit. Nothing to fix here — this is the event the rest of this log is a response to.</p></div>
+  </div>
+
+  <div class="end-note">This log gets a new entry whenever something real changes — a fix, a new tool, a policy commitment. Check back, or judge us by how long it's been since the last one.</div>
+
+  <p class="also">
+    See the rule this log is tracking: <a href="/trust.html">the permanent pledge →</a>
+  </p>
+</main>
+
+</body>
+</html>
