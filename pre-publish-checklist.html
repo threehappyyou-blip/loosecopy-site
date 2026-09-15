@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-Publish Checklist — Loosecopy</title>
+<meta name="description" content="A 60-second checklist to run before you post anything AI-assisted — free tool by Loosecopy.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 8px;max-width:56ch;}
+
+  .progress{
+    display:flex; align-items:center; gap:12px; margin:24px 0 28px;
+    font-family:'Space Mono',monospace; font-size:0.9rem; color:var(--ink-soft);
+  }
+  .progress-bar{flex:1; height:6px; background:var(--border); border-radius:3px; overflow:hidden;}
+  .progress-fill{height:100%; width:0%; background:var(--bluepencil); transition:width 0.2s ease;}
+
+  .item{
+    display:flex; gap:14px; align-items:flex-start; background:var(--paper-card);
+    border:1px solid var(--border); border-radius:2px; padding:16px 18px; margin-bottom:10px;
+    cursor:pointer;
+  }
+  .item input{margin-top:3px; width:18px; height:18px; flex-shrink:0; accent-color:var(--bluepencil);}
+  .item p{margin:0; font-size:0.98rem;}
+  .item .hint{display:block; margin-top:5px; font-size:0.85rem; color:var(--ink-soft);}
+  .item.checked{border-left:3px solid var(--bluepencil); background:#F3F5F1;}
+  .item.checked p{color:var(--ink-soft); text-decoration:line-through; text-decoration-color:var(--border);}
+
+  .status{
+    margin-top:28px; padding:16px 20px; border-radius:2px; font-size:0.98rem;
+    background:var(--paper-card); border-left:3px solid var(--border); color:var(--ink-soft);
+    display:none;
+  }
+  .status.ready{
+    display:block; border-left-color:var(--bluepencil); background:var(--bluepencil-wash); color:var(--ink);
+  }
+  .status.partial{display:block;}
+
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:40px;}
+  .also a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>One last check before you hit publish</h1>
+  <p class="lede">Not a formal audit — just seven things worth a gut-check before anything you wrote (or drafted with AI and edited) goes out under your name.</p>
+
+  <div class="progress">
+    <span id="progressLabel">0 / 7</span>
+    <span class="progress-bar"><span class="progress-fill" id="progressFill"></span></span>
+  </div>
+
+  <div id="checklist">
+    <label class="item">
+      <input type="checkbox" data-item>
+      <span><p>I read the whole thing, not just skimmed the first line.</p></span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-item>
+      <span><p>I changed enough that this sounds like me, not a template.</p>
+      <span class="hint">Not sure? <a href="/ai-authenticity-checker.html" target="_blank" rel="noopener" onclick="event.stopPropagation()">Run it through our free checker →</a></span></span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-item>
+      <span><p>Every fact, number, or claim in here is something I can actually back up.</p></span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-item>
+      <span><p>It doesn't invent an experience, quote, or opinion I don't actually have.</p></span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-item>
+      <span><p>I've added a disclosure line, if this platform or audience expects one.</p>
+      <span class="hint">Need one? <a href="/ai-disclosure-helper.html" target="_blank" rel="noopener" onclick="event.stopPropagation()">Copy a ready-made line →</a></span></span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-item>
+      <span><p>I'd be fine if someone asked me "did you write this yourself?"</p></span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-item>
+      <span><p>I'm the one clicking "post" — not an API doing it for me.</p></span>
+    </label>
+  </div>
+
+  <div class="status" id="status"></div>
+
+  <p class="also">
+    This checklist resets every time you reload it — on purpose. Each draft deserves its own pass, not a box you tick once and forget.
+    Built alongside <a href="/app.html">Loosecopy</a> and its <a href="/trust.html">one permanent rule</a>: we draft, you decide, you publish.
+  </p>
+</main>
+
+<script>
+const items = document.querySelectorAll('[data-item]');
+const progressLabel = document.getElementById('progressLabel');
+const progressFill = document.getElementById('progressFill');
+const status = document.getElementById('status');
+
+function update(){
+  const total = items.length;
+  const checked = Array.from(items).filter(i => i.checked).length;
+  progressLabel.textContent = checked + ' / ' + total;
+  progressFill.style.width = (checked / total * 100) + '%';
+
+  items.forEach(i => {
+    i.closest('.item').classList.toggle('checked', i.checked);
+  });
+
+  if (checked === total) {
+    status.textContent = "That's the full list — go ahead and post it.";
+    status.className = 'status ready';
+  } else if (checked > 0) {
+    status.textContent = (total - checked) + ' more to go.';
+    status.className = 'status partial';
+  } else {
+    status.className = 'status';
+  }
+}
+
+items.forEach(i => i.addEventListener('change', update));
+update();
+</script>
+
+</body>
+</html>
