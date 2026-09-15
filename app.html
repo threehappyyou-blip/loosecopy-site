@@ -92,6 +92,15 @@
     font-family:'Public Sans',sans-serif;
   }
   .copy-btn:hover{border-color:var(--ink);}
+  .copy-btn:disabled{color:var(--ink-soft); cursor:not-allowed; border-color:var(--border);}
+
+  .review-gate{
+    display:flex; align-items:flex-start; gap:10px; margin-bottom:10px;
+    font-size:0.92rem; color:var(--ink); cursor:pointer;
+  }
+  .review-gate input{margin-top:3px;}
+  .ai-check-link{color:var(--ink-soft); font-size:0.85rem; margin:0 0 28px;}
+  .ai-check-link a{color:var(--bluepencil);}
 
   .loading{display:none; margin-top:20px; color:var(--ink-soft); font-style:italic;}
 </style>
@@ -122,6 +131,12 @@
   <div class="results" id="results">
     <p class="disclosure">These are AI-generated first drafts. Read them, make them sound like you, and disclose AI assistance if the platform you're posting to asks for it.</p>
 
+    <label class="review-gate" for="reviewCheck">
+      <input type="checkbox" id="reviewCheck">
+      I've read through this and made it mine — enable the copy buttons below
+    </label>
+    <p class="ai-check-link">Not sure it still sounds like you and not a bot? <a href="/ai-authenticity-checker.html" target="_blank" rel="noopener">Run it through our free checker →</a></p>
+
     <div class="draft-block">
       <h2>Twitter / X thread</h2>
       <p class="sub">Each tweet is its own box — edit freely, red count means over 280.</p>
@@ -150,6 +165,15 @@ const results = document.getElementById('results');
 const tweetContainer = document.getElementById('tweetContainer');
 const linkedinText = document.getElementById('linkedinText');
 const linkedinCount = document.getElementById('linkedinCount');
+const reviewCheck = document.getElementById('reviewCheck');
+
+// 검토·수정 완료 게이트: 체크 전엔 어떤 Copy 버튼도 못 누르게 막는다.
+// (원클릭 자동 게시 금지 구조의 핵심 — 새로 생성될 때마다 다시 체크해야 함)
+function applyReviewGate(){
+  const enabled = reviewCheck.checked;
+  document.querySelectorAll('.copy-btn').forEach(btn => { btn.disabled = !enabled; });
+}
+reviewCheck.addEventListener('change', applyReviewGate);
 
 input.addEventListener('input', () => {
   inputCount.textContent = input.value.length + ' characters';
@@ -177,6 +201,7 @@ function renderTweets(threadText) {
     const copyBtn = document.createElement('button');
     copyBtn.className = 'copy-btn';
     copyBtn.textContent = 'Copy';
+    copyBtn.disabled = !reviewCheck.checked;
     copyBtn.addEventListener('click', () => navigator.clipboard.writeText(ta.value));
     row.appendChild(count);
     row.appendChild(copyBtn);
@@ -186,9 +211,12 @@ function renderTweets(threadText) {
   });
 }
 
-linkedinText.addEventListener('input', () => {
-  linkedinCount.textContent = linkedinText.value.length + ' characters';
-});
+function updateLinkedinCount(){
+  const len = linkedinText.value.length;
+  linkedinCount.textContent = len + ' / 3000 characters';
+  linkedinCount.className = len > 3000 ? 'muted over' : 'muted';
+}
+linkedinText.addEventListener('input', updateLinkedinCount);
 
 document.querySelectorAll('.copy-btn[data-copy]').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -224,7 +252,9 @@ generateBtn.addEventListener('click', async () => {
 
     renderTweets(data.twitter || '');
     linkedinText.value = data.linkedin || '';
-    linkedinCount.textContent = linkedinText.value.length + ' characters';
+    updateLinkedinCount();
+    reviewCheck.checked = false;
+    applyReviewGate();
     results.style.display = 'block';
 
   } catch (err) {
