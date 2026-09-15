@@ -6,6 +6,14 @@ export default {
       return handleGenerate(request, env);
     }
 
+    if (url.pathname === '/api/track-copy' && request.method === 'POST') {
+      return handleTrackCopy(request, env);
+    }
+
+    if (url.pathname === '/api/stats' && request.method === 'GET') {
+      return handleStats(env);
+    }
+
     // Everything else falls through to the static site (index.html, app.html, images, etc.)
     return env.ASSETS.fetch(request);
   }
@@ -66,6 +74,57 @@ LinkedIn post: 100 to 200 words, natural paragraph breaks, no hashtag spam, ends
   } catch (err) {
     return new Response(JSON.stringify({ error: 'Something went wrong. Please try again.' }), { status: 500, headers: cors });
   }
+}
+
+// 초안 수정률 추적: 원문을 저장하지 않고, "복사 시점에 수정됐는지" boolean만
+// 플랫폼별로 카운트한다 (Phase 2 스펙 — 프라이버시 부담을 최소화하는 쪽으로 설계).
+// KV read-then-write라 완전히 원자적이진 않음 — 동시 요청이 아주 많아지면
+// Durable Objects나 D1로 옮기는 게 정확하지만, 지금 트래픽 수준에선 이 정도로 충분함.
+async function handleTrackCopy(request, env) {
+  const cors = { 'Content-Type': 'application/json' };
+
+  if (!env.STATS_KV) {
+    // KV 네임스페이스를 아직 안 붙였어도 복사 기능 자체는 절대 막으면 안 되므로 조용히 무시.
+    return new Response(JSON.stringify({ ok: false, reason: 'KV not bound yet' }), { headers: cors });
+  }
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ ok: false }), { status: 400, headers: cors });
+  }
+
+  const platform = body.platform === 'linkedin' ? 'linkedin' : 'twitter';
+  const key = `stats:${platform}:${body.edited ? 'edited' : 'unedited'}`;
+
+  const current = parseInt(await env.STATS_KV.get(key)) || 0;
+  await env.STATS_KV.put(key, String(current + 1));
+
+  return new Response(JSON.stringify({ ok: true }), { headers: cors });
+}
+
+async function handleStats(env) {
+  const cors = { 'Content-Type': 'application/json' };
+
+  if (!env.STATS_KV) {
+    return new Response(JSON.stringify({ error: 'KV not bound yet' }), { headers: cors });
+  }
+
+  const result = {};
+  for (const platform of ['twitter', 'linkedin']) {
+    const edited = parseInt(await env.STATS_KV.get(`stats:${platform}:edited`)) || 0;
+    const unedited = parseInt(await env.STATS_KV.get(`stats:${platform}:unedited`)) || 0;
+    const total = edited + unedited;
+    result[platform] = {
+      edited,
+      unedited,
+      total,
+      editedPct: total ? Math.round((edited / total) * 100) : null
+    };
+  }
+
+  return new Response(JSON.stringify(result), { headers: cors });
 }
 
 async function callClaudeWithRetry(env, systemPrompt, content, attempt = 1) {

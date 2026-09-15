@@ -175,6 +175,16 @@ function applyReviewGate(){
 }
 reviewCheck.addEventListener('change', applyReviewGate);
 
+// 초안 수정률 추적: 원문을 서버에 보내지 않고 "복사 시점에 수정됐는지" boolean만 보낸다.
+// 실패해도(KV 미연결 등) 복사 자체엔 절대 영향 주지 않음 — fire-and-forget.
+function trackCopy(platform, edited){
+  fetch('/api/track-copy', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ platform, edited })
+  }).catch(() => {});
+}
+
 input.addEventListener('input', () => {
   inputCount.textContent = input.value.length + ' characters';
 });
@@ -187,6 +197,7 @@ function renderTweets(threadText) {
     box.className = 'tweet';
     const ta = document.createElement('textarea');
     ta.value = t;
+    ta.dataset.original = t;
     const row = document.createElement('div');
     row.className = 'count-row';
     const count = document.createElement('span');
@@ -202,7 +213,10 @@ function renderTweets(threadText) {
     copyBtn.className = 'copy-btn';
     copyBtn.textContent = 'Copy';
     copyBtn.disabled = !reviewCheck.checked;
-    copyBtn.addEventListener('click', () => navigator.clipboard.writeText(ta.value));
+    copyBtn.addEventListener('click', () => {
+      trackCopy('twitter', ta.value.trim() !== ta.dataset.original.trim());
+      navigator.clipboard.writeText(ta.value);
+    });
     row.appendChild(count);
     row.appendChild(copyBtn);
     box.appendChild(ta);
@@ -221,6 +235,9 @@ linkedinText.addEventListener('input', updateLinkedinCount);
 document.querySelectorAll('.copy-btn[data-copy]').forEach(btn => {
   btn.addEventListener('click', () => {
     const el = document.getElementById(btn.dataset.copy);
+    if (btn.dataset.copy === 'linkedinText') {
+      trackCopy('linkedin', el.value.trim() !== (el.dataset.original || '').trim());
+    }
     navigator.clipboard.writeText(el.value);
   });
 });
@@ -252,6 +269,7 @@ generateBtn.addEventListener('click', async () => {
 
     renderTweets(data.twitter || '');
     linkedinText.value = data.linkedin || '';
+    linkedinText.dataset.original = data.linkedin || '';
     updateLinkedinCount();
     reviewCheck.checked = false;
     applyReviewGate();

@@ -5,5 +5,11 @@
   "assets": {
     "directory": ".",
     "binding": "ASSETS"
-  }
+  },
+  // 초안 수정률 통계용 KV. 아직 네임스페이스가 없다면:
+  // Cloudflare 대시보드 → Workers & Pages → KV → Create namespace (이름 아무거나, 예: loosecopy-stats)
+  // → 생성되는 네임스페이스 ID를 아래 "id"에 붙여넣으세요. (또는 `wrangler kv namespace create STATS_KV`)
+  "kv_namespaces": [
+    { "binding": "STATS_KV", "id": "PASTE_YOUR_KV_NAMESPACE_ID_HERE" }
+  ]
 }
