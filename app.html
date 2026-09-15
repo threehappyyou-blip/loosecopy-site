@@ -99,8 +99,15 @@
     font-size:0.92rem; color:var(--ink); cursor:pointer;
   }
   .review-gate input{margin-top:3px;}
-  .ai-check-link{color:var(--ink-soft); font-size:0.85rem; margin:0 0 28px;}
+  .ai-check-link{color:var(--ink-soft); font-size:0.85rem; margin:0 0 10px;}
+  .ai-check-link:last-of-type{margin-bottom:28px;}
   .ai-check-link a{color:var(--bluepencil);}
+
+  .input-tip{
+    margin-top:10px; padding:10px 14px; background:var(--paper-card); border-left:3px solid var(--bluepencil);
+    font-size:0.88rem; color:var(--ink-soft); border-radius:2px; display:none;
+  }
+  .input-tip.tip-warn{border-left-color:var(--redline); background:var(--redline-wash); color:#5c231f;}
 
   .loading{display:none; margin-top:20px; color:var(--ink-soft); font-style:italic;}
 </style>
@@ -123,6 +130,7 @@
     <span class="muted" id="inputCount">0 characters</span>
     <span class="muted">min 50, max 8,000</span>
   </div>
+  <p class="input-tip" id="inputTip"></p>
 
   <button class="btn-primary" id="generateBtn">Generate drafts</button>
   <p class="loading" id="loading">Reading it, pulling out the actual points...</p>
@@ -136,6 +144,7 @@
       I've read through this and made it mine — enable the copy buttons below
     </label>
     <p class="ai-check-link">Not sure it still sounds like you and not a bot? <a href="/ai-authenticity-checker.html" target="_blank" rel="noopener">Run it through our free checker →</a></p>
+    <p class="ai-check-link">Posting somewhere that expects an AI disclosure? <a href="/ai-disclosure-helper.html" target="_blank" rel="noopener">Copy a ready-made line →</a></p>
 
     <div class="draft-block">
       <h2>Twitter / X thread</h2>
@@ -166,6 +175,7 @@ const tweetContainer = document.getElementById('tweetContainer');
 const linkedinText = document.getElementById('linkedinText');
 const linkedinCount = document.getElementById('linkedinCount');
 const reviewCheck = document.getElementById('reviewCheck');
+const inputTip = document.getElementById('inputTip');
 
 // 검토·수정 완료 게이트: 체크 전엔 어떤 Copy 버튼도 못 누르게 막는다.
 // (원클릭 자동 게시 금지 구조의 핵심 — 새로 생성될 때마다 다시 체크해야 함)
@@ -185,8 +195,37 @@ function trackCopy(platform, edited){
   }).catch(() => {});
 }
 
+// 입력 글 적합성 체크: 서버 호출 없이, 붙여넣는 즉시 "이 분량/구조로 좋은 결과가 나올지"를
+// 가볍게 미리 알려준다. 어디까지나 조언용이며 Generate 버튼을 막지는 않음(최소 50자 검증은 기존 로직 유지).
+function analyzeInputReadiness(text){
+  const trimmed = text.trim();
+  const words = trimmed.length ? trimmed.split(/\s+/) : [];
+  const wordCount = words.length;
+  const hasParagraphBreak = /\n\s*\n/.test(trimmed);
+
+  if (!trimmed.length) return null;
+  if (wordCount < 40) {
+    return { warn:true, msg:"A bit thin for a full thread — with only one core idea, 4-6 tweets will feel stretched. Add an example, a number, or the ‘why’ behind it." };
+  }
+  if (wordCount > 80 && !hasParagraphBreak && wordCount <= 1200) {
+    return { warn:false, msg:'Good amount of material. No paragraph breaks though — splitting your points into paragraphs usually makes the thread come out cleaner.' };
+  }
+  if (wordCount > 1200) {
+    return { warn:false, msg:"That's a lot of material — trim it to the core argument first and the drafts usually come out sharper." };
+  }
+  return { warn:false, msg:'Good length for a solid Twitter thread and LinkedIn post.' };
+}
+
 input.addEventListener('input', () => {
   inputCount.textContent = input.value.length + ' characters';
+  const tip = analyzeInputReadiness(input.value);
+  if (!tip) {
+    inputTip.style.display = 'none';
+  } else {
+    inputTip.textContent = tip.msg;
+    inputTip.className = 'input-tip' + (tip.warn ? ' tip-warn' : '');
+    inputTip.style.display = 'block';
+  }
 });
 
 function renderTweets(threadText) {
