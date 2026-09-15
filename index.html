@@ -283,6 +283,9 @@
     <div>
       <h1>One draft.<br>Every platform.<br>Still sounds like you.</h1>
       <p class="sub">Paste a blog post or your rough notes. Get a Twitter thread and a LinkedIn post drafted in minutes — ready for you to polish, disclose, and publish yourself.</p>
+      <!-- 🚨 TODO(긴급): "YOUR_FORM_ID"가 실제 Formspree 폼 ID로 교체 안 돼 있어서
+           지금 이 폼은 이메일을 눌러도 전부 실패합니다. formspree.io 로그인 → New Form
+           → 발급되는 https://formspree.io/f/xxxxxxxx 주소를 아래 action에 그대로 넣으세요. -->
       <form class="hero-form" id="join" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
         <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
         <button class="btn-primary" type="submit">Get early access</button>
@@ -340,6 +343,10 @@
       <div class="lbl">What you actually post</div>
       <p>"I used to spend an hour reformatting every post. Now I paste it once and edit from there — took me ten minutes today."</p>
     </div>
+    <p style="grid-column:1/-1;margin-top:8px;font-size:0.92rem;color:var(--ink-soft);">
+      Curious if your own writing already reads like the box on the left?
+      <a href="ai-authenticity-checker.html">Try our free AI-checker &rarr;</a>
+    </p>
   </div>
 </section>
 
