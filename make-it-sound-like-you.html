@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Make It Sound Like You — Loosecopy</title>
+<meta name="description" content="Six concrete edits that actually change an AI draft's voice — not synonym-swapping, the stuff that makes it sound like you wrote it.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 36px;max-width:60ch;}
+
+  .tip{margin-bottom:32px; background:var(--paper-card); border:1px solid var(--border); border-radius:2px; padding:20px 22px;}
+  .tip h2{font-size:1.08rem; margin-bottom:4px;}
+  .tip .why{color:var(--ink-soft); font-size:0.9rem; margin:0 0 14px;}
+  .example{display:flex; flex-direction:column; gap:8px; margin-top:12px;}
+  .ex-line{padding:10px 14px; border-radius:2px; font-size:0.92rem; font-family:'Space Mono',monospace; line-height:1.5;}
+  .ex-before{background:var(--redline-wash); color:#5c231f;}
+  .ex-after{background:var(--bluepencil-wash); color:var(--ink);}
+  .ex-label{font-family:'Public Sans',sans-serif; font-weight:700; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.03em; margin-right:8px;}
+
+  .quick-pass{
+    margin-top:8px; padding:20px 22px; background:var(--bluepencil-wash); border-radius:2px;
+  }
+  .quick-pass h2{font-size:1.1rem; margin-bottom:10px;}
+  .quick-pass ol{margin:10px 0 0; padding-left:22px;}
+  .quick-pass li{margin-bottom:8px; font-size:0.95rem;}
+
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:32px;}
+  .also a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Make it sound like you, specifically</h1>
+  <p class="lede">The review checkbox says "I've made it mine." Here's what that actually looks like in practice — six concrete edits, not "just read it over."</p>
+
+  <div class="tip">
+    <h2>1. Cut the windup sentence</h2>
+    <p class="why">AI drafts almost always throat-clear before getting to the point. Delete the first sentence and see if the paragraph still works — it usually does, and it's usually better.</p>
+    <div class="example">
+      <div class="ex-line ex-before"><span class="ex-label">Before</span>In today's fast-paced digital landscape, it's more important than ever to stay connected with your audience.</div>
+      <div class="ex-line ex-after"><span class="ex-label">After</span>I posted twice a week for a year. Then I missed a month, and engagement didn't even dip.</div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <h2>2. Swap one generic line for one real detail</h2>
+    <p class="why">Genericness is the biggest tell there is — not word choice, genericness. One specific, only-you-would-know detail (a number, a name, a place, a specific failure) does more than rewriting the whole paragraph.</p>
+    <div class="example">
+      <div class="ex-line ex-before"><span class="ex-label">Before</span>Many people struggle with productivity when working from home.</div>
+      <div class="ex-line ex-after"><span class="ex-label">After</span>I got nothing done my first two weeks of WFH because my desk faced a wall I'd started painting and never finished.</div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <h2>3. Break the rhythm</h2>
+    <p class="why">AI writing tends toward evenly-sized sentences, one after another. Real voices are lumpy — a long sentence, then a short one, sometimes a fragment. If every sentence in the draft is roughly the same length, that alone reads as machine-smoothed, independent of the words.</p>
+    <div class="example">
+      <div class="ex-line ex-before"><span class="ex-label">Before</span>The process was challenging. It required patience and dedication. Ultimately, the results were rewarding.</div>
+      <div class="ex-line ex-after"><span class="ex-label">After</span>It was a slog, honestly. Took way longer than I planned. Worth it though.</div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <h2>4. Cut the hedge, keep the opinion</h2>
+    <p class="why">AI drafts hedge reflexively — "it's worth noting," "may not work for everyone, but worth considering." A real opinion just says the thing. If you actually believe it, say it without the safety net.</p>
+    <div class="example">
+      <div class="ex-line ex-before"><span class="ex-label">Before</span>It's worth noting that this approach may not work for everyone, but it's certainly worth considering.</div>
+      <div class="ex-line ex-after"><span class="ex-label">After</span>This won't work for everyone. It worked for me.</div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <h2>5. Put back one of your actual habits</h2>
+    <p class="why">You probably have a verbal tic — a phrase you overuse, a habit of starting sentences with "and," a specific way you emphasize things. AI drafts smooth all of that away because it reads as "inconsistent." Putting one back in is disproportionately effective, because it's the kind of detail that's hard to fake and easy to recognize.</p>
+  </div>
+
+  <div class="tip">
+    <h2>6. Don't just swap synonyms</h2>
+    <p class="why">Running a thesaurus over the draft doesn't change the voice — the sentence structure and rhythm are what actually read as "written by AI," not individual word choices. If you're only swapping words and the sentence shape underneath is untouched, you haven't actually changed much. Rewrite the sentence, not just the words in it.</p>
+  </div>
+
+  <div class="quick-pass">
+    <h2>The 10-minute pass</h2>
+    <ol>
+      <li>Read it out loud once. Anywhere you stumble or wouldn't actually say it that way — rewrite it.</li>
+      <li>Delete the first sentence of each paragraph. Add it back only if the paragraph genuinely needs it.</li>
+      <li>Find one place to add a real, specific detail only you would know.</li>
+      <li>Find one hedge word or phrase ("it's worth noting," "arguably," "in many cases") and either cut it or commit to the opinion underneath it.</li>
+    </ol>
+  </div>
+
+  <p class="also">
+    Want a second opinion on whether it still sounds AI-written? <a href="/ai-authenticity-checker.html">Run it through our free checker →</a>
+    Ready for the final pass? <a href="/pre-publish-checklist.html">Run the pre-publish checklist →</a>
+  </p>
+</main>
+
+</body>
+</html>

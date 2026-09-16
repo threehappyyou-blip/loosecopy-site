@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Does Disclosing AI Use Actually Help? — Loosecopy</title>
+<meta name="description" content="The honest research on what disclosing AI assistance does to trust — it's not the trust-booster most guides claim, including our own past assumptions.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 8px;max-width:62ch;}
+  .verified{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.82rem;
+    color:var(--ink-soft); background:var(--paper-card); border:1px solid var(--border);
+    border-radius:2px; padding:6px 12px; margin:14px 0 28px;
+  }
+
+  .honest-admission{
+    background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--bluepencil);
+    border-radius:2px; padding:16px 20px; margin-bottom:36px; font-size:0.95rem; color:var(--ink);
+  }
+
+  .finding{margin-bottom:28px; background:var(--paper-card); border:1px solid var(--border); border-radius:2px; padding:20px 22px;}
+  .finding h2{font-size:1.1rem; margin-bottom:10px;}
+  .finding p{margin:0 0 10px; font-size:0.96rem;}
+  .stat-row{display:flex; flex-wrap:wrap; gap:12px; margin:12px 0;}
+  .stat{
+    font-family:'Space Mono',monospace; background:#F3F5F1; border:1px solid var(--border);
+    border-radius:2px; padding:10px 14px; font-size:0.85rem; color:var(--ink); flex:1 1 200px;
+  }
+  .stat b{display:block; font-size:1.3rem; color:var(--redline); font-family:'Fraunces',serif; font-weight:500;}
+  .takeaway{
+    border-left:3px solid var(--bluepencil); padding:8px 14px; margin:12px 0; font-size:0.92rem;
+    background:#F3F5F1; color:var(--ink);
+  }
+  .source{font-size:0.82rem; color:var(--ink-soft);}
+  .source a{color:var(--bluepencil);}
+
+  .so-what{margin-top:8px; padding:20px 22px; background:var(--bluepencil-wash); border-radius:2px;}
+  .so-what h2{font-size:1.15rem; margin-bottom:10px;}
+  .so-what ul{margin:10px 0 0; padding-left:20px;}
+  .so-what li{margin-bottom:8px; font-size:0.96rem;}
+
+  .humility-note{
+    margin-top:24px; padding:16px 20px; border-left:3px solid var(--redline); background:var(--redline-wash);
+    font-size:0.88rem; color:#5c231f; border-radius:2px;
+  }
+
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:32px;}
+  .also a{color:var(--bluepencil);}
+
+  @media (max-width:520px){ .stat-row{flex-direction:column;} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Does disclosing AI use actually help?</h1>
+  <p class="lede">Most advice on this — including ours, until we actually went and checked — treats disclosure as a trust-builder. The research says it's more complicated than that, and we'd rather tell you the real version.</p>
+  <div class="verified">Last verified: September 2026</div>
+
+  <div class="honest-admission">
+    Our own <a href="/ai-disclosure-helper.html">disclosure-phrase tool</a> and <a href="/trust.html">trust page</a> encourage disclosing AI assistance. We still think that's the right call — but "the right call" and "the thing that maximizes how much people trust you" turn out to be two different questions. This page is about the second one, honestly.
+  </div>
+
+  <div class="finding">
+    <h2>Disclosure measurably reduced trust, across the board</h2>
+    <p>Martin Reimann and Oliver Schilke at the University of Arizona ran 13 separate experiments with over 5,000 participants, testing what happens to trust when AI use is disclosed across very different relationships — professors, advertisers, designers.</p>
+    <div class="stat-row">
+      <div class="stat"><b>&minus;16%</b>student trust in professors, when AI use was disclosed in grading</div>
+      <div class="stat"><b>&minus;18%</b>investor trust in firms, when an ad disclosed AI use</div>
+      <div class="stat"><b>&minus;20%</b>client trust in designers, following AI disclosure</div>
+    </div>
+    <p>The drop held up even among people who used AI constantly themselves. Softer language — "just for proofreading," "a human reviewed it" — didn't rescue the numbers. And getting exposed by someone else (an AI detector, a third party) hurt more than disclosing it yourself.</p>
+    <div class="takeaway">Takeaway: disclosure isn't a trust hack. By this data, it costs you something almost every time — the question is just how much, compared to the alternative.</div>
+    <p class="source">Source: <a href="https://news.arizona.edu/news/disclosing-ai-use-can-backfire-research-shows" target="_blank" rel="noopener">University of Arizona News — "Disclosing AI use can backfire, research shows"</a></p>
+  </div>
+
+  <div class="finding">
+    <h2>People say they want transparency. The data says it still costs trust.</h2>
+    <p>Research compiled by Trusting News, a journalism-trust research group, found a real gap between stated preference and actual reaction: 94% of people say they want AI use disclosed. But when they actually saw a disclosure on a news story, 42% said they trusted it less — against only 30% who trusted it more.</p>
+    <div class="stat-row">
+      <div class="stat"><b>94%</b>say they want AI transparency, in principle</div>
+      <div class="stat"><b>42% vs 30%</b>trusted a story less vs. more after actually seeing an AI disclosure</div>
+    </div>
+    <p>Some factors softened the hit: more detailed disclosure (explaining why AI was used, how, and that a human reviewed the output) did better than a bare label. Readers under 35 were the most skeptical group, not the least. And where the disclosure was placed mattered — a visible note at the bottom of a piece was noticed by over 80% of readers, while a hover-only label was caught by as few as 26%.</p>
+    <div class="takeaway">Takeaway: a vague, one-word disclosure is the worst version. Specific, confident, "here's what I actually did" disclosure performs measurably better than a bare label — though still not as well as no disclosure at all.</div>
+    <p class="source">Source: <a href="https://trustingnews.org/new-research-how-ai-disclosures-in-news-help-and-also-hurt-trust-with-audiences/" target="_blank" rel="noopener">Trusting News — "How AI disclosures in news help — and hurt — trust with audiences"</a></p>
+  </div>
+
+  <div class="so-what">
+    <h2>So why do we still tell you to disclose?</h2>
+    <ul>
+      <li>Because the comparison that matters isn't "disclose vs. say nothing forever" — it's "disclose vs. risk being caught." Both studies above found that getting exposed after the fact costs more trust than volunteering it upfront.</li>
+      <li>Because if you're optimizing for how something performs rather than whether it's true, you're already answering a different question than the one this product is built around. See <a href="/trust.html">the one rule we don't bend on →</a>.</li>
+      <li>Because the research is also clear on <em>how</em> to disclose better: specific beats vague, and mentioning real human review measurably helps. That's exactly why <a href="/ai-disclosure-helper.html">our phrase generator</a> leans on language like "I read through this and made it mine" instead of a bare "AI-generated" tag.</li>
+      <li>Because none of this changes whether a platform or context legally or contractually requires disclosure. Check that separately with <a href="/disclosure-decision-tool.html">the decision tool →</a>.</li>
+    </ul>
+  </div>
+
+  <div class="humility-note">
+    This is social-science research on group averages under experimental conditions — not a guarantee about your specific readers, followers, or clients. Your actual audience, relationship, and platform will vary. Treat this as context for a decision, not a formula.
+  </div>
+
+  <p class="also">
+    Curious what platforms actually require, separate from what helps or hurts trust? <a href="/ai-disclosure-policies.html">See the policy breakdown →</a>
+    Want the research on why AI-detectors themselves are unreliable? <a href="/ai-detectors-explained.html">Read that page →</a>
+  </p>
+</main>
+
+</body>
+</html>

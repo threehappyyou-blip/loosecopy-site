@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report a Problem — Loosecopy</title>
+<meta name="description" content="Found a bug, or a place where Loosecopy isn't living up to its own rules? Tell us — it goes straight into the public changelog once it's handled.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 32px;max-width:60ch;}
+
+  label{display:block; font-size:0.92rem; font-weight:600; margin-bottom:6px;}
+  .field{margin-bottom:20px;}
+  .optional{font-weight:400; color:var(--ink-soft); font-size:0.85rem;}
+  textarea, input[type="email"], select{
+    width:100%; padding:12px 14px; font-size:0.98rem; font-family:'Public Sans',sans-serif;
+    border:1px solid var(--border); border-radius:2px; background:var(--paper-card); color:var(--ink);
+  }
+  textarea{min-height:130px; resize:vertical;}
+  textarea:focus, input:focus, select:focus{outline:none; border-color:var(--bluepencil);}
+  .hint{font-size:0.82rem; color:var(--ink-soft); margin-top:5px;}
+
+  .btn-primary{
+    background:var(--redline); color:#fff; border:none; padding:13px 26px; font-size:1rem;
+    font-weight:600; border-radius:2px; cursor:pointer; font-family:'Public Sans',sans-serif;
+  }
+  .btn-primary:hover{filter:brightness(0.95);}
+
+  .form-thanks{display:none; margin-top:18px; padding:16px 20px; background:var(--bluepencil-wash); border-radius:2px; font-size:0.95rem;}
+
+  .loop-note{
+    background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--bluepencil);
+    border-radius:2px; padding:16px 20px; margin:36px 0; font-size:0.92rem; color:var(--ink);
+  }
+
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:32px;}
+  .also a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Something broken? Or something that doesn't match what we said?</h1>
+  <p class="lede">A bug, a page that's out of date, a place where the product doesn't actually do what <a href="/trust.html">the pledge</a> says it does — tell us. This isn't a general feedback box; it goes to one person who reads every submission.</p>
+
+  <form id="issueForm" action="https://formspree.io/f/YOUR_ISSUE_FORM_ID" method="POST">
+    <!-- TODO(운영자): 위 action의 YOUR_ISSUE_FORM_ID를 실제 Formspree 폼 ID로 교체하세요.
+         지난번 waitlist 폼(xdeoqjkw)과 같은 계정에서 새 폼을 하나 더 만들면 됩니다:
+         formspree.io 로그인 → New Form → 이름 예: "Loosecopy Issue Reports" → 발급된 /f/xxxxxxx 값을 여기에 붙여넣기. -->
+    <div class="field">
+      <label for="what">What happened? <span class="optional">be as specific as you can</span></label>
+      <textarea id="what" name="what" required placeholder="e.g. The review checkbox on app.html doesn't disable the copy buttons anymore, tested on Safari on Sept 16."></textarea>
+    </div>
+
+    <div class="field">
+      <label for="where">Which page or feature? <span class="optional">optional</span></label>
+      <input type="text" id="where" name="where" placeholder="e.g. app.html, the pre-publish checklist, the waitlist form">
+    </div>
+
+    <div class="field">
+      <label for="email">Your email <span class="optional">optional — only if you want a reply</span></label>
+      <input type="email" id="email" name="email" placeholder="you@email.com">
+      <p class="hint">Leave this blank to report anonymously. We can't follow up if we can't reach you, but the report still gets read either way.</p>
+    </div>
+
+    <button class="btn-primary" type="submit">Send report</button>
+    <p class="form-thanks" id="formThanks">Got it — thank you. If this turns into a real fix, it'll show up dated in the <a href="/changelog.html">changelog</a>, not fixed quietly.</p>
+  </form>
+
+  <div class="loop-note">
+    Why this connects to the changelog: a bug report that just disappears into an inbox isn't accountability, it's a suggestion box. Anything reported here that leads to an actual fix gets a dated entry on <a href="/changelog.html">the public changelog</a> — so "we take feedback seriously" is something you can go check, not just something we say.
+  </div>
+
+  <p class="also">See everything that's already been fixed this way: <a href="/changelog.html">the full changelog →</a></p>
+</main>
+
+<script>
+document.getElementById('issueForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var form = e.target;
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(function(res){
+    if (res.ok) {
+      document.getElementById('formThanks').style.display = 'block';
+      form.reset();
+    } else {
+      alert('Something went wrong — please try again, or email directly if it keeps failing.');
+    }
+  }).catch(function(){
+    alert('Something went wrong — please try again, or email directly if it keeps failing.');
+  });
+});
+</script>
+
+</body>
+</html>

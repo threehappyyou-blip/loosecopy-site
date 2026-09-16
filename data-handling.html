@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where Your Text Actually Goes — Loosecopy</title>
+<meta name="description" content="What Loosecopy stores, what it doesn't, and exactly where your pasted text goes when you generate drafts — checked against the real code, not just asserted.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 8px;max-width:62ch;}
+  .verified{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.82rem;
+    color:var(--ink-soft); background:var(--paper-card); border:1px solid var(--border);
+    border-radius:2px; padding:6px 12px; margin:14px 0 32px;
+  }
+
+  .flow{margin-bottom:16px;}
+  .flow-step{
+    display:flex; gap:14px; align-items:flex-start; background:var(--paper-card); border:1px solid var(--border);
+    border-radius:2px; padding:14px 18px; margin-bottom:8px;
+  }
+  .flow-num{
+    font-family:'Space Mono',monospace; font-weight:700; color:var(--bluepencil); flex-shrink:0;
+    width:24px; height:24px; display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--bluepencil); border-radius:50%; font-size:0.82rem;
+  }
+  .flow-step p{margin:0; font-size:0.95rem;}
+
+  .section{margin:36px 0;}
+  .section h2{font-size:1.1rem; margin-bottom:14px;}
+  .section ul{margin:0; padding-left:0; list-style:none;}
+  .section li{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:13px 16px; margin-bottom:8px; font-size:0.95rem;
+  }
+  .dont-store li{border-left:3px solid var(--bluepencil);}
+  .do-store li{border-left:3px solid var(--redline);}
+
+  .confirming{
+    background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--ink-soft);
+    border-radius:2px; padding:16px 20px; margin:36px 0; font-size:0.92rem; color:var(--ink);
+  }
+  .confirming .label{font-family:'Space Mono',monospace; font-size:0.75rem; text-transform:uppercase; color:var(--ink-soft); display:block; margin-bottom:6px;}
+
+  .source-note{font-size:0.85rem; color:var(--ink-soft); margin-top:8px;}
+  .source-note a{color:var(--bluepencil);}
+
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:32px;}
+  .also a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Where your text actually goes</h1>
+  <p class="lede"><a href="/trust.html">The trust page</a> is a promise about publishing behavior. This one is about data — checked against the real code where we could, and clearly marked where we're still double-checking.</p>
+  <div class="verified">Last checked: September 2026</div>
+
+  <div class="section">
+    <h2>What happens when you click "Generate drafts"</h2>
+    <div class="flow">
+      <div class="flow-step"><span class="flow-num">1</span><p>The text you pasted goes from your browser straight to our generation endpoint, over HTTPS.</p></div>
+      <div class="flow-step"><span class="flow-num">2</span><p>That endpoint forwards it to Anthropic's Claude API to actually write the Twitter thread and LinkedIn post.</p></div>
+      <div class="flow-step"><span class="flow-num">3</span><p>The two drafts come back and land in your editor. Nothing is saved along the way — there's no "my past drafts" page, because there's no database keeping one.</p></div>
+    </div>
+  </div>
+
+  <div class="section do-store">
+    <h2>What we do store</h2>
+    <ul>
+      <li>If you join the waitlist: your email address. That form is handled by Formspree, a third-party form service — they hold the submission, and we get a notification. We don't run our own database of emails outside of that.</li>
+      <li>Nothing else, currently. There's no login and no account, so there's no profile of you to attach anything to in the first place.</li>
+    </ul>
+  </div>
+
+  <div class="section dont-store">
+    <h2>What we don't store</h2>
+    <ul>
+      <li>The text you paste in. It's sent to generate your drafts and isn't written to a database on our end.</li>
+      <li>Your generated drafts, once they're back in your browser. Close the tab and they're gone unless you copied them somewhere.</li>
+      <li>Any history of what you've generated before, since nothing above is tied to an account.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>About the AI step specifically</h2>
+    <p style="font-size:0.95rem;">Your text is processed by Anthropic's Claude API to write the drafts. Under Anthropic's standard commercial API terms, prompt content isn't retained by default and isn't used to train models without explicit permission.</p>
+    <p class="source-note">Source: <a href="https://platform.claude.com/docs/en/manage-claude/api-and-data-retention" target="_blank" rel="noopener">platform.claude.com — API and data retention</a>. Applies to standard commercial API usage; see the link for the full policy and any model-specific exceptions.</p>
+  </div>
+
+  <div class="confirming">
+    <span class="label">Being confirmed</span>
+    Loosecopy's generation step runs across two systems (one of them a separate hosting provider from the rest of the site), and we're finishing a direct code review of that specific piece to confirm it does no logging of its own beyond what's described above. We'd rather say that plainly than round it up to "we checked everything" before we actually have. Once confirmed, this line comes out and the check gets a dated entry on the <a href="/changelog.html">changelog</a>.
+  </div>
+
+  <p class="also">See the rule this page's sibling is built on: <a href="/trust.html">the permanent pledge on publishing →</a></p>
+</main>
+
+</body>
+</html>
