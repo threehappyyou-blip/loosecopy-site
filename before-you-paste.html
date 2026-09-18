@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before You Paste — Loosecopy</title>
+<meta name="description" content="5 minutes of prep before you paste your notes in — so the draft that comes back needs less editing, not more.">
+<link rel="canonical" href="https://loosecopy.com/before-you-paste.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/before-you-paste.html">
+<meta property="og:title" content="Before You Paste — Loosecopy">
+<meta property="og:description" content="5 minutes of prep before you paste your notes in — so the draft that comes back needs less editing, not more.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Before You Paste — Loosecopy">
+<meta name="twitter:description" content="5 minutes of prep before you paste your notes in — so the draft that comes back needs less editing, not more.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 20px;max-width:60ch;}
+
+  .origin{
+    background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--bluepencil);
+    border-radius:2px; padding:16px 20px; margin-bottom:32px; font-size:0.95rem; color:var(--ink);
+  }
+
+  h2{font-size:1.2rem;margin:36px 0 14px;}
+
+  .steps{counter-reset:step; margin:0;}
+  .step{
+    counter-increment:step; position:relative; background:var(--paper-card); border:1px solid var(--border);
+    border-radius:2px; padding:18px 20px 18px 58px; margin-bottom:12px;
+  }
+  .step::before{
+    content:counter(step); position:absolute; left:16px; top:18px; width:26px; height:26px;
+    background:var(--bluepencil); color:#fff; border-radius:50%; display:flex; align-items:center;
+    justify-content:center; font-family:'Space Mono',monospace; font-size:0.85rem; font-weight:700;
+  }
+  .step h3{font-size:1rem; margin:0 0 6px; font-family:'Public Sans',sans-serif; font-weight:700;}
+  .step p{margin:0; font-size:0.94rem; color:var(--ink);}
+  .example{
+    margin-top:10px; font-family:'Space Mono',monospace; font-size:0.82rem; background:#F3F5F1;
+    border-radius:2px; padding:10px 12px; line-height:1.6;
+  }
+  .example .bad{color:var(--redline); display:block;}
+  .example .good{color:var(--bluepencil); display:block; margin-top:4px;}
+
+  .checklist{
+    margin-top:28px; padding:20px 22px; background:var(--bluepencil-wash); border-radius:2px;
+  }
+  .checklist h2{font-size:1.05rem; margin:0 0 12px;}
+  .checklist ul{margin:0; padding-left:0; list-style:none;}
+  .checklist li{margin-bottom:8px; font-size:0.94rem; display:flex; gap:10px; align-items:flex-start;}
+  .checklist li::before{content:"☐"; font-family:'Space Mono',monospace; flex-shrink:0; color:var(--bluepencil);}
+
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:36px;}
+  .also a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>The draft is only as good as what you paste in</h1>
+  <p class="lede">Most of the editing work people do after generating a draft could've been avoided with about five minutes of prep before hitting Generate. This is that five minutes.</p>
+
+  <div class="origin">
+    <a href="/make-it-sound-like-you.html">"Make it sound like you"</a> is about fixing a draft after it comes back generic. This page is the earlier half of that problem — what you give the AI in the first place has more influence on how generic the result sounds than any edit you'll make afterward.
+  </div>
+
+  <h2>Five things worth doing before you paste</h2>
+  <div class="steps">
+    <div class="step">
+      <h3>Paste it rough, not cleaned up</h3>
+      <p>If you tidy your notes into full, proper sentences before pasting, you've already erased the one thing that would've made the draft sound like you: your actual phrasing. Fragments and messy asides are fine input — better than fine, actually.</p>
+    </div>
+    <div class="step">
+      <h3>Keep one real, specific detail</h3>
+      <p>A number you actually remember, a name, an exact moment. Vague input produces vague output — there's nothing for the model to be specific about if you weren't.</p>
+      <div class="example">
+        <span class="bad">vague: "I learned a lot from this project."</span>
+        <span class="good">specific: "I broke the staging deploy at 2am and learned to check the env file first, every time, no exceptions."</span>
+      </div>
+    </div>
+    <div class="step">
+      <h3>Say your point out loud once, then type that sentence</h3>
+      <p>If you can say the actual point in one plain spoken sentence, put that literal sentence in your notes. It tends to survive into the draft closer to word-for-word than anything else you give it — there's simply nowhere else for the model to invent from.</p>
+    </div>
+    <div class="step">
+      <h3>Leave your opinion in, even if it's blunt</h3>
+      <p>If you already think "this was a mistake" or "everyone gets this part wrong," write that down as-is. Don't sand it into neutral summary before pasting — the model will happily flatten it further on its own. You don't need to do that work for it in advance.</p>
+    </div>
+    <div class="step">
+      <h3>Mark the 2–3 sentences that actually matter</h3>
+      <p>If your source is long, note which parts you'd keep if you had to cut it in half. Those are the parts most likely to get lost in a generic summary otherwise — and the parts most worth protecting into both drafts.</p>
+    </div>
+  </div>
+
+  <div class="checklist">
+    <h2>Before you hit Generate</h2>
+    <ul>
+      <li>At least one specific detail — a name, number, or exact moment — is in there</li>
+      <li>I didn't rewrite my notes into "proper" sentences first</li>
+      <li>If I have an opinion on this, it's written down, not just implied</li>
+    </ul>
+  </div>
+
+  <p class="also">
+    Draft already back and still sounds generic? <a href="/make-it-sound-like-you.html">6 concrete edits to fix that →</a>
+    Ready to try it? <a href="/app.html">Paste your notes into Loosecopy →</a>
+    Curious why the Twitter and LinkedIn drafts read so differently? <a href="/why-platforms-differ.html">Here's why that's on purpose →</a>
+  </p>
+</main>
+
+</body>
+</html>

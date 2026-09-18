@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Just Got Flagged as AI-Written? Here's What to Do — Loosecopy</title>
+<meta name="description" content="A practical, level-headed guide for the moment right after someone calls your writing AI-generated — whether you used AI or not.">
+<link rel="canonical" href="https://loosecopy.com/got-flagged-as-ai.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/got-flagged-as-ai.html">
+<meta property="og:title" content="Just Got Flagged as AI-Written? Here's What to Do — Loosecopy">
+<meta property="og:description" content="A practical, level-headed guide for the moment right after someone calls your writing AI-generated — whether you used AI or not.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Just Got Flagged as AI-Written? Here's What to Do — Loosecopy">
+<meta name="twitter:description" content="A practical, level-headed guide for the moment right after someone calls your writing AI-generated — whether you used AI or not.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 8px;max-width:60ch;}
+
+  .verified{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.82rem;
+    color:var(--ink-soft); background:var(--paper-card); border:1px solid var(--border);
+    border-radius:2px; padding:6px 12px; margin:14px 0 20px;
+  }
+
+  .origin{
+    background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--bluepencil);
+    border-radius:2px; padding:16px 20px; margin-bottom:32px; font-size:0.95rem; color:var(--ink);
+  }
+
+  h2{font-size:1.2rem;margin:36px 0 14px;}
+
+  .dont-list{list-style:none;margin:0 0 8px;padding:0;}
+  .dont-list li{
+    display:flex; gap:12px; align-items:flex-start; background:var(--redline-wash);
+    border-radius:2px; padding:14px 16px; margin-bottom:10px; font-size:0.95rem;
+  }
+  .dont-list li b{color:var(--redline); font-family:'Space Mono',monospace; flex-shrink:0;}
+
+  .steps{counter-reset:step; margin:0;}
+  .step{
+    counter-increment:step; position:relative; background:var(--paper-card); border:1px solid var(--border);
+    border-radius:2px; padding:18px 20px 18px 58px; margin-bottom:12px;
+  }
+  .step::before{
+    content:counter(step); position:absolute; left:16px; top:18px; width:26px; height:26px;
+    background:var(--bluepencil); color:#fff; border-radius:50%; display:flex; align-items:center;
+    justify-content:center; font-family:'Space Mono',monospace; font-size:0.85rem; font-weight:700;
+  }
+  .step h3{font-size:1rem; margin:0 0 6px; font-family:'Public Sans',sans-serif; font-weight:700;}
+  .step p{margin:0; font-size:0.94rem; color:var(--ink);}
+  .step .why{display:block; margin-top:6px; font-size:0.85rem; color:var(--ink-soft);}
+
+  .case{
+    background:#F3F5F1; border-left:3px solid var(--ink-soft); border-radius:2px;
+    padding:16px 20px; margin:24px 0; font-size:0.92rem; color:var(--ink);
+  }
+  .case b{display:block; margin-bottom:4px; font-family:'Space Mono',monospace; font-size:0.78rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.03em;}
+
+  .callout{
+    margin-top:20px; padding:18px 20px; background:var(--bluepencil-wash); border-radius:2px; font-size:0.95rem;
+  }
+  .callout h2{font-size:1.05rem; margin:0 0 8px;}
+
+  .source{font-size:0.82rem; color:var(--ink-soft); margin-top:6px;}
+  .source a{color:var(--bluepencil);}
+  .sources-block{margin-top:32px; padding-top:16px; border-top:1px solid var(--border);}
+
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:36px;}
+  .also a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>You just got flagged. Before you do anything else, read this.</h1>
+  <p class="lede">Someone — a reader, a mod, a professor, a client — just told you your writing "sounds like AI." Whether or not you used it, that message sets off a very specific kind of panic. Here's a level-headed way through it.</p>
+  <div class="verified">Last verified: September 2026</div>
+
+  <div class="origin">
+    This is the page we wish had existed for us. Loosecopy exists because a founder here got a Reddit post flagged as AI-written — and the scramble that followed (was it the em dashes? the structure? do I argue or just delete it?) had no good guide to follow. This is that guide, written after having actually been there.
+  </div>
+
+  <h2>First, don't do these three things</h2>
+  <ul class="dont-list">
+    <li><b>DON'T</b> <span>delete the post or comment in the first five minutes. A panicked deletion often reads as an admission — even when there's nothing to admit. Give yourself a beat before you touch anything.</span></li>
+    <li><b>DON'T</b> <span>argue directly with a detector score. A percentage from a tool isn't the actual accusation — the person who flagged you is. Arguing with the number instead of the person talks past the real conversation. (And the number is shakier than it looks — <a href="/ai-detectors-explained.html">here's the sourced research on why →</a>)</span></li>
+    <li><b>DON'T</b> <span>assume the person flagging you is trying to hurt you. Most of the time they're reacting to real, sitewide fatigue with low-effort AI content. Responding like it's a personal attack usually escalates a situation that a calm reply would have closed.</span></li>
+  </ul>
+
+  <h2>What to actually do, in order</h2>
+  <div class="steps">
+    <div class="step">
+      <h3>Pause before you respond</h3>
+      <p>Not forever — just long enough to read the accusation once, calmly, before drafting a reply. A same-minute response is almost always worse than one written ten minutes later.</p>
+    </div>
+    <div class="step">
+      <h3>Find out what evidence they actually have</h3>
+      <p>"It sounds like AI" is a vibe. "Turnitin flagged this at 94%" is a claim you can respond to. Ask which one you're dealing with — a gut reaction or an actual tool output — before you decide how seriously to take it.</p>
+      <span class="why">A detector score alone isn't proof of anything — even the vendors say so.</span>
+    </div>
+    <div class="step">
+      <h3>Check if there's an actual rule in play</h3>
+      <p>A subreddit's culture, a class syllabus, a platform's ToS, a client contract — if one of these has a specific written policy, that's what actually matters, not whether the writing "sounds like" AI. <a href="/ai-disclosure-policies.html">See what the major platforms actually require →</a></p>
+    </div>
+    <div class="step">
+      <h3>Keep your own paper trail, going forward</h3>
+      <p>Notes, earlier drafts, timestamps, your own rough version before any editing — none of this helps retroactively, but it's the single best protection the next time this happens. Start keeping it now.</p>
+    </div>
+    <div class="step">
+      <h3>Take it seriously if the stakes are real</h3>
+      <p>Online pushback usually blows over. A school, employer, or client accusation is a different weight class — it can turn into a real dispute fast. One Adelphi University student sued the school in 2025 after being disciplined largely on a Turnitin score, despite disputing it and citing tutoring support he'd received.</p>
+      <span class="why">If you're in that situation, this page isn't enough — talk to someone whose job is actually that (your school's advocate office, or a lawyer who handles academic conduct cases).</span>
+    </div>
+  </div>
+
+  <div class="case">
+    <b>Why detectors alone aren't a fair basis for a real consequence</b>
+    In the Adelphi case, an outside expert noted that AI-detection tools aren't consistently accurate and shouldn't be relied on without a broader evidentiary trail — not "the score said so," but the score plus context. That's a useful bar to hold any accusation to, including ones aimed at you.
+  </div>
+
+  <div class="callout">
+    <h2>If you did use AI — that's genuinely fine to say</h2>
+    <p>Nothing above is about getting away with something. If AI helped draft what you posted and you edited and stand behind it, a short disclosure line closes this conversation faster than any defense does. <a href="/ai-disclosure-helper.html">Grab a ready-made line →</a> — though it's worth knowing upfront that <a href="/does-disclosure-help.html">disclosure has its own real trust trade-offs →</a>, so go in with eyes open.</p>
+  </div>
+
+  <div class="sources-block">
+    <p class="source">Sources: <a href="https://nmllplaw.com/blog/when-ai-gets-you-accused-what-to-do-if-your-school-says-you-used-chatgpt/" target="_blank" rel="noopener">Nesenoff & Miltenberg LLP — "When AI Gets You Accused: What to Do if Your School Says You Used ChatGPT"</a></p>
+    <p class="source"><a href="https://www.cbsnews.com/newyork/news/adelphi-university-artificial-intelligence-plagiarism-lawsuit" target="_blank" rel="noopener">CBS News New York — Adelphi University AI plagiarism lawsuit (Oct. 2025)</a></p>
+  </div>
+
+  <p class="also">
+    Want to understand why detectors get this wrong so often? <a href="/ai-detectors-explained.html">Read the sourced research →</a>
+    Not sure if a disclosure line applies to your situation? <a href="/disclosure-decision-tool.html">Check in two questions →</a>
+    Curious what we do differently because of days like this one? <a href="/trust.html">Our one rule →</a>
+  </p>
+</main>
+
+</body>
+</html>

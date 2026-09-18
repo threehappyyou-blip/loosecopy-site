@@ -1,0 +1,37 @@
+# Loosecopy
+
+> Paste a blog post or rough notes, get a Twitter/X thread and a LinkedIn post drafted back in seconds. Loosecopy never auto-publishes on your behalf — every draft opens in an editable text box, and a review step is required before you can copy it. You always paste, edit, and publish it yourself.
+
+Loosecopy is a small, independently-run tool. It has no user accounts: pasted text and generated drafts are not stored. The only personal data collected is an email address, and only if someone chooses to join the waitlist.
+
+## Core product
+
+- [Try Loosecopy](https://loosecopy.com/app.html): The generator itself — paste text, get a Twitter thread and LinkedIn post draft back.
+- [Homepage / waitlist](https://loosecopy.com/): What the product does and how to get early access.
+
+## Trust & policy
+
+- [What We'll Never Build](https://loosecopy.com/trust.html): The permanent pledge — no auto-publish, no write-access OAuth to any platform, no scheduled posting.
+- [Privacy Policy](https://loosecopy.com/privacy-policy.html): What is and isn't collected, who processes it, and how to reach us.
+- [Where Your Text Actually Goes](https://loosecopy.com/data-handling.html): A technical, code-level account of what happens to pasted text.
+- [Changelog](https://loosecopy.com/changelog.html): Every real, dated change to the product and its policies — including bugs, not just features.
+- [Report a Problem](https://loosecopy.com/report-an-issue.html): Bug reports and policy-compliance issues, read by a person.
+
+## Free tools
+
+- [Does This Sound Like AI?](https://loosecopy.com/ai-authenticity-checker.html): Free checker that flags AI-sounding phrasing and patterns in any pasted text.
+- [AI Disclosure Line Generator](https://loosecopy.com/ai-disclosure-helper.html): Ready-made phrases for disclosing AI assistance, by platform and tone.
+- [Do I Need to Disclose AI Use?](https://loosecopy.com/disclosure-decision-tool.html): A 2-question interactive tool giving a plain-language answer.
+- [Fact-Check Your AI Draft in 5 Minutes](https://loosecopy.com/fact-check-ai-draft.html): A fast method for catching invented facts before publishing.
+- [Before You Paste](https://loosecopy.com/before-you-paste.html): How to prep input text so the generated draft needs less editing.
+- [Make It Sound Like You](https://loosecopy.com/make-it-sound-like-you.html): Six concrete edits for removing generic AI phrasing from a draft.
+- [Why Your Twitter Thread and LinkedIn Post Shouldn't Match](https://loosecopy.com/why-platforms-differ.html): Sourced guidance on platform-specific tone and length.
+- [Just Got Flagged as AI-Written?](https://loosecopy.com/got-flagged-as-ai.html): A practical guide for responding to a false-positive AI accusation.
+- [Pre-Publish Checklist](https://loosecopy.com/pre-publish-checklist.html): A 7-item interactive checklist to run before posting.
+
+## Research & reference
+
+- [Why AI Detectors Get It Wrong](https://loosecopy.com/ai-detectors-explained.html): Sourced research on AI-text-detector unreliability.
+- [AI Disclosure Rules by Platform](https://loosecopy.com/ai-disclosure-policies.html): What X, LinkedIn, Meta, and Google actually require, with sources.
+- [Does Disclosing AI Use Actually Help?](https://loosecopy.com/does-disclosure-help.html): Research on disclosure's real, mixed effect on audience trust.
+- [AI Content Glossary](https://loosecopy.com/ai-glossary.html): Plain-language definitions of terms used across the above pages.

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fact-Check Your AI Draft in 5 Minutes — Loosecopy</title>
+<meta name="description" content="A fast, sourced method for catching invented facts in an AI-generated draft before you post it.">
+<link rel="canonical" href="https://loosecopy.com/fact-check-ai-draft.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/fact-check-ai-draft.html">
+<meta property="og:title" content="Fact-Check Your AI Draft in 5 Minutes — Loosecopy">
+<meta property="og:description" content="A fast, sourced method for catching invented facts in an AI-generated draft before you post it.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fact-Check Your AI Draft in 5 Minutes — Loosecopy">
+<meta name="twitter:description" content="A fast, sourced method for catching invented facts in an AI-generated draft before you post it.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 8px;max-width:60ch;}
+
+  .verified{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.82rem;
+    color:var(--ink-soft); background:var(--paper-card); border:1px solid var(--border);
+    border-radius:2px; padding:6px 12px; margin:14px 0 20px;
+  }
+
+  .stat-callout{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:20px 22px; margin-bottom:32px;
+  }
+  .stat-row{display:flex; flex-wrap:wrap; gap:12px; margin:12px 0;}
+  .stat{
+    font-family:'Space Mono',monospace; background:#F3F5F1; border:1px solid var(--border);
+    border-radius:2px; padding:10px 14px; font-size:0.85rem; color:var(--ink); flex:1 1 160px;
+  }
+  .stat b{display:block; font-size:1.3rem; color:var(--redline); font-family:'Fraunces',serif; font-weight:500;}
+  .stat-callout p{font-size:0.92rem; margin:10px 0 0;}
+
+  h2{font-size:1.2rem;margin:36px 0 14px;}
+
+  .steps{counter-reset:step; margin:0;}
+  .step{
+    counter-increment:step; position:relative; background:var(--paper-card); border:1px solid var(--border);
+    border-radius:2px; padding:18px 20px 18px 58px; margin-bottom:12px;
+  }
+  .step::before{
+    content:counter(step); position:absolute; left:16px; top:18px; width:26px; height:26px;
+    background:var(--bluepencil); color:#fff; border-radius:50%; display:flex; align-items:center;
+    justify-content:center; font-family:'Space Mono',monospace; font-size:0.85rem; font-weight:700;
+  }
+  .step h3{font-size:1rem; margin:0 0 6px; font-family:'Public Sans',sans-serif; font-weight:700;}
+  .step p{margin:0; font-size:0.94rem; color:var(--ink);}
+
+  .risky{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin:16px 0;}
+  .risky div{
+    background:var(--redline-wash); border-radius:2px; padding:12px 14px; font-size:0.88rem; color:#5c231f;
+  }
+  .risky div b{display:block; font-size:0.9rem; margin-bottom:3px;}
+
+  .checklist{
+    margin-top:28px; padding:20px 22px; background:var(--bluepencil-wash); border-radius:2px;
+  }
+  .checklist h2{font-size:1.05rem; margin:0 0 12px;}
+  .checklist ul{margin:0; padding-left:0; list-style:none;}
+  .checklist li{margin-bottom:8px; font-size:0.94rem; display:flex; gap:10px; align-items:flex-start;}
+  .checklist li::before{content:"☐"; font-family:'Space Mono',monospace; flex-shrink:0; color:var(--bluepencil);}
+
+  .source{font-size:0.82rem; color:var(--ink-soft);}
+  .source a{color:var(--bluepencil);}
+  .sources-block{margin-top:32px; padding-top:16px; border-top:1px solid var(--border);}
+
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:36px;}
+  .also a{color:var(--bluepencil);}
+
+  @media (max-width:520px){ .stat-row{flex-direction:column;} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Five minutes now, or an awkward correction later</h1>
+  <p class="lede">"Read it back" isn't the same as checking it. Here's a fast, specific way to catch the one invented number or misattributed quote before it goes out under your name — not because AI is unusually untrustworthy, but because even good models get this wrong often enough to be worth five minutes.</p>
+  <div class="verified">Last verified: September 2026</div>
+
+  <div class="stat-callout">
+    <p style="margin:0;font-size:0.94rem;">The most directly relevant benchmark isn't about chatbots in general — it's about <em>summarizing a source document without adding facts that aren't in it</em>. That's exactly what Loosecopy does with your notes. Vectara's open, independently-maintained Hallucination Leaderboard tests this across roughly 100 models:</p>
+    <div class="stat-row">
+      <div class="stat"><b>1.8%</b>best model's rate of adding unsupported claims to a summary</div>
+      <div class="stat"><b>~10–15%</b>where most tested models actually cluster</div>
+      <div class="stat"><b>24.2%</b>worst model's rate on the same task</div>
+    </div>
+    <p>Even at the good end, that's not zero. The review step isn't a formality — it's the only part of the pipeline actually checking whether a specific claim is true.</p>
+  </div>
+
+  <h2>A fast method, adapted from digital-literacy research</h2>
+  <p style="font-size:0.94rem;color:var(--ink-soft);margin:0 0 16px;">Researcher Mike Caulfield built "SIFT" for evaluating anything you read online in under a minute. It maps cleanly onto checking your own AI draft:</p>
+  <div class="steps">
+    <div class="step">
+      <h3>Stop</h3>
+      <p>Read the draft once as if a stranger wrote it, before you get attached to it. Don't skim for tone — read for claims: any number, name, date, or "fact"-shaped sentence.</p>
+    </div>
+    <div class="step">
+      <h3>Check the source — your source</h3>
+      <p>For each claim you flagged, ask one question: did my original notes actually say this, or is this new? Anything the draft added that wasn't in what you pasted is the highest-risk category, by definition.</p>
+    </div>
+    <div class="step">
+      <h3>Find better coverage</h3>
+      <p>If the draft states something as fact that you didn't provide — a statistic, an outside claim, "studies show" — a 30-second search is enough to confirm it's real or catch that it was invented. If you can't verify it quickly, cut it or soften it to an opinion.</p>
+    </div>
+    <div class="step">
+      <h3>Trace it back</h3>
+      <p>For any quote or specific number, ask where it would have had to come from. If there's no plausible original source for it — including your own notes — that's usually the tell that it was generated, not recalled.</p>
+    </div>
+  </div>
+
+  <h2>Which claims are actually worth checking</h2>
+  <div class="risky">
+    <div><b>Names & titles</b>People, companies, job titles — easy to get subtly wrong or swap.</div>
+    <div><b>Specific numbers</b>Percentages, dates, dollar amounts — the most common place a plausible-sounding wrong number appears.</div>
+    <div><b>Quotes</b>Anything in quotation marks that you didn't paste in verbatim yourself.</div>
+    <div><b>"Studies show..."</b>Any claim attributed to unnamed research or a vague authority.</div>
+  </div>
+
+  <div class="checklist">
+    <h2>The 5-minute pass</h2>
+    <ul>
+      <li>Every number in the draft matches a number I actually provided</li>
+      <li>Every name, title, or quote is one I recognize as real — not the draft's</li>
+      <li>Nothing is attributed to "studies" or "experts" I didn't mention</li>
+      <li>If I'm unsure about a claim, I cut it rather than left it in on a guess</li>
+    </ul>
+  </div>
+
+  <div class="sources-block">
+    <p class="source">Sources: <a href="https://github.com/vectara/hallucination-leaderboard/blob/main/README.md" target="_blank" rel="noopener">Vectara Hallucination Leaderboard (GitHub, ongoing)</a></p>
+    <p class="source"><a href="https://hapgood.us/2019/06/19/sift-the-four-moves/" target="_blank" rel="noopener">Mike Caulfield — "SIFT (The Four Moves)," Hapgood</a></p>
+  </div>
+
+  <p class="also">
+    This is the deep-dive on one line of the <a href="/pre-publish-checklist.html">pre-publish checklist →</a>
+    Curious why detectors can't just catch this instead? <a href="/ai-detectors-explained.html">That's a different problem, sourced here →</a>
+    Ready to draft something? <a href="/app.html">Back to Loosecopy →</a>
+  </p>
+</main>
+
+</body>
+</html>
