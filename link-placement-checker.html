@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is the Link Hurting Your Reach? — Free Tool by Loosecopy</title>
+<meta name="description" content="Paste your draft and see if it has a raw link sitting in the body. LinkedIn's algorithm is documented to push posts with outbound links less than native ones — moving the link to the first comment is a common workaround.">
+<link rel="canonical" href="https://loosecopy.com/link-placement-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/link-placement-checker.html">
+<meta property="og:title" content="Is the Link Hurting Your Reach? — Free Tool by Loosecopy">
+<meta property="og:description" content="Paste your draft and see if it has a raw link sitting in the body. LinkedIn's algorithm is documented to push posts with outbound links less than native ones — moving the link to the first comment is a common workaround.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Is the Link Hurting Your Reach? — Free Tool by Loosecopy">
+<meta name="twitter:description" content="Paste your draft and see if it has a raw link sitting in the body. LinkedIn's algorithm is documented to push posts with outbound links less than native ones — moving the link to the first comment is a common workaround.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:64ch;}
+
+  textarea{
+    width:100%; min-height:200px; padding:16px; border:1px solid var(--border);
+    background:var(--paper-card); border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-size:1rem; color:var(--ink); resize:vertical;
+  }
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  .muted{color:var(--ink-soft); font-size:0.88rem;}
+
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+
+  .results{display:none; margin-top:36px;}
+  .verdict{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
+  }
+  .verdict strong{display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+  .stat-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
+  .stat{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 16px; font-size:0.88rem; color:var(--ink-soft); flex:1 1 140px;
+  }
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
+  .highlighted{
+    white-space:pre-wrap; background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; font-size:0.96rem; line-height:1.75; margin-bottom:16px;
+  }
+  mark.link{background:#F3D9C4; border-bottom:2px solid #B5651D;}
+
+  .findings{margin-bottom:20px;}
+  .finding{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 14px; margin-bottom:8px; font-size:0.92rem;
+  }
+  .finding .ftag{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.7rem; text-transform:uppercase;
+    padding:2px 7px; border-radius:10px; margin-right:8px; border:1px solid #B5651D; color:#B5651D;
+  }
+  .finding .orig{font-family:'Space Mono',monospace; color:var(--ink); word-break:break-all;}
+  .finding .note{display:block; margin-top:4px; color:var(--ink-soft); font-size:0.88rem;}
+
+  .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
+  .callout a{color:var(--bluepencil); font-weight:600;}
+  .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
+  .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px; line-height:1.6;}
+  .source-note a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Is a raw link sitting in your post?</h1>
+  <p class="lede">LinkedIn keeps people on LinkedIn — its own team has said the algorithm doesn't prioritize posts with outbound links as much as native content. The common workaround is to leave the link out of the body and drop it in the first comment instead. This finds any URL sitting in your draft so you can decide where it belongs.</p>
+
+  <textarea id="input" placeholder="Paste your post here..."></textarea>
+  <div class="row">
+    <button class="btn-primary" id="checkBtn">Check my text</button>
+    <span class="muted" id="wordcount"></span>
+  </div>
+
+  <div class="results" id="results">
+    <div class="verdict" id="verdict"></div>
+    <div class="stat-row" id="statRow"></div>
+    <div class="highlighted" id="highlighted"></div>
+    <div class="findings" id="findings"></div>
+    <div class="callout" id="callout"></div>
+    <p class="source-note">LinkedIn's reduced reach for posts with outbound links is confirmed by <a href="https://blog.hootsuite.com/linkedin-algorithm/" target="_blank" rel="noopener">Hootsuite's 2026 breakdown of the LinkedIn algorithm</a>. It's less clearly documented for X/Twitter — some creators report a similar effect, but there's no equivalent official confirmation, so this note is lower-confidence there.</p>
+  </div>
+
+  <p class="disclaimer">This flags any URL-shaped text, whether or not it's actually going to LinkedIn — for a Twitter/X thread, a link in the body is far less of a concern. It also can't tell if a link is essential (like a signup link) versus optional; sometimes the link has to stay in the post, and that's a fine call to make.</p>
+</main>
+
+<script>
+(function(){
+  // 링크 위치 체커: 링크드인 알고리즘이 본문 내 외부링크가 있는 게시물의 노출을 줄인다는
+  // 리서치 확인(Hootsuite) 기반. 정규식으로 URL 탐지, AI 재호출 없음.
+  const URL_RE = /\bhttps?:\/\/[^\s<>"')\]]+|\bwww\.[^\s<>"')\]]+|\b(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.){1,}(?:com|net|org|io|co|dev|app|ai|me|info|biz|us|uk|ca)\b(?:\/[^\s<>"')\]]*)?/gi;
+
+  function trimTrailingPunct(u){
+    return u.replace(/[.,;:!?'")\]]+$/, '');
+  }
+
+  function findLinks(text){
+    const hits = [];
+    let m;
+    const re = new RegExp(URL_RE.source, URL_RE.flags);
+    while ((m = re.exec(text)) !== null){
+      if (text[m.index - 1] === '@'){ continue; } // email domain, not a standalone link
+      const trimmed = trimTrailingPunct(m[0]);
+      if (!trimmed) continue;
+      hits.push({ text: trimmed, index: m.index });
+      if (m[0].length === 0) re.lastIndex++;
+    }
+    return hits;
+  }
+
+  function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function highlight(text, hits){
+    let html = '';
+    let cursor = 0;
+    hits.forEach(h => {
+      html += escapeHtml(text.slice(cursor, h.index));
+      html += `<mark class="link">${escapeHtml(h.text)}</mark>`;
+      cursor = h.index + h.text.length;
+    });
+    html += escapeHtml(text.slice(cursor));
+    return html.replace(/\n/g, "<br>");
+  }
+
+  const input = document.getElementById("input");
+  const wordcountEl = document.getElementById("wordcount");
+  const btn = document.getElementById("checkBtn");
+  const results = document.getElementById("results");
+  const verdictEl = document.getElementById("verdict");
+  const statRowEl = document.getElementById("statRow");
+  const highlightedEl = document.getElementById("highlighted");
+  const findingsEl = document.getElementById("findings");
+  const calloutEl = document.getElementById("callout");
+
+  input.addEventListener("input", () => {
+    const wc = (input.value.trim().match(/\S+/g) || []).length;
+    wordcountEl.textContent = wc + " words";
+  });
+
+  btn.addEventListener("click", () => {
+    const text = input.value;
+    if (!text.trim()) return;
+
+    const hits = findLinks(text);
+
+    if (hits.length === 0){
+      verdictEl.innerHTML = `<strong>Clear.</strong>No links sitting in the body — nothing here to migrate to a comment.`;
+      calloutEl.innerHTML = `No link to worry about here. <a href="/app.html">Back to the generator →</a>`;
+    } else {
+      const plural = hits.length > 1 ? "links" : "link";
+      verdictEl.innerHTML = `<strong>${hits.length} ${plural} in the body.</strong>If this is going on LinkedIn, consider moving ${hits.length > 1 ? "them" : "it"} to the first comment instead and keeping the post itself native.`;
+      calloutEl.innerHTML = `A link in the post isn't wrong — sometimes it has to be there. This is just a heads-up so it's a choice, not an accident.
+        Also checking formatting? <a href="/markdown-cleanup-checker.html">Run that check too →</a>
+        <a href="/app.html">Back to the generator →</a>`;
+    }
+
+    statRowEl.innerHTML = `<div class="stat"><b>${hits.length}</b>${hits.length === 1 ? "link" : "links"} found in body</div>`;
+    highlightedEl.innerHTML = hits.length ? highlight(text, hits) : escapeHtml(text).replace(/\n/g, "<br>");
+    findingsEl.innerHTML = hits.map(h => {
+      return `<div class="finding"><span class="ftag">link</span><span class="orig">${escapeHtml(h.text)}</span><span class="note">Sitting in the post body — on LinkedIn, this is the kind of thing that's usually moved to the first comment.</span></div>`;
+    }).join('');
+
+    results.style.display = "block";
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Much of This Is Passive Voice? — Free Tool by Loosecopy</title>
+<meta name="description" content="Paste your draft and find be-verb + participle patterns ('was launched', 'has been reviewed') that often signal passive voice — the kind of construction that quietly hides who actually did the thing, and reads less direct on social platforms.">
+<link rel="canonical" href="https://loosecopy.com/passive-voice-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/passive-voice-checker.html">
+<meta property="og:title" content="How Much of This Is Passive Voice? — Free Tool by Loosecopy">
+<meta property="og:description" content="Paste your draft and find be-verb + participle patterns ('was launched', 'has been reviewed') that often signal passive voice — the kind of construction that quietly hides who actually did the thing, and reads less direct on social platforms.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Much of This Is Passive Voice? — Free Tool by Loosecopy">
+<meta name="twitter:description" content="Paste your draft and find be-verb + participle patterns ('was launched', 'has been reviewed') that often signal passive voice — the kind of construction that quietly hides who actually did the thing, and reads less direct on social platforms.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:64ch;}
+
+  textarea{
+    width:100%; min-height:200px; padding:16px; border:1px solid var(--border);
+    background:var(--paper-card); border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-size:1rem; color:var(--ink); resize:vertical;
+  }
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  .muted{color:var(--ink-soft); font-size:0.88rem;}
+
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+
+  .results{display:none; margin-top:36px;}
+  .verdict{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
+  }
+  .verdict strong{display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+  .stat-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
+  .stat{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 16px; font-size:0.88rem; color:var(--ink-soft); flex:1 1 140px;
+  }
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
+  .highlighted{
+    white-space:pre-wrap; background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; font-size:0.96rem; line-height:1.75; margin-bottom:16px;
+  }
+  mark.passive{background:#DDE6EA; border-bottom:2px solid #3A5A6E;}
+  mark.passive.confident{background:#F3D9C4; border-bottom:2px solid #B5651D;}
+  .legend{font-size:0.82rem; color:var(--ink-soft); margin:-6px 0 20px;}
+  .legend span{padding:1px 6px; border-radius:2px; margin-right:4px;}
+
+  .findings{margin-bottom:20px;}
+  .finding{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 14px; margin-bottom:8px; font-size:0.92rem;
+  }
+  .finding .ftag{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.7rem; text-transform:uppercase;
+    padding:2px 7px; border-radius:10px; margin-right:8px; border:1px solid var(--border); color:var(--ink-soft);
+  }
+  .finding .ftag.confident{border-color:#B5651D; color:#B5651D;}
+  .finding .orig{font-family:'Space Mono',monospace; color:var(--ink);}
+  .finding .note{display:block; margin-top:4px; color:var(--ink-soft); font-size:0.88rem;}
+
+  .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
+  .callout a{color:var(--bluepencil); font-weight:600;}
+  .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
+  .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px; line-height:1.6;}
+  .source-note a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>How much of this is passive voice?</h1>
+  <p class="lede">"The feature was launched" reads differently than "we launched the feature" — the first hides who actually did it. AI drafts lean passive by habit, and it's a hard thing to catch in your own writing since it doesn't sound wrong, just softer. This looks for be-verb + participle patterns ("was written," "got shared," "has been reviewed") that usually mean passive voice, so you can decide where naming the "who" would land better.</p>
+
+  <textarea id="input" placeholder="Paste your post here..."></textarea>
+  <div class="row">
+    <button class="btn-primary" id="checkBtn">Check my text</button>
+    <span class="muted" id="wordcount"></span>
+  </div>
+
+  <div class="results" id="results">
+    <div class="verdict" id="verdict"></div>
+    <div class="stat-row" id="statRow"></div>
+    <div class="legend">
+      <span style="background:#DDE6EA;border-bottom:2px solid #3A5A6E;">possible passive</span>
+      <span style="background:#F3D9C4;border-bottom:2px solid #B5651D;">passive with a named "by ..." agent</span>
+    </div>
+    <div class="highlighted" id="highlighted"></div>
+    <div class="findings" id="findings"></div>
+    <div class="callout" id="callout"></div>
+    <p class="source-note">Same detection approach (be-verb followed by a past participle, with a "by ..." phrase as a confidence signal) used by established tools like <a href="https://www.analyzemywriting.com/passive_voice.html" target="_blank" rel="noopener">AnalyzeMyWriting's passive voice detector</a> and the pattern Grammarly/Hemingway-style checkers are built on.</p>
+  </div>
+
+  <p class="disclaimer">This is pattern-matching, not real grammar parsing — it can't reliably tell true passive voice ("was designed by the team") apart from a participial adjective ("was excited," "was tired"), so treat every highlight as a candidate to glance at, not a verdict. It also misses some real passives (contractions like "it's written" aren't caught) and passive voice isn't always wrong — sometimes the actor genuinely doesn't matter ("the site was down for an hour"). Use judgment, not a zero target.</p>
+</main>
+
+<script>
+(function(){
+  // 수동태 체커: be동사+과거분사 패턴(analyzemywriting.com 방식과 동일한 휴리스틱)으로
+  // 후보를 잡고, "by" 근접 여부로 확신도를 구분. Node 테스트 하네스로 27개 케이스 사전 검증.
+  const IRREGULAR_PARTICIPLES = new Set([
+    "been","become","begun","bent","bet","bitten","bled","blown","born","bought","bound","bred",
+    "broken","brought","built","burnt","burst","cast","caught","chosen","clung","come","cost","crept",
+    "cut","dealt","dug","done","drawn","dreamt","driven","drunk","eaten","fallen","fed","felt","fought",
+    "found","flown","forbidden","forgiven","forgotten","frozen","given","gone","ground","grown","hidden",
+    "held","hurt","kept","knelt","knit","known","laid","led","left","lent","let","lit","lost","made",
+    "meant","met","mown","paid","proven","put","quit","read","ridden","rung","risen","run","said","seen",
+    "sent","set","sewn","shaken","shed","shone","shot","shown","shrunk","shut","sung","sunk","sat","slain",
+    "slept","slid","slit","smelt","sown","spoken","sped","spent","spilt","spun","spit","split","spread",
+    "sprung","stood","stolen","stuck","stung","struck","strung","sworn","swept","swollen","swum","swung",
+    "taken","taught","torn","told","thought","thrown","thrust","trodden","understood","upset","woken",
+    "worn","wound","won","withdrawn","written","wrung","sold","held","heard"
+  ]);
+  const NOT_PARTICIPLE_ADJ = new Set([
+    "naked","wicked","rugged","jagged","crooked","sacred","wretched","beloved","rabid","dogged",
+    "aged","landed","learned"
+  ]);
+  const BE_WORDS = new Set(["is","are","was","were","am","being","been","isn't","aren't","wasn't","weren't"]);
+  const GET_WORDS = new Set(["get","gets","got","getting"]);
+  const FILLER_SET = new Set([
+    "not","already","still","just","also","never","always","often","now","further","even","only",
+    "recently","currently","very","so","quite","rather","too","completely","fully","totally","finally"
+  ]);
+
+  function isFiller(w){ return FILLER_SET.has(w) || /ly$/.test(w); }
+
+  function isParticiple(wordLower){
+    if (NOT_PARTICIPLE_ADJ.has(wordLower)) return false;
+    if (IRREGULAR_PARTICIPLES.has(wordLower)) return true;
+    if (wordLower.length >= 4 && /^[a-z]+ed$/.test(wordLower)) return true;
+    return false;
+  }
+
+  function tokenize(text){
+    const tokens = [];
+    const re = /[A-Za-z']+/g;
+    let m;
+    while ((m = re.exec(text)) !== null){
+      tokens.push({ raw: m[0], lower: m[0].toLowerCase(), index: m.index, end: m.index + m[0].length });
+    }
+    return tokens;
+  }
+
+  function findPassive(text){
+    const tokens = tokenize(text);
+    const hits = [];
+    let i = 0;
+    while (i < tokens.length){
+      const w = tokens[i].lower;
+      const isBe = BE_WORDS.has(w);
+      const isGet = GET_WORDS.has(w);
+      if (!isBe && !isGet){ i++; continue; }
+
+      let j = i + 1;
+      let fillers = 0;
+      while (j < tokens.length && fillers < 2 && isFiller(tokens[j].lower)){
+        fillers++; j++;
+      }
+      if (j < tokens.length && isParticiple(tokens[j].lower)){
+        let hasBy = false;
+        for (let k = j + 1; k < Math.min(tokens.length, j + 7); k++){
+          if (tokens[k].lower === "by"){ hasBy = true; break; }
+        }
+        hits.push({
+          index: tokens[i].index,
+          end: tokens[j].end,
+          text: text.slice(tokens[i].index, tokens[j].end),
+          kind: isGet ? 'get-passive' : 'be-passive',
+          confident: hasBy
+        });
+        i = j + 1;
+        continue;
+      }
+      i++;
+    }
+    return hits;
+  }
+
+  function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function highlight(text, hits){
+    let html = '';
+    let cursor = 0;
+    hits.forEach(h => {
+      html += escapeHtml(text.slice(cursor, h.index));
+      html += `<mark class="passive${h.confident ? ' confident' : ''}">${escapeHtml(h.text)}</mark>`;
+      cursor = h.end;
+    });
+    html += escapeHtml(text.slice(cursor));
+    return html.replace(/\n/g, "<br>");
+  }
+
+  function verdictFor(count){
+    if (count === 0) return ["Direct throughout.", "No obvious passive constructions — the writing names who's doing things."];
+    if (count <= 2) return ["Mostly direct.", "One or two spots worth a glance — see if naming who did it adds anything."];
+    if (count <= 5) return ["A handful of passive spots.", "Several places where the actor is missing. Each one is a chance to be more direct — or a deliberate choice, if the actor genuinely doesn't matter."];
+    return ["Passive-heavy.", "This many passive constructions can read as vague about who's actually doing things — often makes a draft feel more like a report than a real update."];
+  }
+
+  const input = document.getElementById("input");
+  const wordcountEl = document.getElementById("wordcount");
+  const btn = document.getElementById("checkBtn");
+  const results = document.getElementById("results");
+  const verdictEl = document.getElementById("verdict");
+  const statRowEl = document.getElementById("statRow");
+  const highlightedEl = document.getElementById("highlighted");
+  const findingsEl = document.getElementById("findings");
+  const calloutEl = document.getElementById("callout");
+
+  input.addEventListener("input", () => {
+    const wc = (input.value.trim().match(/\S+/g) || []).length;
+    wordcountEl.textContent = wc + " words";
+  });
+
+  btn.addEventListener("click", () => {
+    const text = input.value;
+    if (!text.trim()) return;
+
+    const hits = findPassive(text);
+    const confidentCount = hits.filter(h => h.confident).length;
+
+    const [headline, detail] = verdictFor(hits.length);
+    verdictEl.innerHTML = `<strong>${headline}</strong>${detail}`;
+    statRowEl.innerHTML = `
+      <div class="stat"><b>${hits.length}</b>possible passive spots</div>
+      <div class="stat"><b>${confidentCount}</b>with a named "by ..." agent</div>
+    `;
+    highlightedEl.innerHTML = hits.length ? highlight(text, hits) : escapeHtml(text).replace(/\n/g, "<br>");
+
+    findingsEl.innerHTML = hits.map(h => {
+      const note = h.confident
+        ? "Has a \"by ...\" phrase right after — a clear sign of passive voice. Could this lead with the doer instead?"
+        : (h.kind === 'get-passive' ? "Informal \"get\" passive — common in casual writing, but still leaves out who did it." : "Be-verb + participle — check if this is really passive, or just an adjective (e.g. \"was excited\").");
+      return `<div class="finding"><span class="ftag${h.confident ? ' confident' : ''}">${h.kind === 'get-passive' ? 'get-passive' : 'passive'}</span><span class="orig">${escapeHtml(h.text)}</span><span class="note">${note}</span></div>`;
+    }).join('');
+
+    calloutEl.innerHTML = `Passive voice isn't a typo to fix — it's a choice to double-check. Also checking directness? <a href="/sounds-generic.html">Run the specificity check →</a> <a href="/app.html">Back to the generator →</a>`;
+
+    results.style.display = "block";
+  });
+})();
+</script>
+
+</body>
+</html>
