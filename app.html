@@ -206,7 +206,7 @@
       I've read through this and made it mine — enable the copy buttons below
     </label>
     <p class="ai-check-link">Before you post: <a href="/make-it-sound-like-you.html" target="_blank" rel="noopener">make it sound like you</a> · <a href="/ai-authenticity-checker.html" target="_blank" rel="noopener">check it doesn't sound like AI</a> · <a href="/reads-like-a-translation.html" target="_blank" rel="noopener">check it doesn't read stiff</a> · <a href="/ai-disclosure-helper.html" target="_blank" rel="noopener">grab a disclosure line</a> · <a href="/pre-publish-checklist.html" target="_blank" rel="noopener">run the final checklist</a></p>
-    <p class="ai-check-link">Double-check the details: <a href="/sounds-generic.html" target="_blank" rel="noopener">too generic?</a> · <a href="/number-unit-checker.html" target="_blank" rel="noopener">big numbers converted right?</a></p>
+    <p class="ai-check-link">Double-check the details: <a href="/sounds-generic.html" target="_blank" rel="noopener">too generic?</a> · <a href="/number-unit-checker.html" target="_blank" rel="noopener">big numbers converted right?</a> · <a href="/jargon-checker.html" target="_blank" rel="noopener">clear to a global reader?</a></p>
     <p class="ai-check-link">Curious why these two drafts read so differently? <a href="/why-platforms-differ.html" target="_blank" rel="noopener">That's on purpose — here's why &rarr;</a></p>
     <p class="ai-check-link">Already posted this? <a href="/post-journal.html" target="_blank" rel="noopener">Log what happened, for future you &rarr;</a></p>
     <p class="voice-check-note" id="voiceCheckNote" style="display:none;"></p>
@@ -444,12 +444,54 @@ function checkDuplicate(text){
   } catch (e) { return null; }
 }
 
+// 숫자 일관성 체크: 지금 쓰는 글과 기록장(post-journal)에 남긴 과거 글에서 "N years/users/customers..."처럼
+// 추적 가능한 숫자가 서로 다르게 나오면 알려준다. 키워드가 정확히 같을 때만 비교해서 오탐을 줄임
+// (예: "5 years"와 "3 users"는 키워드가 다르니 비교 안 함 — 진짜 같은 항목을 다른 숫자로 말했을 때만 잡음).
+const TRACKED_NUMBER_KEYWORDS = ['years?', 'months?', 'weeks?', 'users?', 'customers?', 'clients?', 'employees?', 'followers?', 'subscribers?'];
+function extractTrackedNumbers(text){
+  const results = [];
+  TRACKED_NUMBER_KEYWORDS.forEach(kw => {
+    const re = new RegExp('(\\d+(?:\\.\\d+)?)\\+?\\s*' + kw, 'gi');
+    let m;
+    while ((m = re.exec(text)) !== null){
+      results.push({ number: parseFloat(m[1]), keyword: kw.replace(/s\?$/, ''), match: m[0].trim() });
+    }
+  });
+  return results;
+}
+function checkNumberConsistency(draftText){
+  const draftNums = extractTrackedNumbers(draftText);
+  if (!draftNums.length) return null;
+  try {
+    const raw = localStorage.getItem('lc_post_journal');
+    const entries = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(entries) || !entries.length) return null;
+    for (const dn of draftNums){
+      for (const e of entries){
+        const pastNums = extractTrackedNumbers(e.text || '');
+        const conflict = pastNums.find(pn => pn.keyword === dn.keyword && pn.number !== dn.number);
+        if (conflict){
+          return `You wrote "${dn.match}" here, but "${conflict.match}" in a post from ${e.date}. Worth double-checking which is right.`;
+        }
+      }
+    }
+  } catch (e) { return null; }
+  return null;
+}
+
 input.addEventListener('input', () => {
   inputCount.textContent = input.value.length + ' characters';
   const dup = checkDuplicate(input.value);
   if (dup) {
     inputTip.textContent = `This looks similar to something you logged on ${dup.date}: "${dup.snippet}${dup.snippet.length >= 70 ? '…' : ''}"`;
     inputTip.className = 'input-tip tip-dup';
+    inputTip.style.display = 'block';
+    return;
+  }
+  const conflict = checkNumberConsistency(input.value);
+  if (conflict) {
+    inputTip.textContent = conflict;
+    inputTip.className = 'input-tip tip-warn';
     inputTip.style.display = 'block';
     return;
   }

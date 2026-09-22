@@ -98,6 +98,8 @@
   .scan-hit .conv{font-weight:700; color:var(--redline);}
   .scan-empty{color:var(--ink-soft); font-size:0.92rem;}
   .scan-caveat{font-size:0.82rem; color:var(--ink-soft); margin-top:12px;}
+  .scan-hit.currency-hit{border-left-color:#9a7d1f;}
+  .scan-hit .flag-note{display:block; margin-top:4px; font-size:0.86rem; color:var(--ink-soft);}
 
   .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
   .callout a{color:var(--bluepencil); font-weight:600;}
@@ -132,7 +134,7 @@
 
   <section>
     <h2>Or paste your draft</h2>
-    <p class="sec-sub">Finds 만/万/억/億/亿/조 figures and English "lakh"/"crore" mentions in your text and shows each one converted. Handles single figures and common thousand-prefix compounds (5천만, 5千万, 3천억) — see the note below for what it can't catch, and why 兆 is left out of the auto-scan.</p>
+    <p class="sec-sub">Finds 만/万/억/億/亿/조 figures, English "lakh"/"crore" mentions, and non-USD currency (₩/₹/¥/€/£ and codes like KRW/INR/JPY/EUR) with no USD reference nearby. Handles single figures and common thousand-prefix compounds (5천만, 5千万, 3천억) — see the note below for what it can't catch, why 兆 is left out of the auto-scan, and why currency isn't auto-converted.</p>
     <textarea id="input" placeholder="e.g. Revenue crossed 75억 this quarter, or We raised 2 crore in seed funding..."></textarea>
     <div class="row">
       <button class="btn-primary" id="scanBtn">Find and convert</button>
@@ -146,7 +148,7 @@
     Curious if your draft also reads too formal? <a href="/reads-like-a-translation.html">Check that too →</a>
   </div>
 
-  <p class="disclaimer">This tool handles single-unit figures and the common "thousand-prefix" compounds (5천만, 5千万, 2천5백만, 3천억). It does NOT auto-sum additive compounds like "3억 2천만" — it shows 3억 and 2천만 as two separate conversions instead of guessing how to combine them, since a wrong sum would be worse than no sum. When in doubt, use the calculator above — it's built to handle exactly that case correctly. <b>About 兆:</b> in Japanese it reliably means one trillion, same as Korean 조 — but in Chinese, 兆 is genuinely ambiguous and has been used for one million, one trillion, and ten quadrillion depending on era and context. Because of that, the auto-scanner deliberately skips 兆 entirely; the calculator offers it only as an explicit, clearly-labeled manual choice, so you're the one confirming which value you mean, not the tool guessing.</p>
+  <p class="disclaimer">This tool handles single-unit figures and the common "thousand-prefix" compounds (5천만, 5千万, 2천5백만, 3천억). It does NOT auto-sum additive compounds like "3억 2천만" — it shows 3억 and 2천만 as two separate conversions instead of guessing how to combine them, since a wrong sum would be worse than no sum. When in doubt, use the calculator above — it's built to handle exactly that case correctly. <b>About 兆:</b> in Japanese it reliably means one trillion, same as Korean 조 — but in Chinese, 兆 is genuinely ambiguous and has been used for one million, one trillion, and ten quadrillion depending on era and context. Because of that, the auto-scanner deliberately skips 兆 entirely; the calculator offers it only as an explicit, clearly-labeled manual choice, so you're the one confirming which value you mean, not the tool guessing. <b>About currency:</b> the scanner flags a non-USD amount (₩, ₹, ¥, €, £, or a code like KRW/INR/JPY/EUR/GBP) when there's no "$"/USD mention in the same sentence — but it never computes a conversion itself. Exchange rates move daily, so a hardcoded rate baked into this tool would quietly go stale and mislead you; adding your own rough, current number is safer than trusting an old one from us.</p>
 </main>
 
 <script>
@@ -256,6 +258,51 @@
     return results;
   }
 
+  // ---- 통화 명확성 체크 (계산은 절대 안 함) ----
+  // 환율은 매일 바뀌므로 이 도구에 하드코딩하는 순간 시간이 지나면 틀린 값이 됨 — 그래서 변환은 절대 안 하고,
+  // "USD 언급이 같은 문장에 없는 비-USD 금액"만 찾아서 알려준다. 사용자가 직접 대략적인 달러 표시를 넣게 유도.
+  const CURRENCY_NAMES = {
+    '₩':'Korean won', 'KRW':'Korean won', '원':'Korean won',
+    '₹':'Indian rupees', 'INR':'Indian rupees',
+    '¥':'yen or yuan', 'JPY':'Japanese yen', 'CNY':'Chinese yuan', 'RMB':'Chinese yuan',
+    '€':'euros', 'EUR':'euros',
+    '£':'British pounds', 'GBP':'British pounds'
+  };
+  const USD_CONTEXT_RE = /\$|USD|US\s?dollars?/i;
+
+  function getSentenceSpans(text){
+    const spans = [];
+    const re = /[^.!?\n]+[.!?]*/g;
+    let m;
+    while ((m = re.exec(text)) !== null){
+      spans.push({ start: m.index, end: m.index + m[0].length, text: m[0] });
+    }
+    return spans;
+  }
+
+  function findUnclearCurrency(text){
+    const spans = getSentenceSpans(text);
+    const rawHits = [];
+    const symRe = /(₩|₹|¥|€|£)\s?[\d,]+(?:\.\d+)?/g;
+    let m;
+    while ((m = symRe.exec(text)) !== null){
+      rawHits.push({ match:m[0].trim(), index:m.index, key:m[1] });
+    }
+    // 원 앞에는 보통 만/억 같은 단위가 먼저 오므로(예: "5000만원", "75억원") 그 단위를 선택적으로 허용.
+    // 끝에는 \b 대신 "다음이 영문자가 아님" 조건을 씀 — 원(CJK)은 \w가 아니라서 \b가 그 뒤에서 매치되지 않기 때문.
+    const codeRe = /[\d,]+(?:\.\d+)?\s?(?:조|억|億|亿|만|万)?\s?(원|KRW|INR|JPY|CNY|RMB|EUR|GBP)(?![A-Za-z])/gi;
+    while ((m = codeRe.exec(text)) !== null){
+      const key = m[1] === '원' ? '원' : m[1].toUpperCase();
+      rawHits.push({ match:m[0].trim(), index:m.index, key });
+    }
+    rawHits.sort((a,b) => a.index - b.index);
+    return rawHits.filter(h => {
+      const sent = spans.find(s => h.index >= s.start && h.index < s.end);
+      const sentText = sent ? sent.text : text;
+      return !USD_CONTEXT_RE.test(sentText);
+    });
+  }
+
   const input = document.getElementById('input');
   const scanBtn = document.getElementById('scanBtn');
   const scanCount = document.getElementById('scanCount');
@@ -263,17 +310,31 @@
 
   scanBtn.addEventListener('click', () => {
     const matches = parseNumberMatches(input.value);
+    const currencyFlags = findUnclearCurrency(input.value);
     scanResults.style.display = 'block';
-    if (!matches.length){
+
+    if (!matches.length && !currencyFlags.length){
       scanCount.textContent = '';
-      scanResults.innerHTML = '<p class="scan-empty">No 만/億/亿/조 figures or lakh/crore mentions found in this text.</p>';
+      scanResults.innerHTML = '<p class="scan-empty">No 만/億/亿/조 figures, lakh/crore mentions, or unclear currency found in this text.</p>';
       return;
     }
-    scanCount.textContent = matches.length + ' figure' + (matches.length===1?'':'s') + ' found';
-    scanResults.innerHTML = matches.map(mm => {
+
+    const countParts = [];
+    if (matches.length) countParts.push(matches.length + ' figure' + (matches.length===1?'':'s') + ' converted');
+    if (currencyFlags.length) countParts.push(currencyFlags.length + ' currency mention' + (currencyFlags.length===1?'':'s') + ' with no USD nearby');
+    scanCount.textContent = countParts.join(' · ');
+
+    let html = matches.map(mm => {
       const f = formatEnglish(mm.value);
       return `<div class="scan-hit"><span class="orig">${mm.match}</span><span class="arrow">&rarr;</span><span class="conv">${f.digits}</span>${f.words ? ' <span class="muted">('+f.words+')</span>' : ''}</div>`;
     }).join('');
+
+    html += currencyFlags.map(cf => {
+      const name = CURRENCY_NAMES[cf.key] || 'a non-USD currency';
+      return `<div class="scan-hit currency-hit"><span class="orig">${cf.match}</span><span class="flag-note">No "$"/USD mentioned in that sentence — readers elsewhere may not know roughly what ${name} is worth. Worth adding a rough dollar amount yourself (this tool won't guess a rate — see why below).</span></div>`;
+    }).join('');
+
+    scanResults.innerHTML = html;
   });
 })();
 </script>

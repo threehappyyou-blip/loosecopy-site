@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jargon &amp; Acronym Checker — Free Tool by Loosecopy</title>
+<meta name="description" content="Paste your draft and find corporate jargon, idioms, and unexplained acronyms that read as noise to anyone outside your company or industry — with a plain-English swap for each.">
+<link rel="canonical" href="https://loosecopy.com/jargon-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/jargon-checker.html">
+<meta property="og:title" content="Jargon & Acronym Checker — Free Tool by Loosecopy">
+<meta property="og:description" content="Paste your draft and find corporate jargon, idioms, and unexplained acronyms that read as noise to anyone outside your company or industry — with a plain-English swap for each.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jargon & Acronym Checker — Free Tool by Loosecopy">
+<meta name="twitter:description" content="Paste your draft and find corporate jargon, idioms, and unexplained acronyms that read as noise to anyone outside your company or industry — with a plain-English swap for each.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:64ch;}
+
+  textarea{
+    width:100%; min-height:200px; padding:16px; border:1px solid var(--border);
+    background:var(--paper-card); border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-size:1rem; color:var(--ink); resize:vertical;
+  }
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  .muted{color:var(--ink-soft); font-size:0.88rem;}
+
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+
+  .results{display:none; margin-top:36px;}
+  .verdict{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
+  }
+  .verdict strong{display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+  .stat-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
+  .stat{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 16px; font-size:0.88rem; color:var(--ink-soft); flex:1 1 140px;
+  }
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
+  .highlighted{
+    white-space:pre-wrap; background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; font-size:0.96rem; line-height:1.75; margin-bottom:16px;
+  }
+  mark.jargon{background:#F3D9C4; border-bottom:2px solid #B5651D;}
+  mark.acro{background:#DDE6EA; border-bottom:2px solid #3A5A6E;}
+  .legend{font-size:0.82rem; color:var(--ink-soft); margin:-6px 0 20px;}
+  .legend span{padding:1px 6px; border-radius:2px; margin-right:4px;}
+
+  .findings{margin-bottom:20px;}
+  .finding{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 14px; margin-bottom:8px; font-size:0.92rem;
+  }
+  .finding .ftag{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.7rem; text-transform:uppercase;
+    padding:2px 7px; border-radius:10px; margin-right:8px; border:1px solid var(--border); color:var(--ink-soft);
+  }
+  .finding .ftag.jargon{border-color:#B5651D; color:#B5651D;}
+  .finding .ftag.acro{border-color:var(--bluepencil); color:var(--bluepencil);}
+  .finding .orig{font-family:'Space Mono',monospace; color:var(--ink);}
+  .finding .arrow{color:var(--ink-soft); margin:0 6px;}
+
+  .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
+  .callout a{color:var(--bluepencil); font-weight:600;}
+  .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
+  .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px; line-height:1.6;}
+  .source-note a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Would this make sense outside your bubble?</h1>
+  <p class="lede">"Move the needle" and "low-hanging fruit" are second nature once you're inside a company or industry — that's exactly why they're easy to leave in. Every reader who isn't already an insider has to stop and guess, and that goes double if English isn't their first language. This finds jargon, idioms, and acronyms you never spelled out, and suggests a plainer swap for each.</p>
+
+  <textarea id="input" placeholder="Paste your tweet, post, or paragraph here..."></textarea>
+  <div class="row">
+    <button class="btn-primary" id="checkBtn">Check my text</button>
+    <span class="muted" id="wordcount"></span>
+  </div>
+
+  <div class="results" id="results">
+    <div class="verdict" id="verdict"></div>
+    <div class="stat-row" id="statRow"></div>
+    <div class="legend">
+      <span style="background:#F3D9C4;border-bottom:2px solid #B5651D;">jargon / idiom</span>
+      <span style="background:#DDE6EA;border-bottom:2px solid #3A5A6E;">acronym, not yet explained</span>
+    </div>
+    <div class="highlighted" id="highlighted"></div>
+    <div class="findings" id="findings"></div>
+    <div class="callout">
+      Not every jargon phrase is worth cutting — some are just faster to write. The ones worth fixing are the ones a reader would have to stop and guess at.
+      Also checking tone? <a href="/reads-like-a-translation.html">See if it reads stiff →</a> · <a href="/sounds-generic.html">See if it's too vague →</a>
+      <a href="/app.html">Back to the generator →</a>
+    </div>
+    <p class="source-note">Jargon definitions adapted from TechTarget's <a href="https://www.techtarget.com/whatis/feature/Awful-corporate-jargon-phrases-you-cant-escape" target="_blank" rel="noopener">58 awful corporate jargon phrases you can't escape</a>, plus common usage. Background on why this specifically trips up readers outside the US: <a href="https://www.footholdamerica.com/blog/us-business-jargon-glossary/" target="_blank" rel="noopener">Foothold America — decoding US business jargon for international teams</a>.</p>
+  </div>
+
+  <p class="disclaimer">Heuristic: a fixed phrase list for jargon/idioms, plus a pattern match for 2–5 letter capitalized acronyms (skipping a stoplist of common short words and already-universal ones like AI, CEO, USA). It will occasionally flag a word you capitalized for emphasis, and it can't catch every phrase or acronym — especially ones specific to your company or industry. Read the highlights, don't just trust the count.</p>
+</main>
+
+<script>
+(function(){
+  // 전문용어/관용구 사전: 실제 뜻이 있는 말이라도 업계·회사 밖 독자에게는 그냥 소음일 수 있음.
+  // TechTarget 리서치 기반 정의 다수 + 널리 알려진 관용구 몇 개를 추가. "AI가 못 하는 것"에 해당하는 이유:
+  // AI는 이 표현들을 완벽히 유창하게 쓰지만, 정작 독자 입장에서 낯설지 확인하는 눈은 없음.
+  const JARGON_PHRASES = {
+    'move the needle': 'make a noticeable change',
+    'low-hanging fruit': 'easy, high-value tasks first',
+    'in the weeds': 'overwhelmed by the details',
+    'herding cats': 'managing an uncooperative group',
+    'bandwidth': 'capacity or time to take something on',
+    'circle back': 'talk about this again later',
+    'take this offline': 'discuss this privately, not here',
+    'action item': 'task',
+    'dumpster fire': 'a very bad situation',
+    'pivot': 'change direction',
+    'deep dive': 'a thorough look',
+    'slide deck': 'presentation',
+    'touch base': 'check in briefly',
+    "you're crushing it": "you're doing great",
+    'boil the ocean': 'try to do everything at once',
+    'synergy': 'combined benefit of working together',
+    'move the goalposts': 'change the requirements mid-way',
+    'think outside the box': 'consider unusual ideas',
+    'hit the ground running': 'start quickly and effectively',
+    'on my radar': "something I'm keeping an eye on",
+    'drill down': 'look at in more detail',
+    'at the end of the day': 'ultimately',
+    'game changer': 'something that changes everything',
+    'win-win': 'good for both sides',
+    'paradigm shift': 'a fundamental change in approach',
+    'core competency': 'main strength',
+    'core competencies': 'main strengths',
+    'buy-in': 'agreement and support',
+    'churn': 'the rate customers or employees leave',
+    'pain point': 'a specific problem people face',
+    'reinvent the wheel': 'redo something that already exists',
+    'throw under the bus': 'blame someone to avoid consequences',
+    'trim the fat': 'cut unnecessary costs',
+    'wheelhouse': 'area of expertise',
+    'above my paygrade': "not mine to decide",
+    'break down silos': 'improve coordination between teams',
+    'go-to-market': 'plan for launching to customers',
+    'hard stop': 'a firm end time',
+    'put a pin in it': 'set this aside for later',
+    'north star': 'the main goal guiding decisions',
+    'ping me': 'message me',
+    'run it up the flagpole': 'test how people react to an idea'
+  };
+
+  // 약어 감지: 대문자 2~5글자 단어를 찾되, 흔한 짧은 영단어(강조용 대문자 포함)와
+  // 이미 전세계적으로 통하는 약어(AI, CEO 등)는 제외 — 오탐 방지가 최우선.
+  const ACRONYM_ALLOWED = new Set([
+    'AI','OK','DIY','US','USA','UK','EU','CEO','CFO','CTO','COO','PDF','GPS','URL','ID','TV','PC','DVD','USB',
+    'A','MY','BY','OR','IF','IN','ON','AT','TO','UP','AM','IS','BE','IT','HI','OH','NO','SO','GO','WE','HE','SHE',
+    'THE','AND','FOR','ARE','WAS','HAS','HAD','CAN','MAY','NEW','BIG','TOP','ONE','TWO','OUT','OFF','YOU','ITS',
+    'NOT','ALL','WHY','HOW','WHO','NOW','YES','WOW','SAD','MAD','BAD','FUN','TRY','RUN','GOT','LOT','LOW','WIN',
+    'YET','BUT','ANY','OWN','TOO','SEE','DID','DAY','WAY','USE','GET','PUT','SAY','SET','LET','ASK','ADD','END',
+    'FAR','FEW','JOB','KEY','LAW','MAN','MEN','MOM','DAD','PAY','SUN','WAR','EAT','SIT','LIE','DIE','FLY','CRY',
+    'BUY','DON','WON','ISN','CO','RE','PRE','NON','EX','POST','MULTI','SEMI','ANTI','SUB','INTER',
+    'STOP','LOVE','HATE','BEST','GOOD','HUGE','MUST','ONLY','EVER','THIS','THAT','WHEN','WHAT','WERE','WILL','WITH',
+    'YOUR','JUST','LIKE','MORE','SOME','THAN','THEN','OVER','VERY','MUCH','MANY','EACH','BOTH','MOST','SAME','SUCH',
+    'TAKE','MAKE','GIVE','COME','WANT','NEED','KNOW','FEEL','LOOK','FIND','WORK','HELP','KEEP','TRUE','REAL','ALSO',
+    'INTO','ONCE','BACK','DOWN','EVEN','FROM','GONE','HERE','LESS','LIFE','LIVE','LONG','MADE','MEAN','NEXT','OPEN',
+    'PART','PAST','PLAY','SAID','SELF','SHOW','SIDE','SOON','SURE','TALK','TEAM','TIME','TOLD','TOOK','TURN','USED',
+    'WEEK','WENT','WORD','YEAR','ABLE','AWAY','BEEN','CALL','CAME','CASE','EASY','FACT','FAST','FIVE','FOUR','FREE',
+    'FULL','GAVE','HAND','HARD','HEAR','HIGH','KIND','KNEW','LATE','LEFT','LINE','LIST','MIND','MOVE','NAME','NICE',
+    'NINE','NONE','NOTE','ONTO','PLAN','READ','ROOM','SORT','TELL','THEM','THEY','WELL','AREN','WASN','HASN','HADN',
+    'DOESN','DIDN','WEREN',
+    'ABOUT','AFTER','AGAIN','BEING','COULD','EVERY','FIRST','FOUND','GREAT','GROUP','HOUSE','LARGE','LEARN','NEVER',
+    'OFTEN','OTHER','PLACE','POINT','RIGHT','SINCE','SMALL','SOUND','STILL','STUDY','THEIR','THERE','THESE','THING',
+    'THINK','THOSE','THREE','TODAY','UNDER','UNTIL','WATER','WHERE','WHICH','WHILE','WHOLE','WOMAN','WOULD','WRITE',
+    'WRONG','YOUNG','TRULY','TOTAL','WORLD','NEEDS','WANTS','HAPPY','READY','MONEY','STORY','MEDIA','VIDEO','PHOTO',
+    'TREND'
+  ]);
+
+  function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function findJargon(text){
+    const keys = Object.keys(JARGON_PHRASES).sort((a,b) => b.length - a.length);
+    const escaped = keys.map(p => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const re = new RegExp('\\b(' + escaped.join('|') + ')\\b', 'gi');
+    const hits = [];
+    let m;
+    while ((m = re.exec(text)) !== null){
+      hits.push({ text: m[0], index: m.index, cat: 'jargon', plain: JARGON_PHRASES[m[0].toLowerCase()] });
+    }
+    return hits;
+  }
+
+  function findAcronyms(text){
+    const re = /\b[A-Z]{2,5}\b/g;
+    const hits = [];
+    const seen = new Set();
+    let m;
+    while ((m = re.exec(text)) !== null){
+      const word = m[0];
+      if (ACRONYM_ALLOWED.has(word)) continue;
+      if (seen.has(word)) continue; // only flag the first time each acronym appears
+      const before = text[m.index - 1];
+      const after = text[m.index + word.length];
+      if (before === '(' && after === ')') continue; // "return on investment (ROI)" — already explained
+      if (/^\s*\(/.test(text.slice(m.index + word.length))) continue; // "ROI (return on investment)"
+      seen.add(word);
+      hits.push({ text: word, index: m.index, cat: 'acro' });
+    }
+    return hits;
+  }
+
+  function dedupeOverlaps(hits){
+    hits.sort((a,b) => a.index - b.index);
+    const out = [];
+    let lastEnd = -1;
+    hits.forEach(h => {
+      if (h.index >= lastEnd) {
+        out.push(h);
+        lastEnd = h.index + h.text.length;
+      }
+    });
+    return out;
+  }
+
+  function highlight(text, hits){
+    let html = '';
+    let cursor = 0;
+    hits.forEach(h => {
+      html += escapeHtml(text.slice(cursor, h.index));
+      html += `<mark class="${h.cat}">${escapeHtml(h.text)}</mark>`;
+      cursor = h.index + h.text.length;
+    });
+    html += escapeHtml(text.slice(cursor));
+    return html.replace(/\n/g, "<br>");
+  }
+
+  function verdictFor(count){
+    if (count === 0) return ["Reads clear.", "Nothing jumped out as jargon, an idiom, or an unexplained acronym."];
+    if (count <= 2) return ["Mostly clear.", "A couple of spots a reader outside your bubble might stumble on."];
+    if (count <= 5) return ["A few spots to plain up.", "Several phrases or acronyms here assume the reader already knows your world."];
+    return ["Dense with jargon.", "Worth a pass to swap these for plainer language — that many in one piece adds up."];
+  }
+
+  const input = document.getElementById("input");
+  const wordcountEl = document.getElementById("wordcount");
+  const btn = document.getElementById("checkBtn");
+  const results = document.getElementById("results");
+  const verdictEl = document.getElementById("verdict");
+  const statRowEl = document.getElementById("statRow");
+  const highlightedEl = document.getElementById("highlighted");
+  const findingsEl = document.getElementById("findings");
+
+  input.addEventListener("input", () => {
+    const wc = (input.value.trim().match(/\S+/g) || []).length;
+    wordcountEl.textContent = wc + " words";
+  });
+
+  btn.addEventListener("click", () => {
+    const text = input.value;
+    if (!text.trim()) return;
+
+    const jargonHits = findJargon(text);
+    const acroHits = findAcronyms(text);
+    const all = dedupeOverlaps([...jargonHits, ...acroHits]);
+    const jargonCount = all.filter(h => h.cat === 'jargon').length;
+    const acroCount = all.filter(h => h.cat === 'acro').length;
+
+    const [headline, detail] = verdictFor(all.length);
+    verdictEl.innerHTML = `<strong>${headline}</strong>${detail}`;
+    statRowEl.innerHTML = `
+      <div class="stat"><b>${jargonCount}</b>jargon / idioms</div>
+      <div class="stat"><b>${acroCount}</b>unexplained acronyms</div>
+    `;
+    highlightedEl.innerHTML = all.length ? highlight(text, all) : escapeHtml(text).replace(/\n/g, "<br>");
+
+    if (!all.length){
+      findingsEl.innerHTML = '';
+    } else {
+      findingsEl.innerHTML = all.map(h => {
+        if (h.cat === 'jargon'){
+          return `<div class="finding"><span class="ftag jargon">jargon</span><span class="orig">"${escapeHtml(h.text)}"</span><span class="arrow">&rarr;</span>${escapeHtml(h.plain)}</div>`;
+        }
+        return `<div class="finding"><span class="ftag acro">acronym</span><span class="orig">"${escapeHtml(h.text)}"</span><span class="arrow">&rarr;</span>spell it out the first time, e.g. "${escapeHtml(h.text)} (what it stands for)"</div>`;
+      }).join('');
+    }
+
+    results.style.display = "block";
+  });
+})();
+</script>
+
+</body>
+</html>
