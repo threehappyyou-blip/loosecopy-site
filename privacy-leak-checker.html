@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Did You Leave an Email or Key in There? — Free Tool by Loosecopy</title>
+<meta name="description" content="Paste your draft and check for an email, phone number, API key, or card number that shouldn't go out in a public post — before you publish, not after. Runs entirely in your browser.">
+<link rel="canonical" href="https://loosecopy.com/privacy-leak-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/privacy-leak-checker.html">
+<meta property="og:title" content="Did You Leave an Email or Key in There? — Free Tool by Loosecopy">
+<meta property="og:description" content="Paste your draft and check for an email, phone number, API key, or card number that shouldn't go out in a public post — before you publish, not after. Runs entirely in your browser.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Did You Leave an Email or Key in There? — Free Tool by Loosecopy">
+<meta name="twitter:description" content="Paste your draft and check for an email, phone number, API key, or card number that shouldn't go out in a public post — before you publish, not after. Runs entirely in your browser.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 14px;max-width:64ch;}
+  .local-note{
+    display:inline-flex; align-items:center; gap:8px; font-size:0.85rem; color:var(--bluepencil);
+    background:var(--bluepencil-wash); border-radius:2px; padding:8px 14px; margin:0 0 28px;
+  }
+
+  textarea{
+    width:100%; min-height:200px; padding:16px; border:1px solid var(--border);
+    background:var(--paper-card); border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-size:1rem; color:var(--ink); resize:vertical;
+  }
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  .muted{color:var(--ink-soft); font-size:0.88rem;}
+
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+
+  .results{display:none; margin-top:36px;}
+  .verdict{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
+  }
+  .verdict.alert{background:var(--redline-wash); border-color:var(--redline); color:#5c231f;}
+  .verdict strong{display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+  .stat-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
+  .stat{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 16px; font-size:0.88rem; color:var(--ink-soft); flex:1 1 140px;
+  }
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
+  .highlighted{
+    white-space:pre-wrap; background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; font-size:0.96rem; line-height:1.75; margin-bottom:16px;
+  }
+  mark.contact{background:#FCE9B8; border-bottom:2px solid #D9A63C;}
+  mark.credential{background:var(--redline-wash); border-bottom:2px solid var(--redline);}
+  .legend{font-size:0.82rem; color:var(--ink-soft); margin:-6px 0 20px;}
+  .legend span{padding:1px 6px; border-radius:2px; margin-right:4px;}
+
+  .findings{margin-bottom:20px;}
+  .finding{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 14px; margin-bottom:8px; font-size:0.92rem;
+  }
+  .finding .ftag{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.7rem; text-transform:uppercase;
+    padding:2px 7px; border-radius:10px; margin-right:8px; border:1px solid var(--border); color:var(--ink-soft);
+  }
+  .finding .ftag.contact{border-color:#9a7d1f; color:#9a7d1f;}
+  .finding .ftag.credential{border-color:var(--redline); color:var(--redline);}
+  .finding .orig{font-family:'Space Mono',monospace; color:var(--ink);}
+  .finding .note{display:block; margin-top:4px; color:var(--ink-soft); font-size:0.88rem;}
+
+  .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
+  .callout a{color:var(--bluepencil); font-weight:600;}
+  .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
+  .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px; line-height:1.6;}
+  .source-note a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Did you leave an email or key in there?</h1>
+  <p class="lede">A draft built from your real notes sometimes carries along things that were only ever meant for you — a personal email, a phone number, a key or token you pasted in for reference. Easy to miss in a wall of text you've already read three times. This scans for it before you publish, not after.</p>
+  <p class="local-note">🔒 Runs entirely in your browser — nothing you paste here is sent anywhere, including to us.</p>
+
+  <textarea id="input" placeholder="Paste your tweet, post, or paragraph here..."></textarea>
+  <div class="row">
+    <button class="btn-primary" id="checkBtn">Check my text</button>
+    <span class="muted" id="wordcount"></span>
+  </div>
+
+  <div class="results" id="results">
+    <div class="verdict" id="verdict"></div>
+    <div class="stat-row" id="statRow"></div>
+    <div class="legend">
+      <span style="background:#FCE9B8;border-bottom:2px solid #D9A63C;">contact info</span>
+      <span style="background:#EFDAD6;border-bottom:2px solid #A8342E;">key, token, or card number</span>
+    </div>
+    <div class="highlighted" id="highlighted"></div>
+    <div class="findings" id="findings"></div>
+    <div class="callout">
+      Found a live key or token in here? Revoke or rotate it wherever it came from, whether or not you end up posting this — pasting it into a draft is often how it got remembered in the first place.
+      <a href="/app.html">Back to the generator →</a>
+    </div>
+    <p class="source-note">Card numbers are checked with the <a href="https://en.wikipedia.org/wiki/Luhn_algorithm" target="_blank" rel="noopener">Luhn checksum</a> that real card numbers satisfy, so a random 16-digit number won't trigger a false alarm.</p>
+  </div>
+
+  <p class="disclaimer">Pattern-matching only — it catches things shaped like an email, phone number, a handful of well-known API key formats (OpenAI/Anthropic-style, GitHub, AWS, Slack, bearer tokens), a long random-looking string, or a number that passes a real card checksum. It will NOT catch a password written in plain words, a home address, or anything identifying that doesn't match one of these shapes — this is one check, not a guarantee. Example addresses like you@example.com are ignored on purpose. When in doubt, read the whole draft once more yourself before you post.</p>
+</main>
+
+<script>
+(function(){
+  // 개인정보/민감정보 유출 스캐너: 이메일/전화번호/API 키/카드번호처럼 생긴 패턴만 기계적으로 찾는다.
+  // 다른 체커들과 달리 "놓치는 것보다 과잉플래그가 낫다"는 원칙 적용 — 실제 피해 방지가 걸려있기 때문.
+  const FAKE_EMAIL_DOMAINS = new Set(['example.com','example.org','example.net','test.com','domain.com','yourdomain.com','email.com','company.com','yourcompany.com']);
+
+  function findEmails(text){
+    const re = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g;
+    const hits = [];
+    let m;
+    while ((m = re.exec(text)) !== null){
+      const domain = (m[0].split('@')[1] || '').toLowerCase();
+      if (FAKE_EMAIL_DOMAINS.has(domain)) continue;
+      hits.push({ text: m[0], index: m.index, tier: 'contact', type: 'email', note: "Looks like a real email address — make sure you meant to include it." });
+    }
+    return hits;
+  }
+
+  const DATE_SHAPE_RES = [
+    /^\d{4}[-.]\d{1,2}[-.]\d{1,2}$/,
+    /^\d{1,2}[-./]\d{1,2}[-./]\d{2,4}$/
+  ];
+  function looksLikeDate(s){ return DATE_SHAPE_RES.some(re => re.test(s)); }
+
+  function findPhones(text){
+    const patterns = [
+      /\+\d{1,3}[\s.-]?\(?\d{1,4}\)?[\s.-]?\d{2,4}[\s.-]?\d{2,4}[\s.-]?\d{0,4}/g,
+      /\(\d{3}\)\s?\d{3}[\s.-]?\d{4}\b/g,
+      /\b\d{2,4}[-.\s]\d{2,4}[-.\s]\d{2,4}(?:[-.\s]\d{2,4})?\b/g
+    ];
+    const seen = new Set();
+    const hits = [];
+    patterns.forEach(re => {
+      const r = new RegExp(re.source, re.flags);
+      let m;
+      while ((m = r.exec(text)) !== null){
+        const trimmed = m[0].trim();
+        const digitCount = (trimmed.match(/\d/g) || []).length;
+        if (digitCount < 7 || digitCount > 15) continue;
+        if (looksLikeDate(trimmed)) continue;
+        const key = m.index + ':' + trimmed;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        hits.push({ text: trimmed, index: m.index, tier: 'contact', type: 'phone', note: "Looks like a phone number — make sure you meant to include it." });
+      }
+    });
+    return hits;
+  }
+
+  const KNOWN_KEY_PATTERNS = [
+    { re: /\bsk-[A-Za-z0-9]{20,}\b/g, label: 'API secret key (sk- prefix)' },
+    { re: /\bghp_[A-Za-z0-9]{30,}\b/g, label: 'GitHub personal access token' },
+    { re: /\bgithub_pat_[A-Za-z0-9_]{20,}\b/g, label: 'GitHub fine-grained token' },
+    { re: /\bAKIA[A-Z0-9]{12,}\b/g, label: 'AWS access key ID' },
+    { re: /\bxox[baprs]-[A-Za-z0-9-]{10,}\b/g, label: 'Slack token' },
+    { re: /\bBearer\s+[A-Za-z0-9._-]{15,}\b/g, label: 'bearer auth token' }
+  ];
+
+  function findKnownKeys(text){
+    const hits = [];
+    KNOWN_KEY_PATTERNS.forEach(p => {
+      const re = new RegExp(p.re.source, p.re.flags);
+      let m;
+      while ((m = re.exec(text)) !== null){
+        hits.push({ text: m[0], index: m.index, tier: 'credential', type: 'key', note: 'Matches the shape of a ' + p.label + ' — if this is real and live, treat it as compromised.' });
+      }
+    });
+    return hits;
+  }
+
+  function findGenericSecrets(text, already){
+    const re = /\b[A-Za-z0-9_-]{32,}\b/g;
+    const hits = [];
+    let m;
+    while ((m = re.exec(text)) !== null){
+      const s = m[0];
+      if (!/\d/.test(s) || !/[A-Za-z]/.test(s)) continue; // require a letter+digit mix
+      const overlapsKnown = already.some(h => m.index < h.index + h.text.length && m.index + s.length > h.index);
+      if (overlapsKnown) continue;
+      hits.push({ text: s, index: m.index, tier: 'credential', type: 'key', note: "Long random-looking string — could be an API key or token. Worth a second look if you don't recognize it as intentional." });
+    }
+    return hits;
+  }
+
+  function luhnValid(digits){
+    let sum = 0, alt = false;
+    for (let i = digits.length - 1; i >= 0; i--){
+      let d = parseInt(digits[i], 10);
+      if (alt){ d *= 2; if (d > 9) d -= 9; }
+      sum += d;
+      alt = !alt;
+    }
+    return sum % 10 === 0;
+  }
+
+  function findCardNumbers(text){
+    const patterns = [
+      /\b\d{4}[ -]\d{4}[ -]\d{4}[ -]\d{4}\b/g,
+      /\b\d{4}[ -]\d{6}[ -]\d{5}\b/g,
+      /\b\d{13,19}\b/g
+    ];
+    const seen = new Set();
+    const hits = [];
+    patterns.forEach(re => {
+      const r = new RegExp(re.source, re.flags);
+      let m;
+      while ((m = r.exec(text)) !== null){
+        const digits = m[0].replace(/[ -]/g, '');
+        if (digits.length < 13 || digits.length > 19) continue;
+        if (!luhnValid(digits)) continue;
+        if (seen.has(digits)) continue;
+        seen.add(digits);
+        hits.push({ text: m[0].trim(), index: m.index, tier: 'credential', type: 'card', note: 'Passes a real card-number checksum — if this is an actual card, do not publish it.' });
+      }
+    });
+    return hits;
+  }
+
+  function dedupeOverlaps(hits){
+    hits.sort((a,b) => a.index - b.index);
+    const out = [];
+    let lastEnd = -1;
+    hits.forEach(h => {
+      if (h.index >= lastEnd) {
+        out.push(h);
+        lastEnd = h.index + h.text.length;
+      }
+    });
+    return out;
+  }
+
+  function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function highlight(text, hits){
+    let html = '';
+    let cursor = 0;
+    hits.forEach(h => {
+      html += escapeHtml(text.slice(cursor, h.index));
+      html += `<mark class="${h.tier}">${escapeHtml(h.text)}</mark>`;
+      cursor = h.index + h.text.length;
+    });
+    html += escapeHtml(text.slice(cursor));
+    return html.replace(/\n/g, "<br>");
+  }
+
+  const TYPE_LABELS = { email:'email', phone:'phone', key:'key / token', card:'card number' };
+
+  function verdictFor(contactCount, credentialCount){
+    if (credentialCount > 0) return ["Stop — check this before posting.", "This looks like it might contain a real API key, token, or card number. If it's live, revoke or rotate it regardless of whether you end up posting this text.", true];
+    if (contactCount > 0) return ["Worth a second look.", "Found contact info in here — make sure that's intentional before you publish.", false];
+    return ["Clear.", "Nothing that looks like an email, phone number, key, or card number.", false];
+  }
+
+  const input = document.getElementById("input");
+  const wordcountEl = document.getElementById("wordcount");
+  const btn = document.getElementById("checkBtn");
+  const results = document.getElementById("results");
+  const verdictEl = document.getElementById("verdict");
+  const statRowEl = document.getElementById("statRow");
+  const highlightedEl = document.getElementById("highlighted");
+  const findingsEl = document.getElementById("findings");
+
+  input.addEventListener("input", () => {
+    const wc = (input.value.trim().match(/\S+/g) || []).length;
+    wordcountEl.textContent = wc + " words";
+  });
+
+  btn.addEventListener("click", () => {
+    const text = input.value;
+    if (!text.trim()) return;
+
+    const knownKeys = findKnownKeys(text);
+    const all = dedupeOverlaps([
+      ...findEmails(text),
+      ...findPhones(text),
+      ...knownKeys,
+      ...findGenericSecrets(text, knownKeys),
+      ...findCardNumbers(text)
+    ]);
+    const contactCount = all.filter(h => h.tier === 'contact').length;
+    const credentialCount = all.filter(h => h.tier === 'credential').length;
+
+    const [headline, detail, isAlert] = verdictFor(contactCount, credentialCount);
+    verdictEl.className = 'verdict' + (isAlert ? ' alert' : '');
+    verdictEl.innerHTML = `<strong>${headline}</strong>${detail}`;
+    statRowEl.innerHTML = `
+      <div class="stat"><b>${contactCount}</b>contact info</div>
+      <div class="stat"><b>${credentialCount}</b>keys / card numbers</div>
+    `;
+    highlightedEl.innerHTML = all.length ? highlight(text, all) : escapeHtml(text).replace(/\n/g, "<br>");
+
+    findingsEl.innerHTML = all.map(h => {
+      return `<div class="finding"><span class="ftag ${h.tier}">${TYPE_LABELS[h.type]}</span><span class="orig">${escapeHtml(h.text)}</span><span class="note">${escapeHtml(h.note)}</span></div>`;
+    }).join('');
+
+    results.style.display = "block";
+  });
+})();
+</script>
+
+</body>
+</html>

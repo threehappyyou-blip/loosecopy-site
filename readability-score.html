@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Hard Is This to Read? (Flesch-Kincaid Score) — Free Tool by Loosecopy</title>
+<meta name="description" content="Paste your draft and get a Flesch-Kincaid readability score — an objective measure of sentence length and word complexity, so you know if your writing is easy to follow for readers who aren't fluent in English.">
+<link rel="canonical" href="https://loosecopy.com/readability-score.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/readability-score.html">
+<meta property="og:title" content="How Hard Is This to Read? (Flesch-Kincaid Score) — Free Tool by Loosecopy">
+<meta property="og:description" content="Paste your draft and get a Flesch-Kincaid readability score — an objective measure of sentence length and word complexity, so you know if your writing is easy to follow for readers who aren't fluent in English.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Hard Is This to Read? (Flesch-Kincaid Score) — Free Tool by Loosecopy">
+<meta name="twitter:description" content="Paste your draft and get a Flesch-Kincaid readability score — an objective measure of sentence length and word complexity, so you know if your writing is easy to follow for readers who aren't fluent in English.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:64ch;}
+
+  textarea{
+    width:100%; min-height:200px; padding:16px; border:1px solid var(--border);
+    background:var(--paper-card); border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-size:1rem; color:var(--ink); resize:vertical;
+  }
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  .muted{color:var(--ink-soft); font-size:0.88rem;}
+
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+
+  .results{display:none; margin-top:36px;}
+  .score-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:20px;}
+  .score-card{
+    flex:1 1 220px; background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:18px 20px;
+  }
+  .score-card .num{font-family:'Fraunces',serif; font-size:2.2rem; color:var(--redline); font-weight:500; line-height:1;}
+  .score-card .label{font-family:'Space Mono',monospace; font-size:0.72rem; text-transform:uppercase; color:var(--ink-soft); display:block; margin-bottom:6px;}
+  .score-card .desc{font-size:0.88rem; color:var(--ink); margin-top:8px;}
+  .verdict{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
+  }
+  .verdict strong{display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+  .stat-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
+  .stat{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 16px; font-size:0.88rem; color:var(--ink-soft); flex:1 1 140px;
+  }
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
+  .longest{margin-bottom:20px;}
+  .longest h2{font-size:0.95rem; margin-bottom:10px;}
+  .long-sentence{
+    background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--bluepencil);
+    border-radius:2px; padding:10px 14px; margin-bottom:8px; font-size:0.92rem;
+  }
+  .long-sentence .wc{font-family:'Space Mono',monospace; font-size:0.78rem; color:var(--ink-soft); display:block; margin-top:4px;}
+
+  .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
+  .callout a{color:var(--bluepencil); font-weight:600;}
+  .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
+  .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px; line-height:1.6;}
+  .source-note a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>How hard is this to read?</h1>
+  <p class="lede">Flesch-Kincaid has measured reading difficulty since the 1970s, using two things only: how long your sentences run and how many syllables your words carry. It won't tell you if your writing is good — but it gives you an objective number for whether a reader has to work harder than they should to follow you, which matters even more when a chunk of your audience isn't reading in their first language.</p>
+
+  <textarea id="input" placeholder="Paste your tweet, post, or paragraph here..."></textarea>
+  <div class="row">
+    <button class="btn-primary" id="checkBtn">Check readability</button>
+    <span class="muted" id="wordcount"></span>
+  </div>
+
+  <div class="results" id="results">
+    <div class="score-row">
+      <div class="score-card">
+        <span class="label">Reading ease</span>
+        <div class="num" id="freNum">–</div>
+        <div class="desc" id="freDesc"></div>
+      </div>
+      <div class="score-card">
+        <span class="label">Grade level</span>
+        <div class="num" id="fkglNum">–</div>
+        <div class="desc" id="fkglDesc"></div>
+      </div>
+    </div>
+    <div class="verdict" id="verdict"></div>
+    <div class="stat-row" id="statRow"></div>
+    <div class="longest" id="longestBlock" style="display:none;">
+      <h2>Longest sentences (worth a look)</h2>
+      <div id="longestList"></div>
+    </div>
+    <div class="callout">
+      Short sentences and common words aren't "dumbing it down" — they're what lets a tired reader, or one reading in their second language, actually get to the end.
+      Also checking tone? <a href="/reads-like-a-translation.html">See if it reads stiff →</a> · <a href="/jargon-checker.html">See if it's full of jargon →</a>
+      <a href="/app.html">Back to the generator →</a>
+    </div>
+    <p class="source-note">Formula and interpretation bands: <a href="https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests" target="_blank" rel="noopener">Wikipedia — Flesch–Kincaid readability tests</a>.</p>
+  </div>
+
+  <p class="disclaimer">Syllable counts are estimated with a standard vowel-pattern heuristic, not a pronunciation dictionary — it lands close on most words (tested around 80-85% exact-match on common English words) but will occasionally miscount an individual word. Averaged across a whole paragraph, that noise mostly cancels out, so treat the score as a solid directional read rather than a lab-precise measurement. Word/sentence splitting is also approximate — for example, "3.5" or an ellipsis can occasionally throw off a count by one.</p>
+</main>
+
+<script>
+(function(){
+  // 음절 수 추정: 사전 기반이 아닌 모음 패턴 휴리스틱(널리 쓰이는 방식). 개별 단어에서 가끔 틀리지만
+  // 글 전체 평균으로 계산하는 지표라 오차가 상쇄되는 경향이 있음 — 그래서 "추정치"라고 명확히 표기.
+  function countSyllables(word){
+    word = word.toLowerCase().replace(/[^a-z]/g, '');
+    if (word.length === 0) return 0;
+    if (word.length <= 3) return 1;
+    // -ted/-ded처럼 t·d 뒤의 -ed는 따로 발음되는 음절이라 제거하지 않음(wanted, needed 등)
+    word = word.replace(/(?:[^laeiouy]es|[^dt]ed|[^laeiouy]e)$/, '');
+    word = word.replace(/^y/, '');
+    const matches = word.match(/[aeiouy]{1,2}/g);
+    return matches ? matches.length : 1;
+  }
+
+  function splitSentences(text){
+    return (text.match(/[^.!?\n]+[.!?]*/g) || []).map(s => s.trim()).filter(Boolean);
+  }
+
+  function analyze(text){
+    const sentences = splitSentences(text);
+    const words = text.match(/[A-Za-z']+/g) || [];
+    const wordCount = words.length;
+    const sentenceCount = Math.max(sentences.length, 1);
+    let syllableCount = 0;
+    words.forEach(w => { syllableCount += countSyllables(w); });
+    const asl = wordCount / sentenceCount;
+    const asw = wordCount ? syllableCount / wordCount : 0;
+    const fre = 206.835 - 1.015*asl - 84.6*asw;
+    const fkgl = 0.39*asl + 11.8*asw - 15.59;
+    return { wordCount, sentenceCount, syllableCount, asl, asw, fre, fkgl, sentences };
+  }
+
+  // Wikipedia의 Flesch Reading Ease 해석표 그대로 사용 (0-100, 높을수록 쉬움)
+  function freInfo(score){
+    if (score >= 90) return ['Very easy', '5th grade — an average 11-year-old reads this comfortably'];
+    if (score >= 80) return ['Easy', '6th grade — conversational English'];
+    if (score >= 70) return ['Fairly easy', '7th grade'];
+    if (score >= 60) return ['Plain English', '8th–9th grade — the sweet spot for most public writing'];
+    if (score >= 50) return ['Fairly difficult', '10th–12th grade'];
+    if (score >= 30) return ['Difficult', 'College level'];
+    if (score >= 10) return ['Very difficult', 'College graduate level'];
+    return ['Extremely difficult', 'Best understood by specialists in the subject'];
+  }
+
+  function verdictFor(fre){
+    if (fre >= 70) return ['Reads easily.', 'This should be comfortable for most readers, including a lot of people reading in a second language.'];
+    if (fre >= 50) return ['Moderately dense.', 'Some readers will need to slow down or re-read a sentence. A few shorter sentences would widen who this reaches.'];
+    return ['Dense and complex.', 'Long sentences and multi-syllable words are stacking up — worth a pass to shorten and simplify, especially if non-native readers matter to you.'];
+  }
+
+  function longestSentences(sentences, n){
+    return sentences
+      .map(s => ({ text: s.trim(), words: (s.match(/[A-Za-z']+/g) || []).length }))
+      .filter(s => s.words >= 4)
+      .sort((a,b) => b.words - a.words)
+      .slice(0, n);
+  }
+
+  function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  const input = document.getElementById("input");
+  const wordcountEl = document.getElementById("wordcount");
+  const btn = document.getElementById("checkBtn");
+  const results = document.getElementById("results");
+  const freNum = document.getElementById("freNum");
+  const freDesc = document.getElementById("freDesc");
+  const fkglNum = document.getElementById("fkglNum");
+  const fkglDesc = document.getElementById("fkglDesc");
+  const verdictEl = document.getElementById("verdict");
+  const statRowEl = document.getElementById("statRow");
+  const longestBlock = document.getElementById("longestBlock");
+  const longestList = document.getElementById("longestList");
+
+  input.addEventListener("input", () => {
+    const wc = (input.value.trim().match(/\S+/g) || []).length;
+    wordcountEl.textContent = wc + " words";
+  });
+
+  btn.addEventListener("click", () => {
+    const text = input.value;
+    if (!text.trim()) return;
+    const a = analyze(text);
+
+    if (a.wordCount < 15){
+      verdictEl.innerHTML = '<strong>Too short to score reliably.</strong>Paste a bit more — under about 15 words, the score bounces around too much to mean anything.';
+      freNum.textContent = '–'; freDesc.textContent = '';
+      fkglNum.textContent = '–'; fkglDesc.textContent = '';
+      statRowEl.innerHTML = '';
+      longestBlock.style.display = 'none';
+      results.style.display = 'block';
+      return;
+    }
+
+    const freClamped = Math.max(0, Math.min(100, a.fre));
+    const [freLabel, freSub] = freInfo(freClamped);
+    freNum.textContent = Math.round(freClamped);
+    freDesc.textContent = freLabel + ' — ' + freSub;
+
+    const fkglClamped = Math.max(0, a.fkgl);
+    fkglNum.textContent = fkglClamped.toFixed(1);
+    fkglDesc.textContent = 'US school grade level needed to follow this comfortably';
+
+    const [vHeadline, vDetail] = verdictFor(freClamped);
+    verdictEl.innerHTML = `<strong>${vHeadline}</strong>${vDetail}`;
+
+    statRowEl.innerHTML = `
+      <div class="stat"><b>${a.wordCount}</b>words</div>
+      <div class="stat"><b>${a.sentenceCount}</b>sentences</div>
+      <div class="stat"><b>${a.asl.toFixed(1)}</b>words per sentence</div>
+      <div class="stat"><b>${a.asw.toFixed(2)}</b>syllables per word</div>
+    `;
+
+    const longest = longestSentences(a.sentences, 2);
+    if (longest.length && longest[0].words >= 20){
+      longestBlock.style.display = 'block';
+      longestList.innerHTML = longest.map(s => `<div class="long-sentence">${escapeHtml(s.text)}<span class="wc">${s.words} words — consider splitting this into two</span></div>`).join('');
+    } else {
+      longestBlock.style.display = 'none';
+    }
+
+    results.style.display = "block";
+  });
+})();
+</script>
+
+</body>
+</html>

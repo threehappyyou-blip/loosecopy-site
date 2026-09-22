@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will This Post as Literal Asterisks? — Free Tool by Loosecopy</title>
+<meta name="description" content="Paste your draft and find markdown formatting (**bold**, # headers, bullet dashes) that won't render on Twitter or LinkedIn — plus leftover placeholders like [Your Name] or Lorem ipsum that slipped through from your notes.">
+<link rel="canonical" href="https://loosecopy.com/markdown-cleanup-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/markdown-cleanup-checker.html">
+<meta property="og:title" content="Will This Post as Literal Asterisks? — Free Tool by Loosecopy">
+<meta property="og:description" content="Paste your draft and find markdown formatting (**bold**, # headers, bullet dashes) that won't render on Twitter or LinkedIn — plus leftover placeholders like [Your Name] or Lorem ipsum that slipped through from your notes.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Will This Post as Literal Asterisks? — Free Tool by Loosecopy">
+<meta name="twitter:description" content="Paste your draft and find markdown formatting (**bold**, # headers, bullet dashes) that won't render on Twitter or LinkedIn — plus leftover placeholders like [Your Name] or Lorem ipsum that slipped through from your notes.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:64ch;}
+
+  textarea{
+    width:100%; min-height:200px; padding:16px; border:1px solid var(--border);
+    background:var(--paper-card); border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-size:1rem; color:var(--ink); resize:vertical;
+  }
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  .muted{color:var(--ink-soft); font-size:0.88rem;}
+
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+
+  .results{display:none; margin-top:36px;}
+  .verdict{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
+  }
+  .verdict strong{display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+  .stat-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
+  .stat{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 16px; font-size:0.88rem; color:var(--ink-soft); flex:1 1 140px;
+  }
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
+  .highlighted{
+    white-space:pre-wrap; background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; font-size:0.96rem; line-height:1.75; margin-bottom:16px;
+  }
+  mark.format{background:#DDE6EA; border-bottom:2px solid #3A5A6E;}
+  mark.placeholder{background:#F3D9C4; border-bottom:2px solid #B5651D;}
+  .legend{font-size:0.82rem; color:var(--ink-soft); margin:-6px 0 20px;}
+  .legend span{padding:1px 6px; border-radius:2px; margin-right:4px;}
+
+  .findings{margin-bottom:20px;}
+  .finding{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 14px; margin-bottom:8px; font-size:0.92rem;
+  }
+  .finding .ftag{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.7rem; text-transform:uppercase;
+    padding:2px 7px; border-radius:10px; margin-right:8px; border:1px solid var(--border); color:var(--ink-soft);
+  }
+  .finding .ftag.format{border-color:var(--bluepencil); color:var(--bluepencil);}
+  .finding .ftag.placeholder{border-color:#B5651D; color:#B5651D;}
+  .finding .orig{font-family:'Space Mono',monospace; color:var(--ink);}
+  .finding .note{display:block; margin-top:4px; color:var(--ink-soft); font-size:0.88rem;}
+
+  .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
+  .callout a{color:var(--bluepencil); font-weight:600;}
+  .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
+  .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px; line-height:1.6;}
+  .source-note a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Will this post as literal asterisks and hashes?</h1>
+  <p class="lede">AI drafting tools write in markdown out of habit — <code>**bold**</code>, <code># headers</code>, <code>- bullets</code> — because that's the format most of their training text used. Neither Twitter/X nor LinkedIn renders any of it: the symbols just sit there in the published post, looking like a typo. This finds the syntax that won't survive, plus placeholder text like <code>[Your Name]</code> or "Lorem ipsum" that sometimes slips through from notes or templates.</p>
+
+  <textarea id="input" placeholder="Paste your tweet, post, or paragraph here..."></textarea>
+  <div class="row">
+    <button class="btn-primary" id="checkBtn">Check my text</button>
+    <span class="muted" id="wordcount"></span>
+  </div>
+
+  <div class="results" id="results">
+    <div class="verdict" id="verdict"></div>
+    <div class="stat-row" id="statRow"></div>
+    <div class="legend">
+      <span style="background:#DDE6EA;border-bottom:2px solid #3A5A6E;">formatting that won't render</span>
+      <span style="background:#F3D9C4;border-bottom:2px solid #B5651D;">leftover placeholder</span>
+    </div>
+    <div class="highlighted" id="highlighted"></div>
+    <div class="findings" id="findings"></div>
+    <div class="callout">
+      A couple of stray asterisks might not matter — a whole post full of them reads as unfinished. Worth a full re-read either way.
+      Also checking for jargon? <a href="/jargon-checker.html">Run that check too →</a>
+      <a href="/app.html">Back to the generator →</a>
+    </div>
+    <p class="source-note">Confirmed against how LinkedIn and X actually render posted text — neither parses markdown syntax, per <a href="https://www.lilachbullock.com/does-linkedin-support-markdown-formatting/" target="_blank" rel="noopener">Lilach Bullock's breakdown of LinkedIn formatting</a> and the various third-party "markdown to X/LinkedIn" converter tools built specifically to work around this.</p>
+  </div>
+
+  <p class="disclaimer">Heuristic pattern-matching, not a markdown parser — it can miss less common syntax (tables, blockquotes, nested formatting) and, rarely, flag something that wasn't meant as markdown (a bracketed citation, a stray asterisk used for multiplication). Read the highlights, don't just trust the count. Numbered lists (1. 2. 3.) are left alone since they still read fine as plain text even unrendered.</p>
+</main>
+
+<script>
+(function(){
+  // 마크다운 잔여물 감지: AI가 학습 데이터 습관대로 마크다운 문법을 쓰지만, 트위터/링크드인은 마크다운을
+  // 렌더링하지 않아서 기호가 그대로 노출됨(리서치로 확인). 정규식 매칭만 사용, AI 재호출 없음.
+  const FORMAT_PATTERNS = [
+    { re: /\*\*([^*\n]{1,100}?)\*\*/g, note: "Bold marker (**) — won't render here, just shows as asterisks. Remove them, or use CAPS/an emoji for emphasis." },
+    { re: /__([^_\n]{1,100}?)__/g, note: "Bold marker (__) — won't render here. Remove the underscores." },
+    { re: /(?<!\*)\*([^*\n]{1,100}?)\*(?!\*)/g, note: "Italic marker (*) — won't render here, just shows as a stray asterisk. Remove it or rephrase for emphasis." },
+    { re: /(?<!_)_([^_\n]{1,100}?)_(?!_)/g, note: "Italic marker (_) — won't render here. Remove the underscores." },
+    { re: /^ {0,3}#{1,6}\s+.+$/gm, note: "Heading marker (#) — won't become a heading here. Delete the # and just start a fresh line." },
+    { re: /^\s*[\-\*]\s+.+$/gm, note: "Bullet marker — the dash/asterisk won't become a real bullet point. Swap in a • character, or use line breaks." },
+    { re: /~~([^~\n]{1,100}?)~~/g, note: "Strikethrough marker (~~) — won't render here. Remove the tildes." },
+    { re: /`([^`\n]{1,100}?)`/g, note: "Code marker (`) — won't render as code here. Remove the backticks." },
+    { re: /\[([^\]\n]{1,60})\]\((https?:\/\/[^\s)]+)\)/g, note: "Markdown link syntax — this won't become a clickable link here. Just paste the raw URL instead." }
+  ];
+
+  const PLACEHOLDER_NOTE = "Looks like a leftover placeholder — make sure this got replaced with the real thing before you post.";
+
+  function findFormatIssues(text){
+    const hits = [];
+    FORMAT_PATTERNS.forEach(p => {
+      const re = new RegExp(p.re.source, p.re.flags);
+      let m;
+      while ((m = re.exec(text)) !== null){
+        hits.push({ text: m[0].trim(), index: m.index, cat: 'format', note: p.note });
+        if (m[0].length === 0) re.lastIndex++;
+      }
+    });
+    return hits;
+  }
+
+  function findPlaceholders(text){
+    const hits = [];
+    let m;
+
+    const bracketRe = /\[([^\]\n]{1,50})\]/g;
+    while ((m = bracketRe.exec(text)) !== null){
+      const after = text.slice(m.index + m[0].length);
+      if (/^\(/.test(after)) continue; // markdown link — handled by findFormatIssues instead
+      if (!/[a-zA-Z]/.test(m[1])) continue; // skip pure-number brackets like [1] (likely a citation)
+      hits.push({ text: m[0], index: m.index, cat: 'placeholder', note: PLACEHOLDER_NOTE });
+    }
+
+    const curlyRe = /\{\{[^{}\n]{1,40}\}\}|\{[^{}\n]{1,40}\}/g;
+    while ((m = curlyRe.exec(text)) !== null){
+      hits.push({ text: m[0], index: m.index, cat: 'placeholder', note: PLACEHOLDER_NOTE });
+    }
+
+    const angleRe = /<([a-z][a-z0-9 _-]{1,30})>/gi;
+    while ((m = angleRe.exec(text)) !== null){
+      hits.push({ text: m[0], index: m.index, cat: 'placeholder', note: PLACEHOLDER_NOTE });
+    }
+
+    const keywordRe = /\b(TODO|TBD|FIXME|XXX|PLACEHOLDER)\b/g;
+    while ((m = keywordRe.exec(text)) !== null){
+      hits.push({ text: m[0], index: m.index, cat: 'placeholder', note: "Looks like a leftover editing note — remove before you post." });
+    }
+
+    const loremRe = /\blorem ipsum\b/gi;
+    while ((m = loremRe.exec(text)) !== null){
+      hits.push({ text: m[0], index: m.index, cat: 'placeholder', note: "Filler text — swap in your real copy before you post." });
+    }
+
+    const insertHereRe = /\bINSERT\s+[A-Z][A-Z\s]{0,20}\s+HERE\b/g;
+    while ((m = insertHereRe.exec(text)) !== null){
+      hits.push({ text: m[0], index: m.index, cat: 'placeholder', note: PLACEHOLDER_NOTE });
+    }
+
+    return hits;
+  }
+
+  function dedupeOverlaps(hits){
+    hits.sort((a,b) => a.index - b.index);
+    const out = [];
+    let lastEnd = -1;
+    hits.forEach(h => {
+      if (h.index >= lastEnd) {
+        out.push(h);
+        lastEnd = h.index + h.text.length;
+      }
+    });
+    return out;
+  }
+
+  function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function highlight(text, hits){
+    let html = '';
+    let cursor = 0;
+    hits.forEach(h => {
+      html += escapeHtml(text.slice(cursor, h.index));
+      html += `<mark class="${h.cat}">${escapeHtml(h.text)}</mark>`;
+      cursor = h.index + h.text.length;
+    });
+    html += escapeHtml(text.slice(cursor));
+    return html.replace(/\n/g, "<br>");
+  }
+
+  function verdictFor(count){
+    if (count === 0) return ["Clean.", "Nothing that would show up broken or unfinished on Twitter or LinkedIn."];
+    if (count <= 2) return ["Almost clean.", "One or two things to clean up before you post."];
+    if (count <= 5) return ["A few spots to fix.", "Several bits of formatting or leftover text won't survive as-is."];
+    return ["Needs a cleanup pass.", "That many markdown symbols or placeholders will make the post look unfinished."];
+  }
+
+  const input = document.getElementById("input");
+  const wordcountEl = document.getElementById("wordcount");
+  const btn = document.getElementById("checkBtn");
+  const results = document.getElementById("results");
+  const verdictEl = document.getElementById("verdict");
+  const statRowEl = document.getElementById("statRow");
+  const highlightedEl = document.getElementById("highlighted");
+  const findingsEl = document.getElementById("findings");
+
+  input.addEventListener("input", () => {
+    const wc = (input.value.trim().match(/\S+/g) || []).length;
+    wordcountEl.textContent = wc + " words";
+  });
+
+  btn.addEventListener("click", () => {
+    const text = input.value;
+    if (!text.trim()) return;
+
+    const formatHits = findFormatIssues(text);
+    const placeholderHits = findPlaceholders(text);
+    const all = dedupeOverlaps([...formatHits, ...placeholderHits]);
+    const formatCount = all.filter(h => h.cat === 'format').length;
+    const placeholderCount = all.filter(h => h.cat === 'placeholder').length;
+
+    const [headline, detail] = verdictFor(all.length);
+    verdictEl.innerHTML = `<strong>${headline}</strong>${detail}`;
+    statRowEl.innerHTML = `
+      <div class="stat"><b>${formatCount}</b>formatting won't render</div>
+      <div class="stat"><b>${placeholderCount}</b>leftover placeholders</div>
+    `;
+    highlightedEl.innerHTML = all.length ? highlight(text, all) : escapeHtml(text).replace(/\n/g, "<br>");
+
+    findingsEl.innerHTML = all.map(h => {
+      return `<div class="finding"><span class="ftag ${h.cat}">${h.cat === 'format' ? 'formatting' : 'placeholder'}</span><span class="orig">${escapeHtml(h.text)}</span><span class="note">${escapeHtml(h.note)}</span></div>`;
+    }).join('');
+
+    results.style.display = "block";
+  });
+})();
+</script>
+
+</body>
+</html>
