@@ -96,12 +96,12 @@
     min-height:220px; font-family:'Space Mono',monospace; font-size:0.94rem;
   }
 
-  .copy-btn{
+  .copy-btn, .voice-copy-btn{
     background:none; border:1px solid var(--border); color:var(--ink);
     padding:6px 12px; border-radius:2px; font-size:0.85rem; cursor:pointer;
     font-family:'Public Sans',sans-serif;
   }
-  .copy-btn:hover{border-color:var(--ink);}
+  .copy-btn:hover, .voice-copy-btn:hover{border-color:var(--ink);}
   .copy-btn:disabled{color:var(--ink-soft); cursor:not-allowed; border-color:var(--border);}
 
   .review-gate{
@@ -117,6 +117,25 @@
     font-size:0.88rem; color:var(--ink-soft); border-radius:2px; display:none;
   }
   .input-tip.tip-warn{border-left-color:var(--redline); background:var(--redline-wash); color:#5c231f;}
+
+  .voice-box{margin-top:18px; border:1px solid var(--border); border-radius:2px; background:var(--paper-card);}
+  .voice-collapsed{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; font-size:0.9rem; color:var(--ink-soft);}
+  .voice-collapsed.active{color:var(--bluepencil);}
+  .voice-toggle{background:none; border:1px solid var(--border); color:var(--ink); padding:5px 12px; border-radius:2px; font-size:0.82rem; cursor:pointer; font-family:'Public Sans',sans-serif; white-space:nowrap;}
+  .voice-toggle:hover{border-color:var(--ink);}
+  .voice-expanded{padding:0 16px 16px; border-top:1px solid var(--border);}
+  .voice-label{display:block; font-size:0.85rem; color:var(--ink-soft); margin:14px 0 8px;}
+  .voice-textarea{width:100%; min-height:90px; padding:10px 12px; border:1px solid var(--border); background:var(--paper); border-radius:2px; font-family:'Public Sans',sans-serif; font-size:0.92rem; color:var(--ink); resize:vertical;}
+  .voice-privacy-note{font-size:0.78rem; color:var(--ink-soft); margin-top:6px;}
+  .voice-actions{display:flex; gap:10px; margin-top:10px;}
+  .btn-secondary-sm{background:var(--ink); color:var(--paper-card); border:none; padding:7px 14px; border-radius:2px; font-size:0.85rem; cursor:pointer; font-family:'Public Sans',sans-serif;}
+  .btn-text-sm{background:none; border:none; color:var(--ink-soft); font-size:0.85rem; cursor:pointer; font-family:'Public Sans',sans-serif; text-decoration:underline; padding:0;}
+  .voice-code-row, .voice-restore-row{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:14px; padding-top:14px; border-top:1px solid var(--border); font-size:0.85rem; color:var(--ink-soft);}
+  .voice-code{font-family:'Space Mono',monospace; font-size:0.8rem; background:var(--paper); border:1px solid var(--border); padding:4px 8px; border-radius:2px; max-width:220px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .voice-code-input{flex:1 1 160px; padding:6px 10px; border:1px solid var(--border); background:var(--paper); border-radius:2px; font-family:'Space Mono',monospace; font-size:0.8rem; color:var(--ink);}
+  .voice-msg{font-size:0.82rem; margin:10px 16px 0;}
+  .voice-msg.ok{color:var(--bluepencil);}
+  .voice-msg.bad{color:var(--redline);}
 
   .loading{display:none; margin-top:20px; color:var(--ink-soft); font-style:italic;}
 </style>
@@ -141,6 +160,34 @@
   </div>
   <p class="input-tip" id="inputTip"></p>
   <p class="muted" style="margin-top:6px;"><a href="/before-you-paste.html" target="_blank" rel="noopener">5 minutes of prep before you paste, so you edit less after &rarr;</a></p>
+
+  <div class="voice-box" id="voiceBox">
+    <div class="voice-collapsed" id="voiceCollapsed">
+      <span id="voiceStatus">Add your voice (optional) — so drafts sound like you, not just correct.</span>
+      <button type="button" class="voice-toggle" id="voiceToggle">Set up</button>
+    </div>
+    <div class="voice-expanded" id="voiceExpanded" style="display:none;">
+      <label class="voice-label" for="voiceText">A few sentences you've actually written — a past post, an email, however you'd normally explain something</label>
+      <textarea class="voice-textarea" id="voiceText" placeholder="e.g. Look, I'm not going to pretend this was easy — took three tries to get the numbers right. Here's what actually worked..."></textarea>
+      <p class="voice-privacy-note">Stays in your browser only. It's sent along with your drafts each time you generate, the same way your pasted text already is — never stored on our end.</p>
+      <div class="voice-actions">
+        <button type="button" class="btn-secondary-sm" id="voiceSave">Save</button>
+        <button type="button" class="btn-text-sm" id="voiceClear">Remove</button>
+        <button type="button" class="btn-text-sm" id="voiceCollapseBtn">Close</button>
+      </div>
+      <div class="voice-code-row" id="voiceCodeRow" style="display:none;">
+        <span>Your code, to bring this to another device:</span>
+        <code class="voice-code" id="voiceCode"></code>
+        <button type="button" class="voice-copy-btn" id="voiceCodeCopy">Copy</button>
+      </div>
+      <div class="voice-restore-row">
+        <span>Already have a code from another device?</span>
+        <input type="text" class="voice-code-input" id="voiceCodeInput" placeholder="paste code here">
+        <button type="button" class="voice-copy-btn" id="voiceCodeRestore">Use it</button>
+      </div>
+      <p class="voice-msg" id="voiceMsg" style="display:none;"></p>
+    </div>
+  </div>
 
   <button class="btn-primary" id="generateBtn">Generate drafts</button>
   <p class="loading" id="loading">Reading it, pulling out the actual points...</p>
@@ -186,6 +233,113 @@ const linkedinText = document.getElementById('linkedinText');
 const linkedinCount = document.getElementById('linkedinCount');
 const reviewCheck = document.getElementById('reviewCheck');
 const inputTip = document.getElementById('inputTip');
+const voiceCollapsed = document.getElementById('voiceCollapsed');
+const voiceStatus = document.getElementById('voiceStatus');
+const voiceToggle = document.getElementById('voiceToggle');
+const voiceExpanded = document.getElementById('voiceExpanded');
+const voiceTextEl = document.getElementById('voiceText');
+const voiceSaveBtn = document.getElementById('voiceSave');
+const voiceClearBtn = document.getElementById('voiceClear');
+const voiceCollapseBtn = document.getElementById('voiceCollapseBtn');
+const voiceCodeRow = document.getElementById('voiceCodeRow');
+const voiceCodeEl = document.getElementById('voiceCode');
+const voiceCodeCopyBtn = document.getElementById('voiceCodeCopy');
+const voiceCodeInput = document.getElementById('voiceCodeInput');
+const voiceCodeRestoreBtn = document.getElementById('voiceCodeRestore');
+const voiceMsg = document.getElementById('voiceMsg');
+const VOICE_KEY = 'lc_voice_profile';
+
+// ---- 말투 기억 (계정/서버 없이, 이 브라우저에만) ----
+// 설계 원칙: (1) 절대 반복해서 다시 물어보지 않는다 — 한 번 저장하면 조용히 계속 쓰인다.
+// (2) 안 쓰는 사람에게도 기본 동작은 완전히 그대로다 — 잊어버려도 아무 문제 없음.
+// (3) "이식 코드"는 한 번 보여주고 사라지는 모달이 아니라, 패널을 열 때마다 항상 다시 볼 수 있는 곳에 둔다 —
+//     사람은 시간이 지나면 잊어버리기 마련이라, "그 순간에 기억해서 복사해야" 하는 설계는 피한다.
+
+// UTF-8 안전 base64 인코딩/디코딩 — 이식 코드의 실제 구현체.
+function b64EncodeUtf8(str){
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_, p1) => String.fromCharCode('0x' + p1)));
+}
+function b64DecodeUtf8(str){
+  return decodeURIComponent(atob(str).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+}
+
+function getVoiceProfile(){
+  try {
+    const raw = localStorage.getItem(VOICE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return (parsed && typeof parsed.text === 'string' && parsed.text.trim()) ? parsed.text : null;
+  } catch (e) { return null; }
+}
+
+function showVoiceMsg(text, ok){
+  voiceMsg.textContent = text;
+  voiceMsg.className = 'voice-msg ' + (ok ? 'ok' : 'bad');
+  voiceMsg.style.display = 'block';
+}
+
+function renderVoiceState(){
+  const text = getVoiceProfile();
+  if (text) {
+    voiceCollapsed.classList.add('active');
+    voiceStatus.textContent = '✓ Using your saved voice';
+    voiceToggle.textContent = 'Edit';
+    voiceTextEl.value = text;
+    const code = b64EncodeUtf8(JSON.stringify({ text }));
+    voiceCodeEl.textContent = code;
+    voiceCodeEl.dataset.full = code;
+    voiceCodeRow.style.display = 'flex';
+  } else {
+    voiceCollapsed.classList.remove('active');
+    voiceStatus.textContent = 'Add your voice (optional) — so drafts sound like you, not just correct.';
+    voiceToggle.textContent = 'Set up';
+    voiceCodeRow.style.display = 'none';
+  }
+}
+renderVoiceState();
+
+voiceToggle.addEventListener('click', () => {
+  voiceExpanded.style.display = (voiceExpanded.style.display === 'none') ? 'block' : 'none';
+  voiceMsg.style.display = 'none';
+});
+voiceCollapseBtn.addEventListener('click', () => { voiceExpanded.style.display = 'none'; });
+
+voiceSaveBtn.addEventListener('click', () => {
+  const text = voiceTextEl.value.trim();
+  if (!text) { showVoiceMsg('Add a sentence or two first, or use Remove to clear it.', false); return; }
+  localStorage.setItem(VOICE_KEY, JSON.stringify({ text }));
+  renderVoiceState();
+  showVoiceMsg('Saved. Every draft from now on will use this — no need to set it again.', true);
+});
+
+voiceClearBtn.addEventListener('click', () => {
+  localStorage.removeItem(VOICE_KEY);
+  voiceTextEl.value = '';
+  renderVoiceState();
+  showVoiceMsg('Removed. Drafts will go back to the default voice.', true);
+});
+
+voiceCodeCopyBtn.addEventListener('click', () => {
+  const code = voiceCodeEl.dataset.full || voiceCodeEl.textContent;
+  navigator.clipboard.writeText(code);
+  showVoiceMsg('Code copied — paste it into this same box on your other device.', true);
+});
+
+voiceCodeRestoreBtn.addEventListener('click', () => {
+  const raw = voiceCodeInput.value.trim();
+  if (!raw) return;
+  try {
+    const parsed = JSON.parse(b64DecodeUtf8(raw));
+    if (!parsed || typeof parsed.text !== 'string' || !parsed.text.trim()) throw new Error('empty');
+    localStorage.setItem(VOICE_KEY, JSON.stringify({ text: parsed.text }));
+    voiceCodeInput.value = '';
+    voiceExpanded.style.display = 'block';
+    renderVoiceState();
+    showVoiceMsg('Voice restored from your code.', true);
+  } catch (e) {
+    showVoiceMsg("That code doesn't look right — check you copied the whole thing.", false);
+  }
+});
 
 // 검토·수정 완료 게이트: 체크 전엔 어떤 Copy 버튼도 못 누르게 막는다.
 // (원클릭 자동 게시 금지 구조의 핵심 — 새로 생성될 때마다 다시 체크해야 함)
@@ -308,7 +462,7 @@ generateBtn.addEventListener('click', async () => {
     const res = await fetch('https://loosecopy-site.vercel.app/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ content })
+      body: JSON.stringify({ content, voiceProfile: getVoiceProfile() || undefined })
     });
     const data = await res.json();
 
