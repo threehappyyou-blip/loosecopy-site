@@ -136,6 +136,11 @@
   .voice-msg{font-size:0.82rem; margin:10px 16px 0;}
   .voice-msg.ok{color:var(--bluepencil);}
   .voice-msg.bad{color:var(--redline);}
+  .voice-check-note{
+    font-size:0.88rem; color:#5c231f; background:var(--redline-wash); border-left:3px solid var(--redline);
+    padding:8px 12px; border-radius:2px; margin:0 0 20px;
+  }
+  .input-tip.tip-dup{border-left-color:#9a7d1f; background:#FCE9B8; color:#5c4a10;}
 
   .loading{display:none; margin-top:20px; color:var(--ink-soft); font-style:italic;}
 </style>
@@ -200,8 +205,10 @@
       <input type="checkbox" id="reviewCheck">
       I've read through this and made it mine — enable the copy buttons below
     </label>
-    <p class="ai-check-link">Before you post: <a href="/make-it-sound-like-you.html" target="_blank" rel="noopener">make it sound like you</a> · <a href="/ai-authenticity-checker.html" target="_blank" rel="noopener">check it doesn't sound like AI</a> · <a href="/ai-disclosure-helper.html" target="_blank" rel="noopener">grab a disclosure line</a> · <a href="/pre-publish-checklist.html" target="_blank" rel="noopener">run the final checklist</a></p>
+    <p class="ai-check-link">Before you post: <a href="/make-it-sound-like-you.html" target="_blank" rel="noopener">make it sound like you</a> · <a href="/ai-authenticity-checker.html" target="_blank" rel="noopener">check it doesn't sound like AI</a> · <a href="/reads-like-a-translation.html" target="_blank" rel="noopener">check it doesn't read stiff</a> · <a href="/ai-disclosure-helper.html" target="_blank" rel="noopener">grab a disclosure line</a> · <a href="/pre-publish-checklist.html" target="_blank" rel="noopener">run the final checklist</a></p>
     <p class="ai-check-link">Curious why these two drafts read so differently? <a href="/why-platforms-differ.html" target="_blank" rel="noopener">That's on purpose — here's why &rarr;</a></p>
+    <p class="ai-check-link">Already posted this? <a href="/post-journal.html" target="_blank" rel="noopener">Log what happened, for future you &rarr;</a></p>
+    <p class="voice-check-note" id="voiceCheckNote" style="display:none;"></p>
 
     <div class="draft-block">
       <h2>Twitter / X thread</h2>
@@ -247,6 +254,7 @@ const voiceCodeCopyBtn = document.getElementById('voiceCodeCopy');
 const voiceCodeInput = document.getElementById('voiceCodeInput');
 const voiceCodeRestoreBtn = document.getElementById('voiceCodeRestore');
 const voiceMsg = document.getElementById('voiceMsg');
+const voiceCheckNoteEl = document.getElementById('voiceCheckNote');
 const VOICE_KEY = 'lc_voice_profile';
 
 // ---- 말투 기억 (계정/서버 없이, 이 브라우저에만) ----
@@ -341,6 +349,34 @@ voiceCodeRestoreBtn.addEventListener('click', () => {
   }
 });
 
+// 말투 일관성 체크: 저장된 "내 목소리" 샘플과 방금 생성된 초안의 문체 통계를 기계적으로 비교한다.
+// AI에게 "이거 내 말투 같아?"라고 다시 묻지 않음 — 숫자 비교만 하고, 뚜렷이 다를 때만 짧게 알려준다.
+// 표본이 너무 짧으면(각 15단어 미만) 아예 판단하지 않음 — 오탐이 안 알려주는 것보다 더 해롭기 때문.
+function textStats(s){
+  const words = (s.trim().match(/\S+/g) || []);
+  const sentences = (s.match(/[^.!?]+[.!?]*/g) || []).filter(x => x.trim().length > 0);
+  const contractions = (s.match(/\b\w+'(re|t|m|s|ll|ve|d)\b/gi) || []).length;
+  return {
+    wordCount: words.length,
+    contractionRate: words.length ? (contractions / words.length) * 100 : 0,
+    avgSentenceLen: sentences.length ? words.length / sentences.length : 0
+  };
+}
+function checkVoiceConsistency(draftText){
+  const voice = getVoiceProfile();
+  if (!voice) return null;
+  const vStats = textStats(voice);
+  const dStats = textStats(draftText);
+  if (vStats.wordCount < 15 || dStats.wordCount < 15) return null;
+  if (vStats.contractionRate >= 0.5 && dStats.contractionRate === 0){
+    return "Your saved voice uses contractions; this draft doesn't — it might read a little stiffer than usual.";
+  }
+  if (vStats.avgSentenceLen > 0 && dStats.avgSentenceLen / vStats.avgSentenceLen > 1.8 && dStats.avgSentenceLen > 25){
+    return "This draft's sentences run a lot longer than your saved voice usually does.";
+  }
+  return null;
+}
+
 // 검토·수정 완료 게이트: 체크 전엔 어떤 Copy 버튼도 못 누르게 막는다.
 // (원클릭 자동 게시 금지 구조의 핵심 — 새로 생성될 때마다 다시 체크해야 함)
 function applyReviewGate(){
@@ -380,8 +416,42 @@ function analyzeInputReadiness(text){
   return { warn:false, msg:'Good length for a solid Twitter thread and LinkedIn post.' };
 }
 
+// 중복 주제 감지: post-journal.html에 기록된 과거 글과 지금 입력 중인 글의 내용어(4글자 이상)
+// 겹침 비율을 본다. 서버 호출 없이, 이 브라우저에 쌓인 기록만 사용.
+function wordSet(s){
+  return new Set((s.toLowerCase().match(/[a-z']{4,}/g) || []));
+}
+function checkDuplicate(text){
+  try {
+    const raw = localStorage.getItem('lc_post_journal');
+    const entries = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(entries) || !entries.length) return null;
+    const A = wordSet(text);
+    if (A.size < 6) return null;
+    let best = null;
+    entries.forEach(e => {
+      const B = wordSet(e.text || '');
+      if (B.size < 6) return;
+      let overlap = 0;
+      A.forEach(w => { if (B.has(w)) overlap++; });
+      const score = overlap / Math.min(A.size, B.size);
+      if (score >= 0.5 && (!best || score > best.score)) {
+        best = { score, date: e.date, snippet: (e.text || '').slice(0, 70).trim() };
+      }
+    });
+    return best;
+  } catch (e) { return null; }
+}
+
 input.addEventListener('input', () => {
   inputCount.textContent = input.value.length + ' characters';
+  const dup = checkDuplicate(input.value);
+  if (dup) {
+    inputTip.textContent = `This looks similar to something you logged on ${dup.date}: "${dup.snippet}${dup.snippet.length >= 70 ? '…' : ''}"`;
+    inputTip.className = 'input-tip tip-dup';
+    inputTip.style.display = 'block';
+    return;
+  }
   const tip = analyzeInputReadiness(input.value);
   if (!tip) {
     inputTip.style.display = 'none';
@@ -476,6 +546,15 @@ generateBtn.addEventListener('click', async () => {
     updateLinkedinCount();
     reviewCheck.checked = false;
     applyReviewGate();
+
+    const voiceNote = checkVoiceConsistency((data.twitter || '') + '\n' + (data.linkedin || ''));
+    if (voiceNote) {
+      voiceCheckNoteEl.textContent = voiceNote;
+      voiceCheckNoteEl.style.display = 'block';
+    } else {
+      voiceCheckNoteEl.style.display = 'none';
+    }
+
     results.style.display = 'block';
 
   } catch (err) {

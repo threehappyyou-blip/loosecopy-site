@@ -113,31 +113,31 @@
   // 카테고리별 AI-클리셰 문구 목록. 필요하면 자유롭게 추가/삭제하세요.
   const PHRASES = [
     // [phrase, category]
-    ["in today's fast-paced world","클리셰 도입부"], ["in this day and age","클리셰 도입부"],
-    ["in an era where","클리셰 도입부"], ["in a world where","클리셰 도입부"],
-    ["in conclusion","클리셰 마무리"], ["in summary","클리셰 마무리"], ["to sum up","클리셰 마무리"],
-    ["at the end of the day","클리셰 마무리"], ["overall,","클리셰 마무리"],
-    ["game-changer","과장 표현"], ["game changer","과장 표현"], ["revolutionize","과장 표현"],
-    ["cutting-edge","과장 표현"], ["state-of-the-art","과장 표현"], ["unparalleled","과장 표현"],
-    ["unprecedented","과장 표현"], ["supercharge","과장 표현"], ["turbocharge","과장 표현"],
-    ["robust","막연한 강조어"], ["seamless","막연한 강조어"], ["seamlessly","막연한 강조어"],
-    ["leverage","막연한 강조어"], ["leveraging","막연한 강조어"], ["elevate","막연한 강조어"],
-    ["elevating","막연한 강조어"], ["unlock","막연한 강조어"], ["unleash","막연한 강조어"],
-    ["empower","막연한 강조어"], ["empowering","막연한 강조어"],
-    ["furthermore","형식적 접속어"], ["moreover","형식적 접속어"], ["additionally,","형식적 접속어"],
-    ["it's important to note","형식적 접속어"], ["it is important to note","형식적 접속어"],
-    ["it's worth noting","형식적 접속어"], ["that being said","형식적 접속어"],
-    ["myriad","막연한 규모 표현"], ["plethora","막연한 규모 표현"], ["a wide range of","막연한 규모 표현"],
-    ["a vast array of","막연한 규모 표현"], ["countless","막연한 규모 표현"],
-    ["embark on","여정 은유"], ["navigate the complexities","여정 은유"],
-    ["navigating the complexities","여정 은유"], ["the realm of","여정 은유"], ["in the realm of","여정 은유"],
-    ["delve into","여정 은유"], ["dive into","여정 은유"], ["let's dive in","여정 은유"],
-    ["unpack","여정 은유"], ["deep dive","여정 은유"],
-    ["as an ai language model","AI 자기 언급"], ["as an ai,","AI 자기 언급"],
-    ["i hope this helps","클리셰 맺음말"], ["feel free to","클리셰 맺음말"], ["food for thought","클리셰 맺음말"],
-    ["plays a crucial role","중요성 과장"], ["crucial role in","중요성 과장"], ["pivotal role","중요성 과장"],
-    ["paramount","중요성 과장"], ["cannot be overstated","중요성 과장"],
-    ["a testament to","클리셰 비유"], ["tapestry of","클리셰 비유"], ["underscores the","클리셰 비유"],
+    ["in today's fast-paced world","Cliché opener"], ["in this day and age","Cliché opener"],
+    ["in an era where","Cliché opener"], ["in a world where","Cliché opener"],
+    ["in conclusion","Cliché closer"], ["in summary","Cliché closer"], ["to sum up","Cliché closer"],
+    ["at the end of the day","Cliché closer"], ["overall,","Cliché closer"],
+    ["game-changer","Overstated"], ["game changer","Overstated"], ["revolutionize","Overstated"],
+    ["cutting-edge","Overstated"], ["state-of-the-art","Overstated"], ["unparalleled","Overstated"],
+    ["unprecedented","Overstated"], ["supercharge","Overstated"], ["turbocharge","Overstated"],
+    ["robust","Vague emphasis"], ["seamless","Vague emphasis"], ["seamlessly","Vague emphasis"],
+    ["leverage","Vague emphasis"], ["leveraging","Vague emphasis"], ["elevate","Vague emphasis"],
+    ["elevating","Vague emphasis"], ["unlock","Vague emphasis"], ["unleash","Vague emphasis"],
+    ["empower","Vague emphasis"], ["empowering","Vague emphasis"],
+    ["furthermore","Formal connector"], ["moreover","Formal connector"], ["additionally,","Formal connector"],
+    ["it's important to note","Formal connector"], ["it is important to note","Formal connector"],
+    ["it's worth noting","Formal connector"], ["that being said","Formal connector"],
+    ["myriad","Vague scale"], ["plethora","Vague scale"], ["a wide range of","Vague scale"],
+    ["a vast array of","Vague scale"], ["countless","Vague scale"],
+    ["embark on","Journey metaphor"], ["navigate the complexities","Journey metaphor"],
+    ["navigating the complexities","Journey metaphor"], ["the realm of","Journey metaphor"], ["in the realm of","Journey metaphor"],
+    ["delve into","Journey metaphor"], ["dive into","Journey metaphor"], ["let's dive in","Journey metaphor"],
+    ["unpack","Journey metaphor"], ["deep dive","Journey metaphor"],
+    ["as an ai language model","AI self-reference"], ["as an ai,","AI self-reference"],
+    ["i hope this helps","Cliché sign-off"], ["feel free to","Cliché sign-off"], ["food for thought","Cliché sign-off"],
+    ["plays a crucial role","Overstated importance"], ["crucial role in","Overstated importance"], ["pivotal role","Overstated importance"],
+    ["paramount","Overstated importance"], ["cannot be overstated","Overstated importance"],
+    ["a testament to","Cliché metaphor"], ["tapestry of","Cliché metaphor"], ["underscores the","Cliché metaphor"],
   ];
 
   function escapeHtml(s){
@@ -162,14 +162,14 @@
     // 구조적 패턴: em-dash 남용
     const emDashCount = (text.match(/—/g) || []).length;
     if (wordCount > 0 && emDashCount / (wordCount/100) > 1.2){
-      counts["em dash (—) 남용"] = {category:"구조 패턴", count:emDashCount};
+      counts["Overused em dash (—)"] = {category:"Structural pattern", count:emDashCount};
       totalHits += emDashCount;
     }
 
     // 구조적 패턴: "X, Y, and Z" 삼항 나열 반복
     const triplets = text.match(/\b\w+,\s*\w+,?\s*and\s+\w+\b/gi) || [];
     if (triplets.length >= 3){
-      counts["세 단어 나열 반복 (X, Y, and Z)"] = {category:"구조 패턴", count:triplets.length};
+      counts["Repeated three-item lists (X, Y, and Z)"] = {category:"Structural pattern", count:triplets.length};
       totalHits += triplets.length;
     }
 

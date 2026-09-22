@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Does This Read Like a Translation? — Free Checker by Loosecopy</title>
+<meta name="description" content="Paste your draft and get the overly-formal patterns flagged — missing contractions, stiff connectors, business-letter phrases that read stiff on casual platforms.">
+<link rel="canonical" href="https://loosecopy.com/reads-like-a-translation.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/reads-like-a-translation.html">
+<meta property="og:title" content="Does This Read Like a Translation? — Free Checker by Loosecopy">
+<meta property="og:description" content="Paste your draft and get the overly-formal patterns flagged — missing contractions, stiff connectors, business-letter phrases that read stiff on casual platforms.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Does This Read Like a Translation? — Free Checker by Loosecopy">
+<meta name="twitter:description" content="Paste your draft and get the overly-formal patterns flagged — missing contractions, stiff connectors, business-letter phrases that read stiff on casual platforms.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:60ch;}
+
+  textarea{
+    width:100%; min-height:200px; padding:16px; border:1px solid var(--border);
+    background:var(--paper-card); border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-size:1rem; color:var(--ink); resize:vertical;
+  }
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  .muted{color:var(--ink-soft); font-size:0.88rem;}
+
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+
+  .results{display:none; margin-top:36px;}
+  .verdict{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
+  }
+  .verdict strong{display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+  .highlighted{
+    white-space:pre-wrap; background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; font-size:0.96rem; line-height:1.75; margin-bottom:20px;
+  }
+  mark{background:#FCE9B8; border-bottom:2px solid #D9A63C; padding:1px 2px; border-radius:2px;}
+  .findings{display:grid; gap:8px; margin-bottom:24px;}
+  .finding{
+    display:flex; justify-content:space-between; gap:12px; padding:10px 14px;
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px; font-size:0.9rem;
+  }
+  .finding .cat{color:var(--ink-soft); font-size:0.82rem;}
+  .finding .cnt{font-weight:700; color:var(--redline); white-space:nowrap;}
+
+  .callout{
+    background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;
+  }
+  .callout a{color:var(--bluepencil); font-weight:600;}
+  .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Does this read like a translation?</h1>
+  <p class="lede">Not a language test — a formality check. Twitter and LinkedIn have their own casual register, and slipping into textbook-formal English is the fastest way to read stiff, whoever wrote it.</p>
+
+  <textarea id="input" placeholder="Paste your tweet, post, or paragraph here..."></textarea>
+  <div class="row">
+    <button class="btn-primary" id="checkBtn">Check my text</button>
+    <span class="muted" id="wordcount"></span>
+  </div>
+
+  <div class="results" id="results">
+    <div class="verdict" id="verdict"></div>
+    <div class="highlighted" id="highlighted"></div>
+    <div class="findings" id="findings"></div>
+    <div class="callout">
+      This isn't detecting whether you're a native English speaker — plenty of native speakers write stiffly too, especially in a first draft, and plenty of second-language writers already write casually just fine.
+      It's flagging one specific thing: formal-register habits (the kind taught as "correct" English) that read stiff specifically on casual platforms.
+      Want to fix what it finds? <a href="/make-it-sound-like-you.html" target="_blank" rel="noopener">Six concrete edits, before/after →</a>
+      Curious why AI-detection itself is unreliable, for the same reason? <a href="/ai-detectors-explained.html" target="_blank" rel="noopener">The research on that →</a>
+      <a href="/app.html">Try the generator →</a>
+    </div>
+  </div>
+
+  <p class="disclaimer">Heuristic pattern-matcher, not a grammar authority or a native-speaker detector — it only flags phrasing patterns commonly taught as "formal register." False positives happen; some of these are just normal, correct English used deliberately.</p>
+</main>
+
+<script>
+(function(){
+  // 격식체(formal register) 패턴 4개 카테고리. 비원어민 여부 탐지가 아니라 "캐주얼 플랫폼에 안 어울리는 격식"만 잡는다.
+  const NO_CONTRACTION = [
+    ["do not","No contraction"], ["does not","No contraction"], ["did not","No contraction"],
+    ["cannot","No contraction"], ["can not","No contraction"], ["will not","No contraction"],
+    ["would not","No contraction"], ["should not","No contraction"], ["could not","No contraction"],
+    ["i am","No contraction"], ["it is","No contraction"], ["that is","No contraction"],
+    ["there is","No contraction"], ["you are","No contraction"], ["we are","No contraction"],
+    ["they are","No contraction"], ["i have","No contraction"], ["i will","No contraction"],
+    ["i would","No contraction"], ["he is","No contraction"], ["she is","No contraction"],
+    ["was not","No contraction"], ["is not","No contraction"], ["are not","No contraction"],
+    ["have not","No contraction"], ["has not","No contraction"],
+  ];
+  const FORMAL_CONNECTOR = [
+    ["furthermore","Formal connector"], ["moreover","Formal connector"], ["nevertheless","Formal connector"],
+    ["nonetheless","Formal connector"], ["consequently","Formal connector"], ["notwithstanding","Formal connector"],
+    ["in addition to this","Formal connector"], ["thus,","Formal connector"], ["hence,","Formal connector"],
+    ["therefore,","Formal connector"],
+  ];
+  const BUSINESS_LETTER = [
+    ["i would like to","Business-letter phrase"], ["please be informed that","Business-letter phrase"],
+    ["i am writing to","Business-letter phrase"], ["thank you for your understanding","Business-letter phrase"],
+    ["should you have any questions","Business-letter phrase"], ["i look forward to your reply","Business-letter phrase"],
+    ["kindly","Business-letter phrase"], ["i hope this message finds you well","Business-letter phrase"],
+    ["with regards to","Business-letter phrase"], ["as per","Business-letter phrase"],
+    ["please do not hesitate to","Business-letter phrase"],
+  ];
+  const HEDGING = [
+    ["i think that","Excessive hedging"], ["it might be possible that","Excessive hedging"],
+    ["perhaps it could be said that","Excessive hedging"], ["i am not sure but","Excessive hedging"],
+    ["it could be argued that","Excessive hedging"], ["one might say that","Excessive hedging"],
+  ];
+  const PHRASES = [...NO_CONTRACTION, ...FORMAL_CONNECTOR, ...BUSINESS_LETTER, ...HEDGING];
+
+  function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function analyze(text){
+    const wordCount = (text.trim().match(/\S+/g) || []).length;
+    const lower = text.toLowerCase();
+    const counts = {};
+    let totalHits = 0;
+
+    PHRASES.forEach(([phrase, cat]) => {
+      const re = new RegExp("\\b"+phrase.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b", "gi");
+      const m = lower.match(re);
+      if (m && m.length){
+        counts[phrase] = {category:cat, count:m.length};
+        totalHits += m.length;
+      }
+    });
+
+    // 구조 신호: 30단어 이상인데 축약형이 단 하나도 없음 (전체가 formal full-form)
+    const contractionCount = (text.match(/\b\w+'(re|t|m|s|ll|ve|d)\b/gi) || []).length;
+    if (wordCount >= 30 && contractionCount === 0){
+      counts["No contractions anywhere in this text"] = {category:"Structural pattern", count:1};
+      totalHits += 1;
+    }
+
+    const density = wordCount > 0 ? totalHits / (wordCount/100) : 0;
+    return {wordCount, counts, totalHits, density};
+  }
+
+  function highlight(text){
+    let html = escapeHtml(text);
+    PHRASES.forEach(([phrase]) => {
+      const re = new RegExp("(\\b"+phrase.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b)", "gi");
+      html = html.replace(re, "<mark>$1</mark>");
+    });
+    return html.replace(/\n/g, "<br>");
+  }
+
+  function verdictFor(density){
+    if (density < 1) return ["Reads casual, not stiff.", "Not much formal-register phrasing here."];
+    if (density < 3) return ["A few stiff spots.", "Worth a quick pass — nothing major."];
+    if (density < 6) return ["Quite a bit of formal phrasing.", "This would read more natural loosened up before you post it."];
+    return ["Reads very formal for a casual post.", "Worth a real pass — see the edit guide below."];
+  }
+
+  const input = document.getElementById("input");
+  const wordcountEl = document.getElementById("wordcount");
+  const btn = document.getElementById("checkBtn");
+  const results = document.getElementById("results");
+  const verdictEl = document.getElementById("verdict");
+  const highlightedEl = document.getElementById("highlighted");
+  const findingsEl = document.getElementById("findings");
+
+  input.addEventListener("input", () => {
+    const wc = (input.value.trim().match(/\S+/g) || []).length;
+    wordcountEl.textContent = wc + " words";
+  });
+
+  btn.addEventListener("click", () => {
+    const text = input.value;
+    if (!text.trim()) return;
+    const {wordCount, counts, totalHits, density} = analyze(text);
+    const [headline, detail] = verdictFor(density);
+
+    verdictEl.innerHTML = `<strong>${headline}</strong>${detail} Found ${totalHits} flagged instance${totalHits===1?"":"s"} in ~${wordCount} words.`;
+    highlightedEl.innerHTML = highlight(text);
+
+    const rows = Object.entries(counts).sort((a,b) => b[1].count - a[1].count);
+    findingsEl.innerHTML = rows.length
+      ? rows.map(([phrase, v]) => `
+          <div class="finding">
+            <div>"${escapeHtml(phrase)}" <span class="cat">— ${v.category}</span></div>
+            <div class="cnt">&times;${v.count}</div>
+          </div>`).join("")
+      : `<div class="finding">No specific phrases flagged — reads casual already.</div>`;
+
+    results.style.display = "block";
+  });
+})();
+</script>
+
+</body>
+</html>

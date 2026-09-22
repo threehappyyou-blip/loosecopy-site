@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Post Journal — Loosecopy</title>
+<meta name="description" content="A private, local log of what you actually posted and what happened after — stored in your browser only, so you can learn from your own track record over time.">
+<link rel="canonical" href="https://loosecopy.com/post-journal.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/post-journal.html">
+<meta property="og:title" content="Your Post Journal — Loosecopy">
+<meta property="og:description" content="A private, local log of what you actually posted and what happened after — stored in your browser only, so you can learn from your own track record over time.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your Post Journal — Loosecopy">
+<meta name="twitter:description" content="A private, local log of what you actually posted and what happened after — stored in your browser only, so you can learn from your own track record over time.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 8px;max-width:60ch;}
+  .privacy-note{font-size:0.85rem; color:var(--ink-soft); margin:0 0 28px;}
+
+  .add-form{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:20px 22px; margin-bottom:36px;
+  }
+  .add-form h2{font-size:1rem; margin-bottom:14px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block; font-size:0.85rem; color:var(--ink-soft); margin-bottom:6px;}
+  .field select, .field textarea, .field input[type=text]{
+    width:100%; padding:10px 12px; border:1px solid var(--border); background:var(--paper);
+    border-radius:2px; font-family:'Public Sans',sans-serif; font-size:0.95rem; color:var(--ink);
+  }
+  .field textarea{min-height:80px; resize:vertical;}
+  .radio-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .radio-row label{display:flex; align-items:center; gap:6px; font-size:0.9rem; color:var(--ink); margin:0;}
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:11px 20px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:0.95rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+
+  .entries h2{font-size:1rem; margin-bottom:14px;}
+  .entry{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; margin-bottom:10px;
+  }
+  .entry-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:8px; flex-wrap:wrap;}
+  .entry-meta{font-family:'Space Mono',monospace; font-size:0.78rem; color:var(--ink-soft);}
+  .badge{
+    display:inline-block; font-size:0.75rem; font-family:'Space Mono',monospace; padding:2px 8px;
+    border-radius:10px; border:1px solid var(--border); color:var(--ink-soft); margin-right:6px;
+  }
+  .badge.flagged-yes{border-color:var(--redline); color:var(--redline);}
+  .badge.flagged-unsure{border-color:#9a7d1f; color:#9a7d1f;}
+  .entry-text{font-size:0.92rem; color:var(--ink); margin:0 0 8px; white-space:pre-wrap;}
+  .entry-note{font-size:0.88rem; color:var(--ink-soft); margin:0 0 8px;}
+  .entry-actions button{
+    background:none; border:none; color:var(--ink-soft); font-size:0.82rem; cursor:pointer;
+    text-decoration:underline; padding:0; font-family:'Public Sans',sans-serif;
+  }
+  .empty{color:var(--ink-soft); font-size:0.95rem; padding:20px 0;}
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:36px;}
+  .also a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Your post journal</h1>
+  <p class="lede">A place to log what you actually posted and what happened after. No chatbot session remembers this for you — it forgets the moment you close the tab. This does the opposite: it's yours, and it stays.</p>
+  <p class="privacy-note">Stored in this browser only — nothing here is sent to our servers. Clear your browser data and it's gone, same as anything else that lives here.</p>
+
+  <div class="add-form">
+    <h2>Log a post</h2>
+    <div class="field">
+      <label for="fPlatform">Where did you post it?</label>
+      <select id="fPlatform">
+        <option value="twitter">Twitter / X</option>
+        <option value="linkedin">LinkedIn</option>
+        <option value="other">Somewhere else</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="fText">The post itself (paste what you actually published)</label>
+      <textarea id="fText" placeholder="Paste the final text you posted..."></textarea>
+    </div>
+    <div class="field">
+      <label for="fNote">What happened? (optional)</label>
+      <input type="text" id="fNote" placeholder="e.g. good engagement, one comment asked if it was AI, nothing much">
+    </div>
+    <div class="field">
+      <label>Did anyone question whether it was AI-written?</label>
+      <div class="radio-row">
+        <label><input type="radio" name="fFlagged" value="no" checked> No</label>
+        <label><input type="radio" name="fFlagged" value="unsure"> Not sure</label>
+        <label><input type="radio" name="fFlagged" value="yes"> Yes</label>
+      </div>
+    </div>
+    <button class="btn-primary" id="addBtn">Add to journal</button>
+  </div>
+
+  <div class="entries">
+    <h2 id="entriesTitle">Your entries</h2>
+    <div id="entriesList"></div>
+  </div>
+
+  <p class="also">Drafting something new? <a href="/app.html">Generate a Twitter thread + LinkedIn post &rarr;</a> Curious if it reads too formal? <a href="/reads-like-a-translation.html">Check that first &rarr;</a></p>
+</main>
+
+<script>
+(function(){
+  const KEY = 'lc_post_journal';
+  const fPlatform = document.getElementById('fPlatform');
+  const fText = document.getElementById('fText');
+  const fNote = document.getElementById('fNote');
+  const addBtn = document.getElementById('addBtn');
+  const entriesList = document.getElementById('entriesList');
+  const entriesTitle = document.getElementById('entriesTitle');
+
+  function load(){
+    try {
+      const raw = localStorage.getItem(KEY);
+      const arr = raw ? JSON.parse(raw) : [];
+      return Array.isArray(arr) ? arr : [];
+    } catch(e){ return []; }
+  }
+  function save(entries){
+    localStorage.setItem(KEY, JSON.stringify(entries));
+  }
+  function platformLabel(p){
+    return p === 'twitter' ? 'Twitter / X' : p === 'linkedin' ? 'LinkedIn' : 'Other';
+  }
+  function escapeHtml(s){
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+
+  function render(){
+    const entries = load().sort((a,b) => b.ts - a.ts);
+    entriesTitle.textContent = entries.length ? `Your entries (${entries.length})` : 'Your entries';
+    if (!entries.length){
+      entriesList.innerHTML = '<p class="empty">Nothing logged yet. Add your first post above once you\'ve published something.</p>';
+      return;
+    }
+    entriesList.innerHTML = entries.map(e => `
+      <div class="entry" data-id="${e.id}">
+        <div class="entry-head">
+          <span>
+            <span class="badge">${escapeHtml(platformLabel(e.platform))}</span>
+            ${e.flagged === 'yes' ? '<span class="badge flagged-yes">Questioned as AI</span>' : e.flagged === 'unsure' ? '<span class="badge flagged-unsure">Not sure if flagged</span>' : ''}
+          </span>
+          <span class="entry-meta">${escapeHtml(e.date)}</span>
+        </div>
+        <p class="entry-text">${escapeHtml(e.text)}</p>
+        ${e.note ? `<p class="entry-note">${escapeHtml(e.note)}</p>` : ''}
+        <div class="entry-actions"><button data-del="${e.id}">Remove</button></div>
+      </div>
+    `).join('');
+
+    entriesList.querySelectorAll('[data-del]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-del');
+        save(load().filter(e => String(e.id) !== id));
+        render();
+      });
+    });
+  }
+
+  addBtn.addEventListener('click', () => {
+    const text = fText.value.trim();
+    if (!text) { fText.focus(); return; }
+    const flagged = document.querySelector('input[name="fFlagged"]:checked').value;
+    const entries = load();
+    entries.push({
+      id: Date.now() + '-' + Math.random().toString(36).slice(2,7),
+      ts: Date.now(),
+      date: new Date().toISOString().slice(0,10),
+      platform: fPlatform.value,
+      text: text,
+      note: fNote.value.trim(),
+      flagged: flagged
+    });
+    save(entries);
+    fText.value = '';
+    fNote.value = '';
+    document.querySelector('input[name="fFlagged"][value="no"]').checked = true;
+    render();
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
