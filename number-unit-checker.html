@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Number Converter (만/億/lakh/crore) — Free Tool by Loosecopy</title>
+<meta name="description" content="Convert 만/億/亿, lakh, and crore figures to correct English million/billion numbers — for the moment a big number gets translated in your head and quietly loses an order of magnitude.">
+<link rel="canonical" href="https://loosecopy.com/number-unit-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/number-unit-checker.html">
+<meta property="og:title" content="Big Number Converter (만/億/lakh/crore) — Free Tool by Loosecopy">
+<meta property="og:description" content="Convert 만/億/亿, lakh, and crore figures to correct English million/billion numbers — for the moment a big number gets translated in your head and quietly loses an order of magnitude.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Big Number Converter (만/億/lakh/crore) — Free Tool by Loosecopy">
+<meta name="twitter:description" content="Convert 만/億/亿, lakh, and crore figures to correct English million/billion numbers — for the moment a big number gets translated in your head and quietly loses an order of magnitude.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 8px;max-width:62ch;}
+  .fact-note{
+    font-size:0.85rem; color:var(--ink-soft); background:var(--paper-card); border:1px solid var(--border);
+    border-radius:2px; padding:8px 12px; margin:14px 0 32px; display:inline-block;
+  }
+
+  section{margin-bottom:40px;}
+  section h2{font-size:1.1rem; margin-bottom:6px;}
+  .sec-sub{color:var(--ink-soft); font-size:0.88rem; margin:0 0 16px;}
+
+  .calc-card{background:var(--paper-card); border:1px solid var(--border); border-radius:2px; padding:18px 20px;}
+  .calc-row{display:flex; gap:10px; align-items:center; margin-bottom:10px; flex-wrap:wrap;}
+  .calc-row input[type=number]{
+    width:140px; padding:9px 12px; border:1px solid var(--border); background:var(--paper);
+    border-radius:2px; font-family:'Space Mono',monospace; font-size:0.95rem; color:var(--ink);
+  }
+  .calc-row select{
+    padding:9px 10px; border:1px solid var(--border); background:var(--paper); border-radius:2px;
+    font-family:'Public Sans',sans-serif; font-size:0.9rem; color:var(--ink);
+  }
+  .calc-row .rm-row{background:none; border:none; color:var(--ink-soft); cursor:pointer; font-size:0.85rem; text-decoration:underline; padding:4px;}
+  .calc-add{
+    background:none; border:1px dashed var(--border); color:var(--ink-soft); padding:7px 14px;
+    border-radius:2px; font-size:0.85rem; cursor:pointer; font-family:'Public Sans',sans-serif; margin-top:4px;
+  }
+  .calc-add:hover{border-color:var(--ink);}
+  .calc-total{
+    margin-top:16px; padding-top:16px; border-top:1px solid var(--border);
+    font-family:'Fraunces',serif; font-size:1.3rem; color:var(--redline);
+  }
+  .calc-total .sub{font-family:'Space Mono',monospace; font-size:0.85rem; color:var(--ink-soft); display:block; margin-top:4px;}
+
+  textarea{
+    width:100%; min-height:160px; padding:16px; border:1px solid var(--border);
+    background:var(--paper-card); border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-size:1rem; color:var(--ink); resize:vertical;
+  }
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+  .muted{color:var(--ink-soft); font-size:0.88rem;}
+
+  .scan-results{margin-top:20px; display:none;}
+  .scan-hit{
+    background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--bluepencil);
+    border-radius:2px; padding:12px 16px; margin-bottom:8px; font-size:0.95rem;
+  }
+  .scan-hit .orig{font-family:'Space Mono',monospace; color:var(--ink);}
+  .scan-hit .arrow{color:var(--ink-soft); margin:0 8px;}
+  .scan-hit .conv{font-weight:700; color:var(--redline);}
+  .scan-empty{color:var(--ink-soft); font-size:0.92rem;}
+  .scan-caveat{font-size:0.82rem; color:var(--ink-soft); margin-top:12px;}
+
+  .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
+  .callout a{color:var(--bluepencil); font-weight:600;}
+  .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
+  .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:6px;}
+  .source-note a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Does your big number actually convert right?</h1>
+  <p class="lede">A lot of the world doesn't count in English's thousand/million/billion groups. Korean and Japanese count in 10,000s (만/万) and 100,000,000s (억/億) — Chinese shares those two but not the next one up. India, Pakistan, Bangladesh, Nepal, and Sri Lanka count in lakh (100,000) and crore (10,000,000). Converting any of these to English in your head is where a whole digit's worth of value quietly goes missing.</p>
+  <div class="fact-note">1억/億 = 100 million &nbsp;·&nbsp; 1 crore = 10 million &nbsp;·&nbsp; 1 lakh = 100,000</div>
+
+  <section>
+    <h2>Calculator</h2>
+    <p class="sec-sub">Enter the Korean-style figure (add a row for compound numbers like 3억 2천만) and get the correct English number.</p>
+    <div class="calc-card">
+      <div id="calcRows"></div>
+      <button type="button" class="calc-add" id="calcAddRow">+ Add another unit</button>
+      <div class="calc-total" id="calcTotal">= 0</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Or paste your draft</h2>
+    <p class="sec-sub">Finds 만/万/억/億/亿/조 figures and English "lakh"/"crore" mentions in your text and shows each one converted. Handles single figures and common thousand-prefix compounds (5천만, 5千万, 3천억) — see the note below for what it can't catch, and why 兆 is left out of the auto-scan.</p>
+    <textarea id="input" placeholder="e.g. Revenue crossed 75억 this quarter, or We raised 2 crore in seed funding..."></textarea>
+    <div class="row">
+      <button class="btn-primary" id="scanBtn">Find and convert</button>
+      <span class="muted" id="scanCount"></span>
+    </div>
+    <div class="scan-results" id="scanResults"></div>
+  </section>
+
+  <div class="callout">
+    Writing for an international audience, use the generator with your voice saved? <a href="/app.html">Back to the generator →</a>
+    Curious if your draft also reads too formal? <a href="/reads-like-a-translation.html">Check that too →</a>
+  </div>
+
+  <p class="disclaimer">This tool handles single-unit figures and the common "thousand-prefix" compounds (5천만, 5千万, 2천5백만, 3천억). It does NOT auto-sum additive compounds like "3억 2천만" — it shows 3억 and 2천만 as two separate conversions instead of guessing how to combine them, since a wrong sum would be worse than no sum. When in doubt, use the calculator above — it's built to handle exactly that case correctly. <b>About 兆:</b> in Japanese it reliably means one trillion, same as Korean 조 — but in Chinese, 兆 is genuinely ambiguous and has been used for one million, one trillion, and ten quadrillion depending on era and context. Because of that, the auto-scanner deliberately skips 兆 entirely; the calculator offers it only as an explicit, clearly-labeled manual choice, so you're the one confirming which value you mean, not the tool guessing.</p>
+</main>
+
+<script>
+(function(){
+  const UNIT_VALUES = {
+    '조': 1e12,
+    '억': 1e8, '億': 1e8, '亿': 1e8,
+    '만': 1e4, '万': 1e4,
+    'lakh': 1e5, 'lakhs': 1e5,
+    'crore': 1e7, 'crores': 1e7
+  };
+
+  function round2(n){ return Math.round(n*100)/100; }
+  function formatEnglish(num){
+    const digits = Math.round(num).toLocaleString('en-US');
+    let words = null;
+    const abs = Math.abs(num);
+    if (abs >= 1e12) words = round2(num/1e12) + ' trillion';
+    else if (abs >= 1e9) words = round2(num/1e9) + ' billion';
+    else if (abs >= 1e6) words = round2(num/1e6) + ' million';
+    else if (abs >= 1e3) words = round2(num/1e3) + ' thousand';
+    return { digits, words };
+  }
+
+  // ---- Calculator ----
+  const calcRowsEl = document.getElementById('calcRows');
+  const calcTotalEl = document.getElementById('calcTotal');
+  let rowId = 0;
+
+  function addRow(){
+    const id = 'r' + (rowId++);
+    const row = document.createElement('div');
+    row.className = 'calc-row';
+    row.dataset.id = id;
+    row.innerHTML = `
+      <input type="number" step="any" placeholder="0" class="calc-num">
+      <select class="calc-unit">
+        <option value="1">plain number (no unit)</option>
+        <option value="10000">만 / 万 — 10,000</option>
+        <option value="100000000">억 / 億 / 亿 — 100,000,000</option>
+        <option value="1000000000000">조 (Korean) — 1,000,000,000,000</option>
+        <option value="1000000000000">兆 (Japanese only — see note below) — 1,000,000,000,000</option>
+        <option value="100000">lakh — 100,000</option>
+        <option value="10000000">crore — 10,000,000</option>
+      </select>
+      ${calcRowsEl.children.length > 0 ? '<button type="button" class="rm-row">Remove</button>' : ''}
+    `;
+    calcRowsEl.appendChild(row);
+    row.querySelector('.calc-num').addEventListener('input', updateCalc);
+    row.querySelector('.calc-unit').addEventListener('change', updateCalc);
+    const rm = row.querySelector('.rm-row');
+    if (rm) rm.addEventListener('click', () => { row.remove(); updateCalc(); });
+    updateCalc();
+  }
+
+  function updateCalc(){
+    let total = 0;
+    calcRowsEl.querySelectorAll('.calc-row').forEach(row => {
+      const n = parseFloat(row.querySelector('.calc-num').value);
+      const u = parseFloat(row.querySelector('.calc-unit').value);
+      if (!isNaN(n)) total += n * u;
+    });
+    const f = formatEnglish(total);
+    calcTotalEl.innerHTML = '= ' + f.digits + (f.words ? `<span class="sub">${f.words}</span>` : '');
+  }
+
+  document.getElementById('calcAddRow').addEventListener('click', addRow);
+  addRow();
+
+  // ---- Paste scanner ----
+  // 복합 표현(예: 5천만, 5千万, 2천5백만)을 먼저 찾고, 그 구간과 겹치지 않는 단일 숫자+단위만 추가로 찾는다.
+  // "3억 2천만"처럼 덧셈이 필요한 표현은 절대 자동으로 더하지 않음 — 잘못 더하는 것보다 각각 따로 보여주는 게 안전함.
+  // 兆(한자)는 중국어에서 의미가 진짜로 애매해서(백만/1조/1경까지 문헌마다 다름) 자동 스캔에서 아예 제외 —
+  // 계산기에서 "Japanese 兆"로 명시적으로 고를 때만 사용하게 함(사용자가 직접 확정하는 값이라 애매함이 없음).
+  function parseNumberMatches(text){
+    const results = [];
+    const consumed = [];
+    const compoundRe = /(\d+(?:\.\d+)?)(?:천|千)(?:(\d+(?:\.\d+)?)(?:백|百))?\s*(억|億|亿|만|万)/g;
+    let m;
+    while ((m = compoundRe.exec(text)) !== null){
+      const coeff = parseFloat(m[1])*1000 + (m[2] ? parseFloat(m[2])*100 : 0);
+      const unit = m[3];
+      const value = coeff * UNIT_VALUES[unit];
+      results.push({ match:m[0], index:m.index, value, unit });
+      consumed.push([m.index, m.index+m[0].length]);
+    }
+    const simpleRe = /(\d+(?:\.\d+)?)\s*(조|억|億|亿|만|万)/g;
+    while ((m = simpleRe.exec(text)) !== null){
+      const inConsumed = consumed.some(([s,e]) => m.index >= s && m.index < e);
+      if (inConsumed) continue;
+      const coeff = parseFloat(m[1]);
+      const unit = m[2];
+      const value = coeff * UNIT_VALUES[unit];
+      results.push({ match:m[0], index:m.index, value, unit });
+    }
+    // 인도식: lakh/crore는 원래 영어 단어로 그대로 쓰이는 경우가 많아서 (예: "50 lakh users") 별도 처리
+    const inRe = /(\d+(?:\.\d+)?)\s*(lakh|lakhs|crore|crores)\b/gi;
+    while ((m = inRe.exec(text)) !== null){
+      const inConsumed = consumed.some(([s,e]) => m.index >= s && m.index < e);
+      if (inConsumed) continue;
+      const coeff = parseFloat(m[1]);
+      const key = m[2].toLowerCase();
+      const value = coeff * UNIT_VALUES[key];
+      results.push({ match:m[0], index:m.index, value, unit:key });
+    }
+    results.sort((a,b) => a.index - b.index);
+    return results;
+  }
+
+  const input = document.getElementById('input');
+  const scanBtn = document.getElementById('scanBtn');
+  const scanCount = document.getElementById('scanCount');
+  const scanResults = document.getElementById('scanResults');
+
+  scanBtn.addEventListener('click', () => {
+    const matches = parseNumberMatches(input.value);
+    scanResults.style.display = 'block';
+    if (!matches.length){
+      scanCount.textContent = '';
+      scanResults.innerHTML = '<p class="scan-empty">No 만/億/亿/조 figures or lakh/crore mentions found in this text.</p>';
+      return;
+    }
+    scanCount.textContent = matches.length + ' figure' + (matches.length===1?'':'s') + ' found';
+    scanResults.innerHTML = matches.map(mm => {
+      const f = formatEnglish(mm.value);
+      return `<div class="scan-hit"><span class="orig">${mm.match}</span><span class="arrow">&rarr;</span><span class="conv">${f.digits}</span>${f.words ? ' <span class="muted">('+f.words+')</span>' : ''}</div>`;
+    }).join('');
+  });
+})();
+</script>
+
+</body>
+</html>

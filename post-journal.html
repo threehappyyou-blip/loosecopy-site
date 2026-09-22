@@ -86,6 +86,15 @@
     text-decoration:underline; padding:0; font-family:'Public Sans',sans-serif;
   }
   .empty{color:var(--ink-soft); font-size:0.95rem; padding:20px 0;}
+  .insights{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 20px; margin-bottom:28px;
+  }
+  .insights .label{font-family:'Space Mono',monospace; font-size:0.75rem; text-transform:uppercase; color:var(--ink-soft); display:block; margin-bottom:10px;}
+  .insights-grid{display:flex; gap:10px; flex-wrap:wrap;}
+  .insight-stat{flex:1 1 140px; font-size:0.85rem; color:var(--ink-soft);}
+  .insight-stat b{display:block; font-family:'Fraunces',serif; font-size:1.25rem; color:var(--ink); font-weight:500;}
+  .insights-note{font-size:0.85rem; color:var(--ink-soft); margin:10px 0 0; padding-top:10px; border-top:1px solid var(--border);}
   .also{font-size:0.88rem; color:var(--ink-soft); margin-top:36px;}
   .also a{color:var(--bluepencil);}
 </style>
@@ -133,6 +142,12 @@
     <button class="btn-primary" id="addBtn">Add to journal</button>
   </div>
 
+  <div class="insights" id="insightsCard" style="display:none;">
+    <span class="label">Your pattern so far</span>
+    <div class="insights-grid" id="insightsGrid"></div>
+    <p class="insights-note" id="insightsTrend"></p>
+  </div>
+
   <div class="entries">
     <h2 id="entriesTitle">Your entries</h2>
     <div id="entriesList"></div>
@@ -150,6 +165,9 @@
   const addBtn = document.getElementById('addBtn');
   const entriesList = document.getElementById('entriesList');
   const entriesTitle = document.getElementById('entriesTitle');
+  const insightsCard = document.getElementById('insightsCard');
+  const insightsGrid = document.getElementById('insightsGrid');
+  const insightsTrend = document.getElementById('insightsTrend');
 
   function load(){
     try {
@@ -168,8 +186,63 @@
     return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
   }
 
+  // 게시 패턴 인사이트: 챗봇 세션은 예전 게시 기록을 기억 못 하지만, 이 기록장은 브라우저에 계속 쌓이니까
+  // 빈도·플랫폼 비율·AI로 의심받은 비율 추이를 계산해서 보여줄 수 있다. 전부 이미 저장된 데이터의 단순 집계일 뿐,
+  // 새로 뭘 물어보거나 추측하지 않음. 표본이 너무 적으면(3개 미만) 아예 안 보여줌 — 의미 없는 통계 노출 방지.
+  function computeInsights(entries){
+    if (entries.length < 3) return null;
+    const sorted = [...entries].sort((a,b) => a.ts - b.ts);
+    const first = sorted[0];
+    const last = sorted[sorted.length - 1];
+    const daysSpan = Math.max(1, (last.ts - first.ts) / (1000*60*60*24));
+    const weeksSpan = Math.max(daysSpan / 7, 1/7);
+    const perWeek = entries.length / weeksSpan;
+
+    const platformCounts = {};
+    entries.forEach(e => { platformCounts[e.platform] = (platformCounts[e.platform] || 0) + 1; });
+    const platformLine = Object.entries(platformCounts)
+      .sort((a,b) => b[1] - a[1])
+      .map(([p,c]) => `${c} ${platformLabel(p)}`)
+      .join(', ');
+
+    const isFlagged = e => e.flagged === 'yes' || e.flagged === 'unsure';
+    const flaggedCount = entries.filter(isFlagged).length;
+    const flaggedPct = Math.round((flaggedCount / entries.length) * 100);
+
+    let trendMsg = '';
+    const mid = Math.floor(sorted.length / 2);
+    const firstHalf = sorted.slice(0, mid);
+    const secondHalf = sorted.slice(mid);
+    if (firstHalf.length >= 2 && secondHalf.length >= 2){
+      const fhRate = firstHalf.filter(isFlagged).length / firstHalf.length;
+      const shRate = secondHalf.filter(isFlagged).length / secondHalf.length;
+      if (shRate < fhRate) trendMsg = 'Trending down from your earlier posts — good sign.';
+      else if (shRate > fhRate) trendMsg = 'Trending up from your earlier posts — might be worth a look.';
+    }
+
+    return { total: entries.length, perWeek, platformLine, flaggedPct, sinceDate: first.date, trendMsg };
+  }
+
+  function renderInsights(entries){
+    const insights = computeInsights(entries);
+    if (!insights){
+      insightsCard.style.display = 'none';
+      return;
+    }
+    insightsCard.style.display = 'block';
+    insightsGrid.innerHTML = `
+      <div class="insight-stat"><b>${insights.total}</b>posts logged</div>
+      <div class="insight-stat"><b>${insights.perWeek.toFixed(1)}</b>per week, on average</div>
+      <div class="insight-stat"><b>${insights.flaggedPct}%</b>questioned as AI-written</div>
+    `;
+    const parts = [`${insights.platformLine}, since ${insights.sinceDate}.`];
+    if (insights.trendMsg) parts.push(insights.trendMsg);
+    insightsTrend.textContent = parts.join(' ');
+  }
+
   function render(){
     const entries = load().sort((a,b) => b.ts - a.ts);
+    renderInsights(entries);
     entriesTitle.textContent = entries.length ? `Your entries (${entries.length})` : 'Your entries';
     if (!entries.length){
       entriesList.innerHTML = '<p class="empty">Nothing logged yet. Add your first post above once you\'ve published something.</p>';

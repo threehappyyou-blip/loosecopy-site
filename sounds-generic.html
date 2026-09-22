@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Does This Sound Generic? — Free Checker by Loosecopy</title>
+<meta name="description" content="Paste your draft and see how many concrete specifics — numbers, names, dates — it actually has. Vague, could-be-anyone posts read weaker to people, and platforms have started ranking them lower too.">
+<link rel="canonical" href="https://loosecopy.com/sounds-generic.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/sounds-generic.html">
+<meta property="og:title" content="Does This Sound Generic? — Free Checker by Loosecopy">
+<meta property="og:description" content="Paste your draft and see how many concrete specifics — numbers, names, dates — it actually has. Vague, could-be-anyone posts read weaker to people, and platforms have started ranking them lower too.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Does This Sound Generic? — Free Checker by Loosecopy">
+<meta name="twitter:description" content="Paste your draft and see how many concrete specifics — numbers, names, dates — it actually has. Vague, could-be-anyone posts read weaker to people, and platforms have started ranking them lower too.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:62ch;}
+
+  textarea{
+    width:100%; min-height:200px; padding:16px; border:1px solid var(--border);
+    background:var(--paper-card); border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-size:1rem; color:var(--ink); resize:vertical;
+  }
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  .muted{color:var(--ink-soft); font-size:0.88rem;}
+
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+
+  .results{display:none; margin-top:36px;}
+  .verdict{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
+  }
+  .verdict strong{display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+  .stat-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
+  .stat{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 16px; font-size:0.88rem; color:var(--ink-soft); flex:1 1 140px;
+  }
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
+  .highlighted{
+    white-space:pre-wrap; background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; font-size:0.96rem; line-height:1.75; margin-bottom:20px;
+  }
+  mark.num{background:#DDE9D8; border-bottom:2px solid #6E9C5E;}
+  mark.date{background:#DDE6EA; border-bottom:2px solid #3A5A6E;}
+  mark.noun{background:#FCE9B8; border-bottom:2px solid #D9A63C;}
+  .legend{font-size:0.82rem; color:var(--ink-soft); margin:-10px 0 20px;}
+  .legend span{padding:1px 6px; border-radius:2px; margin-right:4px;}
+
+  .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
+  .callout a{color:var(--bluepencil); font-weight:600;}
+  .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
+  .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px;}
+  .source-note a{color:var(--bluepencil);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <a class="back" href="/">&larr; back to waitlist page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Does this sound generic?</h1>
+  <p class="lede">Concrete detail has always read as more credible than vague abstraction — that's old writing advice. What's new: several 2026 reports say LinkedIn's ranking has started reading it the same way, holding back posts that read as generic in favor of ones with real specifics. This counts the difference mechanically.</p>
+
+  <textarea id="input" placeholder="Paste your tweet, post, or paragraph here..."></textarea>
+  <div class="row">
+    <button class="btn-primary" id="checkBtn">Check my text</button>
+    <span class="muted" id="wordcount"></span>
+  </div>
+
+  <div class="results" id="results">
+    <div class="verdict" id="verdict"></div>
+    <div class="stat-row" id="statRow"></div>
+    <div class="legend">
+      <span style="background:#DDE9D8;border-bottom:2px solid #6E9C5E;">numbers</span>
+      <span style="background:#DDE6EA;border-bottom:2px solid #3A5A6E;">dates / timeframes</span>
+      <span style="background:#FCE9B8;border-bottom:2px solid #D9A63C;">possible names, places, products</span>
+    </div>
+    <div class="highlighted" id="highlighted"></div>
+    <div class="callout">
+      This isn't a LinkedIn-detector — it can't see how any platform actually ranks your post. It just counts one thing writing advice has always agreed on: specifics beat vague abstraction.
+      Missing a number, name, or date? Adding just one real one usually does more than a full rewrite.
+      Also worried about tone, not content? <a href="/reads-like-a-translation.html">Check if it reads stiff →</a>
+      <a href="/app.html">Try the generator →</a>
+    </div>
+    <p class="source-note">Background on the 2026 LinkedIn reporting: <a href="https://neilpatel.com/blog/linkedin-ai-slop-crackdown-content-strategy/" target="_blank" rel="noopener">Neil Patel — LinkedIn's AI-content crackdown</a>. LinkedIn's own detection-accuracy claims are self-reported and not independently verified — treat the direction as more solid than the exact numbers.</p>
+  </div>
+
+  <p class="disclaimer">Heuristic counter, not a ranking predictor. "Proper nouns" are guessed from capitalization, so it will miss lowercase brand names and occasionally flag a word that isn't really a name. False negatives and false positives both happen — read the highlights, don't just trust the score.</p>
+</main>
+
+<script>
+(function(){
+  const STOP_CAPS = new Set(["I","I'm","I've","I'll","I'd","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday",
+    "January","February","March","April","May","June","July","August","September","October","November","December","Q1","Q2","Q3","Q4"]);
+
+  const DATE_RES = [
+    /\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/gi,
+    /\b(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b/gi,
+    /\b(yesterday|today|tonight|tomorrow)\b/gi,
+    /\b(last|this|next)\s+(week|month|year|quarter)\b/gi,
+    /\b\d+\s+(days?|weeks?|months?|years?)\s+ago\b/gi,
+    /\bin\s+20\d\d\b/gi,
+    /\bsince\s+20\d\d\b/gi,
+    /\bQ[1-4]\b/g
+  ];
+
+  function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function findNumbers(text){
+    const re = /\b\d[\d,]*(?:\.\d+)?%?\b/g;
+    return [...text.matchAll(re)].map(m => ({ text:m[0], index:m.index }));
+  }
+
+  function findDates(text){
+    const hits = [];
+    DATE_RES.forEach(re => {
+      const r = new RegExp(re.source, re.flags.includes('g') ? re.flags : re.flags+'g');
+      let m;
+      while ((m = r.exec(text)) !== null) hits.push({ text:m[0], index:m.index });
+    });
+    return hits;
+  }
+
+  function findProperNouns(text){
+    const hits = [];
+    const sentences = [...text.matchAll(/[^.!?\n]+[.!?]*/g)];
+    sentences.forEach(sm => {
+      const sent = sm[0];
+      const base = sm.index;
+      const words = [...sent.matchAll(/[A-Za-z][A-Za-z'-]*/g)];
+      words.forEach((wm, i) => {
+        if (i === 0) return;
+        const w = wm[0];
+        if (/^[A-Z][A-Za-z]*$/.test(w) && !STOP_CAPS.has(w)) {
+          hits.push({ text:w, index: base + wm.index });
+        }
+      });
+    });
+    return hits;
+  }
+
+  function dedupeOverlaps(hits){
+    // 겹치는 구간은 먼저 온 것만 남김 (숫자/날짜/고유명사가 동시에 매치되는 경우 방지)
+    hits.sort((a,b) => a.index - b.index);
+    const out = [];
+    let lastEnd = -1;
+    hits.forEach(h => {
+      if (h.index >= lastEnd) {
+        out.push(h);
+        lastEnd = h.index + h.text.length;
+      }
+    });
+    return out;
+  }
+
+  function analyze(text){
+    const wordCount = (text.trim().match(/\S+/g) || []).length;
+    const nums = findNumbers(text).map(h => ({...h, cat:'num'}));
+    const dates = findDates(text).map(h => ({...h, cat:'date'}));
+    const nouns = findProperNouns(text).map(h => ({...h, cat:'noun'}));
+    const all = dedupeOverlaps([...nums, ...dates, ...nouns]);
+    const counts = { num:0, date:0, noun:0 };
+    all.forEach(h => counts[h.cat]++);
+    const density = wordCount > 0 ? (all.length / (wordCount/100)) : 0;
+    return { wordCount, all, counts, density };
+  }
+
+  function highlight(text, hits){
+    let html = '';
+    let cursor = 0;
+    hits.forEach(h => {
+      html += escapeHtml(text.slice(cursor, h.index));
+      html += `<mark class="${h.cat}">${escapeHtml(h.text)}</mark>`;
+      cursor = h.index + h.text.length;
+    });
+    html += escapeHtml(text.slice(cursor));
+    return html.replace(/\n/g, "<br>");
+  }
+
+  function verdictFor(density, wordCount){
+    if (wordCount < 20) return ["Too short to score reliably.", "Paste a bit more and try again."];
+    if (density < 1) return ["Reads pretty generic.", "Could apply to almost anyone in your field. One real number, name, or date would anchor it."];
+    if (density < 3) return ["Light on specifics.", "A little vague — one more concrete detail would help it stand out."];
+    if (density < 6) return ["Reasonably specific.", "Has some real anchors. A couple more wouldn't hurt."];
+    return ["Reads specific and grounded.", "Plenty of concrete detail here."];
+  }
+
+  const input = document.getElementById("input");
+  const wordcountEl = document.getElementById("wordcount");
+  const btn = document.getElementById("checkBtn");
+  const results = document.getElementById("results");
+  const verdictEl = document.getElementById("verdict");
+  const statRowEl = document.getElementById("statRow");
+  const highlightedEl = document.getElementById("highlighted");
+
+  input.addEventListener("input", () => {
+    const wc = (input.value.trim().match(/\S+/g) || []).length;
+    wordcountEl.textContent = wc + " words";
+  });
+
+  btn.addEventListener("click", () => {
+    const text = input.value;
+    if (!text.trim()) return;
+    const { wordCount, all, counts, density } = analyze(text);
+    const [headline, detail] = verdictFor(density, wordCount);
+
+    verdictEl.innerHTML = `<strong>${headline}</strong>${detail}`;
+    statRowEl.innerHTML = `
+      <div class="stat"><b>${counts.num}</b>numbers</div>
+      <div class="stat"><b>${counts.date}</b>dates / timeframes</div>
+      <div class="stat"><b>${counts.noun}</b>possible names / places</div>
+    `;
+    highlightedEl.innerHTML = highlight(text, all);
+    results.style.display = "block";
+  });
+})();
+</script>
+
+</body>
+</html>
