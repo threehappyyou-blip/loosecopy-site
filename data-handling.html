@@ -138,8 +138,12 @@
   <div class="section">
     <h2>About the AI step specifically</h2>
     <p style="font-size:0.95rem;">Your text is processed by Anthropic's Claude API to write the drafts. Under Anthropic's standard commercial API terms, prompt content isn't retained by default and isn't used to train models without explicit permission.</p>
-    <p style="font-size:0.95rem;">The whole generation step runs on one system — a single Cloudflare Worker handles your request from the moment it leaves your browser, forwards it to Anthropic through Cloudflare's own AI Gateway, and hands the drafts back. We checked that code directly, line by line: it doesn't write your pasted text or the drafts anywhere — no log, no database, no file. The only things saved anywhere are the optional "voice" sample and post-journal entries you choose to save yourself, and those stay in your own browser as described above.</p>
     <p class="source-note">Source: <a href="https://platform.claude.com/docs/en/manage-claude/api-and-data-retention" target="_blank" rel="noopener">platform.claude.com — API and data retention</a>. Applies to standard commercial API usage; see the link for the full policy and any model-specific exceptions.</p>
+  </div>
+
+  <div class="confirming">
+    <span class="label">Being confirmed</span>
+    Loosecopy's generation step runs across two systems (one of them a separate hosting provider from the rest of the site), and we're finishing a direct code review of that specific piece to confirm it does no logging of its own beyond what's described above. We'd rather say that plainly than round it up to "we checked everything" before we actually have. Once confirmed, this line comes out and the check gets a dated entry on the <a href="/changelog.html">changelog</a>.
   </div>
 
   <p class="also">See the rule this page's sibling is built on: <a href="/trust.html">the permanent pledge on publishing →</a></p>
