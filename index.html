@@ -133,6 +133,10 @@
   }
   .btn-secondary:hover{background:var(--ink);color:var(--paper-card);}
   .hero-primary-cta{display:inline-block;text-decoration:none;margin-bottom:8px;}
+  .support-link{font-size:0.9rem;font-weight:600;color:var(--ink-soft);text-decoration:none;}
+  .support-link:hover{color:var(--ink);}
+  .btn-secondary.support-btn{display:inline-block;text-decoration:none;}
+  .pricing .lede{color:var(--ink-soft);max-width:56ch;margin:0 0 22px;}
   .hero-secondary{margin-top:30px;padding-top:24px;border-top:1px solid var(--border);max-width:440px;}
   .hero-secondary .lede-small{font-size:0.88rem;color:var(--ink-soft);margin:0 0 12px;}
 
@@ -282,6 +286,8 @@
     .different .wrap{grid-template-columns:1fr;}
   }
 </style>
+<!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -290,7 +296,8 @@
     <div class="wordmark">Loose<em>·</em>copy</div>
     <div style="display:flex;align-items:center;gap:18px;">
       <a class="nav-cta" href="app.html">Try it &rarr;</a>
-      <a href="#join" style="font-size:0.9rem;font-weight:600;color:var(--ink-soft);text-decoration:none;">Join waitlist</a>
+      <a class="support-link" href="https://ko-fi.com/YOUR_KOFI_USERNAME" target="_blank" rel="noopener">&#9749; Support</a>
+      <a class="support-link" href="#join">Get updates</a>
     </div>
   </div>
 </header>
@@ -301,15 +308,15 @@
       <h1>One draft.<br>Every platform.<br>Still sounds like you.</h1>
       <p class="sub">Paste a blog post or your rough notes. Get a Twitter thread and a LinkedIn post drafted in minutes — made for when English isn't your first language, so you don't have to guess whether a draft actually sounds right.</p>
       <a class="btn-primary hero-primary-cta" href="app.html">Try it free, no signup &rarr;</a>
-      <p class="form-note">5 free drafts a month. Paste something, get two drafts back in seconds.</p>
+      <p class="form-note">Free to use. Paste something, get two drafts back in seconds.</p>
 
       <div class="hero-secondary">
-        <p class="lede-small" id="formNote">Want early-access pricing locked in before public launch? Leave your email.</p>
+        <p class="lede-small" id="formNote">Want to hear about new free tools as they ship? Leave your email.</p>
         <form class="hero-form" id="join" action="https://formspree.io/f/xdeoqjkw" method="POST">
           <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
-          <button class="btn-secondary" type="submit">Join waitlist</button>
+          <button class="btn-secondary" type="submit">Get updates</button>
         </form>
-        <p class="form-thanks" id="formThanks">You're on the list — we'll email you when it's ready.</p>
+        <p class="form-thanks" id="formThanks">You're on the list — we'll email you when there's something new.</p>
       </div>
     </div>
     <div class="manuscript" aria-hidden="true">
@@ -371,17 +378,9 @@
 
 <section class="pricing rule">
   <div class="wrap">
-    <h2>Pricing</h2>
-    <div class="plans">
-      <div class="plan">
-        <div><div class="name">Free</div><div class="desc">5 drafts a month, forever.</div></div>
-        <div class="price">$0</div>
-      </div>
-      <div class="plan">
-        <div><div class="name">Early access</div><div class="desc">Founder pricing, locked before public launch.</div></div>
-        <div class="price">$9/mo</div>
-      </div>
-    </div>
+    <h2>Always free</h2>
+    <p class="lede">No tiers, no paywall, no "upgrade to unlock more." Loosecopy and every checker on this site stay free to use — kept running by a small amount of advertising and by readers who choose to chip in.</p>
+    <a class="btn-secondary support-btn" href="https://ko-fi.com/YOUR_KOFI_USERNAME" target="_blank" rel="noopener">&#9749; Support Loosecopy</a>
   </div>
 </section>
 

@@ -39,6 +39,9 @@
   .wordmark em{font-style:italic;color:var(--redline);}
   .wordmark a{color:inherit;text-decoration:none;}
   .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+  .header-links{display:flex;align-items:center;gap:16px;}
+  .support-link{font-size:0.85rem;color:var(--bluepencil);text-decoration:none;font-weight:600;}
+  .support-link:hover{text-decoration:underline;}
 
   main{padding:20px 0 80px;}
   h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
@@ -73,13 +76,18 @@
   .also{font-size:0.88rem; color:var(--ink-soft); margin-top:36px;}
   .also a{color:var(--bluepencil);}
 </style>
+<!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
 </head>
 <body>
 
 <header>
   <div class="wrap">
     <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
-    <a class="back" href="/">&larr; back to waitlist page</a>
+    <div class="header-links">
+      <a class="support-link" href="https://ko-fi.com/YOUR_KOFI_USERNAME" target="_blank" rel="noopener">&#9749; Support</a>
+      <a class="back" href="/">&larr; back to home</a>
+    </div>
   </div>
 </header>
 
