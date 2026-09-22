@@ -131,8 +131,7 @@
     <ul>
       <li><b>Formspree</b> — receives and stores your email address if you join the waitlist.</li>
       <li><b>Anthropic (Claude API)</b> — receives the text you paste in, to generate your drafts. Under Anthropic's standard commercial API terms, prompt content isn't retained by default or used to train models without permission.</li>
-      <li><b>Vercel</b> — hosts the server that forwards your text to the Claude API and returns the drafts to your browser.</li>
-      <li><b>Cloudflare</b> — hosts this website itself.</li>
+      <li><b>Cloudflare</b> — hosts this website and runs the server that forwards your text to the Claude API (through Cloudflare's own AI Gateway) and returns the drafts to your browser — one system end to end, not a separate host for the generation step.</li>
       <li><b>Google AdSense</b> — serves the ads on this site and may set cookies to do it; see the cookies section below.</li>
       <li><b>Ko-fi</b> — if you click "Support" and choose to donate, Ko-fi (not Loosecopy) handles the payment and whatever information it needs to process it. Their own privacy policy covers that, not ours.</li>
     </ul>
