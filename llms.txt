@@ -6,7 +6,7 @@ Loosecopy is a small, independently-run tool. It has no user accounts: pasted te
 
 ## Core product
 
-- [Try Loosecopy](https://loosecopy.com/app.html): The generator itself — paste text, get a Twitter thread and LinkedIn post draft back.
+- [Try Loosecopy](https://loosecopy.com/app.html): The generator itself — paste text, get a Twitter thread and LinkedIn post draft back, plus a one-click "Check everything" pass across 14 mechanical quality checks before you copy anything.
 - [Homepage / waitlist](https://loosecopy.com/): What the product does and how to get early access.
 
 ## Trust & policy

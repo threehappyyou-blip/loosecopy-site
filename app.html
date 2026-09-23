@@ -146,6 +146,73 @@
   .input-tip.tip-dup{border-left-color:#9a7d1f; background:#FCE9B8; color:#5c4a10;}
 
   .loading{display:none; margin-top:20px; color:var(--ink-soft); font-style:italic;}
+
+  /* ---- Unified "Check everything" panel ---- */
+  .checkall-box{margin:0 0 24px;}
+  .checkall-btn{
+    background:var(--bluepencil); color:#fff; border:none; padding:12px 22px; border-radius:2px;
+    font-family:'Public Sans',sans-serif; font-weight:600; font-size:0.98rem; cursor:pointer;
+  }
+  .checkall-btn:hover{background:#2c4757;}
+  .checkall-hint{margin-left:12px;}
+  .checkall-results{display:none; margin-top:18px;}
+
+  .cf-summary{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px; font-size:0.92rem; font-weight:600;}
+  .cf-sum.warn{color:var(--redline);}
+  .cf-sum.notice{color:var(--bluepencil);}
+  .cf-sum.good{color:#3F7A4A;}
+
+  .cf-list{display:flex; flex-direction:column; gap:8px;}
+  .cf-item{background:var(--paper-card); border:1px solid var(--border); border-radius:2px; overflow:hidden;}
+  .cf-item-warn{border-left:3px solid var(--redline);}
+  .cf-item-notice{border-left:3px solid var(--bluepencil);}
+  .cf-item-good{border-left:3px solid #3F7A4A;}
+
+  .cf-row-toggle{display:flex; align-items:center; gap:10px; padding:11px 14px; cursor:pointer; font-size:0.92rem;}
+  .cf-dot{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
+  .cf-dot-warn{background:var(--redline);}
+  .cf-dot-notice{background:var(--bluepencil);}
+  .cf-dot-good{background:#3F7A4A;}
+  .cf-label{font-weight:600; flex-shrink:0; min-width:130px;}
+  .cf-headline{color:var(--ink-soft); flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .cf-chevron{color:var(--ink-soft); font-size:0.75rem; flex-shrink:0;}
+
+  .cf-row-body{padding:0 14px 14px 32px; font-size:0.9rem;}
+  .cf-platform{margin-bottom:10px;}
+  .cf-platform:last-of-type{margin-bottom:0;}
+  .cf-platform-label{font-family:'Space Mono',monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--ink-soft); margin-bottom:4px;}
+  .cf-detail{color:var(--ink);}
+  .cf-marked{white-space:pre-wrap; background:var(--paper); border:1px solid var(--border); border-radius:2px; padding:10px 12px; font-size:0.87rem; line-height:1.7; margin-top:8px;}
+  .cf-marked mark{padding:0 2px; border-radius:2px;}
+  .cf-mark-a, .cf-mark-noun, .cf-mark-contact{background:#FCE9B8; border-bottom:2px solid #D9A63C;}
+  .cf-mark-num{background:#DDE9D8; border-bottom:2px solid #6E9C5E;}
+  .cf-mark-date, .cf-mark-format, .cf-mark-acro{background:#DDE6EA; border-bottom:2px solid #3A5A6E;}
+  .cf-mark-placeholder, .cf-mark-jargon, .cf-mark-link, .cf-mark-confident{background:#F3D9C4; border-bottom:2px solid #B5651D;}
+  .cf-mark-credential{background:var(--redline-wash); border-bottom:2px solid var(--redline);}
+
+  .cf-row{padding:6px 0 0; font-size:0.87rem; color:var(--ink-soft); margin-top:8px; border-top:1px solid var(--border);}
+  .cf-row-warn{color:#5c231f;}
+  .cf-orig{font-family:'Space Mono',monospace; color:var(--ink);}
+  .cf-arrow{margin:0 6px; color:var(--ink-soft);}
+  .cf-muted{color:var(--ink-soft);}
+
+  .cf-stat-row{display:flex; gap:14px; font-size:0.85rem; color:var(--ink-soft); margin-top:6px;}
+  .cf-score-row{display:flex; gap:10px; margin-top:6px;}
+  .cf-score{background:var(--paper); border:1px solid var(--border); border-radius:2px; padding:8px 14px; flex:1 1 120px;}
+  .cf-score b{display:block; font-family:'Fraunces',serif; font-size:1.25rem; color:var(--redline); font-weight:500;}
+  .cf-score span{font-size:0.74rem; color:var(--ink-soft);}
+  .cf-openline{font-family:'Space Mono',monospace; background:var(--paper); border:1px solid var(--border); border-radius:2px; padding:9px 12px; margin-top:2px; white-space:pre-wrap; font-size:0.88rem;}
+
+  .cf-more{display:inline-block; margin-top:10px; font-size:0.82rem;}
+
+  .cf-clean-toggle{padding:10px 14px; cursor:pointer; font-size:0.88rem; color:var(--ink-soft); background:var(--paper-card); border:1px solid var(--border); border-radius:2px;}
+  .cf-clean-toggle:hover{color:var(--ink);}
+  .cf-clean-list{display:flex; flex-direction:column; gap:8px; margin-top:8px;}
+
+  @media (max-width:560px){
+    .cf-label{min-width:0;}
+    .cf-headline{white-space:normal;}
+  }
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -213,13 +280,12 @@
       <input type="checkbox" id="reviewCheck">
       I've read through this and made it mine — enable the copy buttons below
     </label>
-    <p class="ai-check-link">Before you post: <a href="/make-it-sound-like-you.html" target="_blank" rel="noopener">make it sound like you</a> · <a href="/ai-authenticity-checker.html" target="_blank" rel="noopener">check it doesn't sound like AI</a> · <a href="/reads-like-a-translation.html" target="_blank" rel="noopener">check it doesn't read stiff</a> · <a href="/ai-disclosure-helper.html" target="_blank" rel="noopener">grab a disclosure line</a> · <a href="/pre-publish-checklist.html" target="_blank" rel="noopener">run the final checklist</a></p>
-    <p class="ai-check-link">Double-check the details: <a href="/sounds-generic.html" target="_blank" rel="noopener">too generic?</a> · <a href="/number-unit-checker.html" target="_blank" rel="noopener">big numbers converted right?</a> · <a href="/jargon-checker.html" target="_blank" rel="noopener">clear to a global reader?</a></p>
-    <p class="ai-check-link">One last pass: <a href="/markdown-cleanup-checker.html" target="_blank" rel="noopener">will this format right?</a> · <a href="/privacy-leak-checker.html" target="_blank" rel="noopener">anything you shouldn't publish?</a> · <a href="/readability-score.html" target="_blank" rel="noopener">how hard is this to read?</a></p>
-    <p class="ai-check-link">Tighten it up: <a href="/link-placement-checker.html" target="_blank" rel="noopener">keep the link out of the post?</a> · <a href="/hashtag-checker.html" target="_blank" rel="noopener">hashtags doing their job?</a> · <a href="/passive-voice-checker.html" target="_blank" rel="noopener">too much passive voice?</a></p>
-    <p class="ai-check-link">Scanning for the basics: <a href="/hook-checker.html" target="_blank" rel="noopener">does your opening line land?</a> · <a href="/emoji-checker.html" target="_blank" rel="noopener">emoji helping or too much?</a> · <a href="/wall-of-text-checker.html" target="_blank" rel="noopener">is it a wall of text?</a></p>
-    <p class="ai-check-link">Curious why these two drafts read so differently? <a href="/why-platforms-differ.html" target="_blank" rel="noopener">That's on purpose — here's why &rarr;</a></p>
-    <p class="ai-check-link">Already posted this? <a href="/post-journal.html" target="_blank" rel="noopener">Log what happened, for future you &rarr;</a></p>
+    <div class="checkall-box" id="checkallBox">
+      <button type="button" class="checkall-btn" id="checkallBtn">Check everything</button>
+      <span class="muted checkall-hint">Runs 14 quick mechanical checks against both drafts below — nothing leaves your browser.</span>
+      <div class="checkall-results" id="checkallResults"></div>
+    </div>
+    <p class="ai-check-link">Other resources: <a href="/make-it-sound-like-you.html" target="_blank" rel="noopener">make it sound like you</a> · <a href="/ai-disclosure-helper.html" target="_blank" rel="noopener">grab a disclosure line</a> · <a href="/pre-publish-checklist.html" target="_blank" rel="noopener">final checklist</a> · <a href="/fact-check-ai-draft.html" target="_blank" rel="noopener">fact-check in 5 min</a> · <a href="/why-platforms-differ.html" target="_blank" rel="noopener">why these read differently</a> · <a href="/post-journal.html" target="_blank" rel="noopener">log this post</a></p>
     <p class="voice-check-note" id="voiceCheckNote" style="display:none;"></p>
 
     <div class="draft-block">
@@ -267,6 +333,8 @@ const voiceCodeInput = document.getElementById('voiceCodeInput');
 const voiceCodeRestoreBtn = document.getElementById('voiceCodeRestore');
 const voiceMsg = document.getElementById('voiceMsg');
 const voiceCheckNoteEl = document.getElementById('voiceCheckNote');
+const checkallBtn = document.getElementById('checkallBtn');
+const checkallResultsEl = document.getElementById('checkallResults');
 const VOICE_KEY = 'lc_voice_profile';
 
 // ---- 말투 기억 (계정/서버 없이, 이 브라우저에만) ----
@@ -490,6 +558,863 @@ function checkNumberConsistency(draftText){
   return null;
 }
 
+// ============================================================================
+// Unified "Check everything" engine — ported, tier-by-tier, from the 14
+// standalone checker pages already live on the site (ai-authenticity-checker,
+// reads-like-a-translation, sounds-generic, number-unit-checker,
+// markdown-cleanup-checker, privacy-leak-checker, readability-score,
+// jargon-checker, link-placement-checker, passive-voice-checker,
+// hashtag-checker, hook-checker, emoji-checker, wall-of-text-checker).
+// Each standalone page keeps its own copy of this logic (so it keeps working
+// as its own linkable, indexable page) — if you fix a false positive in one,
+// consider fixing it here too, and vice versa.
+//
+// Every function mirrors its source page's regex/thresholds as closely as
+// possible, wrapped in a small adapter that normalizes the result to
+// { status, headline, detail, count, markedHtml, extraHtml } so one panel can
+// render all 14 the same way. status is 'good' | 'notice' | 'warn' — a
+// 3-tier simplification of each tool's own (often 4-6 tier) verdict scale.
+// ============================================================================
+function cfEscapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function cfWordCount(text){ return (text.trim().match(/\S+/g) || []).length; }
+function cfDedupeOverlaps(hits){
+  hits.sort((a,b) => a.index - b.index);
+  const out = [];
+  let lastEnd = -1;
+  hits.forEach(h => { if (h.index >= lastEnd) { out.push(h); lastEnd = h.index + h.text.length; } });
+  return out;
+}
+function cfMarkHtml(text, hits, clsFn){
+  let html = '';
+  let cursor = 0;
+  hits.forEach(h => {
+    html += cfEscapeHtml(text.slice(cursor, h.index));
+    const cls = clsFn ? clsFn(h) : (h.cls || 'hit');
+    html += `<mark class="${cls}">${cfEscapeHtml(h.text)}</mark>`;
+    cursor = h.index + h.text.length;
+  });
+  html += cfEscapeHtml(text.slice(cursor));
+  return html.replace(/\n/g, "<br>");
+}
+
+// ---- 1. Does this sound like AI? (ai-authenticity-checker.html) ----
+const CF_AUTH_PHRASES = [
+  ["in today's fast-paced world"], ["in this day and age"], ["in an era where"], ["in a world where"],
+  ["in conclusion"], ["in summary"], ["to sum up"], ["at the end of the day"], ["overall,"],
+  ["game-changer"], ["game changer"], ["revolutionize"], ["cutting-edge"], ["state-of-the-art"],
+  ["unparalleled"], ["unprecedented"], ["supercharge"], ["turbocharge"],
+  ["robust"], ["seamless"], ["seamlessly"], ["leverage"], ["leveraging"], ["elevate"], ["elevating"],
+  ["unlock"], ["unleash"], ["empower"], ["empowering"],
+  ["furthermore"], ["moreover"], ["additionally,"], ["it's important to note"], ["it is important to note"],
+  ["it's worth noting"], ["that being said"],
+  ["myriad"], ["plethora"], ["a wide range of"], ["a vast array of"], ["countless"],
+  ["embark on"], ["navigate the complexities"], ["navigating the complexities"], ["the realm of"], ["in the realm of"],
+  ["delve into"], ["dive into"], ["let's dive in"], ["unpack"], ["deep dive"],
+  ["as an ai language model"], ["as an ai,"],
+  ["i hope this helps"], ["feel free to"], ["food for thought"],
+  ["plays a crucial role"], ["crucial role in"], ["pivotal role"], ["paramount"], ["cannot be overstated"],
+  ["a testament to"], ["tapestry of"], ["underscores the"],
+].map(a => a[0]);
+function cfCheckAuthenticity(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const wordCount = cfWordCount(text);
+  let totalHits = 0;
+  const hits = [];
+  CF_AUTH_PHRASES.forEach(phrase => {
+    const re = new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"), "gi");
+    let m;
+    while ((m = re.exec(text)) !== null){ hits.push({text:m[0], index:m.index}); totalHits++; if(m[0].length===0) re.lastIndex++; }
+  });
+  const emDashCount = (text.match(/—/g) || []).length;
+  if (wordCount > 0 && emDashCount / (wordCount/100) > 1.2) totalHits += emDashCount;
+  const triplets = text.match(/\b\w+,\s*\w+,?\s*and\s+\w+\b/gi) || [];
+  if (triplets.length >= 3) totalHits += triplets.length;
+  const density = wordCount > 0 ? totalHits / (wordCount/100) : 0;
+
+  let status, headline, detail;
+  if (density < 1) { status='good'; headline='Reads pretty clean.'; detail='Not much here that reads as AI.'; }
+  else if (density < 3) { status='notice'; headline='A few things stood out.'; detail='Worth a quick pass before you post.'; }
+  else if (density < 6) { status='warn'; headline='Quite a few AI patterns here.'; detail='Might be worth editing more before you publish.'; }
+  else { status='warn'; headline='Lots of common AI tells.'; detail='This could use a real rewrite pass, not just a tweak.'; }
+
+  const deduped = cfDedupeOverlaps(hits);
+  return { status, headline, detail, count: totalHits, markedHtml: deduped.length ? cfMarkHtml(text, deduped, () => 'cf-mark-a') : null, extraHtml: null };
+}
+
+// ---- 2. Does this read like a translation? (reads-like-a-translation.html) ----
+const CF_TRANS_PHRASES = [
+  "do not","does not","did not","cannot","can not","will not","would not","should not","could not",
+  "i am","it is","that is","there is","you are","we are","they are","i have","i will","i would",
+  "he is","she is","was not","is not","are not","have not","has not",
+  "furthermore","moreover","nevertheless","nonetheless","consequently","notwithstanding",
+  "in addition to this","thus,","hence,","therefore,",
+  "i would like to","please be informed that","i am writing to","thank you for your understanding",
+  "should you have any questions","i look forward to your reply","kindly","i hope this message finds you well",
+  "with regards to","as per","please do not hesitate to",
+  "i think that","it might be possible that","perhaps it could be said that","i am not sure but",
+  "it could be argued that","one might say that"
+];
+function cfCheckTranslation(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const wordCount = cfWordCount(text);
+  let totalHits = 0;
+  const hits = [];
+  CF_TRANS_PHRASES.forEach(phrase => {
+    const re = new RegExp("\\b"+phrase.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b", "gi");
+    let m;
+    while ((m = re.exec(text)) !== null){ hits.push({text:m[0], index:m.index}); totalHits++; if(m[0].length===0) re.lastIndex++; }
+  });
+  const contractionCount = (text.match(/\b\w+'(re|t|m|s|ll|ve|d)\b/gi) || []).length;
+  if (wordCount >= 30 && contractionCount === 0) totalHits += 1;
+  const density = wordCount > 0 ? totalHits / (wordCount/100) : 0;
+
+  let status, headline, detail;
+  if (density < 1) { status='good'; headline='Reads casual, not stiff.'; detail='Not much formal-register phrasing here.'; }
+  else if (density < 3) { status='notice'; headline='A few stiff spots.'; detail='Worth a quick pass — nothing major.'; }
+  else if (density < 6) { status='warn'; headline='Quite a bit of formal phrasing.'; detail='This would read more natural loosened up.'; }
+  else { status='warn'; headline='Reads very formal for a casual post.'; detail='Worth a real pass to loosen the tone.'; }
+
+  const deduped = cfDedupeOverlaps(hits);
+  return { status, headline, detail, count: totalHits, markedHtml: deduped.length ? cfMarkHtml(text, deduped, () => 'cf-mark-a') : null, extraHtml: null };
+}
+
+// ---- 3. Does this sound generic? (sounds-generic.html) — inverted polarity: more specifics is GOOD ----
+const CF_GEN_STOP_CAPS = new Set(["I","I'm","I've","I'll","I'd","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday",
+  "January","February","March","April","May","June","July","August","September","October","November","December","Q1","Q2","Q3","Q4"]);
+const CF_GEN_DATE_RES = [
+  /\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/gi,
+  /\b(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b/gi,
+  /\b(yesterday|today|tonight|tomorrow)\b/gi,
+  /\b(last|this|next)\s+(week|month|year|quarter)\b/gi,
+  /\b\d+\s+(days?|weeks?|months?|years?)\s+ago\b/gi,
+  /\bin\s+20\d\d\b/gi, /\bsince\s+20\d\d\b/gi, /\bQ[1-4]\b/g
+];
+function cfGenFindNumbers(text){ return [...text.matchAll(/\b\d[\d,]*(?:\.\d+)?%?\b/g)].map(m => ({ text:m[0], index:m.index })); }
+function cfGenFindDates(text){
+  const hits = [];
+  CF_GEN_DATE_RES.forEach(re => {
+    const r = new RegExp(re.source, re.flags.includes('g') ? re.flags : re.flags+'g');
+    let m;
+    while ((m = r.exec(text)) !== null) hits.push({ text:m[0], index:m.index });
+  });
+  return hits;
+}
+function cfGenFindProperNouns(text){
+  const hits = [];
+  [...text.matchAll(/[^.!?\n]+[.!?]*/g)].forEach(sm => {
+    const base = sm.index;
+    [...sm[0].matchAll(/[A-Za-z][A-Za-z'-]*/g)].forEach((wm, i) => {
+      if (i === 0) return;
+      const w = wm[0];
+      if (/^[A-Z][A-Za-z]*$/.test(w) && !CF_GEN_STOP_CAPS.has(w)) hits.push({ text:w, index: base + wm.index });
+    });
+  });
+  return hits;
+}
+function cfCheckGeneric(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const wordCount = cfWordCount(text);
+  const all = cfDedupeOverlaps([
+    ...cfGenFindNumbers(text).map(h => ({...h, cat:'num'})),
+    ...cfGenFindDates(text).map(h => ({...h, cat:'date'})),
+    ...cfGenFindProperNouns(text).map(h => ({...h, cat:'noun'}))
+  ]);
+  const density = wordCount > 0 ? (all.length / (wordCount/100)) : 0;
+
+  let status, headline, detail;
+  if (wordCount < 20) { status='good'; headline='Too short to score reliably.'; detail=''; }
+  else if (density < 1) { status='warn'; headline='Reads pretty generic.'; detail='One real number, name, or date would anchor it.'; }
+  else if (density < 3) { status='notice'; headline='Light on specifics.'; detail='A little vague — one more concrete detail would help.'; }
+  else { status='good'; headline='Reasonably specific.'; detail='Has real anchors readers can hold onto.'; }
+
+  return { status, headline, detail, count: all.length, markedHtml: (wordCount >= 20 && all.length) ? cfMarkHtml(text, all, h => 'cf-mark-'+h.cat) : null, extraHtml: null };
+}
+
+// ---- 4. Big numbers & currency (number-unit-checker.html) — scan portion only ----
+const CF_NUM_UNIT_VALUES = { '조': 1e12, '억': 1e8, '億': 1e8, '亿': 1e8, '만': 1e4, '万': 1e4, 'lakh': 1e5, 'lakhs': 1e5, 'crore': 1e7, 'crores': 1e7 };
+function cfNumRound2(n){ return Math.round(n*100)/100; }
+function cfNumFormatEnglish(num){
+  const digits = Math.round(num).toLocaleString('en-US');
+  let words = null;
+  const abs = Math.abs(num);
+  if (abs >= 1e12) words = cfNumRound2(num/1e12) + ' trillion';
+  else if (abs >= 1e9) words = cfNumRound2(num/1e9) + ' billion';
+  else if (abs >= 1e6) words = cfNumRound2(num/1e6) + ' million';
+  else if (abs >= 1e3) words = cfNumRound2(num/1e3) + ' thousand';
+  return { digits, words };
+}
+function cfNumParseMatches(text){
+  const results = [];
+  const consumed = [];
+  let m;
+  const compoundRe = /(\d+(?:\.\d+)?)(?:천|千)(?:(\d+(?:\.\d+)?)(?:백|百))?\s*(억|億|亿|만|万)/g;
+  while ((m = compoundRe.exec(text)) !== null){
+    const coeff = parseFloat(m[1])*1000 + (m[2] ? parseFloat(m[2])*100 : 0);
+    const value = coeff * CF_NUM_UNIT_VALUES[m[3]];
+    results.push({ match:m[0], index:m.index, value });
+    consumed.push([m.index, m.index+m[0].length]);
+  }
+  const simpleRe = /(\d+(?:\.\d+)?)\s*(조|억|億|亿|만|万)/g;
+  while ((m = simpleRe.exec(text)) !== null){
+    if (consumed.some(([s,e]) => m.index >= s && m.index < e)) continue;
+    results.push({ match:m[0], index:m.index, value: parseFloat(m[1]) * CF_NUM_UNIT_VALUES[m[2]] });
+  }
+  const inRe = /(\d+(?:\.\d+)?)\s*(lakh|lakhs|crore|crores)\b/gi;
+  while ((m = inRe.exec(text)) !== null){
+    if (consumed.some(([s,e]) => m.index >= s && m.index < e)) continue;
+    results.push({ match:m[0], index:m.index, value: parseFloat(m[1]) * CF_NUM_UNIT_VALUES[m[2].toLowerCase()] });
+  }
+  results.sort((a,b) => a.index - b.index);
+  return results;
+}
+const CF_NUM_CURRENCY_NAMES = { '₩':'Korean won', 'KRW':'Korean won', '원':'Korean won', '₹':'Indian rupees', 'INR':'Indian rupees',
+  '¥':'yen or yuan', 'JPY':'Japanese yen', 'CNY':'Chinese yuan', 'RMB':'Chinese yuan', '€':'euros', 'EUR':'euros', '£':'British pounds', 'GBP':'British pounds' };
+const CF_NUM_USD_RE = /\$|USD|US\s?dollars?/i;
+function cfNumFindUnclearCurrency(text){
+  const spans = [];
+  { const re = /[^.!?\n]+[.!?]*/g; let m; while ((m = re.exec(text)) !== null) spans.push({ start: m.index, end: m.index + m[0].length, text: m[0] }); }
+  const rawHits = [];
+  let m;
+  const symRe = /(₩|₹|¥|€|£)\s?[\d,]+(?:\.\d+)?/g;
+  while ((m = symRe.exec(text)) !== null) rawHits.push({ match:m[0].trim(), index:m.index, key:m[1] });
+  const codeRe = /[\d,]+(?:\.\d+)?\s?(?:조|억|億|亿|만|万)?\s?(원|KRW|INR|JPY|CNY|RMB|EUR|GBP)(?![A-Za-z])/gi;
+  while ((m = codeRe.exec(text)) !== null){ const key = m[1] === '원' ? '원' : m[1].toUpperCase(); rawHits.push({ match:m[0].trim(), index:m.index, key }); }
+  rawHits.sort((a,b) => a.index - b.index);
+  return rawHits.filter(h => {
+    const sent = spans.find(s => h.index >= s.start && h.index < s.end);
+    return !CF_NUM_USD_RE.test(sent ? sent.text : text);
+  });
+}
+function cfCheckNumbers(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const matches = cfNumParseMatches(text);
+  const currencyFlags = cfNumFindUnclearCurrency(text);
+  if (!matches.length && !currencyFlags.length) return { status:'good', headline:'Nothing to convert.', detail:'No 만/億/亿/조, lakh/crore, or unclear currency mentions found.', count:0, markedHtml:null, extraHtml:null };
+  const parts = [];
+  if (matches.length) parts.push(matches.length + ' figure' + (matches.length===1?'':'s') + ' converted');
+  if (currencyFlags.length) parts.push(currencyFlags.length + ' currency mention' + (currencyFlags.length===1?'':'s') + ' with no USD nearby');
+  const extraHtml = matches.map(mm => {
+    const f = cfNumFormatEnglish(mm.value);
+    return `<div class="cf-row"><span class="cf-orig">${cfEscapeHtml(mm.match)}</span><span class="cf-arrow">&rarr;</span><b>${f.digits}</b>${f.words ? ' <span class="cf-muted">('+cfEscapeHtml(f.words)+')</span>' : ''}</div>`;
+  }).join('') + currencyFlags.map(cf => `<div class="cf-row cf-row-warn"><span class="cf-orig">${cfEscapeHtml(cf.match)}</span><span class="cf-muted"> — no "$"/USD nearby (${CF_NUM_CURRENCY_NAMES[cf.key] || 'a non-USD currency'})</span></div>`).join('');
+  return { status:'notice', headline: matches.length ? 'Found figures worth double-checking.' : 'Currency mentioned without a USD reference.', detail: parts.join(' · '), count: matches.length + currencyFlags.length, markedHtml:null, extraHtml };
+}
+
+// ---- 5. Will this post as literal asterisks? (markdown-cleanup-checker.html) ----
+const CF_MD_FORMAT_PATTERNS = [
+  { re: /\*\*([^*\n]{1,100}?)\*\*/g, note: "Bold marker (**) won't render — remove it or use CAPS/an emoji." },
+  { re: /__([^_\n]{1,100}?)__/g, note: "Bold marker (__) won't render — remove the underscores." },
+  { re: /(?<!\*)\*([^*\n]{1,100}?)\*(?!\*)/g, note: "Italic marker (*) won't render — remove or rephrase." },
+  { re: /(?<!_)_([^_\n]{1,100}?)_(?!_)/g, note: "Italic marker (_) won't render — remove the underscores." },
+  { re: /^ {0,3}#{1,6}\s+.+$/gm, note: "Heading marker (#) won't render — delete the # and start fresh." },
+  { re: /^\s*[\-\*]\s+.+$/gm, note: "Bullet marker won't render as a real bullet — swap in a • or line breaks." },
+  { re: /~~([^~\n]{1,100}?)~~/g, note: "Strikethrough (~~) won't render — remove the tildes." },
+  { re: /`([^`\n]{1,100}?)`/g, note: "Code marker (`) won't render as code — remove the backticks." },
+  { re: /\[([^\]\n]{1,60})\]\((https?:\/\/[^\s)]+)\)/g, note: "Markdown link syntax won't become clickable — paste the raw URL instead." }
+];
+const CF_MD_PLACEHOLDER_NOTE = "Looks like a leftover placeholder — make sure this got replaced.";
+function cfMdFindFormatIssues(text){
+  const hits = [];
+  CF_MD_FORMAT_PATTERNS.forEach(p => {
+    const re = new RegExp(p.re.source, p.re.flags);
+    let m;
+    while ((m = re.exec(text)) !== null){ hits.push({ text: m[0].trim(), index: m.index, cat:'format', note:p.note }); if (m[0].length===0) re.lastIndex++; }
+  });
+  return hits;
+}
+function cfMdFindPlaceholders(text){
+  const hits = [];
+  let m;
+  const bracketRe = /\[([^\]\n]{1,50})\]/g;
+  while ((m = bracketRe.exec(text)) !== null){
+    if (/^\(/.test(text.slice(m.index + m[0].length))) continue;
+    if (!/[a-zA-Z]/.test(m[1])) continue;
+    hits.push({ text: m[0], index: m.index, cat:'placeholder', note: CF_MD_PLACEHOLDER_NOTE });
+  }
+  const curlyRe = /\{\{[^{}\n]{1,40}\}\}|\{[^{}\n]{1,40}\}/g;
+  while ((m = curlyRe.exec(text)) !== null) hits.push({ text: m[0], index: m.index, cat:'placeholder', note: CF_MD_PLACEHOLDER_NOTE });
+  const angleRe = /<([a-z][a-z0-9 _-]{1,30})>/gi;
+  while ((m = angleRe.exec(text)) !== null) hits.push({ text: m[0], index: m.index, cat:'placeholder', note: CF_MD_PLACEHOLDER_NOTE });
+  const keywordRe = /\b(TODO|TBD|FIXME|XXX|PLACEHOLDER)\b/g;
+  while ((m = keywordRe.exec(text)) !== null) hits.push({ text: m[0], index: m.index, cat:'placeholder', note: "Looks like a leftover editing note — remove before you post." });
+  const loremRe = /\blorem ipsum\b/gi;
+  while ((m = loremRe.exec(text)) !== null) hits.push({ text: m[0], index: m.index, cat:'placeholder', note: "Filler text — swap in your real copy." });
+  const insertHereRe = /\bINSERT\s+[A-Z][A-Z\s]{0,20}\s+HERE\b/g;
+  while ((m = insertHereRe.exec(text)) !== null) hits.push({ text: m[0], index: m.index, cat:'placeholder', note: CF_MD_PLACEHOLDER_NOTE });
+  return hits;
+}
+function cfCheckMarkdown(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const all = cfDedupeOverlaps([...cfMdFindFormatIssues(text), ...cfMdFindPlaceholders(text)]);
+  const formatCount = all.filter(h => h.cat === 'format').length;
+  const placeholderCount = all.filter(h => h.cat === 'placeholder').length;
+
+  let status, headline, detail;
+  if (all.length === 0) { status='good'; headline='Clean.'; detail="Nothing that would show up broken or unfinished."; }
+  else if (all.length <= 2) { status='notice'; headline='Almost clean.'; detail='One or two things to clean up before you post.'; }
+  else if (all.length <= 5) { status='warn'; headline='A few spots to fix.'; detail="Several bits of formatting or leftover text won't survive as-is."; }
+  else { status='warn'; headline='Needs a cleanup pass.'; detail='That many symbols or placeholders will look unfinished.'; }
+
+  return { status, headline, detail, count: all.length, markedHtml: all.length ? cfMarkHtml(text, all, h => 'cf-mark-'+h.cat) : null,
+    extraHtml: (formatCount || placeholderCount) ? `<div class="cf-stat-row"><span>${formatCount} formatting</span><span>${placeholderCount} placeholders</span></div>` : null };
+}
+
+// ---- 6. Did you leave an email or key in there? (privacy-leak-checker.html) ----
+const CF_PRIV_FAKE_EMAIL_DOMAINS = new Set(['example.com','example.org','example.net','test.com','domain.com','yourdomain.com','email.com','company.com','yourcompany.com']);
+function cfPrivFindEmails(text){
+  const re = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g;
+  const hits = [];
+  let m;
+  while ((m = re.exec(text)) !== null){
+    const domain = (m[0].split('@')[1] || '').toLowerCase();
+    if (CF_PRIV_FAKE_EMAIL_DOMAINS.has(domain)) continue;
+    hits.push({ text: m[0], index: m.index, tier:'contact', type:'email' });
+  }
+  return hits;
+}
+const CF_PRIV_DATE_SHAPE_RES = [ /^\d{4}[-.]\d{1,2}[-.]\d{1,2}$/, /^\d{1,2}[-./]\d{1,2}[-./]\d{2,4}$/ ];
+function cfPrivLooksLikeDate(s){ return CF_PRIV_DATE_SHAPE_RES.some(re => re.test(s)); }
+function cfPrivFindPhones(text){
+  const patterns = [
+    /\+\d{1,3}[\s.-]?\(?\d{1,4}\)?[\s.-]?\d{2,4}[\s.-]?\d{2,4}[\s.-]?\d{0,4}/g,
+    /\(\d{3}\)\s?\d{3}[\s.-]?\d{4}\b/g,
+    /\b\d{2,4}[-.\s]\d{2,4}[-.\s]\d{2,4}(?:[-.\s]\d{2,4})?\b/g
+  ];
+  const seen = new Set();
+  const hits = [];
+  patterns.forEach(re => {
+    const r = new RegExp(re.source, re.flags);
+    let m;
+    while ((m = r.exec(text)) !== null){
+      const trimmed = m[0].trim();
+      const digitCount = (trimmed.match(/\d/g) || []).length;
+      if (digitCount < 7 || digitCount > 15) continue;
+      if (cfPrivLooksLikeDate(trimmed)) continue;
+      const key = m.index + ':' + trimmed;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      hits.push({ text: trimmed, index: m.index, tier:'contact', type:'phone' });
+    }
+  });
+  return hits;
+}
+const CF_PRIV_KEY_PATTERNS = [
+  { re: /\bsk-[A-Za-z0-9]{20,}\b/g, label: 'API secret key (sk- prefix)' },
+  { re: /\bghp_[A-Za-z0-9]{30,}\b/g, label: 'GitHub personal access token' },
+  { re: /\bgithub_pat_[A-Za-z0-9_]{20,}\b/g, label: 'GitHub fine-grained token' },
+  { re: /\bAKIA[A-Z0-9]{12,}\b/g, label: 'AWS access key ID' },
+  { re: /\bxox[baprs]-[A-Za-z0-9-]{10,}\b/g, label: 'Slack token' },
+  { re: /\bBearer\s+[A-Za-z0-9._-]{15,}\b/g, label: 'bearer auth token' }
+];
+function cfPrivFindKnownKeys(text){
+  const hits = [];
+  CF_PRIV_KEY_PATTERNS.forEach(p => {
+    const re = new RegExp(p.re.source, p.re.flags);
+    let m;
+    while ((m = re.exec(text)) !== null) hits.push({ text: m[0], index: m.index, tier:'credential', type:'key' });
+  });
+  return hits;
+}
+function cfPrivFindGenericSecrets(text, already){
+  const re = /\b[A-Za-z0-9_-]{32,}\b/g;
+  const hits = [];
+  let m;
+  while ((m = re.exec(text)) !== null){
+    const s = m[0];
+    if (!/\d/.test(s) || !/[A-Za-z]/.test(s)) continue;
+    if (already.some(h => m.index < h.index + h.text.length && m.index + s.length > h.index)) continue;
+    hits.push({ text: s, index: m.index, tier:'credential', type:'key' });
+  }
+  return hits;
+}
+function cfPrivLuhnValid(digits){
+  let sum = 0, alt = false;
+  for (let i = digits.length - 1; i >= 0; i--){ let d = parseInt(digits[i], 10); if (alt){ d *= 2; if (d > 9) d -= 9; } sum += d; alt = !alt; }
+  return sum % 10 === 0;
+}
+function cfPrivFindCardNumbers(text){
+  const patterns = [ /\b\d{4}[ -]\d{4}[ -]\d{4}[ -]\d{4}\b/g, /\b\d{4}[ -]\d{6}[ -]\d{5}\b/g, /\b\d{13,19}\b/g ];
+  const seen = new Set();
+  const hits = [];
+  patterns.forEach(re => {
+    const r = new RegExp(re.source, re.flags);
+    let m;
+    while ((m = r.exec(text)) !== null){
+      const digits = m[0].replace(/[ -]/g, '');
+      if (digits.length < 13 || digits.length > 19) continue;
+      if (!cfPrivLuhnValid(digits)) continue;
+      if (seen.has(digits)) continue;
+      seen.add(digits);
+      hits.push({ text: m[0].trim(), index: m.index, tier:'credential', type:'card' });
+    }
+  });
+  return hits;
+}
+function cfCheckPrivacy(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const knownKeys = cfPrivFindKnownKeys(text);
+  const all = cfDedupeOverlaps([...cfPrivFindEmails(text), ...cfPrivFindPhones(text), ...knownKeys, ...cfPrivFindGenericSecrets(text, knownKeys), ...cfPrivFindCardNumbers(text)]);
+  const contactCount = all.filter(h => h.tier === 'contact').length;
+  const credentialCount = all.filter(h => h.tier === 'credential').length;
+
+  let status, headline, detail;
+  if (credentialCount > 0) { status='warn'; headline='Stop — check this before posting.'; detail='This looks like it might contain a real API key, token, or card number.'; }
+  else if (contactCount > 0) { status='notice'; headline='Worth a second look.'; detail="Found contact info — make sure that's intentional."; }
+  else { status='good'; headline='Clear.'; detail='Nothing that looks like an email, phone number, key, or card number.'; }
+
+  return { status, headline, detail, count: all.length, markedHtml: all.length ? cfMarkHtml(text, all, h => 'cf-mark-'+h.tier) : null, extraHtml: null };
+}
+
+// ---- 7. How hard is this to read? (readability-score.html) — Flesch-Kincaid ----
+function cfReadCountSyllables(word){
+  word = word.toLowerCase().replace(/[^a-z]/g, '');
+  if (word.length === 0) return 0;
+  if (word.length <= 3) return 1;
+  word = word.replace(/(?:[^laeiouy]es|[^dt]ed|[^laeiouy]e)$/, '');
+  word = word.replace(/^y/, '');
+  const matches = word.match(/[aeiouy]{1,2}/g);
+  return matches ? matches.length : 1;
+}
+function cfCheckReadability(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const sentences = (text.match(/[^.!?\n]+[.!?]*/g) || []).map(s => s.trim()).filter(Boolean);
+  const words = text.match(/[A-Za-z']+/g) || [];
+  const wordCount = words.length;
+  if (wordCount < 15) return { status:'good', headline:'Too short to score.', detail:'Not enough text yet for a reliable score.', count:0, markedHtml:null, extraHtml:null };
+  const sentenceCount = Math.max(sentences.length, 1);
+  let syllableCount = 0;
+  words.forEach(w => { syllableCount += cfReadCountSyllables(w); });
+  const asl = wordCount / sentenceCount;
+  const asw = wordCount ? syllableCount / wordCount : 0;
+  const fre = 206.835 - 1.015*asl - 84.6*asw;
+  const fkgl = 0.39*asl + 11.8*asw - 15.59;
+  const freClamped = Math.max(0, Math.min(100, fre));
+  const fkglClamped = Math.max(0, fkgl);
+
+  let status, headline, detail;
+  if (freClamped >= 70) { status='good'; headline='Reads easily.'; detail='Comfortable for most readers, including many in a second language.'; }
+  else if (freClamped >= 50) { status='notice'; headline='Moderately dense.'; detail='A few shorter sentences would widen who this reaches.'; }
+  else { status='warn'; headline='Dense and complex.'; detail='Long sentences and multi-syllable words are stacking up.'; }
+
+  const extraHtml = `<div class="cf-score-row"><div class="cf-score"><b>${Math.round(freClamped)}</b><span>reading ease</span></div><div class="cf-score"><b>${fkglClamped.toFixed(1)}</b><span>grade level</span></div></div>`;
+  return { status, headline, detail, count:0, markedHtml:null, extraHtml };
+}
+
+// ---- 8. Would this make sense outside your bubble? (jargon-checker.html) ----
+const CF_JARGON_PHRASES = {
+  'move the needle': 'make a noticeable change', 'low-hanging fruit': 'easy, high-value tasks first',
+  'in the weeds': 'overwhelmed by the details', 'herding cats': 'managing an uncooperative group',
+  'bandwidth': 'capacity or time to take something on', 'circle back': 'talk about this again later',
+  'take this offline': 'discuss this privately, not here', 'action item': 'task',
+  'dumpster fire': 'a very bad situation', 'pivot': 'change direction', 'deep dive': 'a thorough look',
+  'slide deck': 'presentation', 'touch base': 'check in briefly', "you're crushing it": "you're doing great",
+  'boil the ocean': 'try to do everything at once', 'synergy': 'combined benefit of working together',
+  'move the goalposts': 'change the requirements mid-way', 'think outside the box': 'consider unusual ideas',
+  'hit the ground running': 'start quickly and effectively', 'on my radar': "something I'm keeping an eye on",
+  'drill down': 'look at in more detail', 'at the end of the day': 'ultimately',
+  'game changer': 'something that changes everything', 'win-win': 'good for both sides',
+  'paradigm shift': 'a fundamental change in approach', 'core competency': 'main strength',
+  'core competencies': 'main strengths', 'buy-in': 'agreement and support', 'churn': 'the rate customers or employees leave',
+  'pain point': 'a specific problem people face', 'reinvent the wheel': 'redo something that already exists',
+  'throw under the bus': 'blame someone to avoid consequences', 'trim the fat': 'cut unnecessary costs',
+  'wheelhouse': 'area of expertise', 'above my paygrade': "not mine to decide",
+  'break down silos': 'improve coordination between teams', 'go-to-market': 'plan for launching to customers',
+  'hard stop': 'a firm end time', 'put a pin in it': 'set this aside for later', 'north star': 'the main goal guiding decisions',
+  'ping me': 'message me', 'run it up the flagpole': 'test how people react to an idea'
+};
+const CF_JARGON_ACRONYM_ALLOWED = new Set([
+  'AI','OK','DIY','US','USA','UK','EU','CEO','CFO','CTO','COO','PDF','GPS','URL','ID','TV','PC','DVD','USB',
+  'A','MY','BY','OR','IF','IN','ON','AT','TO','UP','AM','IS','BE','IT','HI','OH','NO','SO','GO','WE','HE','SHE',
+  'THE','AND','FOR','ARE','WAS','HAS','HAD','CAN','MAY','NEW','BIG','TOP','ONE','TWO','OUT','OFF','YOU','ITS',
+  'NOT','ALL','WHY','HOW','WHO','NOW','YES','WOW','SAD','MAD','BAD','FUN','TRY','RUN','GOT','LOT','LOW','WIN',
+  'YET','BUT','ANY','OWN','TOO','SEE','DID','DAY','WAY','USE','GET','PUT','SAY','SET','LET','ASK','ADD','END',
+  'FAR','FEW','JOB','KEY','LAW','MAN','MEN','MOM','DAD','PAY','SUN','WAR','EAT','SIT','LIE','DIE','FLY','CRY',
+  'BUY','DON','WON','ISN','CO','RE','PRE','NON','EX','POST','MULTI','SEMI','ANTI','SUB','INTER',
+  'STOP','LOVE','HATE','BEST','GOOD','HUGE','MUST','ONLY','EVER','THIS','THAT','WHEN','WHAT','WERE','WILL','WITH',
+  'YOUR','JUST','LIKE','MORE','SOME','THAN','THEN','OVER','VERY','MUCH','MANY','EACH','BOTH','MOST','SAME','SUCH',
+  'TAKE','MAKE','GIVE','COME','WANT','NEED','KNOW','FEEL','LOOK','FIND','WORK','HELP','KEEP','TRUE','REAL','ALSO',
+  'INTO','ONCE','BACK','DOWN','EVEN','FROM','GONE','HERE','LESS','LIFE','LIVE','LONG','MADE','MEAN','NEXT','OPEN',
+  'PART','PAST','PLAY','SAID','SELF','SHOW','SIDE','SOON','SURE','TALK','TEAM','TIME','TOLD','TOOK','TURN','USED',
+  'WEEK','WENT','WORD','YEAR','ABLE','AWAY','BEEN','CALL','CAME','CASE','EASY','FACT','FAST','FIVE','FOUR','FREE',
+  'FULL','GAVE','HAND','HARD','HEAR','HIGH','KIND','KNEW','LATE','LEFT','LINE','LIST','MIND','MOVE','NAME','NICE',
+  'NINE','NONE','NOTE','ONTO','PLAN','READ','ROOM','SORT','TELL','THEM','THEY','WELL','AREN','WASN','HASN','HADN',
+  'DOESN','DIDN','WEREN',
+  'ABOUT','AFTER','AGAIN','BEING','COULD','EVERY','FIRST','FOUND','GREAT','GROUP','HOUSE','LARGE','LEARN','NEVER',
+  'OFTEN','OTHER','PLACE','POINT','RIGHT','SINCE','SMALL','SOUND','STILL','STUDY','THEIR','THERE','THESE','THING',
+  'THINK','THOSE','THREE','TODAY','UNDER','UNTIL','WATER','WHERE','WHICH','WHILE','WHOLE','WOMAN','WOULD','WRITE',
+  'WRONG','YOUNG','TRULY','TOTAL','WORLD','NEEDS','WANTS','HAPPY','READY','MONEY','STORY','MEDIA','VIDEO','PHOTO',
+  'TREND'
+]);
+function cfJargonFind(text){
+  const keys = Object.keys(CF_JARGON_PHRASES).sort((a,b) => b.length - a.length);
+  const re = new RegExp('\\b(' + keys.map(p => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b', 'gi');
+  const hits = [];
+  let m;
+  while ((m = re.exec(text)) !== null) hits.push({ text: m[0], index: m.index, cat:'jargon', plain: CF_JARGON_PHRASES[m[0].toLowerCase()] });
+  return hits;
+}
+function cfJargonFindAcronyms(text){
+  const re = /\b[A-Z]{2,5}\b/g;
+  const hits = [];
+  const seen = new Set();
+  let m;
+  while ((m = re.exec(text)) !== null){
+    const word = m[0];
+    if (CF_JARGON_ACRONYM_ALLOWED.has(word) || seen.has(word)) continue;
+    if (text[m.index - 1] === '(' && text[m.index + word.length] === ')') continue;
+    if (/^\s*\(/.test(text.slice(m.index + word.length))) continue;
+    seen.add(word);
+    hits.push({ text: word, index: m.index, cat:'acro' });
+  }
+  return hits;
+}
+function cfCheckJargon(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const all = cfDedupeOverlaps([...cfJargonFind(text), ...cfJargonFindAcronyms(text)]);
+
+  let status, headline, detail;
+  if (all.length === 0) { status='good'; headline='Reads clear.'; detail='Nothing that reads as jargon, an idiom, or an unexplained acronym.'; }
+  else if (all.length <= 2) { status='notice'; headline='Mostly clear.'; detail='A couple of spots a reader outside your bubble might stumble on.'; }
+  else if (all.length <= 5) { status='warn'; headline='A few spots to plain up.'; detail='Several phrases assume the reader already knows your world.'; }
+  else { status='warn'; headline='Dense with jargon.'; detail='Worth a pass to swap these for plainer language.'; }
+
+  return { status, headline, detail, count: all.length, markedHtml: all.length ? cfMarkHtml(text, all, h => 'cf-mark-'+h.cat) : null, extraHtml: null };
+}
+
+// ---- 9. Is a raw link sitting in your post? (link-placement-checker.html) ----
+const CF_LINK_URL_RE = /\bhttps?:\/\/[^\s<>"')\]]+|\bwww\.[^\s<>"')\]]+|\b(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.){1,}(?:com|net|org|io|co|dev|app|ai|me|info|biz|us|uk|ca)\b(?:\/[^\s<>"')\]]*)?/gi;
+function cfLinkFind(text){
+  const hits = [];
+  let m;
+  const re = new RegExp(CF_LINK_URL_RE.source, CF_LINK_URL_RE.flags);
+  while ((m = re.exec(text)) !== null){
+    if (text[m.index - 1] === '@') continue;
+    const trimmed = m[0].replace(/[.,;:!?'")\]]+$/, '');
+    if (!trimmed) continue;
+    hits.push({ text: trimmed, index: m.index });
+    if (m[0].length === 0) re.lastIndex++;
+  }
+  return hits;
+}
+function cfCheckLinkPlacement(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const hits = cfLinkFind(text);
+  if (hits.length === 0) return { status:'good', headline:'Clear.', detail:'No links sitting in the body.', count:0, markedHtml:null, extraHtml:null };
+  const plural = hits.length > 1 ? "links" : "link";
+  return { status:'notice', headline: `${hits.length} ${plural} in the body.`, detail: `If this is going on LinkedIn, consider moving ${hits.length > 1 ? "them" : "it"} to the first comment instead.`,
+    count: hits.length, markedHtml: cfMarkHtml(text, hits, () => 'cf-mark-link'), extraHtml: null };
+}
+
+// ---- 10. How much of this is passive voice? (passive-voice-checker.html) ----
+const CF_PASS_IRREGULAR = new Set([
+  "been","become","begun","bent","bet","bitten","bled","blown","born","bought","bound","bred",
+  "broken","brought","built","burnt","burst","cast","caught","chosen","clung","come","cost","crept",
+  "cut","dealt","dug","done","drawn","dreamt","driven","drunk","eaten","fallen","fed","felt","fought",
+  "found","flown","forbidden","forgiven","forgotten","frozen","given","gone","ground","grown","hidden",
+  "held","hurt","kept","knelt","knit","known","laid","led","left","lent","let","lit","lost","made",
+  "meant","met","mown","paid","proven","put","quit","read","ridden","rung","risen","run","said","seen",
+  "sent","set","sewn","shaken","shed","shone","shot","shown","shrunk","shut","sung","sunk","sat","slain",
+  "slept","slid","slit","smelt","sown","spoken","sped","spent","spilt","spun","spit","split","spread",
+  "sprung","stood","stolen","stuck","stung","struck","strung","sworn","swept","swollen","swum","swung",
+  "taken","taught","torn","told","thought","thrown","thrust","trodden","understood","upset","woken",
+  "worn","wound","won","withdrawn","written","wrung","sold","heard"
+]);
+const CF_PASS_NOT_ADJ = new Set(["naked","wicked","rugged","jagged","crooked","sacred","wretched","beloved","rabid","dogged","aged","landed","learned"]);
+const CF_PASS_BE = new Set(["is","are","was","were","am","being","been","isn't","aren't","wasn't","weren't"]);
+const CF_PASS_GET = new Set(["get","gets","got","getting"]);
+const CF_PASS_FILLER = new Set(["not","already","still","just","also","never","always","often","now","further","even","only","recently","currently","very","so","quite","rather","too","completely","fully","totally","finally"]);
+function cfPassIsFiller(w){ return CF_PASS_FILLER.has(w) || /ly$/.test(w); }
+function cfPassIsParticiple(wl){
+  if (CF_PASS_NOT_ADJ.has(wl)) return false;
+  if (CF_PASS_IRREGULAR.has(wl)) return true;
+  return wl.length >= 4 && /^[a-z]+ed$/.test(wl);
+}
+function cfPassFind(text){
+  const tokens = [];
+  { const re = /[A-Za-z']+/g; let m; while ((m = re.exec(text)) !== null) tokens.push({ lower: m[0].toLowerCase(), index: m.index, end: m.index + m[0].length }); }
+  const hits = [];
+  let i = 0;
+  while (i < tokens.length){
+    const w = tokens[i].lower;
+    const isBe = CF_PASS_BE.has(w);
+    const isGet = CF_PASS_GET.has(w);
+    if (!isBe && !isGet){ i++; continue; }
+    let j = i + 1, fillers = 0;
+    while (j < tokens.length && fillers < 2 && cfPassIsFiller(tokens[j].lower)){ fillers++; j++; }
+    if (j < tokens.length && cfPassIsParticiple(tokens[j].lower)){
+      let hasBy = false;
+      for (let k = j + 1; k < Math.min(tokens.length, j + 7); k++){ if (tokens[k].lower === "by"){ hasBy = true; break; } }
+      hits.push({ index: tokens[i].index, end: tokens[j].end, text: text.slice(tokens[i].index, tokens[j].end), confident: hasBy });
+      i = j + 1;
+      continue;
+    }
+    i++;
+  }
+  return hits;
+}
+function cfCheckPassive(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const hits = cfPassFind(text);
+
+  let status, headline, detail;
+  if (hits.length === 0) { status='good'; headline='Direct throughout.'; detail="No obvious passive constructions."; }
+  else if (hits.length <= 2) { status='notice'; headline='Mostly direct.'; detail='One or two spots worth a glance.'; }
+  else if (hits.length <= 5) { status='notice'; headline='A handful of passive spots.'; detail='Several places where the actor is missing.'; }
+  else { status='warn'; headline='Passive-heavy.'; detail='This can read as vague about who is actually doing things.'; }
+
+  return { status, headline, detail, count: hits.length, markedHtml: hits.length ? cfMarkHtml(text, hits, h => h.confident ? 'cf-mark-confident' : 'cf-mark-a') : null, extraHtml: null };
+}
+
+// ---- 11. Are your hashtags doing anything for you? (hashtag-checker.html) ----
+function cfHashFind(text){
+  const hits = [];
+  const re = /#([A-Za-z][A-Za-z0-9_]*)/g;
+  let m;
+  while ((m = re.exec(text)) !== null) hits.push({ word: m[1], index: m.index });
+  return hits;
+}
+function cfHashLooksUnreadable(word){ return word.length >= 16 && word === word.toLowerCase() && !/_/.test(word); }
+function cfCheckHashtags(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const hits = cfHashFind(text);
+  const counts = {};
+  hits.forEach(h => { const k = h.word.toLowerCase(); counts[k] = (counts[k] || 0) + 1; });
+  const dupWords = new Set(Object.keys(counts).filter(k => counts[k] > 1));
+  const longWords = new Set(hits.map(h => h.word).filter(cfHashLooksUnreadable).map(w => w.toLowerCase()));
+
+  let status, headline, detail;
+  const n = hits.length;
+  if (n === 0) { status='notice'; headline='No hashtags.'; detail='Not wrong, but on LinkedIn especially, this is a missed discovery opportunity.'; }
+  else if (n <= 2) { status='notice'; headline='A light touch.'; detail='On the low side of the commonly recommended range, but fine.'; }
+  else if (n <= 5) { status='good'; headline='In the commonly recommended range.'; detail='3–5 is the range most often cited for LinkedIn discovery.'; }
+  else if (n <= 8) { status='notice'; headline='More than typically recommended.'; detail='Starting to look like keyword-stuffing.'; }
+  else { status='warn'; headline='Well past typical recommendations.'; detail='This many tends to read as spam.'; }
+  if ((dupWords.size || longWords.size) && status === 'good') status = 'notice';
+
+  const findings = [];
+  dupWords.forEach(w => findings.push(`<div class="cf-row cf-row-warn">#${cfEscapeHtml(w)} repeated ${counts[w]}× — doesn't add reach the second time.</div>`));
+  longWords.forEach(w => { if (!dupWords.has(w)) findings.push(`<div class="cf-row">#${cfEscapeHtml(w)} — long and glued together; try #CamelCase instead.</div>`); });
+
+  return { status, headline, detail, count: n, markedHtml: null, extraHtml: findings.length ? findings.join('') : null };
+}
+
+// ---- 12. Is your opening line doing its job? (hook-checker.html) ----
+const CF_HOOK_CLICHES = [
+  "in today's fast-paced world","in today's digital age","i'm excited to announce","i'm thrilled to announce",
+  "i'm proud to announce","i'm happy to announce","i'm happy to share","i'm pleased to announce",
+  "i wanted to share","just wanted to share","i've been thinking about","i have been thinking about",
+  "let's talk about","lets talk about","have you ever wondered","in this post","in this article","in this thread",
+  "a lot has been said about","we all know that","as we all know","it's no secret that","its no secret that",
+  "we live in a world where","picture this","so i did a thing","big news","exciting news","huge announcement"
+];
+const CF_HOOK_ABBR_STOP = new Set(['mr','mrs','ms','dr','prof','sr','jr','vs','etc','e.g','i.e','u.s','u.k','inc','co','ltd','st']);
+function cfHookFindSentenceEnd(t){
+  const re = /[.!?](\s|$)/g;
+  let m;
+  while ((m = re.exec(t)) !== null){
+    const before = t.slice(0, m.index);
+    const wordMatch = before.match(/([A-Za-z]+)$/);
+    if (CF_HOOK_ABBR_STOP.has(wordMatch ? wordMatch[1].toLowerCase() : '')) continue;
+    return m.index + 1;
+  }
+  return -1;
+}
+function cfHookGetOpeningLine(text){
+  const t = text.trim().replace(/^\(?\d{1,2}[\/.)]\s*/, '');
+  const newlineIdx = t.indexOf('\n');
+  const sentenceIdx = cfHookFindSentenceEnd(t);
+  let cut;
+  if (newlineIdx === -1 && sentenceIdx === -1) cut = t.length;
+  else if (newlineIdx === -1) cut = sentenceIdx;
+  else if (sentenceIdx === -1) cut = newlineIdx;
+  else cut = Math.min(newlineIdx, sentenceIdx);
+  return t.slice(0, cut).trim();
+}
+function cfCheckHook(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const line = cfHookGetOpeningLine(text);
+  if (!line) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const lower = line.toLowerCase();
+  const cliche = CF_HOOK_CLICHES.find(p => lower.startsWith(p) || lower.includes(p)) || null;
+  const len = line.length;
+  let tier;
+  if (len < 10) tier = 'short';
+  else if (cliche) tier = 'cliche';
+  else if (len > 160) tier = 'long';
+  else if (len > 100) tier = 'gettingLong';
+  else tier = 'good';
+
+  const MAP = {
+    short:      ['notice', "Too short to judge.", "Under 10 characters — check nothing got cut off by accident."],
+    cliche:     ['warn', "Starts with a familiar opener.", "This kind of line gets skimmed past. Cut straight to the specific claim."],
+    long:       ['warn', "Opening line runs long.", 'Likely to get cut off by "see more" before it earns the click.'],
+    gettingLong:['notice', "Getting long for an opener.", "Tightening it would help it land before truncation cuts in."],
+    good:       ['good', "Reads fine as an opener.", "Short enough to land, and not a common tired opener."]
+  };
+  const [status, headline, detail] = MAP[tier];
+  return { status, headline, detail, count: cliche ? 1 : 0, markedHtml: null, extraHtml: `<div class="cf-openline">${cfEscapeHtml(line)}</div>` };
+}
+
+// ---- 13. Are your emoji helping or distracting? (emoji-checker.html) ----
+const CF_EMOJI_RE = /\p{Extended_Pictographic}/gu;
+const CF_EMOJI_LINE_START_RE = /^\p{Extended_Pictographic}/u;
+function cfCheckEmoji(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const emoji = [...text.matchAll(CF_EMOJI_RE)].map(m => m[0]);
+  const bulletLines = text.split('\n').map(l => l.trim()).filter(Boolean).filter(l => CF_EMOJI_LINE_START_RE.test(l)).length;
+  const counts = {};
+  emoji.forEach(e => { counts[e] = (counts[e] || 0) + 1; });
+
+  let status, headline, detail;
+  const n = emoji.length;
+  if (n === 0) { status='good'; headline='No emoji.'; detail='Not required — plenty of strong posts use zero.'; }
+  else if (n <= 3) { status='good'; headline='A light touch.'; detail='The range most LinkedIn advice treats as safe.'; }
+  else if (n <= 8) { status='notice'; headline='Getting heavy.'; detail='Past what most advice calls "light."'; }
+  else { status='warn'; headline='Very emoji-dense.'; detail='Tends to read as unprofessional or spammy to a lot of audiences.'; }
+
+  const findings = [];
+  if (bulletLines >= 3){ findings.push(`<div class="cf-row cf-row-warn">${bulletLines} lines start with an emoji — reads like a listicle template past 2–3.</div>`); if (status === 'good') status = 'notice'; }
+  Object.keys(counts).filter(e => counts[e] >= 4).forEach(e => { findings.push(`<div class="cf-row cf-row-warn">${e} used ${counts[e]}× — reads as a tic more than a choice.</div>`); if (status === 'good') status = 'notice'; });
+
+  return { status, headline, detail, count: n, markedHtml: null, extraHtml: findings.length ? findings.join('') : null };
+}
+
+// ---- 14. Is your post a wall of text? (wall-of-text-checker.html) ----
+function cfCheckWallOfText(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const paras = text.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean).map(p => {
+    const sm = p.match(/[.!?](\s|$)/g);
+    const sentences = sm ? sm.length : (p.length ? 1 : 0);
+    return { chars: p.length, sentences, long: p.length > 300 || sentences > 4 };
+  });
+  const longOnes = paras.filter(p => p.long);
+
+  let status, headline, detail;
+  if (paras.length === 1 && paras[0].long) { status='warn'; headline='One long, unbroken block.'; detail='No paragraph breaks at all — try splitting into 2–4 shorter paragraphs.'; }
+  else if (longOnes.length === 0) { status='good'; headline='Well broken up.'; detail='No single chunk runs on too long.'; }
+  else if (longOnes.length === 1) { status='notice'; headline='One paragraph runs long.'; detail='Everything else reads fine.'; }
+  else { status='warn'; headline=`${longOnes.length} paragraphs run long.`; detail='A blank line every 1–3 sentences tends to read easier.'; }
+
+  return { status, headline, detail, count: longOnes.length, markedHtml:null, extraHtml:null };
+}
+
+// ---- Registry (panel order) ----
+const CF_CHECKS = [
+  { id:'hook',        label:'Opening line',     more:'/hook-checker.html',             run:cfCheckHook },
+  { id:'authenticity',label:'Sounds like AI',    more:'/ai-authenticity-checker.html',  run:cfCheckAuthenticity },
+  { id:'translation', label:'Reads stiff',       more:'/reads-like-a-translation.html', run:cfCheckTranslation },
+  { id:'generic',     label:'Too generic',       more:'/sounds-generic.html',           run:cfCheckGeneric },
+  { id:'jargon',      label:'Jargon & acronyms', more:'/jargon-checker.html',           run:cfCheckJargon },
+  { id:'passive',     label:'Passive voice',     more:'/passive-voice-checker.html',    run:cfCheckPassive },
+  { id:'readability', label:'Readability',       more:'/readability-score.html',        run:cfCheckReadability },
+  { id:'wall',        label:'Wall of text',      more:'/wall-of-text-checker.html',     run:cfCheckWallOfText },
+  { id:'emoji',       label:'Emoji',             more:'/emoji-checker.html',            run:cfCheckEmoji },
+  { id:'hashtags',    label:'Hashtags',          more:'/hashtag-checker.html',          run:cfCheckHashtags },
+  { id:'linkplacement',label:'Link placement',   more:'/link-placement-checker.html',   run:cfCheckLinkPlacement },
+  { id:'markdown',    label:'Formatting',        more:'/markdown-cleanup-checker.html', run:cfCheckMarkdown },
+  { id:'numbers',     label:'Big numbers',       more:'/number-unit-checker.html',      run:cfCheckNumbers },
+  { id:'privacy',     label:'Privacy leak',      more:'/privacy-leak-checker.html',     run:cfCheckPrivacy },
+];
+const CF_STATUS_ORDER = { warn: 0, notice: 1, good: 2 };
+function cfWorstStatus(a, b){ if (!a) return b; if (!b) return a; return CF_STATUS_ORDER[a] <= CF_STATUS_ORDER[b] ? a : b; }
+
+function cfRenderRow(row, multiPlatform, expanded){
+  const combinedHeadline = multiPlatform
+    ? row.perPlatform.map(pp => `${pp.short}: ${pp.result.headline}`).join('  ·  ')
+    : row.perPlatform[0].result.headline;
+
+  let body = '';
+  row.perPlatform.forEach(pp => {
+    body += `<div class="cf-platform">`;
+    if (multiPlatform) body += `<div class="cf-platform-label">${pp.label}</div>`;
+    body += `<div class="cf-detail">${pp.result.headline} ${pp.result.detail}</div>`;
+    if (pp.result.extraHtml) body += pp.result.extraHtml;
+    if (pp.result.markedHtml) body += `<div class="cf-marked">${pp.result.markedHtml}</div>`;
+    body += `</div>`;
+  });
+  body += `<a class="cf-more" href="${row.chk.more}" target="_blank" rel="noopener">Open the full tool &rarr;</a>`;
+
+  return `<div class="cf-item cf-item-${row.status}">
+    <div class="cf-row-toggle${expanded ? ' open' : ''}" data-cf-toggle>
+      <span class="cf-dot cf-dot-${row.status}"></span>
+      <span class="cf-label">${row.chk.label}</span>
+      <span class="cf-headline">${combinedHeadline}</span>
+      <span class="cf-chevron">${expanded ? '▾' : '▸'}</span>
+    </div>
+    <div class="cf-row-body" style="display:${expanded ? 'block' : 'none'};">${body}</div>
+  </div>`;
+}
+
+function cfRenderResults(rows, multiPlatform){
+  const counts = { warn:0, notice:0, good:0 };
+  rows.forEach(r => counts[r.status]++);
+
+  const summaryParts = [];
+  if (counts.warn) summaryParts.push(`<span class="cf-sum warn">${counts.warn} worth fixing</span>`);
+  if (counts.notice) summaryParts.push(`<span class="cf-sum notice">${counts.notice} worth a look</span>`);
+  if (counts.good) summaryParts.push(`<span class="cf-sum good">${counts.good} all clear</span>`);
+
+  const sorted = [...rows].sort((a,b) => CF_STATUS_ORDER[a.status] - CF_STATUS_ORDER[b.status]);
+  const attention = sorted.filter(r => r.status !== 'good');
+  const clean = sorted.filter(r => r.status === 'good');
+
+  let html = `<div class="cf-summary">${summaryParts.join(' · ')}</div><div class="cf-list">`;
+  attention.forEach(r => { html += cfRenderRow(r, multiPlatform, true); });
+  if (clean.length){
+    html += `<div class="cf-clean-toggle" id="cfCleanToggle" data-count="${clean.length}">▸ ${clean.length} more check${clean.length===1?'':'s'} passed — no issues</div><div class="cf-clean-list" id="cfCleanList" style="display:none;">`;
+    clean.forEach(r => { html += cfRenderRow(r, multiPlatform, false); });
+    html += `</div>`;
+  }
+  html += `</div>`;
+
+  checkallResultsEl.innerHTML = html;
+  checkallResultsEl.style.display = 'block';
+
+  checkallResultsEl.querySelectorAll('[data-cf-toggle]').forEach(el => {
+    el.addEventListener('click', () => {
+      const body = el.nextElementSibling;
+      const isOpen = body.style.display !== 'none';
+      body.style.display = isOpen ? 'none' : 'block';
+      el.classList.toggle('open', !isOpen);
+      el.querySelector('.cf-chevron').textContent = isOpen ? '▸' : '▾';
+    });
+  });
+  const cleanToggle = document.getElementById('cfCleanToggle');
+  if (cleanToggle){
+    cleanToggle.addEventListener('click', () => {
+      const list = document.getElementById('cfCleanList');
+      const isOpen = list.style.display !== 'none';
+      list.style.display = isOpen ? 'none' : 'block';
+      const n = cleanToggle.dataset.count;
+      cleanToggle.textContent = (isOpen ? '▸ ' : '▾ ') + n + ' more check' + (n === '1' ? '' : 's') + ' passed — no issues';
+    });
+  }
+}
+
+function runAllChecks(){
+  const tweetTexts = [...tweetContainer.querySelectorAll('textarea')].map(ta => ta.value).filter(t => t.trim());
+  const platforms = [];
+  if (tweetTexts.length) platforms.push({ label:'Twitter / X thread', short:'Twitter', text: tweetTexts.join('\n\n') });
+  if (linkedinText.value.trim()) platforms.push({ label:'LinkedIn post', short:'LinkedIn', text: linkedinText.value });
+
+  if (!platforms.length){
+    checkallResultsEl.innerHTML = `<p class="muted">Nothing to check yet — both drafts are empty.</p>`;
+    checkallResultsEl.style.display = 'block';
+    return;
+  }
+
+  const rows = CF_CHECKS.map(chk => {
+    const perPlatform = platforms.map(p => ({ label:p.label, short:p.short, result: chk.run(p.text) }));
+    let status = null;
+    perPlatform.forEach(pp => { status = cfWorstStatus(status, pp.result.status); });
+    return { chk, perPlatform, status };
+  });
+
+  cfRenderResults(rows, platforms.length > 1);
+}
+
+checkallBtn.addEventListener('click', runAllChecks);
+
 input.addEventListener('input', () => {
   inputCount.textContent = input.value.length + ' characters';
   const dup = checkDuplicate(input.value);
@@ -600,6 +1525,8 @@ generateBtn.addEventListener('click', async () => {
     updateLinkedinCount();
     reviewCheck.checked = false;
     applyReviewGate();
+    checkallResultsEl.style.display = 'none';
+    checkallResultsEl.innerHTML = '';
 
     const voiceNote = checkVoiceConsistency((data.twitter || '') + '\n' + (data.linkedin || ''));
     if (voiceNote) {
