@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Are Your Emoji Helping or Distracting? — Free Tool by Loosecopy</title>
+<meta name="description" content="Paste your draft and check how many emoji you're using, whether they've turned into a bullet-point habit, and whether you're past the point most LinkedIn advice considers a 'light touch.'">
+<link rel="canonical" href="https://loosecopy.com/emoji-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/emoji-checker.html">
+<meta property="og:title" content="Are Your Emoji Helping or Distracting? — Free Tool by Loosecopy">
+<meta property="og:description" content="Paste your draft and check how many emoji you're using, whether they've turned into a bullet-point habit, and whether you're past the point most LinkedIn advice considers a 'light touch.'">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Are Your Emoji Helping or Distracting? — Free Tool by Loosecopy">
+<meta name="twitter:description" content="Paste your draft and check how many emoji you're using, whether they've turned into a bullet-point habit, and whether you're past the point most LinkedIn advice considers a 'light touch.'">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+  .header-links{display:flex;align-items:center;gap:16px;}
+  .support-link{font-size:0.85rem;color:var(--bluepencil);text-decoration:none;font-weight:600;}
+  .support-link:hover{text-decoration:underline;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:64ch;}
+
+  textarea{
+    width:100%; min-height:200px; padding:16px; border:1px solid var(--border);
+    background:var(--paper-card); border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-size:1rem; color:var(--ink); resize:vertical;
+  }
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  .muted{color:var(--ink-soft); font-size:0.88rem;}
+
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+
+  .results{display:none; margin-top:36px;}
+  .verdict{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
+  }
+  .verdict strong{display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+  .stat-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
+  .stat{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 16px; font-size:0.88rem; color:var(--ink-soft); flex:1 1 140px;
+  }
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
+
+  .emojilist{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; font-size:1.3rem;}
+  .emojichip{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:14px; padding:4px 12px;
+    font-size:1.1rem; display:inline-flex; align-items:center; gap:6px;
+  }
+  .emojichip .n{font-family:'Space Mono',monospace; font-size:0.72rem; color:var(--ink-soft);}
+  .emojichip.rep{border-color:#B5651D;}
+
+  .findings{margin-bottom:20px;}
+  .finding{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 14px; margin-bottom:8px; font-size:0.92rem;
+  }
+  .finding .ftag{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.7rem; text-transform:uppercase;
+    padding:2px 7px; border-radius:10px; margin-right:8px; border:1px solid var(--border); color:var(--ink-soft);
+  }
+  .finding .ftag.warn{border-color:var(--redline); color:var(--redline);}
+  .finding .note{display:block; margin-top:4px; color:var(--ink-soft); font-size:0.88rem;}
+
+  .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
+  .callout a{color:var(--bluepencil); font-weight:600;}
+  .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
+  .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px; line-height:1.6;}
+  .source-note a{color:var(--bluepencil);}
+</style>
+<!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <div class="header-links">
+      <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749; Support</a>
+      <a class="back" href="/">&larr; back to home</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Are your emoji helping or distracting?</h1>
+  <p class="lede">A couple of well-placed emoji can add warmth without costing you anything. Past a certain point, though — especially one at the start of every single line, standing in for a bullet — a lot of LinkedIn audiences read it as unprofessional or spammy rather than friendly. This counts what you've actually got and flags the emoji-as-bullet-point pattern specifically.</p>
+
+  <textarea id="input" placeholder="Paste your post here..."></textarea>
+  <div class="row">
+    <button class="btn-primary" id="checkBtn">Check my text</button>
+    <span class="muted" id="wordcount"></span>
+  </div>
+
+  <div class="results" id="results">
+    <div class="verdict" id="verdict"></div>
+    <div class="stat-row" id="statRow"></div>
+    <div class="emojilist" id="emojiList"></div>
+    <div class="findings" id="findings"></div>
+    <div class="callout" id="callout"></div>
+    <p class="source-note">"Light touch vs. heavy" is a judgment call repeated across most current LinkedIn writing advice, not a platform-enforced rule — see, e.g., <a href="https://thinkbespoke.com.au/re-thinking-using-emojis-on-linkedin/" target="_blank" rel="noopener">this LinkedIn-expert breakdown of when emoji help vs. hurt</a>. Treat the tiers below as a prompt to double-check, not a verdict.</p>
+  </div>
+
+  <p class="disclaimer">Counts any standard pictographic emoji (faces, objects, symbols like 🚀 or 📈). Plain punctuation, numbers, and letter-like symbols (%, +, #) are not counted as emoji.</p>
+</main>
+
+<script>
+(function(){
+  // 이모지 체커: 유니코드 Extended_Pictographic 속성으로 이모지만 정확히 탐지.
+  // "줄 시작마다 이모지 = 불릿 대용" 패턴을 별도로 집계. 정규식+집계만 사용.
+  const EMOJI_RE = /\p{Extended_Pictographic}/gu;
+  const LINE_START_RE = /^\p{Extended_Pictographic}/u;
+
+  function findEmoji(text){
+    return [...text.matchAll(EMOJI_RE)].map(m => m[0]);
+  }
+
+  function countLineStartEmoji(text){
+    const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+    return lines.filter(l => LINE_START_RE.test(l)).length;
+  }
+
+  function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function countVerdict(n){
+    if (n === 0) return ["No emoji.", "Not required at all — plenty of strong posts use zero. If you want a little visual break, one or two at natural points is common on LinkedIn."];
+    if (n <= 3) return ["A light touch.", "This is the range most LinkedIn advice treats as safe — enough to add warmth without competing with the point you're making."];
+    if (n <= 8) return ["Getting heavy.", "Past what most advice calls “light” — worth checking each one is doing something, not just filling space."];
+    return ["Very emoji-dense.", "This many tends to read as unprofessional or spammy to a lot of LinkedIn audiences — worth trimming to the handful that actually earn their place."];
+  }
+
+  const input = document.getElementById("input");
+  const wordcountEl = document.getElementById("wordcount");
+  const btn = document.getElementById("checkBtn");
+  const results = document.getElementById("results");
+  const verdictEl = document.getElementById("verdict");
+  const statRowEl = document.getElementById("statRow");
+  const emojiListEl = document.getElementById("emojiList");
+  const findingsEl = document.getElementById("findings");
+  const calloutEl = document.getElementById("callout");
+
+  input.addEventListener("input", () => {
+    const wc = (input.value.trim().match(/\S+/g) || []).length;
+    wordcountEl.textContent = wc + " words";
+  });
+
+  btn.addEventListener("click", () => {
+    const text = input.value;
+    if (!text.trim()) return;
+
+    const emoji = findEmoji(text);
+    const bulletLines = countLineStartEmoji(text);
+
+    const counts = {};
+    emoji.forEach(e => { counts[e] = (counts[e] || 0) + 1; });
+    const unique = Object.keys(counts);
+
+    const [headline, detail] = countVerdict(emoji.length);
+    verdictEl.innerHTML = `<strong>${headline}</strong>${detail}`;
+
+    statRowEl.innerHTML = `
+      <div class="stat"><b>${emoji.length}</b>total emoji</div>
+      <div class="stat"><b>${unique.length}</b>distinct emoji</div>
+      <div class="stat"><b>${bulletLines}</b>line${bulletLines === 1 ? '' : 's'} starting with one</div>
+    `;
+
+    emojiListEl.innerHTML = unique.map(e => {
+      const rep = counts[e] > 2 ? 'rep' : '';
+      return `<span class="emojichip ${rep}">${e}<span class="n">×${counts[e]}</span></span>`;
+    }).join('');
+
+    const findings = [];
+    if (bulletLines >= 3) {
+      findings.push(`<div class="finding"><span class="ftag warn">bullet habit</span>${bulletLines} lines start with an emoji<span class="note">Using an emoji as a stand-in bullet point works in small doses, but past 2–3 lines it starts to read like a listicle template rather than something someone actually wrote.</span></div>`);
+    }
+    const heavyRepeat = unique.filter(e => counts[e] >= 4);
+    heavyRepeat.forEach(e => {
+      findings.push(`<div class="finding"><span class="ftag warn">repeated</span>${e} used ${counts[e]} times<span class="note">Leaning on the same emoji this often reads as a tic more than a choice — worth swapping some out or cutting them.</span></div>`);
+    });
+    findingsEl.innerHTML = findings.join('');
+
+    calloutEl.innerHTML = `Emoji are seasoning, not the meal — the post still has to work with them removed entirely. <a href="/app.html">Back to the generator →</a>`;
+
+    results.style.display = "block";
+  });
+})();
+</script>
+
+</body>
+</html>

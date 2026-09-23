@@ -28,6 +28,20 @@ Loosecopy is a small, independently-run tool. It has no user accounts: pasted te
 - [Why Your Twitter Thread and LinkedIn Post Shouldn't Match](https://loosecopy.com/why-platforms-differ.html): Sourced guidance on platform-specific tone and length.
 - [Just Got Flagged as AI-Written?](https://loosecopy.com/got-flagged-as-ai.html): A practical guide for responding to a false-positive AI accusation.
 - [Pre-Publish Checklist](https://loosecopy.com/pre-publish-checklist.html): A 7-item interactive checklist to run before posting.
+- [Link-Placement Checker](https://loosecopy.com/link-placement-checker.html): Flags a link left in the body of a post instead of the first comment.
+- [Hashtag Checker](https://loosecopy.com/hashtag-checker.html): Checks hashtag count against commonly recommended ranges and flags duplicates or hard-to-read tags.
+- [Passive-Voice Checker](https://loosecopy.com/passive-voice-checker.html): Finds passive constructions in a draft and suggests the active version.
+- [Jargon Checker](https://loosecopy.com/jargon-checker.html): Flags corporate jargon and buzzwords that don't translate well for a global audience.
+- [Markdown Cleanup Checker](https://loosecopy.com/markdown-cleanup-checker.html): Catches markdown formatting that won't render correctly when pasted into Twitter or LinkedIn.
+- [Number & Unit Checker](https://loosecopy.com/number-unit-checker.html): Checks that big numbers and units convert correctly for a global audience.
+- [Privacy-Leak Checker](https://loosecopy.com/privacy-leak-checker.html): Flags anything in a draft you might not mean to publish.
+- [Readability Score](https://loosecopy.com/readability-score.html): Scores how hard a draft is to read.
+- [Reads Like a Translation](https://loosecopy.com/reads-like-a-translation.html): Flags phrasing that reads like a stiff translation rather than natural English.
+- [Sounds Generic](https://loosecopy.com/sounds-generic.html): Flags generic phrasing that could describe any product or post.
+- [Post Journal](https://loosecopy.com/post-journal.html): A private log, stored in your browser, of what you posted and what happened.
+- [Hook Checker](https://loosecopy.com/hook-checker.html): Checks your opening line for cliché openers and length that risks getting cut off.
+- [Emoji Checker](https://loosecopy.com/emoji-checker.html): Counts emoji usage and flags the emoji-as-bullet-point pattern.
+- [Wall-of-Text Checker](https://loosecopy.com/wall-of-text-checker.html): Flags paragraphs long enough, unbroken, to read as a wall of text.
 
 ## Research & reference
 

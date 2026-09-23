@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Your Opening Line Doing Its Job? — Free Tool by Loosecopy</title>
+<meta name="description" content="Paste your draft and check your opening line for tired cliché openers and length that risks getting cut off before anyone clicks 'see more' or opens the thread.">
+<link rel="canonical" href="https://loosecopy.com/hook-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/hook-checker.html">
+<meta property="og:title" content="Is Your Opening Line Doing Its Job? — Free Tool by Loosecopy">
+<meta property="og:description" content="Paste your draft and check your opening line for tired cliché openers and length that risks getting cut off before anyone clicks 'see more' or opens the thread.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Is Your Opening Line Doing Its Job? — Free Tool by Loosecopy">
+<meta name="twitter:description" content="Paste your draft and check your opening line for tired cliché openers and length that risks getting cut off before anyone clicks 'see more' or opens the thread.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+  .header-links{display:flex;align-items:center;gap:16px;}
+  .support-link{font-size:0.85rem;color:var(--bluepencil);text-decoration:none;font-weight:600;}
+  .support-link:hover{text-decoration:underline;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:64ch;}
+
+  textarea{
+    width:100%; min-height:200px; padding:16px; border:1px solid var(--border);
+    background:var(--paper-card); border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-size:1rem; color:var(--ink); resize:vertical;
+  }
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  .muted{color:var(--ink-soft); font-size:0.88rem;}
+
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+
+  .results{display:none; margin-top:36px;}
+  .verdict{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
+  }
+  .verdict strong{display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+
+  .openingbox{
+    background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--bluepencil);
+    border-radius:2px; padding:14px 16px; margin-bottom:20px; font-family:'Space Mono',monospace;
+    font-size:0.95rem; line-height:1.6; white-space:pre-wrap; word-break:break-word;
+  }
+  .openingbox .caplabel{
+    display:block; font-family:'Public Sans',sans-serif; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.03em; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .openingbox mark{background:var(--redline-wash); color:var(--ink); border-radius:2px; padding:0 2px;}
+
+  .stat-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
+  .stat{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 16px; font-size:0.88rem; color:var(--ink-soft); flex:1 1 140px;
+  }
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
+
+  .findings{margin-bottom:20px;}
+  .finding{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 14px; margin-bottom:8px; font-size:0.92rem;
+  }
+  .finding .ftag{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.7rem; text-transform:uppercase;
+    padding:2px 7px; border-radius:10px; margin-right:8px; border:1px solid var(--border); color:var(--ink-soft);
+  }
+  .finding .ftag.warn{border-color:var(--redline); color:var(--redline);}
+  .finding .ftag.good{border-color:var(--bluepencil); color:var(--bluepencil);}
+  .finding .note{display:block; margin-top:4px; color:var(--ink-soft); font-size:0.88rem;}
+
+  .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
+  .callout a{color:var(--bluepencil); font-weight:600;}
+  .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
+  .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px; line-height:1.6;}
+  .source-note a{color:var(--bluepencil);}
+</style>
+<!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <div class="header-links">
+      <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749; Support</a>
+      <a class="back" href="/">&larr; back to home</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Is your opening line doing its job?</h1>
+  <p class="lede">LinkedIn cuts a post short after roughly the first couple of lines, behind a "see more" — and a Twitter/X thread's first tweet is the only thing most people ever see before deciding whether to open the rest. This pulls out just that first line and checks it for the two most common ways it quietly fails: a tired opener that a reader has seen a hundred times, or a line so long it never gets to the point before it's cut off.</p>
+
+  <textarea id="input" placeholder="Paste your post or thread here..."></textarea>
+  <div class="row">
+    <button class="btn-primary" id="checkBtn">Check my opening line</button>
+    <span class="muted" id="wordcount"></span>
+  </div>
+
+  <div class="results" id="results">
+    <div class="verdict" id="verdict"></div>
+    <div class="openingbox" id="openingBox"></div>
+    <div class="stat-row" id="statRow"></div>
+    <div class="findings" id="findings"></div>
+    <div class="callout" id="callout"></div>
+    <p class="source-note">The "first couple of lines" truncation point is well-documented LinkedIn UI behavior, not an exact fixed number — it shifts a little by device and font size, so treat length guidance here as a rule of thumb. See, e.g., <a href="https://www.teract.ai/resources/linkedin-algorithm-2026" target="_blank" rel="noopener">this 2026 LinkedIn algorithm breakdown</a> and <a href="https://www.ship30for30.com/post/how-to-write-viral-twitter-thread-hooks-with-6-clear-examples" target="_blank" rel="noopener">Ship 30 for 30's thread-hook guide</a> for the same advice applied to X/Twitter threads.</p>
+  </div>
+
+  <p class="disclaimer">This only judges the opening line mechanically — its length and whether it matches a list of common cliché openers. It can't tell you if your hook is actually interesting; that part's still on you. Thread numbering like "1/" is stripped automatically before checking.</p>
+</main>
+
+<script>
+(function(){
+  // 훅(첫 줄) 체커: 링크드인 "더보기" 절단 지점(대략 몇 줄, 기기별로 다름)과
+  // 흔한 진부한 오프닝 문구 리스트 기반. 정규식+길이 계산만 사용, 별도 AI 호출 없음.
+  const CLICHE_OPENERS = [
+    "in today's fast-paced world","in today's digital age","i'm excited to announce",
+    "i'm thrilled to announce","i'm proud to announce","i'm happy to announce",
+    "i'm happy to share","i'm pleased to announce","i wanted to share","just wanted to share",
+    "i've been thinking about","i have been thinking about","let's talk about","lets talk about",
+    "have you ever wondered","in this post","in this article","in this thread",
+    "a lot has been said about","we all know that","as we all know","it's no secret that",
+    "its no secret that","we live in a world where","picture this","so i did a thing",
+    "big news","exciting news","huge announcement"
+  ];
+  const ABBR_STOP = new Set(['mr','mrs','ms','dr','prof','sr','jr','vs','etc','e.g','i.e','u.s','u.k','inc','co','ltd','st']);
+
+  function findSentenceEnd(t){
+    const re = /[.!?](\s|$)/g;
+    let m;
+    while ((m = re.exec(t)) !== null){
+      const end = m.index;
+      const before = t.slice(0, end);
+      const wordMatch = before.match(/([A-Za-z]+)$/);
+      const word = wordMatch ? wordMatch[1].toLowerCase() : '';
+      if (ABBR_STOP.has(word)) continue;
+      return end + 1;
+    }
+    return -1;
+  }
+
+  function getOpeningLine(text){
+    let t = text.trim().replace(/^\(?\d{1,2}[\/.)]\s*/, '');
+    const newlineIdx = t.indexOf('\n');
+    const sentenceIdx = findSentenceEnd(t);
+    let cut;
+    if (newlineIdx === -1 && sentenceIdx === -1) cut = t.length;
+    else if (newlineIdx === -1) cut = sentenceIdx;
+    else if (sentenceIdx === -1) cut = newlineIdx;
+    else cut = Math.min(newlineIdx, sentenceIdx);
+    return t.slice(0, cut).trim();
+  }
+
+  function findClicheOpener(line){
+    const lower = line.toLowerCase();
+    return CLICHE_OPENERS.find(p => lower.startsWith(p) || lower.includes(p)) || null;
+  }
+
+  function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function analyzeHook(text){
+    const line = getOpeningLine(text);
+    if (!line) return { line: '', tier: 'empty' };
+    const cliche = findClicheOpener(line);
+    const len = line.length;
+    let tier;
+    if (len < 10) tier = 'short';
+    else if (cliche) tier = 'cliche';
+    else if (len > 160) tier = 'long';
+    else if (len > 100) tier = 'gettingLong';
+    else tier = 'good';
+    return { line, tier, cliche, len, hasDigit: /\d/.test(line), endsQOrBang: /[?!]$/.test(line) };
+  }
+
+  const input = document.getElementById("input");
+  const wordcountEl = document.getElementById("wordcount");
+  const btn = document.getElementById("checkBtn");
+  const results = document.getElementById("results");
+  const verdictEl = document.getElementById("verdict");
+  const openingBoxEl = document.getElementById("openingBox");
+  const statRowEl = document.getElementById("statRow");
+  const findingsEl = document.getElementById("findings");
+  const calloutEl = document.getElementById("callout");
+
+  input.addEventListener("input", () => {
+    const wc = (input.value.trim().match(/\S+/g) || []).length;
+    wordcountEl.textContent = wc + " words";
+  });
+
+  btn.addEventListener("click", () => {
+    const text = input.value;
+    if (!text.trim()) return;
+
+    const r = analyzeHook(text);
+
+    if (r.tier === 'empty'){
+      verdictEl.innerHTML = `<strong>Nothing to check yet.</strong>Paste a draft above first.`;
+      openingBoxEl.innerHTML = '';
+      statRowEl.innerHTML = '';
+      findingsEl.innerHTML = '';
+      calloutEl.innerHTML = '';
+      results.style.display = "block";
+      return;
+    }
+
+    const verdictText = {
+      short:      ["Too short to judge.", "That's under 10 characters — check nothing got cut off by accident, then try again."],
+      cliche:     ["Starts with a familiar opener.", "This exact kind of line shows up constantly — readers' eyes slide right past it. Cut straight to the specific claim instead."],
+      long:       ["Opening line runs long.", "This is likely to get cut off by “see more” (or lost past the first tweet) before it earns the click."],
+      gettingLong:["Getting long for an opener.", "Not disqualifying, but tightening it would help it land before a reader's attention (or the platform's truncation) cuts in."],
+      good:       ["Reads fine as an opener.", "Short enough to land before any truncation, and it's not one of the common tired openers."]
+    }[r.tier];
+
+    verdictEl.innerHTML = `<strong>${verdictText[0]}</strong>${verdictText[1]}`;
+
+    let displayLine = escapeHtml(r.line);
+    if (r.cliche) {
+      const idx = r.line.toLowerCase().indexOf(r.cliche);
+      if (idx !== -1) {
+        const before = escapeHtml(r.line.slice(0, idx));
+        const match = escapeHtml(r.line.slice(idx, idx + r.cliche.length));
+        const after = escapeHtml(r.line.slice(idx + r.cliche.length));
+        displayLine = `${before}<mark>${match}</mark>${after}`;
+      }
+    }
+    openingBoxEl.innerHTML = `<span class="caplabel">What we're judging</span>${displayLine}`;
+
+    statRowEl.innerHTML = `
+      <div class="stat"><b>${r.len}</b>characters</div>
+      <div class="stat"><b>${r.cliche ? 'Yes' : 'No'}</b>cliché opener</div>
+      <div class="stat"><b>${r.hasDigit || r.endsQOrBang ? 'Yes' : 'No'}</b>hook signal (number/question)</div>
+    `;
+
+    const findings = [];
+    if (r.tier === 'cliche') {
+      findings.push(`<div class="finding"><span class="ftag warn">cliché</span>Matches: "${escapeHtml(r.cliche)}"<span class="note">Try deleting it entirely and starting from the sentence after it — that's usually the real hook, buried under the throat-clearing.</span></div>`);
+    }
+    if (r.tier === 'long' || r.tier === 'gettingLong') {
+      findings.push(`<div class="finding"><span class="ftag warn">length</span>${r.len} characters before the first natural break<span class="note">Aim to say less before the first line break or period — the goal is a reason to keep reading, not the whole thought.</span></div>`);
+    }
+    if ((r.tier === 'good') && (r.hasDigit || r.endsQOrBang)) {
+      findings.push(`<div class="finding"><span class="ftag good">nice</span>This opener has a concrete signal working for it<span class="note">${r.hasDigit ? 'A number up front' : 'Ending on a question'} tends to earn more attention than a flat statement.</span></div>`);
+    }
+    findingsEl.innerHTML = findings.join('');
+
+    calloutEl.innerHTML = `The opening line is one lever, not the whole post — it still has to deliver on what it promises. <a href="/app.html">Back to the generator →</a>`;
+
+    results.style.display = "block";
+  });
+})();
+</script>
+
+</body>
+</html>
