@@ -59,7 +59,7 @@
     color:var(--ink);
     resize:vertical;
   }
-  .count-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
+  .count-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;position:relative;}
   .muted{color:var(--ink-soft);font-size:0.88rem;}
 
   .btn-primary{
@@ -105,13 +105,27 @@
     font-family:'Public Sans',sans-serif;
   }
   .copy-btn:hover, .voice-copy-btn:hover{border-color:var(--ink);}
-  .copy-btn:disabled{color:var(--ink-soft); cursor:not-allowed; border-color:var(--border);}
+  .copy-btn:disabled, .copy-btn.is-locked{color:var(--ink-soft); cursor:not-allowed; border-color:var(--border);}
+
+  .copy-nudge{
+    position:absolute; bottom:100%; right:0; margin-bottom:6px;
+    background:var(--ink); color:var(--paper-card); font-size:0.78rem;
+    padding:5px 10px; border-radius:3px; white-space:nowrap;
+    opacity:0; transform:translateY(4px); transition:opacity 0.15s ease, transform 0.15s ease;
+    pointer-events:none; z-index:5;
+  }
+  .copy-nudge.show{opacity:1; transform:translateY(0);}
 
   .review-gate{
     display:flex; align-items:flex-start; gap:10px; margin-bottom:10px;
     font-size:0.92rem; color:var(--ink); cursor:pointer;
   }
   .review-gate input{margin-top:3px;}
+  @keyframes gateFlash{
+    0%, 100%{ box-shadow:0 0 0 0 transparent; }
+    25%, 75%{ box-shadow:0 0 0 5px var(--redline-wash); }
+  }
+  .review-gate.gate-flash{ animation:gateFlash 1.4s ease; border-radius:3px; }
   .ai-check-link{color:var(--ink-soft); font-size:0.85rem; margin:0 0 28px;}
   .ai-check-link a{color:var(--bluepencil);}
 
@@ -461,9 +475,33 @@ function checkVoiceConsistency(draftText){
 // (원클릭 자동 게시 금지 구조의 핵심 — 새로 생성될 때마다 다시 체크해야 함)
 function applyReviewGate(){
   const enabled = reviewCheck.checked;
-  document.querySelectorAll('.copy-btn').forEach(btn => { btn.disabled = !enabled; });
+  // Buttons are kept clickable (not a real `disabled`) so a click while unchecked
+  // can still be caught and turned into a nudge back to the checkbox — see nudgeReviewGate().
+  document.querySelectorAll('.copy-btn').forEach(btn => { btn.classList.toggle('is-locked', !enabled); });
 }
 reviewCheck.addEventListener('change', applyReviewGate);
+
+function nudgeReviewGate(btn){
+  const row = btn.closest('.count-row') || btn.parentElement;
+  const existing = row.querySelector('.copy-nudge');
+  if (existing) existing.remove();
+  const msg = document.createElement('span');
+  msg.className = 'copy-nudge';
+  msg.textContent = 'Check the box above first ↑';
+  row.appendChild(msg);
+  requestAnimationFrame(() => msg.classList.add('show'));
+  setTimeout(() => {
+    msg.classList.remove('show');
+    setTimeout(() => msg.remove(), 200);
+  }, 1800);
+
+  const gate = reviewCheck.closest('.review-gate');
+  reviewCheck.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  gate.classList.remove('gate-flash');
+  void gate.offsetWidth;
+  gate.classList.add('gate-flash');
+  setTimeout(() => gate.classList.remove('gate-flash'), 1600);
+}
 
 // 초안 수정률 추적: 원문을 서버에 보내지 않고 "복사 시점에 수정됐는지" boolean만 보낸다.
 // 실패해도(KV 미연결 등) 복사 자체엔 절대 영향 주지 않음 — fire-and-forget.
@@ -1464,8 +1502,9 @@ function renderTweets(threadText) {
     const copyBtn = document.createElement('button');
     copyBtn.className = 'copy-btn';
     copyBtn.textContent = 'Copy';
-    copyBtn.disabled = !reviewCheck.checked;
+    if (!reviewCheck.checked) copyBtn.classList.add('is-locked');
     copyBtn.addEventListener('click', () => {
+      if (!reviewCheck.checked) { nudgeReviewGate(copyBtn); return; }
       trackCopy('twitter', ta.value.trim() !== ta.dataset.original.trim());
       navigator.clipboard.writeText(ta.value);
     });
@@ -1486,6 +1525,7 @@ linkedinText.addEventListener('input', updateLinkedinCount);
 
 document.querySelectorAll('.copy-btn[data-copy]').forEach(btn => {
   btn.addEventListener('click', () => {
+    if (!reviewCheck.checked) { nudgeReviewGate(btn); return; }
     const el = document.getElementById(btn.dataset.copy);
     if (btn.dataset.copy === 'linkedinText') {
       trackCopy('linkedin', el.value.trim() !== (el.dataset.original || '').trim());
