@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loosecopy — One draft. Every platform. Still sounds like you.</title>
-<meta name="description" content="Paste a blog post or your notes. Get a Twitter thread and a LinkedIn post drafted in minutes — made for when English isn't your first language, so you don't have to guess whether it sounds right.">
+<title>Loosecopy — 14 free checks before you hit publish</title>
+<meta name="description" content="14 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -14,15 +14,15 @@
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://loosecopy.com">
-<meta property="og:title" content="Loosecopy — One draft. Every platform. Still sounds like you.">
-<meta property="og:description" content="Paste a blog post or your notes. Get a Twitter thread and a LinkedIn post drafted in minutes — made for when English isn't your first language, so you don't have to guess whether it sounds right.">
+<meta property="og:title" content="Loosecopy — 14 free checks before you hit publish">
+<meta property="og:description" content="14 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Loosecopy — One draft. Every platform. Still sounds like you.">
-<meta name="twitter:description" content="Paste a blog post or your notes. Get a Twitter thread and a LinkedIn post drafted in minutes — made for when English isn't your first language, so you don't have to guess whether it sounds right.">
+<meta name="twitter:title" content="Loosecopy — 14 free checks before you hit publish">
+<meta name="twitter:description" content="14 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
 <meta name="twitter:image" content="https://loosecopy.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -258,6 +258,25 @@
   .compare .lbl{font-size:0.85rem;color:var(--ink-soft);margin-bottom:10px;}
   .compare p{font-family:'Space Mono',monospace;font-size:0.9rem;line-height:1.7;margin:0;color:#3d4144;}
 
+  .checks h2{font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:8px;}
+  .checks .intro{color:var(--ink-soft);max-width:62ch;margin-bottom:26px;}
+  .checks-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .check-card{
+    display:block;
+    padding:20px 22px;
+    background:var(--paper-card);
+    border:1px solid var(--border);
+    border-radius:2px;
+    text-decoration:none;
+    color:var(--ink);
+    transition:border-color 0.15s;
+  }
+  .check-card:hover{border-color:var(--bluepencil);}
+  .check-card .lbl{font-family:'Fraunces',serif;font-size:1.05rem;margin-bottom:8px;color:var(--ink);}
+  .check-card p{margin:0;color:var(--ink-soft);font-size:0.92rem;line-height:1.55;}
+
+  .honest h2{font-size:clamp(1.4rem,2.6vw,1.9rem);margin-bottom:4px;}
+
   .pricing h2{font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:30px;}
   .plans{display:flex;flex-direction:column;max-width:560px;}
   .plan{
@@ -284,6 +303,7 @@
     .hero .wrap{grid-template-columns:1fr;gap:40px;}
     .manuscript{transform:rotate(0deg);}
     .different .wrap{grid-template-columns:1fr;}
+    .checks-grid{grid-template-columns:1fr;}
   }
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
@@ -295,7 +315,7 @@
   <div class="wrap">
     <div class="wordmark">Loose<em>·</em>copy</div>
     <div style="display:flex;align-items:center;gap:18px;">
-      <a class="nav-cta" href="app.html">Try it &rarr;</a>
+      <a class="nav-cta" href="app.html">Check it &rarr;</a>
       <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749; Support</a>
       <a class="support-link" href="#join">Get updates</a>
     </div>
@@ -305,10 +325,10 @@
 <section class="hero">
   <div class="wrap">
     <div>
-      <h1>One draft.<br>Every platform.<br>Still sounds like you.</h1>
-      <p class="sub">Paste a blog post or your rough notes. Get a Twitter thread and a LinkedIn post drafted in minutes — made for when English isn't your first language, so you don't have to guess whether a draft actually sounds right.</p>
-      <a class="btn-primary hero-primary-cta" href="app.html">Try it free, no signup &rarr;</a>
-      <p class="form-note">Free to use. Paste something, get two drafts back in seconds.</p>
+      <h1>Draft with AI.<br>Check without it.</h1>
+      <p class="sub">Paste anything you're about to post — written by you, by AI, or both. Run it through 14 free checks that don't call an AI model at all: privacy leaks, phrasing that sounds like AI wrote it, readability, currency mix-ups, leftover markdown, and more. Want a first draft too? There's a free repurposing tool for that as well.</p>
+      <a class="btn-primary hero-primary-cta" href="app.html">Check your draft free, no signup &rarr;</a>
+      <p class="form-note">Free to use. Paste something, see what needs fixing in seconds.</p>
 
       <div class="hero-secondary">
         <p class="lede-small" id="formNote">Want to hear about new free tools as they ship? Leave your email.</p>
@@ -339,19 +359,19 @@
     <div class="steps">
       <div class="step">
         <div class="num">1</div>
-        <div><h3>Paste a link or your notes</h3><p>A blog post, an article, even a rough voice-to-text dump.</p></div>
+        <div><h3>Paste your draft</h3><p>Yours, AI's, or a mix of both — a blog post, a rough note, anything you're about to post.</p></div>
       </div>
       <div class="step">
         <div class="num">2</div>
-        <div><h3>Get real drafts in seconds</h3><p>A Twitter thread and a LinkedIn post, pulled from your actual points.</p></div>
+        <div><h3>Run the free checks</h3><p>14 rule-based checks — privacy leaks, AI-sounding phrasing, readability, and more. No AI model involved in the checking itself.</p></div>
       </div>
       <div class="step">
         <div class="num">3</div>
-        <div><h3>Make it yours</h3><p>Edit right in the browser, with live character counts for each platform.</p></div>
+        <div><h3>Fix what's flagged</h3><p>Each check explains why it matters and how to fix it. You decide what actually changes.</p></div>
       </div>
       <div class="step">
         <div class="num">4</div>
-        <div><h3>Publish it yourself</h3><p>Copy, disclose if needed, and post in your own voice.</p></div>
+        <div><h3>Publish it yourself</h3><p>Nothing here auto-posts, ever. Copy, disclose if needed, and post in your own voice.</p></div>
       </div>
     </div>
   </div>
@@ -373,6 +393,41 @@
       Curious if your own writing already reads like the box on the left?
       <a href="ai-authenticity-checker.html">Try our free AI-checker &rarr;</a>
     </p>
+  </div>
+</section>
+
+<section class="checks rule">
+  <div class="wrap">
+    <h2>14 checks. Zero AI calls.</h2>
+    <p class="intro">Everything below runs on plain code — regex, checksums, formulas — the same way every single time. No model, no "probably right." A few of them:</p>
+    <div class="checks-grid">
+      <a class="check-card" href="privacy-leak-checker.html">
+        <div class="lbl">Privacy leak check</div>
+        <p>Catches emails, phone numbers, API keys, and Luhn-valid card numbers before you post them by accident.</p>
+      </a>
+      <a class="check-card" href="ai-authenticity-checker.html">
+        <div class="lbl">Sounds-like-AI check</div>
+        <p>Flags the phrasing patterns that get posts called out as AI-written — the thing that started this whole site.</p>
+      </a>
+      <a class="check-card" href="reads-like-a-translation.html">
+        <div class="lbl">Reads-like-a-translation check</div>
+        <p>Catches the overly formal connectors and stiff phrasing that read as translated, not casual.</p>
+      </a>
+      <a class="check-card" href="number-unit-checker.html">
+        <div class="lbl">Numbers &amp; currency check</div>
+        <p>Converts 만/억/lakh/crore and flags currency symbols a global audience won't recognize.</p>
+      </a>
+    </div>
+    <p style="margin-top:22px;font-size:0.92rem;color:var(--ink-soft);">
+      See all 14 (readability, markdown cleanup, jargon, duplicate posts, and more) — <a href="app.html">open the full tool &rarr;</a>
+    </p>
+  </div>
+</section>
+
+<section class="honest rule">
+  <div class="wrap" style="max-width:72ch;">
+    <h2>Why not just ask ChatGPT to check this?</h2>
+    <p style="color:var(--ink-soft);margin-top:14px;">Honestly — for a one-off question, it can help. What it won't do: run the same checklist the same way every time without you re-explaining it, catch a stray card number or API key with the same logic every time instead of a best guess, or remember your last posts so it can flag when you're repeating yourself. None of the checks on this site call an AI model — which is the point, when what you're checking for is a privacy leak or a stray digit, not a matter of taste.</p>
   </div>
 </section>
 
