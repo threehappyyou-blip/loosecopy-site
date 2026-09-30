@@ -198,6 +198,10 @@
   .cf-detail{color:var(--ink);}
   .cf-marked{white-space:pre-wrap; background:var(--paper); border:1px solid var(--border); border-radius:2px; padding:10px 12px; font-size:0.87rem; line-height:1.7; margin-top:8px;}
   .cf-marked mark{padding:0 2px; border-radius:2px;}
+  .cf-marked mark.hit-emdash{background:var(--bluepencil-wash);}
+  .cf-marked mark.hit-contrast{background:var(--redline-wash);}
+  .cf-marked mark.hit-stat{background:var(--redline-wash);}
+  .cf-marked mark.hit-ok{background:#DEEAE0;}
   .cf-mark-a, .cf-mark-noun, .cf-mark-contact{background:#FCE9B8; border-bottom:2px solid #D9A63C;}
   .cf-mark-num{background:#DDE9D8; border-bottom:2px solid #6E9C5E;}
   .cf-mark-date, .cf-mark-format, .cf-mark-acro{background:#DDE6EA; border-bottom:2px solid #3A5A6E;}
@@ -255,6 +259,12 @@
   <p class="input-tip" id="inputTip"></p>
   <p class="muted" style="margin-top:6px;"><a href="/before-you-paste.html" target="_blank" rel="noopener">5 minutes of prep before you paste, so you edit less after &rarr;</a></p>
 
+  <div class="checkall-box" id="instantCheckBox">
+    <button type="button" class="checkall-btn" id="instantCheckBtn">Just check it — no AI, instant</button>
+    <span class="muted checkall-hint">Runs 16 quick mechanical checks on what you pasted above. No signup, no waiting, nothing leaves your browser — this is the same engine as the free checker pages, just without needing to visit each one separately.</span>
+    <div class="checkall-results" id="instantResults"></div>
+  </div>
+
   <div class="voice-box" id="voiceBox">
     <div class="voice-collapsed" id="voiceCollapsed">
       <span id="voiceStatus">Add your voice (optional) — so drafts sound like you, not just correct.</span>
@@ -296,8 +306,10 @@
     </label>
     <div class="checkall-box" id="checkallBox">
       <button type="button" class="checkall-btn" id="checkallBtn">Check everything</button>
-      <span class="muted checkall-hint">Runs 14 quick mechanical checks against both drafts below — nothing leaves your browser.</span>
+      <span class="muted checkall-hint">Runs 16 quick mechanical checks against both drafts below — nothing leaves your browser.</span>
       <div class="checkall-results" id="checkallResults"></div>
+      <button type="button" class="btn-secondary-sm" id="saveJournalBtn" style="display:none; margin-top:12px;">Save this to your journal</button>
+      <p class="voice-msg" id="saveJournalMsg" style="display:none;"></p>
     </div>
     <p class="ai-check-link">Other resources: <a href="/make-it-sound-like-you.html" target="_blank" rel="noopener">make it sound like you</a> · <a href="/ai-disclosure-helper.html" target="_blank" rel="noopener">grab a disclosure line</a> · <a href="/pre-publish-checklist.html" target="_blank" rel="noopener">final checklist</a> · <a href="/fact-check-ai-draft.html" target="_blank" rel="noopener">fact-check in 5 min</a> · <a href="/why-platforms-differ.html" target="_blank" rel="noopener">why these read differently</a> · <a href="/post-journal.html" target="_blank" rel="noopener">log this post</a></p>
     <p class="voice-check-note" id="voiceCheckNote" style="display:none;"></p>
@@ -349,6 +361,12 @@ const voiceMsg = document.getElementById('voiceMsg');
 const voiceCheckNoteEl = document.getElementById('voiceCheckNote');
 const checkallBtn = document.getElementById('checkallBtn');
 const checkallResultsEl = document.getElementById('checkallResults');
+const instantCheckBtn = document.getElementById('instantCheckBtn');
+const instantResultsEl = document.getElementById('instantResults');
+const saveJournalBtn = document.getElementById('saveJournalBtn');
+const saveJournalMsg = document.getElementById('saveJournalMsg');
+let lastCheckPlatforms = null;
+let lastCheckCounts = null;
 const VOICE_KEY = 'lc_voice_profile';
 
 // ---- 말투 기억 (계정/서버 없이, 이 브라우저에만) ----
@@ -597,12 +615,13 @@ function checkNumberConsistency(draftText){
 }
 
 // ============================================================================
-// Unified "Check everything" engine — ported, tier-by-tier, from the 14
+// Unified "Check everything" engine — ported, tier-by-tier, from the 16
 // standalone checker pages already live on the site (ai-authenticity-checker,
 // reads-like-a-translation, sounds-generic, number-unit-checker,
 // markdown-cleanup-checker, privacy-leak-checker, readability-score,
 // jargon-checker, link-placement-checker, passive-voice-checker,
-// hashtag-checker, hook-checker, emoji-checker, wall-of-text-checker).
+// hashtag-checker, hook-checker, emoji-checker, wall-of-text-checker,
+// structural-ai-tell-checker, unattributed-stat-checker).
 // Each standalone page keeps its own copy of this logic (so it keeps working
 // as its own linkable, indexable page) — if you fix a false positive in one,
 // consider fixing it here too, and vice versa.
@@ -1336,6 +1355,124 @@ function cfCheckWallOfText(text){
   return { status, headline, detail, count: longOnes.length, markedHtml:null, extraHtml:null };
 }
 
+// ---- 15. Does your writing have a rhythm, or a pattern? (structural-ai-tell-checker.html) ----
+function cfCheckStructural(text){
+  const t = String(text || '');
+  const wordsAll = t.match(/[A-Za-z']+/g) || [];
+  if (wordsAll.length < 20) {
+    return { status:'good', headline:'Too short to check.', detail:'Needs a bit more text for rhythm patterns to mean anything.', count:0, markedHtml:null, extraHtml:null };
+  }
+
+  const sentences = (t.match(/[^.!?\n]+[.!?]*/g) || []).map(s => s.trim()).filter(Boolean);
+  const wordCounts = sentences.map(s => (s.match(/[A-Za-z']+/g) || []).length).filter(n => n > 0);
+
+  let cv = null, meanLen = null;
+  if (wordCounts.length >= 5) {
+    meanLen = wordCounts.reduce((a,b)=>a+b,0) / wordCounts.length;
+    const variance = wordCounts.reduce((a,b)=>a+(b-meanLen)*(b-meanLen),0) / wordCounts.length;
+    cv = meanLen > 0 ? Math.sqrt(variance) / meanLen : 0;
+  }
+
+  const emDashCount = (t.match(/—/g) || []).length;
+  const emDashPer100 = (emDashCount / wordsAll.length) * 100;
+
+  const contrastRegex = /\b(?:not|isn'?t|is not|wasn'?t|aren'?t|weren'?t)\s+(?:just|only|simply)\b[^.!?]{0,80}?\b(?:it'?s|it is|but|they'?re|they are|this is|that'?s|that is)\b/gi;
+  const contrastMatches = [...t.matchAll(contrastRegex)];
+
+  const flags = [];
+  if (cv !== null && cv < 0.3) flags.push('uniform');
+  if (emDashCount >= 3 && emDashPer100 >= 2) flags.push('emdash');
+  if (contrastMatches.length >= 2) flags.push('contrast');
+
+  const flagText = {
+    uniform: 'sentences run a very consistent length',
+    emdash: `em dashes show up ${emDashCount} times`,
+    contrast: `the "not just X — it's Y" line shows up ${contrastMatches.length} times`,
+  };
+
+  let status, headline, detail;
+  if (flags.length === 0) {
+    status = 'good';
+    headline = 'No structural AI patterns stand out.';
+    detail = 'Sentence rhythm, dashes, and phrasing look naturally mixed. (Not proof either way — just nothing here to flag.)';
+  } else {
+    status = flags.length >= 2 ? 'warn' : 'notice';
+    headline = flags.length >= 2 ? `${flags.length} structural patterns showed up together.` : 'One structural pattern showed up.';
+    detail = flags.map(f => flagText[f]).join('; ') + ". Worth a skim — these show up a lot in AI output, but uniform sentences or an occasional dash aren't proof by themselves.";
+  }
+
+  const hits = cfDedupeOverlaps([
+    ...[...t.matchAll(/—/g)].map(m => ({ index: m.index, text: m[0], cls: 'hit-emdash' })),
+    ...contrastMatches.map(m => ({ index: m.index, text: m[0], cls: 'hit-contrast' })),
+  ]);
+  const markedHtml = hits.length ? cfMarkHtml(t, hits) : null;
+
+  const statBits = [];
+  if (meanLen !== null) statBits.push(`<div class="cf-score"><b>${meanLen.toFixed(1)}</b><span>avg words/sentence</span></div>`);
+  statBits.push(`<div class="cf-score"><b>${emDashCount}</b><span>em dashes</span></div>`);
+  statBits.push(`<div class="cf-score"><b>${contrastMatches.length}</b><span>"not just X" lines</span></div>`);
+  const extraHtml = `<div class="cf-score-row">${statBits.join('')}</div>`;
+
+  return { status, headline, detail, count: flags.length, markedHtml, extraHtml };
+}
+
+// ---- 16. Where did that number come from? (unattributed-stat-checker.html) ----
+function cfCheckUnattributedStat(text){
+  const t = String(text || '');
+  if (cfWordCount(t) < 10) {
+    return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  }
+
+  const statRegex = /\b\d+(?:\.\d+)?\s?%|\b\d+\s+(?:out of|in)\s+\d+\b|\b\d+(?:\.\d+)?x\b/gi;
+  const attributionRegex = /\b(?:according to|source|study|studies|survey(?:ed)?|research(?:ers)?|report(?:ed|s)?|data from|found that|analysis (?:by|from)|cited|via|per\s+[A-Z]|https?:\/\/|www\.)/i;
+
+  const matches = [...t.matchAll(statRegex)];
+  if (!matches.length) {
+    return { status:'good', headline:'No statistics to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  }
+
+  // Attribution is checked per-sentence (current sentence + the one just
+  // before it), not a raw character window or the sentence after — see
+  // unattributed-stat-checker.html for the full rationale.
+  const sentences = [...t.matchAll(/[^.!?\n]+[.!?]*/g)];
+  function sentenceIndexFor(pos){
+    for (let i = sentences.length - 1; i >= 0; i--){
+      if (sentences[i].index <= pos) return i;
+    }
+    return 0;
+  }
+
+  let unattributedCount = 0;
+  const hits = [];
+  matches.forEach(m => {
+    const si = sentenceIndexFor(m.index);
+    const windowText = [sentences[si-1], sentences[si]].filter(Boolean).map(s => s[0]).join(' ');
+    const attributed = attributionRegex.test(windowText);
+    if (!attributed) {
+      unattributedCount++;
+      hits.push({ index: m.index, text: m[0], cls: 'hit-stat' });
+    }
+  });
+
+  let status, headline, detail;
+  if (unattributedCount === 0) {
+    status = 'good';
+    headline = `${matches.length} statistic${matches.length===1?'':'s'} found, all with a source nearby.`;
+    detail = 'Nice — a number with a source next to it reads as more trustworthy, and it\'s one less thing an AI-hallucination worry can attach to.';
+  } else if (unattributedCount < matches.length) {
+    status = 'notice';
+    headline = `${unattributedCount} of ${matches.length} statistics have no source nearby.`;
+    detail = 'A quick "according to..." or a link next to each number would cover the rest.';
+  } else {
+    status = 'warn';
+    headline = `${matches.length} statistic${matches.length===1?'':'s'}, none with a source nearby.`;
+    detail = 'Doesn\'t mean the numbers are wrong — just that nothing here backs them up yet. Worth adding where each one came from, especially if an AI draft suggested it.';
+  }
+
+  const markedHtml = hits.length ? cfMarkHtml(t, cfDedupeOverlaps(hits)) : null;
+  return { status, headline, detail, count: unattributedCount, markedHtml, extraHtml: null };
+}
+
 // ---- Registry (panel order) ----
 const CF_CHECKS = [
   { id:'hook',        label:'Opening line',     more:'/hook-checker.html',             run:cfCheckHook },
@@ -1352,6 +1489,8 @@ const CF_CHECKS = [
   { id:'markdown',    label:'Formatting',        more:'/markdown-cleanup-checker.html', run:cfCheckMarkdown },
   { id:'numbers',     label:'Big numbers',       more:'/number-unit-checker.html',      run:cfCheckNumbers },
   { id:'privacy',     label:'Privacy leak',      more:'/privacy-leak-checker.html',     run:cfCheckPrivacy },
+  { id:'structural',  label:'Structural AI tells', more:'/structural-ai-tell-checker.html', run:cfCheckStructural },
+  { id:'stats',       label:'Unsourced stats',   more:'/unattributed-stat-checker.html', run:cfCheckUnattributedStat },
 ];
 const CF_STATUS_ORDER = { warn: 0, notice: 1, good: 2 };
 function cfWorstStatus(a, b){ if (!a) return b; if (!b) return a; return CF_STATUS_ORDER[a] <= CF_STATUS_ORDER[b] ? a : b; }
@@ -1383,7 +1522,16 @@ function cfRenderRow(row, multiPlatform, expanded){
   </div>`;
 }
 
-function cfRenderResults(rows, multiPlatform){
+function cfBuildRows(platforms){
+  return CF_CHECKS.map(chk => {
+    const perPlatform = platforms.map(p => ({ label:p.label, short:p.short, result: chk.run(p.text) }));
+    let status = null;
+    perPlatform.forEach(pp => { status = cfWorstStatus(status, pp.result.status); });
+    return { chk, perPlatform, status };
+  });
+}
+
+function cfRenderResults(rows, multiPlatform, targetEl){
   const counts = { warn:0, notice:0, good:0 };
   rows.forEach(r => counts[r.status]++);
 
@@ -1399,16 +1547,16 @@ function cfRenderResults(rows, multiPlatform){
   let html = `<div class="cf-summary">${summaryParts.join(' · ')}</div><div class="cf-list">`;
   attention.forEach(r => { html += cfRenderRow(r, multiPlatform, true); });
   if (clean.length){
-    html += `<div class="cf-clean-toggle" id="cfCleanToggle" data-count="${clean.length}">▸ ${clean.length} more check${clean.length===1?'':'s'} passed — no issues</div><div class="cf-clean-list" id="cfCleanList" style="display:none;">`;
+    html += `<div class="cf-clean-toggle" data-count="${clean.length}">▸ ${clean.length} more check${clean.length===1?'':'s'} passed — no issues</div><div class="cf-clean-list" style="display:none;">`;
     clean.forEach(r => { html += cfRenderRow(r, multiPlatform, false); });
     html += `</div>`;
   }
   html += `</div>`;
 
-  checkallResultsEl.innerHTML = html;
-  checkallResultsEl.style.display = 'block';
+  targetEl.innerHTML = html;
+  targetEl.style.display = 'block';
 
-  checkallResultsEl.querySelectorAll('[data-cf-toggle]').forEach(el => {
+  targetEl.querySelectorAll('[data-cf-toggle]').forEach(el => {
     el.addEventListener('click', () => {
       const body = el.nextElementSibling;
       const isOpen = body.style.display !== 'none';
@@ -1417,10 +1565,10 @@ function cfRenderResults(rows, multiPlatform){
       el.querySelector('.cf-chevron').textContent = isOpen ? '▸' : '▾';
     });
   });
-  const cleanToggle = document.getElementById('cfCleanToggle');
+  const cleanToggle = targetEl.querySelector('.cf-clean-toggle');
   if (cleanToggle){
     cleanToggle.addEventListener('click', () => {
-      const list = document.getElementById('cfCleanList');
+      const list = targetEl.querySelector('.cf-clean-list');
       const isOpen = list.style.display !== 'none';
       list.style.display = isOpen ? 'none' : 'block';
       const n = cleanToggle.dataset.count;
@@ -1438,20 +1586,68 @@ function runAllChecks(){
   if (!platforms.length){
     checkallResultsEl.innerHTML = `<p class="muted">Nothing to check yet — both drafts are empty.</p>`;
     checkallResultsEl.style.display = 'block';
+    saveJournalBtn.style.display = 'none';
     return;
   }
 
-  const rows = CF_CHECKS.map(chk => {
-    const perPlatform = platforms.map(p => ({ label:p.label, short:p.short, result: chk.run(p.text) }));
-    let status = null;
-    perPlatform.forEach(pp => { status = cfWorstStatus(status, pp.result.status); });
-    return { chk, perPlatform, status };
-  });
+  const rows = cfBuildRows(platforms);
+  cfRenderResults(rows, platforms.length > 1, checkallResultsEl);
 
-  cfRenderResults(rows, platforms.length > 1);
+  lastCheckPlatforms = platforms;
+  lastCheckCounts = { warn:0, notice:0, good:0 };
+  rows.forEach(r => lastCheckCounts[r.status]++);
+  saveJournalBtn.style.display = 'inline-block';
+  saveJournalMsg.style.display = 'none';
 }
 
 checkallBtn.addEventListener('click', runAllChecks);
+
+saveJournalBtn.addEventListener('click', () => {
+  if (!lastCheckPlatforms) return;
+  const JOURNAL_KEY = 'lc_post_journal';
+  let entries = [];
+  try {
+    const raw = localStorage.getItem(JOURNAL_KEY);
+    entries = raw ? JSON.parse(raw) : [];
+  } catch (e) { entries = []; }
+
+  const summary = `Checked before posting: ${lastCheckCounts.warn} worth fixing, ${lastCheckCounts.notice} worth a look, ${lastCheckCounts.good} clear.`;
+  lastCheckPlatforms.forEach(p => {
+    const platformCode = p.short === 'Twitter' ? 'twitter' : p.short === 'LinkedIn' ? 'linkedin' : 'other';
+    entries.push({
+      id: Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+      ts: Date.now(),
+      date: new Date().toISOString().slice(0, 10),
+      platform: platformCode,
+      text: p.text,
+      note: summary,
+      flagged: 'no',
+    });
+  });
+
+  try {
+    localStorage.setItem(JOURNAL_KEY, JSON.stringify(entries));
+    saveJournalMsg.textContent = (lastCheckPlatforms.length > 1 ? 'Both saved' : 'Saved') + ' to your journal — edit, add a note, or mark it flagged later on the journal page.';
+    saveJournalMsg.className = 'voice-msg ok';
+    saveJournalMsg.style.display = 'block';
+  } catch (e) {
+    saveJournalMsg.textContent = "Couldn't save — your browser storage might be full or blocked.";
+    saveJournalMsg.className = 'voice-msg bad';
+    saveJournalMsg.style.display = 'block';
+  }
+});
+
+function runInputCheck(){
+  const text = input.value;
+  if (!text.trim()){
+    instantResultsEl.innerHTML = `<p class="muted">Paste something above first.</p>`;
+    instantResultsEl.style.display = 'block';
+    return;
+  }
+  cfRenderResults(cfBuildRows([{ label:'Your draft', short:'Draft', text }]), false, instantResultsEl);
+}
+
+instantCheckBtn.addEventListener('click', runInputCheck);
 
 input.addEventListener('input', () => {
   inputCount.textContent = input.value.length + ' characters';
@@ -1567,6 +1763,10 @@ generateBtn.addEventListener('click', async () => {
     applyReviewGate();
     checkallResultsEl.style.display = 'none';
     checkallResultsEl.innerHTML = '';
+    saveJournalBtn.style.display = 'none';
+    saveJournalMsg.style.display = 'none';
+    lastCheckPlatforms = null;
+    lastCheckCounts = null;
 
     const voiceNote = checkVoiceConsistency((data.twitter || '') + '\n' + (data.linkedin || ''));
     if (voiceNote) {

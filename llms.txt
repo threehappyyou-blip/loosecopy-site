@@ -6,7 +6,7 @@ Loosecopy is a small, independently-run tool. It has no user accounts: pasted te
 
 ## Core product
 
-- [Try Loosecopy](https://loosecopy.com/app.html): The generator itself — paste text, get a Twitter thread and LinkedIn post draft back, plus a one-click "Check everything" pass across 14 mechanical quality checks before you copy anything.
+- [Try Loosecopy](https://loosecopy.com/app.html): The generator itself — paste text, get a Twitter thread and LinkedIn post draft back, plus a one-click "Check everything" pass across 16 mechanical quality checks. The 16 checks also run standalone, directly on pasted text, with no draft generation and no AI call required.
 - [Homepage / waitlist](https://loosecopy.com/): What the product does and how to get early access.
 
 ## Trust & policy
@@ -42,6 +42,8 @@ Loosecopy is a small, independently-run tool. It has no user accounts: pasted te
 - [Hook Checker](https://loosecopy.com/hook-checker.html): Checks your opening line for cliché openers and length that risks getting cut off.
 - [Emoji Checker](https://loosecopy.com/emoji-checker.html): Counts emoji usage and flags the emoji-as-bullet-point pattern.
 - [Wall-of-Text Checker](https://loosecopy.com/wall-of-text-checker.html): Flags paragraphs long enough, unbroken, to read as a wall of text.
+- [Structural AI-Tell Checker](https://loosecopy.com/structural-ai-tell-checker.html): Flags sentence-length uniformity, em dash overuse, and the "not just X, it's Y" construction — structural patterns, not phrases.
+- [Unattributed-Statistic Checker](https://loosecopy.com/unattributed-stat-checker.html): Flags a percentage, "X out of Y", or "Nx" claim with no source stated nearby.
 
 ## Research & reference
 

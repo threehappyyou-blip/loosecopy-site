@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Does Your Writing Have a Rhythm, or a Pattern? — Free Tool by Loosecopy</title>
+<meta name="description" content="Paste your draft and check three structural habits that show up a lot in AI-generated text: sentences that are all nearly the same length, heavy em dash use, and the 'not just X — it's Y' construction repeated more than once.">
+<link rel="canonical" href="https://loosecopy.com/structural-ai-tell-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/structural-ai-tell-checker.html">
+<meta property="og:title" content="Does Your Writing Have a Rhythm, or a Pattern? — Free Tool by Loosecopy">
+<meta property="og:description" content="Paste your draft and check three structural habits that show up a lot in AI-generated text: sentences that are all nearly the same length, heavy em dash use, and the 'not just X — it's Y' construction repeated more than once.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Does Your Writing Have a Rhythm, or a Pattern? — Free Tool by Loosecopy">
+<meta name="twitter:description" content="Paste your draft and check three structural habits that show up a lot in AI-generated text: sentences that are all nearly the same length, heavy em dash use, and the 'not just X — it's Y' construction repeated more than once.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
+    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --good:#3F7A4A; --good-wash:#DEEAE0;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
+  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+  .header-links{display:flex;align-items:center;gap:16px;}
+  .support-link{font-size:0.85rem;color:var(--bluepencil);text-decoration:none;font-weight:600;}
+  .support-link:hover{text-decoration:underline;}
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.5rem,3.6vw,2rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:66ch;}
+
+  textarea{
+    width:100%; min-height:220px; padding:16px; border:1px solid var(--border);
+    background:var(--paper-card); border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-size:1rem; color:var(--ink); resize:vertical;
+  }
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  .muted{color:var(--ink-soft); font-size:0.88rem;}
+
+  .btn-primary{
+    background:var(--redline); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:#8f2c27;}
+
+  .results{display:none; margin-top:36px;}
+  .verdict{
+    background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--border); border-radius:2px;
+    padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
+  }
+  .verdict.v-warn{border-left-color:var(--redline);}
+  .verdict.v-notice{border-left-color:var(--bluepencil);}
+  .verdict.v-good{border-left-color:var(--good);}
+  .verdict strong{display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+
+  .stat-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
+  .stat{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:10px 16px; font-size:0.88rem; color:var(--ink-soft); flex:1 1 140px;
+  }
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
+
+  .marked{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    padding:14px 16px; margin-bottom:20px; font-size:0.94rem; line-height:1.7; white-space:pre-wrap;
+  }
+  .marked mark{padding:0 2px; border-radius:2px;}
+  .marked mark.hit-emdash{background:var(--bluepencil-wash);}
+  .marked mark.hit-contrast{background:var(--redline-wash);}
+
+  .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
+  .callout a{color:var(--bluepencil); font-weight:600;}
+  .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
+  .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px; line-height:1.6;}
+  .source-note a{color:var(--bluepencil);}
+  .legend{display:flex; gap:16px; flex-wrap:wrap; font-size:0.8rem; color:var(--ink-soft); margin-bottom:10px;}
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .legend i{width:10px; height:10px; border-radius:2px; display:inline-block;}
+</style>
+<!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <div class="header-links">
+      <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749; Support</a>
+      <a class="back" href="/">&larr; back to home</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Does your writing have a rhythm, or a pattern?</h1>
+  <p class="lede">Three structural habits that show up a lot in AI-generated text: sentences that are all nearly the same length, heavy em dash use, and the "it's not just X — it's Y" construction repeated more than once. None of these prove anything by themselves — plenty of human writing does all three — but more than one showing up together is worth a second look.</p>
+
+  <textarea id="input" placeholder="Paste your draft here..."></textarea>
+  <div class="row">
+    <button class="btn-primary" id="checkBtn">Check my text</button>
+    <span class="muted" id="wordcount"></span>
+  </div>
+
+  <div class="results" id="results">
+    <div class="verdict" id="verdict"></div>
+    <div class="stat-row" id="statRow"></div>
+    <div class="legend" id="legend" style="display:none;">
+      <span><i style="background:var(--bluepencil-wash);"></i>em dash</span>
+      <span><i style="background:var(--redline-wash);"></i>"not just X" line</span>
+    </div>
+    <div class="marked" id="marked" style="display:none;"></div>
+    <div class="callout">Rhythm and dashes are one soft signal, not a verdict — pair this with <a href="/ai-authenticity-checker.html">the phrase-based checker</a> for the more common AI tells (stock phrases like "in today's fast-paced world"), and see <a href="/ai-detectors-explained.html">how unreliable AI detectors actually are</a> before you treat any of this as proof. <a href="/app.html">Back to the generator &rarr;</a></div>
+    <p class="source-note">Uniform sentence length ("low burstiness") and heavy em dash use are both widely discussed as patterns that show up more in AI output than in typical human writing — see, e.g., <a href="https://www.write-humanly.com/blog/burstiness-perplexity-deep-dive" target="_blank" rel="noopener">this explainer on burstiness and perplexity</a> and <a href="https://medium.com/@brentcsutoras/the-em-dash-dilemma-how-a-punctuation-mark-became-ais-stubborn-signature-684fbcc9f559" target="_blank" rel="noopener">this piece on the em dash as an AI "tell"</a>. These are informal, widely-repeated observations, not peer-reviewed findings — treat the flag here the same way.</p>
+  </div>
+
+  <p class="disclaimer">This only looks at sentence-length statistics, em dash characters, and one sentence template — nothing here reads for meaning, and nothing here calls an AI model. A technical write-up, a list of short instructions, or just a naturally consistent writer can also score "uniform" — it's a prompt to skim, not an accusation.</p>
+</main>
+
+<script>
+(function(){
+  // 구조적 AI 말투 체커: 문장 길이 균일성(버스티니스)·em대시 남용·"단순 X가 아니라 Y" 구문 3가지를 감지.
+  // 전부 정규식+통계만 사용, AI 재호출 없음. app.html의 cfCheckStructural과 로직을 동일하게 유지할 것.
+
+  function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function dedupeOverlaps(hits){
+    hits.sort((a,b) => a.index - b.index);
+    const out = [];
+    let lastEnd = -1;
+    hits.forEach(h => { if (h.index >= lastEnd) { out.push(h); lastEnd = h.index + h.text.length; } });
+    return out;
+  }
+  function markHtml(text, hits){
+    let html = '';
+    let cursor = 0;
+    hits.forEach(h => {
+      html += escapeHtml(text.slice(cursor, h.index));
+      html += `<mark class="${h.cls}">${escapeHtml(h.text)}</mark>`;
+      cursor = h.index + h.text.length;
+    });
+    html += escapeHtml(text.slice(cursor));
+    return html.replace(/\n/g, "<br>");
+  }
+
+  function analyze(text){
+    const t = String(text || '');
+    const wordsAll = t.match(/[A-Za-z']+/g) || [];
+    if (wordsAll.length < 20) {
+      return { status:'good', headline:'Too short to check.', detail:'Needs a bit more text for rhythm patterns to mean anything.', meanLen:null, emDashCount:0, contrastCount:0, hits:[] };
+    }
+
+    const sentences = (t.match(/[^.!?\n]+[.!?]*/g) || []).map(s => s.trim()).filter(Boolean);
+    const wordCounts = sentences.map(s => (s.match(/[A-Za-z']+/g) || []).length).filter(n => n > 0);
+
+    let cv = null, meanLen = null;
+    if (wordCounts.length >= 5) {
+      meanLen = wordCounts.reduce((a,b)=>a+b,0) / wordCounts.length;
+      const variance = wordCounts.reduce((a,b)=>a+(b-meanLen)*(b-meanLen),0) / wordCounts.length;
+      cv = meanLen > 0 ? Math.sqrt(variance) / meanLen : 0;
+    }
+
+    const emDashCount = (t.match(/—/g) || []).length;
+    const emDashPer100 = (emDashCount / wordsAll.length) * 100;
+
+    const contrastRegex = /\b(?:not|isn'?t|is not|wasn'?t|aren'?t|weren'?t)\s+(?:just|only|simply)\b[^.!?]{0,80}?\b(?:it'?s|it is|but|they'?re|they are|this is|that'?s|that is)\b/gi;
+    const contrastMatches = [...t.matchAll(contrastRegex)];
+
+    const flags = [];
+    if (cv !== null && cv < 0.3) flags.push('uniform');
+    if (emDashCount >= 3 && emDashPer100 >= 2) flags.push('emdash');
+    if (contrastMatches.length >= 2) flags.push('contrast');
+
+    const flagText = {
+      uniform: 'your sentences run a very consistent length',
+      emdash: `em dashes show up ${emDashCount} times`,
+      contrast: `the "not just X — it's Y" line shows up ${contrastMatches.length} times`,
+    };
+
+    let status, headline, detail;
+    if (flags.length === 0) {
+      status = 'good';
+      headline = 'No structural patterns stand out.';
+      detail = 'Sentence rhythm, dashes, and phrasing look naturally mixed. (Not proof either way — just nothing here to flag.)';
+    } else {
+      status = flags.length >= 2 ? 'warn' : 'notice';
+      headline = flags.length >= 2 ? `${flags.length} structural patterns showed up together.` : 'One structural pattern showed up.';
+      detail = flags.map(f => flagText[f]).join('; ') + ". Worth a skim — but uniform sentences or an occasional dash aren't proof by themselves.";
+    }
+
+    const hits = dedupeOverlaps([
+      ...[...t.matchAll(/—/g)].map(m => ({ index: m.index, text: m[0], cls: 'hit-emdash' })),
+      ...contrastMatches.map(m => ({ index: m.index, text: m[0], cls: 'hit-contrast' })),
+    ]);
+
+    return { status, headline, detail, meanLen, emDashCount, contrastCount: contrastMatches.length, hits, rawText: t };
+  }
+
+  const input = document.getElementById("input");
+  const wordcountEl = document.getElementById("wordcount");
+  const btn = document.getElementById("checkBtn");
+  const results = document.getElementById("results");
+  const verdictEl = document.getElementById("verdict");
+  const statRowEl = document.getElementById("statRow");
+  const legendEl = document.getElementById("legend");
+  const markedEl = document.getElementById("marked");
+
+  input.addEventListener("input", () => {
+    const wc = (input.value.trim().match(/\S+/g) || []).length;
+    wordcountEl.textContent = wc + " words";
+  });
+
+  btn.addEventListener("click", () => {
+    const text = input.value;
+    if (!text.trim()) return;
+
+    const r = analyze(text);
+    verdictEl.className = 'verdict v-' + r.status;
+    verdictEl.innerHTML = `<strong>${r.headline}</strong>${r.detail}`;
+
+    statRowEl.innerHTML = `
+      <div class="stat"><b>${r.meanLen !== null ? r.meanLen.toFixed(1) : '—'}</b>avg words / sentence</div>
+      <div class="stat"><b>${r.emDashCount}</b>em dashes</div>
+      <div class="stat"><b>${r.contrastCount || 0}</b>"not just X" lines</div>
+    `;
+
+    if (r.hits && r.hits.length) {
+      legendEl.style.display = 'flex';
+      markedEl.style.display = 'block';
+      markedEl.innerHTML = markHtml(r.rawText, r.hits);
+    } else {
+      legendEl.style.display = 'none';
+      markedEl.style.display = 'none';
+    }
+
+    results.style.display = "block";
+  });
+})();
+</script>
+
+</body>
+</html>
