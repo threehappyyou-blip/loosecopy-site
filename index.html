@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loosecopy — 18 free checks before you hit publish</title>
-<meta name="description" content="18 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
+<title>Loosecopy — 20 free checks before you hit publish</title>
+<meta name="description" content="20 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -16,15 +16,15 @@
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://loosecopy.com">
-<meta property="og:title" content="Loosecopy — 18 free checks before you hit publish">
-<meta property="og:description" content="18 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
+<meta property="og:title" content="Loosecopy — 20 free checks before you hit publish">
+<meta property="og:description" content="20 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Loosecopy — 18 free checks before you hit publish">
-<meta name="twitter:description" content="18 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
+<meta name="twitter:title" content="Loosecopy — 20 free checks before you hit publish">
+<meta name="twitter:description" content="20 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
 <meta name="twitter:image" content="https://loosecopy.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -325,6 +325,11 @@
   :root[data-theme="dark"] .btn-primary:hover{ background:#C2645A; color:#1D1F1B; }
   .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:2px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
   .theme-toggle:hover{border-color:var(--bluepencil);color:var(--bluepencil);}
+  :root[data-fontsize="87.5"]{font-size:87.5%;}
+  :root[data-fontsize="112.5"]{font-size:112.5%;}
+  :root[data-fontsize="125"]{font-size:125%;}
+  .fontsize-btn{font-weight:700;}
+  .theme-toggle:disabled{opacity:0.35;cursor:default;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -336,6 +341,8 @@
     <div class="wordmark">Loose<em>·</em>copy</div>
     <div style="display:flex;align-items:center;gap:18px;">
       <a class="nav-cta" href="app.html">Check it &rarr;</a>
+      <button id="fontDec" class="theme-toggle fontsize-btn" type="button" aria-label="Decrease text size" title="Decrease text size">A&minus;</button>
+      <button id="fontInc" class="theme-toggle fontsize-btn" type="button" aria-label="Increase text size" title="Increase text size">A+</button>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
       <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749; Support</a>
       <a class="support-link" href="#join">Get updates</a>
@@ -368,11 +375,40 @@
 })();</script>
 
 
+<script>(function(){
+  var dec = document.getElementById('fontDec');
+  var inc = document.getElementById('fontInc');
+  if(!dec || !inc) return;
+  var STEPS = ['87.5','100','112.5','125'];
+  function currentStep(){
+    var v = document.documentElement.getAttribute('data-fontsize');
+    var i = STEPS.indexOf(v);
+    return i === -1 ? 1 : i;
+  }
+  function apply(i){
+    i = Math.max(0, Math.min(STEPS.length - 1, i));
+    var step = STEPS[i];
+    if(step === '100'){
+      document.documentElement.removeAttribute('data-fontsize');
+      try{ localStorage.removeItem('lc_fontscale'); }catch(e){}
+    } else {
+      document.documentElement.setAttribute('data-fontsize', step);
+      try{ localStorage.setItem('lc_fontscale', step); }catch(e){}
+    }
+    dec.disabled = (i === 0);
+    inc.disabled = (i === STEPS.length - 1);
+  }
+  apply(currentStep());
+  dec.addEventListener('click', function(){ apply(currentStep() - 1); });
+  inc.addEventListener('click', function(){ apply(currentStep() + 1); });
+})();</script>
+
+
 <section class="hero">
   <div class="wrap">
     <div>
       <h1>Draft with AI.<br>Check without it.</h1>
-      <p class="sub">Paste anything you're about to post — written by you, by AI, or both. Run it through 18 free checks that don't call an AI model at all: privacy leaks, phrasing that sounds like AI wrote it, readability, currency mix-ups, leftover markdown, and more. Want a first draft too? There's a free repurposing tool for that as well.</p>
+      <p class="sub">Paste anything you're about to post — written by you, by AI, or both. Run it through 20 free checks that don't call an AI model at all: privacy leaks, phrasing that sounds like AI wrote it, readability, currency mix-ups, leftover markdown, and more. Want a first draft too? There's a free repurposing tool for that as well.</p>
       <a class="btn-primary hero-primary-cta" href="app.html">Check your draft free, no signup &rarr;</a>
       <p class="form-note">Free to use. Paste something, see what needs fixing in seconds.</p>
 
@@ -409,7 +445,7 @@
       </div>
       <div class="step">
         <div class="num">2</div>
-        <div><h3>Run the free checks</h3><p>14 rule-based checks — privacy leaks, AI-sounding phrasing, readability, and more. No AI model involved in the checking itself.</p></div>
+        <div><h3>Run the free checks</h3><p>20 rule-based checks — privacy leaks, AI-sounding phrasing, readability, and more. No AI model involved in the checking itself.</p></div>
       </div>
       <div class="step">
         <div class="num">3</div>
@@ -444,7 +480,7 @@
 
 <section class="checks rule">
   <div class="wrap">
-    <h2>18 checks. Zero AI calls.</h2>
+    <h2>20 checks. Zero AI calls.</h2>
     <p class="intro">Everything below runs on plain code — regex, checksums, formulas — the same way every single time. No model, no "probably right." A few of them:</p>
     <div class="checks-grid">
       <a class="check-card" href="privacy-leak-checker.html">
@@ -465,7 +501,7 @@
       </a>
     </div>
     <p style="margin-top:22px;font-size:0.92rem;color:var(--ink-soft);">
-      See all 18 (readability, markdown cleanup, jargon, duplicate posts, unsourced stats, ambiguous dates, and more) — <a href="app.html">open the full tool &rarr;</a>
+      See all 20 (readability, markdown cleanup, jargon, unsourced stats, ambiguous dates and times, overconfident claims, rhetorical questions, and more) — <a href="app.html">open the full tool &rarr;</a>
     </p>
   </div>
 </section>

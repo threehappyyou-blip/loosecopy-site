@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loosecopy — Try it</title>
@@ -206,6 +206,9 @@
   .cf-marked mark.hit-ok{background:#DEEAE0;}
   .cf-marked mark.hit-date{background:var(--redline-wash);}
   .cf-marked mark.hit-absolute{background:var(--redline-wash);}
+  .cf-marked mark.hit-clocktime{background:var(--redline-wash);}
+  .cf-marked mark.hit-reltime{background:var(--bluepencil-wash);}
+  .cf-marked mark.hit-rhetorical{background:var(--redline-wash);}
   .cf-mark-a, .cf-mark-noun, .cf-mark-contact{background:#FCE9B8; border-bottom:2px solid #D9A63C;}
   .cf-mark-num{background:#DDE9D8; border-bottom:2px solid #6E9C5E;}
   .cf-mark-date, .cf-mark-format, .cf-mark-acro{background:#DDE6EA; border-bottom:2px solid #3A5A6E;}
@@ -253,6 +256,11 @@
   :root[data-theme="dark"] .btn-primary:hover{ background:#C2645A; color:#1D1F1B; }
   .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:2px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
   .theme-toggle:hover{border-color:var(--bluepencil);color:var(--bluepencil);}
+  :root[data-fontsize="87.5"]{font-size:87.5%;}
+  :root[data-fontsize="112.5"]{font-size:112.5%;}
+  :root[data-fontsize="125"]{font-size:125%;}
+  .fontsize-btn{font-weight:700;}
+  .theme-toggle:disabled{opacity:0.35;cursor:default;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -263,6 +271,8 @@
   <div class="wrap">
     <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
     <div class="header-links">
+      <button id="fontDec" class="theme-toggle fontsize-btn" type="button" aria-label="Decrease text size" title="Decrease text size">A&minus;</button>
+      <button id="fontInc" class="theme-toggle fontsize-btn" type="button" aria-label="Increase text size" title="Increase text size">A+</button>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
       <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749; Support</a>
       <a class="back" href="/">&larr; back to home</a>
@@ -295,9 +305,46 @@
 })();</script>
 
 
+<script>(function(){
+  var dec = document.getElementById('fontDec');
+  var inc = document.getElementById('fontInc');
+  if(!dec || !inc) return;
+  var STEPS = ['87.5','100','112.5','125'];
+  function currentStep(){
+    var v = document.documentElement.getAttribute('data-fontsize');
+    var i = STEPS.indexOf(v);
+    return i === -1 ? 1 : i;
+  }
+  function apply(i){
+    i = Math.max(0, Math.min(STEPS.length - 1, i));
+    var step = STEPS[i];
+    if(step === '100'){
+      document.documentElement.removeAttribute('data-fontsize');
+      try{ localStorage.removeItem('lc_fontscale'); }catch(e){}
+    } else {
+      document.documentElement.setAttribute('data-fontsize', step);
+      try{ localStorage.setItem('lc_fontscale', step); }catch(e){}
+    }
+    dec.disabled = (i === 0);
+    inc.disabled = (i === STEPS.length - 1);
+  }
+  apply(currentStep());
+  dec.addEventListener('click', function(){ apply(currentStep() - 1); });
+  inc.addEventListener('click', function(){ apply(currentStep() + 1); });
+})();</script>
+
+
 <main class="wrap">
   <h1>Paste something you wrote</h1>
   <p class="lede">A blog post, an article, rough notes — whatever you've got. You'll get a Twitter thread and a LinkedIn post back, ready to edit.</p>
+
+  <div class="input-tip" id="draftRestoreBanner" style="align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+    <span>We found text you were working on last time — want it back?</span>
+    <span style="display:flex; gap:8px; flex-shrink:0;">
+      <button type="button" class="btn-secondary-sm" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="btn-text-sm" id="draftDiscardBtn">Discard</button>
+    </span>
+  </div>
 
   <textarea id="input" placeholder="Paste your blog post or notes here..."></textarea>
   <div class="count-row">
@@ -309,7 +356,7 @@
 
   <div class="checkall-box" id="instantCheckBox">
     <button type="button" class="checkall-btn" id="instantCheckBtn">Just check it — no AI, instant</button>
-    <span class="muted checkall-hint">Runs 18 quick mechanical checks on what you pasted above. No signup, no waiting, nothing leaves your browser — this is the same engine as the free checker pages, just without needing to visit each one separately.</span>
+    <span class="muted checkall-hint">Runs 20 quick mechanical checks on what you pasted above. No signup, no waiting, nothing leaves your browser — this is the same engine as the free checker pages, just without needing to visit each one separately.</span>
     <div class="checkall-results" id="instantResults"></div>
   </div>
 
@@ -354,7 +401,7 @@
     </label>
     <div class="checkall-box" id="checkallBox">
       <button type="button" class="checkall-btn" id="checkallBtn">Check everything</button>
-      <span class="muted checkall-hint">Runs 18 quick mechanical checks against both drafts below — nothing leaves your browser.</span>
+      <span class="muted checkall-hint">Runs 20 quick mechanical checks against both drafts below — nothing leaves your browser.</span>
       <div class="checkall-results" id="checkallResults"></div>
       <button type="button" class="btn-secondary-sm" id="saveJournalBtn" style="display:none; margin-top:12px;">Save this to your journal</button>
       <p class="voice-msg" id="saveJournalMsg" style="display:none;"></p>
@@ -416,6 +463,65 @@ const saveJournalMsg = document.getElementById('saveJournalMsg');
 let lastCheckPlatforms = null;
 let lastCheckCounts = null;
 const VOICE_KEY = 'lc_voice_profile';
+const DRAFT_KEY = 'lc_draft_autosave';
+const draftRestoreBanner = document.getElementById('draftRestoreBanner');
+const draftRestoreBtn = document.getElementById('draftRestoreBtn');
+const draftDiscardBtn = document.getElementById('draftDiscardBtn');
+let draftSaveTimer = null;
+
+// ---- 초안 자동 저장/복구 (편의 기능, 서버 저장 아님 — 이 브라우저에만) ----
+// 설계 원칙: 입력창에 쓰는 동안 조용히 계속 저장하고, 새로고침/탭 닫힘 후 돌아왔을 때
+// 입력창이 비어 있고 저장된 초안이 있으면 "복구할래요?" 배너만 보여준다. 강요하지 않음.
+function hideDraftBanner(){
+  if (draftRestoreBanner) draftRestoreBanner.style.display = 'none';
+}
+(function initDraftRecovery(){
+  if (!input || !draftRestoreBanner) return;
+  if (input.value.trim()) return; // page already has text (e.g. back/forward nav) — don't interrupt
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY);
+    if (!raw) return;
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed.text === 'string' && parsed.text.trim()) {
+      draftRestoreBanner.style.display = 'flex';
+    }
+  } catch (e) { /* unreadable saved draft — ignore */ }
+})();
+if (draftRestoreBtn) {
+  draftRestoreBtn.addEventListener('click', () => {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      const parsed = raw ? JSON.parse(raw) : null;
+      if (parsed && typeof parsed.text === 'string') {
+        input.value = parsed.text;
+        input.dispatchEvent(new Event('input'));
+      }
+    } catch (e) { /* ignore */ }
+    hideDraftBanner();
+  });
+}
+if (draftDiscardBtn) {
+  draftDiscardBtn.addEventListener('click', () => {
+    try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+    hideDraftBanner();
+  });
+}
+if (input) {
+  input.addEventListener('input', () => {
+    hideDraftBanner();
+    clearTimeout(draftSaveTimer);
+    draftSaveTimer = setTimeout(() => {
+      try {
+        const text = input.value;
+        if (text.trim()) {
+          localStorage.setItem(DRAFT_KEY, JSON.stringify({ text }));
+        } else {
+          localStorage.removeItem(DRAFT_KEY);
+        }
+      } catch (e) { /* storage full or unavailable — fail silently */ }
+    }, 800);
+  });
+}
 
 // ---- 말투 기억 (계정/서버 없이, 이 브라우저에만) ----
 // 설계 원칙: (1) 절대 반복해서 다시 물어보지 않는다 — 한 번 저장하면 조용히 계속 쓰인다.
@@ -663,14 +769,14 @@ function checkNumberConsistency(draftText){
 }
 
 // ============================================================================
-// Unified "Check everything" engine — ported, tier-by-tier, from the 18
+// Unified "Check everything" engine — ported, tier-by-tier, from the 20
 // standalone checker pages already live on the site (ai-authenticity-checker,
 // reads-like-a-translation, sounds-generic, number-unit-checker,
 // markdown-cleanup-checker, privacy-leak-checker, readability-score,
 // jargon-checker, link-placement-checker, passive-voice-checker,
 // hashtag-checker, hook-checker, emoji-checker, wall-of-text-checker,
 // structural-ai-tell-checker, unattributed-stat-checker, date-format-checker,
-// absolute-claims-checker).
+// absolute-claims-checker, time-ambiguity-checker, rhetorical-question-checker).
 // Each standalone page keeps its own copy of this logic (so it keeps working
 // as its own linkable, indexable page) — if you fix a false positive in one,
 // consider fixing it here too, and vice versa.
@@ -1622,6 +1728,116 @@ function cfCheckAbsoluteClaims(text){
   return { status, headline, detail, count: hits.length, markedHtml, extraHtml: null };
 }
 
+// ---- 19. Which time did you mean? (time-ambiguity-checker.html) ----
+const CF_TZ_HINT_RE = /\b(utc|gmt|est|edt|cst|cdt|mst|mdt|pst|pdt|bst|cet|cest|ist|kst|jst|aest|aedt)\b|\bgmt\s?[+-]\d{1,2}\b|\butc\s?[+-]\d{1,2}\b|\byour time\b|\byour local time\b|\bmy time\b/i;
+function cfCheckTimeAmbiguity(text){
+  const t = String(text || '');
+  if (cfWordCount(t) < 5) {
+    return { status:'good', headline:'Too short to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  }
+
+  const sentences = [...t.matchAll(/[^.!?\n]+[.!?]*/g)];
+  function sentenceTextFor(pos){
+    for (let i = sentences.length - 1; i >= 0; i--){
+      if (sentences[i].index <= pos) return sentences[i][0];
+    }
+    return t;
+  }
+
+  const clockRegex = /\b([01]?\d)(:[0-5]\d)?\s?(am|pm|a\.m\.|p\.m\.)\b/gi;
+  const clockHits = [];
+  let m;
+  while ((m = clockRegex.exec(t)) !== null) {
+    const sentence = sentenceTextFor(m.index);
+    if (CF_TZ_HINT_RE.test(sentence)) continue;
+    clockHits.push({ index: m.index, text: m[0], cls: 'hit-clocktime' });
+  }
+
+  const relRegex = /\b(today|tonight|tomorrow|yesterday)\b|\b(?:this|next|last)\s+(?:morning|afternoon|evening|weekend|week|month|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b|\bin\s+(?:a|an|\d+)\s+(?:hour|hours|day|days|week|weeks)\b/gi;
+  const relHits = [...t.matchAll(relRegex)].map(mm => ({ index: mm.index, text: mm[0], cls: 'hit-reltime' }));
+
+  const allHits = cfDedupeOverlaps([...clockHits, ...relHits]);
+  if (!allHits.length) {
+    return { status:'good', headline:'No ambiguous time references found.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  }
+
+  const clockCount = allHits.filter(h => h.cls === 'hit-clocktime').length;
+  const relCount = allHits.filter(h => h.cls === 'hit-reltime').length;
+
+  let status, headline, detail;
+  if (clockCount >= 2) {
+    status = 'warn';
+    headline = `${clockCount} clock times with no time zone attached.`;
+    detail = 'A reader in another time zone has no way to know when this actually is. Naming the zone ("3pm EST") or linking a converter removes the guesswork.'
+      + (relCount ? ` Also ${relCount} relative time reference${relCount===1?'':'s'} (like "tomorrow") that read differently depending on when someone sees this.` : '');
+  } else if (clockCount === 1) {
+    status = 'notice';
+    headline = '1 clock time with no time zone attached.';
+    detail = 'Fine if this is only for people already in your time zone — otherwise naming it ("3pm EST") removes the guesswork.'
+      + (relCount ? ` Also ${relCount} relative time reference${relCount===1?'':'s'} found.` : '');
+  } else {
+    status = 'notice';
+    headline = `${relCount} relative time reference${relCount===1?'':'s'} found.`;
+    detail = 'Fine for something meant to be read the same day — but "tomorrow" or "next week" can confuse a reader who sees this later or shares it onward.';
+  }
+
+  const markedHtml = cfMarkHtml(t, allHits);
+  return { status, headline, detail, count: clockCount || relCount, markedHtml, extraHtml: null };
+}
+
+// ---- 20. Too many rhetorical questions? (rhetorical-question-checker.html) ----
+function cfCheckRhetorical(text){
+  const t = String(text || '');
+  const wordsAll = t.match(/[A-Za-z']+/g) || [];
+  if (wordsAll.length < 20) {
+    return { status:'good', headline:'Too short to check.', detail:'Needs a bit more text for a pattern to mean anything.', count:0, markedHtml:null, extraHtml:null };
+  }
+
+  const sentenceMatches = [...t.matchAll(/[^.!?\n]+[.!?]*/g)];
+  const hits = [];
+  let totalQuestions = 0;
+
+  sentenceMatches.forEach(mm => {
+    const raw = mm[0];
+    if (!/\?\s*$/.test(raw)) return;
+    totalQuestions++;
+    const leading = raw.match(/^\s*/)[0].length;
+    const trimmed = raw.slice(leading).trimEnd();
+    const wc = (trimmed.match(/[A-Za-z']+/g) || []).length;
+    if (wc > 0 && wc <= 5) {
+      hits.push({ index: mm.index + leading, text: trimmed, cls: 'hit-rhetorical' });
+    }
+  });
+
+  const shortQCount = hits.length;
+  if (shortQCount === 0) {
+    return {
+      status: 'good',
+      headline: totalQuestions ? 'Questions here read as genuine, not rhetorical filler.' : 'No rhetorical-question pattern found.',
+      detail: '',
+      count: 0, markedHtml: null, extraHtml: null
+    };
+  }
+
+  let status, headline, detail;
+  if (shortQCount === 1) {
+    status = 'good';
+    headline = 'One short question — reads naturally.';
+    detail = 'A single "Sound familiar?"-style line is just a rhetorical device, not a pattern.';
+  } else if (shortQCount === 2) {
+    status = 'notice';
+    headline = '2 short rhetorical questions found.';
+    detail = 'Still reads fine, but a short tag question like "Right?" or "Make sense?" used more than once starts to feel like a formula.';
+  } else {
+    status = 'warn';
+    headline = `${shortQCount} short rhetorical questions found.`;
+    detail = 'Stacking short tag-questions ("Sound familiar? Crazy, right?") is a common engagement-bait pattern in AI-generated copy. Cutting most of them to one strong statement usually reads stronger.';
+  }
+
+  const markedHtml = cfMarkHtml(t, cfDedupeOverlaps(hits));
+  return { status, headline, detail, count: shortQCount, markedHtml, extraHtml: null };
+}
+
 // ---- Registry (panel order) ----
 const CF_CHECKS = [
   { id:'hook',        label:'Opening line',     more:'/hook-checker.html',             run:cfCheckHook },
@@ -1642,6 +1858,8 @@ const CF_CHECKS = [
   { id:'stats',       label:'Unsourced stats',   more:'/unattributed-stat-checker.html', run:cfCheckUnattributedStat },
   { id:'dates',       label:'Ambiguous dates',   more:'/date-format-checker.html',       run:cfCheckDateAmbiguity },
   { id:'absolute',    label:'Overconfident claims', more:'/absolute-claims-checker.html', run:cfCheckAbsoluteClaims },
+  { id:'timeamb',     label:'Ambiguous times',   more:'/time-ambiguity-checker.html',    run:cfCheckTimeAmbiguity },
+  { id:'rhetorical',  label:'Rhetorical questions', more:'/rhetorical-question-checker.html', run:cfCheckRhetorical },
 ];
 const CF_STATUS_ORDER = { warn: 0, notice: 1, good: 2 };
 function cfWorstStatus(a, b){ if (!a) return b; if (!b) return a; return CF_STATUS_ORDER[a] <= CF_STATUS_ORDER[b] ? a : b; }

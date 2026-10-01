@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Disclosure Line Generator — Free Tool by Loosecopy</title>
@@ -95,6 +95,11 @@
   :root[data-theme="dark"] .btn-primary:hover{ background:#C2645A; color:#1D1F1B; }
   .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:2px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
   .theme-toggle:hover{border-color:var(--bluepencil);color:var(--bluepencil);}
+  :root[data-fontsize="87.5"]{font-size:87.5%;}
+  :root[data-fontsize="112.5"]{font-size:112.5%;}
+  :root[data-fontsize="125"]{font-size:125%;}
+  .fontsize-btn{font-weight:700;}
+  .theme-toggle:disabled{opacity:0.35;cursor:default;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -105,6 +110,8 @@
   <div class="wrap">
     <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
     <div class="header-links">
+      <button id="fontDec" class="theme-toggle fontsize-btn" type="button" aria-label="Decrease text size" title="Decrease text size">A&minus;</button>
+      <button id="fontInc" class="theme-toggle fontsize-btn" type="button" aria-label="Increase text size" title="Increase text size">A+</button>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
       <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749; Support</a>
       <a class="back" href="/">&larr; back to home</a>
@@ -134,6 +141,35 @@
     try{ localStorage.setItem('lc_theme', next); }catch(e){}
     paint();
   });
+})();</script>
+
+
+<script>(function(){
+  var dec = document.getElementById('fontDec');
+  var inc = document.getElementById('fontInc');
+  if(!dec || !inc) return;
+  var STEPS = ['87.5','100','112.5','125'];
+  function currentStep(){
+    var v = document.documentElement.getAttribute('data-fontsize');
+    var i = STEPS.indexOf(v);
+    return i === -1 ? 1 : i;
+  }
+  function apply(i){
+    i = Math.max(0, Math.min(STEPS.length - 1, i));
+    var step = STEPS[i];
+    if(step === '100'){
+      document.documentElement.removeAttribute('data-fontsize');
+      try{ localStorage.removeItem('lc_fontscale'); }catch(e){}
+    } else {
+      document.documentElement.setAttribute('data-fontsize', step);
+      try{ localStorage.setItem('lc_fontscale', step); }catch(e){}
+    }
+    dec.disabled = (i === 0);
+    inc.disabled = (i === STEPS.length - 1);
+  }
+  apply(currentStep());
+  dec.addEventListener('click', function(){ apply(currentStep() - 1); });
+  inc.addEventListener('click', function(){ apply(currentStep() + 1); });
 })();</script>
 
 

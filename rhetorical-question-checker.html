@@ -5,17 +5,17 @@
 <script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Is Your Post a Wall of Text? — Free Tool by Loosecopy</title>
-<meta name="description" content="Paste your draft and check whether any paragraph runs long enough, unbroken, to read as a wall of text — a common reason LinkedIn readers bounce before finishing.">
-<link rel="canonical" href="https://loosecopy.com/wall-of-text-checker.html">
+<title>Too Many Rhetorical Questions? — Free Tool by Loosecopy</title>
+<meta name="description" content="Paste your draft and find short tag-questions like 'Sound familiar?' or 'Make sense?' stacked up as filler — a structural pattern that shows up a lot in AI-generated and engagement-bait copy.">
+<link rel="canonical" href="https://loosecopy.com/rhetorical-question-checker.html">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://loosecopy.com/wall-of-text-checker.html">
-<meta property="og:title" content="Is Your Post a Wall of Text? — Free Tool by Loosecopy">
-<meta property="og:description" content="Paste your draft and check whether any paragraph runs long enough, unbroken, to read as a wall of text — a common reason LinkedIn readers bounce before finishing.">
+<meta property="og:url" content="https://loosecopy.com/rhetorical-question-checker.html">
+<meta property="og:title" content="Too Many Rhetorical Questions? — Free Tool by Loosecopy">
+<meta property="og:description" content="Paste your draft and find short tag-questions like 'Sound familiar?' or 'Make sense?' stacked up as filler — a structural pattern that shows up a lot in AI-generated and engagement-bait copy.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Is Your Post a Wall of Text? — Free Tool by Loosecopy">
-<meta name="twitter:description" content="Paste your draft and check whether any paragraph runs long enough, unbroken, to read as a wall of text — a common reason LinkedIn readers bounce before finishing.">
+<meta name="twitter:title" content="Too Many Rhetorical Questions? — Free Tool by Loosecopy">
+<meta name="twitter:description" content="Paste your draft and find short tag-questions like 'Sound familiar?' or 'Make sense?' stacked up as filler — a structural pattern that shows up a lot in AI-generated and engagement-bait copy.">
 <meta name="twitter:image" content="https://loosecopy.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -27,6 +27,7 @@
   :root{
     --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
     --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --good:#3F7A4A; --good-wash:#DEEAE0;
     --max:820px;
   }
   *{box-sizing:border-box;}
@@ -46,8 +47,8 @@
   .support-link:hover{text-decoration:underline;}
 
   main{padding:20px 0 80px;}
-  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
-  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:64ch;}
+  h1{font-size:clamp(1.5rem,3.6vw,2rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:66ch;}
 
   textarea{
     width:100%; min-height:220px; padding:16px; border:1px solid var(--border);
@@ -66,10 +67,14 @@
 
   .results{display:none; margin-top:36px;}
   .verdict{
-    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--border); border-radius:2px;
     padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
   }
+  .verdict.v-warn{border-left-color:var(--redline);}
+  .verdict.v-notice{border-left-color:var(--bluepencil);}
+  .verdict.v-good{border-left-color:var(--good);}
   .verdict strong{display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+
   .stat-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
   .stat{
     background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
@@ -77,24 +82,19 @@
   }
   .stat b{display:block; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
 
-  .paras{margin-bottom:20px;}
-  .para{
+  .marked{
     background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
-    padding:12px 14px; margin-bottom:8px; font-size:0.92rem; line-height:1.6;
+    padding:14px 16px; margin-bottom:20px; font-size:0.94rem; line-height:1.7; white-space:pre-wrap;
   }
-  .para.long{border-left:3px solid var(--redline);}
-  .para .plabel{
-    display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;
-    font-family:'Space Mono',monospace; font-size:0.72rem; color:var(--ink-soft); text-transform:uppercase;
-  }
-  .para .plabel .flag{color:var(--redline); font-weight:700;}
-  .para .ptext{color:var(--ink);}
+  .marked mark{padding:0 2px; border-radius:2px;}
+  .marked mark.hit-rhetorical{background:var(--redline-wash);}
+
+  .examples{background:var(--paper-card); border:1px solid var(--border); border-radius:2px; padding:14px 18px; margin-bottom:20px; font-size:0.88rem; color:var(--ink-soft);}
+  .examples b{color:var(--ink);}
 
   .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
   .callout a{color:var(--bluepencil); font-weight:600;}
   .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
-  .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px; line-height:1.6;}
-  .source-note a{color:var(--bluepencil);}
 
   /* Dark mode: manual toggle (data-theme attribute) layers over OS preference. lc_theme in localStorage. */
   @media (prefers-color-scheme: dark){
@@ -119,7 +119,7 @@
   .fontsize-btn{font-weight:700;}
   .theme-toggle:disabled{opacity:0.35;cursor:default;}
 </style>
-<!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
+<!-- Google AdSense (Auto ads) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -192,10 +192,12 @@
 
 
 <main class="wrap">
-  <h1>Is your post a wall of text?</h1>
-  <p class="lede">On a phone screen especially, a long paragraph with no break in it reads as effort before a reader even starts — and a lot of people bounce right there. This splits your draft on blank lines, measures each resulting paragraph, and flags any chunk that's long enough to slow a reader down.</p>
+  <h1>Too many rhetorical questions?</h1>
+  <p class="lede">Counts short tag-questions — "Sound familiar?", "Make sense?", "Crazy, right?" — used as a rhetorical device. This is a structural count, not a phrase list: any question five words or under is counted, so it catches tag-questions you didn't think to list, and it leaves longer, substantive questions alone since those read as genuine curiosity, not filler.</p>
 
-  <textarea id="input" placeholder="Paste your post here (keep your line breaks — that's what this checks)..."></textarea>
+  <div class="examples"><b>Flagged (5 words or fewer):</b> "Sound familiar?", "Make sense?", "Still with me?", "Crazy, right?" &nbsp;&middot;&nbsp; <b>Not flagged:</b> "What's the best way to approach this particular problem?" (a real question, not a tag)</div>
+
+  <textarea id="input" placeholder="Paste your draft here..."></textarea>
   <div class="row">
     <button class="btn-primary" id="checkBtn">Check my text</button>
     <span class="muted" id="wordcount"></span>
@@ -204,57 +206,89 @@
   <div class="results" id="results">
     <div class="verdict" id="verdict"></div>
     <div class="stat-row" id="statRow"></div>
-    <div class="paras" id="paras"></div>
-    <div class="callout" id="callout"></div>
-    <p class="source-note">Short paragraphs with a blank line between them is near-universal LinkedIn formatting advice for 2026 — see, e.g., <a href="https://www.cleverly.co/blog/linkedin-post-formatting" target="_blank" rel="noopener">this LinkedIn post-formatting guide</a>. The exact length that counts as "too long" is a judgment call, not a platform rule, so treat the flag here as a prompt to look, not a hard cutoff.</p>
+    <div class="marked" id="marked" style="display:none;"></div>
+    <div class="callout">This is a rhythm/structure signal, like <a href="/structural-ai-tell-checker.html">the structural AI-tell checker</a> (sentence-length uniformity, em dash overuse) — pair the two for the fuller picture. <a href="/app.html">Back to the generator &rarr;</a></div>
   </div>
 
-  <p class="disclaimer">This checks paragraph breaks (blank lines), not sentence quality. If you paste your text as one giant block with no line breaks at all, everything counts as a single paragraph — that's the most common form of "wall of text" and gets flagged first.</p>
+  <p class="disclaimer">One short question on its own is completely normal — this only starts flagging at two, and calls it a pattern at three or more. It counts any question of five words or fewer, so it can occasionally catch a genuinely short real question ("Why though?") rather than a rhetorical tag — read the highlights rather than just trusting the count.</p>
 </main>
 
 <script>
 (function(){
-  // 텍스트 벽 체커: 빈 줄 기준으로 문단을 나누고, 문단별 글자수/문장수를 측정.
-  // 정규식+집계만 사용, 별도 AI 판단 없음.
-  const LONG_PARA_CHARS = 300;
-  const LONG_PARA_SENTENCES = 4;
-
-  function splitParagraphs(text){
-    return text.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
-  }
-
-  function sentenceCount(p){
-    const m = p.match(/[.!?](\s|$)/g);
-    return m ? m.length : (p.length ? 1 : 0);
-  }
+  // 과장된 수사의문문 체커: 특정 문구 목록이 아니라 "5단어 이하 질문"이라는 구조적 패턴을 센다
+  // (structural-ai-tell-checker.html과 같은 설계 철학 — 통계적 신호, 문구 매칭 아님).
+  // 전부 정규식/단어수 계산만 사용, AI 재호출 없음. app.html의 cfCheckRhetorical과 판정 로직을 동일하게 유지할 것.
 
   function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-
-  function analyzeParagraphs(text){
-    return splitParagraphs(text).map(p => {
-      const sentences = sentenceCount(p);
-      return {
-        text: p,
-        chars: p.length,
-        sentences,
-        long: p.length > LONG_PARA_CHARS || sentences > LONG_PARA_SENTENCES
-      };
+  function wordCount(text){ return (text.trim().match(/\S+/g) || []).length; }
+  function dedupeOverlaps(hits){
+    hits.sort((a,b) => a.index - b.index);
+    const out = [];
+    let lastEnd = -1;
+    hits.forEach(h => { if (h.index >= lastEnd) { out.push(h); lastEnd = h.index + h.text.length; } });
+    return out;
+  }
+  function markHtml(text, hits){
+    let html = '';
+    let cursor = 0;
+    hits.forEach(h => {
+      html += escapeHtml(text.slice(cursor, h.index));
+      html += `<mark class="hit-rhetorical">${escapeHtml(h.text)}</mark>`;
+      cursor = h.index + h.text.length;
     });
+    html += escapeHtml(text.slice(cursor));
+    return html.replace(/\n/g, "<br>");
   }
 
-  function overallVerdict(paras){
-    const longOnes = paras.filter(p => p.long);
-    if (paras.length === 0) return ["Nothing to check yet.", "Paste a draft above first."];
-    if (paras.length === 1 && paras[0].long) {
-      return ["One long, unbroken block.", "No paragraph breaks at all — on LinkedIn especially, this reads as a wall of text and a lot of readers bounce before finishing. Try splitting it into 2–4 shorter paragraphs."];
+  function analyze(text){
+    const t = String(text || '');
+    const wordsAll = t.match(/[A-Za-z']+/g) || [];
+    if (wordsAll.length < 20) {
+      return { status:'good', headline:'Too short to check.', detail:'Needs a bit more text for a pattern to mean anything.', count:0, hits:[], rawText:t };
     }
-    if (longOnes.length === 0) {
-      return ["Well broken up.", "No single chunk runs on too long — easy to scan at a glance."];
+
+    const sentenceMatches = [...t.matchAll(/[^.!?\n]+[.!?]*/g)];
+    const hits = [];
+    let totalQuestions = 0;
+
+    sentenceMatches.forEach(mm => {
+      const raw = mm[0];
+      if (!/\?\s*$/.test(raw)) return;
+      totalQuestions++;
+      const leading = raw.match(/^\s*/)[0].length;
+      const trimmed = raw.slice(leading).trimEnd();
+      const wc = (trimmed.match(/[A-Za-z']+/g) || []).length;
+      if (wc > 0 && wc <= 5) {
+        hits.push({ index: mm.index + leading, text: trimmed });
+      }
+    });
+
+    const shortQCount = hits.length;
+    if (shortQCount === 0) {
+      return {
+        status: 'good',
+        headline: totalQuestions ? 'Questions here read as genuine, not rhetorical filler.' : 'No rhetorical-question pattern found.',
+        detail: '',
+        count: 0, hits: [], rawText: t
+      };
     }
-    if (longOnes.length === 1) {
-      return ["One paragraph runs long.", "Everything else reads fine; just the flagged chunk below could use a break."];
+
+    let status, headline, detail;
+    if (shortQCount === 1) {
+      status = 'good';
+      headline = 'One short question — reads naturally.';
+      detail = 'A single "Sound familiar?"-style line is just a rhetorical device, not a pattern.';
+    } else if (shortQCount === 2) {
+      status = 'notice';
+      headline = '2 short rhetorical questions found.';
+      detail = 'Still reads fine, but a short tag question like "Right?" or "Make sense?" used more than once starts to feel like a formula.';
+    } else {
+      status = 'warn';
+      headline = `${shortQCount} short rhetorical questions found.`;
+      detail = 'Stacking short tag-questions ("Sound familiar? Crazy, right?") is a common engagement-bait pattern in AI-generated copy. Cutting most of them to one strong statement usually reads stronger.';
     }
-    return [`${longOnes.length} paragraphs run long.`, "Several chunks are dense enough to slow a reader down — a blank line every 1–3 sentences tends to read easier on LinkedIn."];
+
+    return { status, headline, detail, count: shortQCount, hits: dedupeOverlaps(hits), rawText: t };
   }
 
   const input = document.getElementById("input");
@@ -263,40 +297,30 @@
   const results = document.getElementById("results");
   const verdictEl = document.getElementById("verdict");
   const statRowEl = document.getElementById("statRow");
-  const parasEl = document.getElementById("paras");
-  const calloutEl = document.getElementById("callout");
+  const markedEl = document.getElementById("marked");
 
   input.addEventListener("input", () => {
-    const wc = (input.value.trim().match(/\S+/g) || []).length;
-    wordcountEl.textContent = wc + " words";
+    wordcountEl.textContent = wordCount(input.value) + " words";
   });
 
   btn.addEventListener("click", () => {
     const text = input.value;
     if (!text.trim()) return;
 
-    const paras = analyzeParagraphs(text);
-    const longCount = paras.filter(p => p.long).length;
-    const longestChars = paras.length ? Math.max(...paras.map(p => p.chars)) : 0;
-
-    const [headline, detail] = overallVerdict(paras);
-    verdictEl.innerHTML = `<strong>${headline}</strong>${detail}`;
+    const r = analyze(text);
+    verdictEl.className = 'verdict v-' + r.status;
+    verdictEl.innerHTML = `<strong>${r.headline}</strong>${r.detail}`;
 
     statRowEl.innerHTML = `
-      <div class="stat"><b>${paras.length}</b>paragraph${paras.length === 1 ? '' : 's'} found</div>
-      <div class="stat"><b>${longCount}</b>flagged as long</div>
-      <div class="stat"><b>${longestChars}</b>longest paragraph (chars)</div>
+      <div class="stat"><b>${r.count}</b>short rhetorical question${r.count===1?'':'s'}</div>
     `;
 
-    parasEl.innerHTML = paras.map((p, i) => {
-      const preview = p.text.length > 220 ? p.text.slice(0, 220) + '…' : p.text;
-      return `<div class="para ${p.long ? 'long' : ''}">
-        <div class="plabel"><span>Paragraph ${i + 1} — ${p.chars} chars, ${p.sentences} sentence${p.sentences === 1 ? '' : 's'}</span>${p.long ? '<span class="flag">long</span>' : ''}</div>
-        <div class="ptext">${escapeHtml(preview)}</div>
-      </div>`;
-    }).join('');
-
-    calloutEl.innerHTML = `A blank line is free — it costs nothing and it's the single easiest formatting fix on this list. <a href="/app.html">Back to the generator →</a>`;
+    if (r.hits && r.hits.length) {
+      markedEl.style.display = 'block';
+      markedEl.innerHTML = markHtml(r.rawText, r.hits);
+    } else {
+      markedEl.style.display = 'none';
+    }
 
     results.style.display = "block";
   });
