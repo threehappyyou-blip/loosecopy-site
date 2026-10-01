@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loosecopy — 16 free checks before you hit publish</title>
-<meta name="description" content="16 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
+<title>Loosecopy — 18 free checks before you hit publish</title>
+<meta name="description" content="18 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -14,15 +16,15 @@
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://loosecopy.com">
-<meta property="og:title" content="Loosecopy — 16 free checks before you hit publish">
-<meta property="og:description" content="16 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
+<meta property="og:title" content="Loosecopy — 18 free checks before you hit publish">
+<meta property="og:description" content="18 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Loosecopy — 16 free checks before you hit publish">
-<meta name="twitter:description" content="16 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
+<meta name="twitter:title" content="Loosecopy — 18 free checks before you hit publish">
+<meta name="twitter:description" content="18 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
 <meta name="twitter:image" content="https://loosecopy.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -305,6 +307,24 @@
     .different .wrap{grid-template-columns:1fr;}
     .checks-grid{grid-template-columns:1fr;}
   }
+
+  /* Dark mode: manual toggle (data-theme attribute) layers over OS preference. lc_theme in localStorage. */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1D1F1B; --paper-card:#25271F; --ink:#EDEEE6; --ink-soft:#A3A89E;
+      --redline:#D97B72; --redline-wash:#3D211D; --bluepencil:#7FA6BD; --bluepencil-wash:#1F2F38;
+      --border:#3A3D35; --good:#7AB885; --good-wash:#1F3324;
+    }
+    :root:not([data-theme="light"]) .btn-primary:hover{ background:#C2645A; color:#1D1F1B; }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1D1F1B; --paper-card:#25271F; --ink:#EDEEE6; --ink-soft:#A3A89E;
+    --redline:#D97B72; --redline-wash:#3D211D; --bluepencil:#7FA6BD; --bluepencil-wash:#1F2F38;
+    --border:#3A3D35; --good:#7AB885; --good-wash:#1F3324;
+  }
+  :root[data-theme="dark"] .btn-primary:hover{ background:#C2645A; color:#1D1F1B; }
+  .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:2px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
+  .theme-toggle:hover{border-color:var(--bluepencil);color:var(--bluepencil);}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -316,17 +336,43 @@
     <div class="wordmark">Loose<em>·</em>copy</div>
     <div style="display:flex;align-items:center;gap:18px;">
       <a class="nav-cta" href="app.html">Check it &rarr;</a>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
       <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749; Support</a>
       <a class="support-link" href="#join">Get updates</a>
     </div>
   </div>
 </header>
 
+<script>(function(){
+  var btn = document.getElementById('themeToggle');
+  if(!btn) return;
+  function current(){
+    var attr = document.documentElement.getAttribute('data-theme');
+    if(attr === 'dark') return 'dark';
+    if(attr === 'light') return 'light';
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  function paint(){
+    var mode = current();
+    btn.innerHTML = mode === 'dark' ? '&#9728;' : '&#9790;';
+    btn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('title', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  paint();
+  btn.addEventListener('click', function(){
+    var next = current() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('lc_theme', next); }catch(e){}
+    paint();
+  });
+})();</script>
+
+
 <section class="hero">
   <div class="wrap">
     <div>
       <h1>Draft with AI.<br>Check without it.</h1>
-      <p class="sub">Paste anything you're about to post — written by you, by AI, or both. Run it through 16 free checks that don't call an AI model at all: privacy leaks, phrasing that sounds like AI wrote it, readability, currency mix-ups, leftover markdown, and more. Want a first draft too? There's a free repurposing tool for that as well.</p>
+      <p class="sub">Paste anything you're about to post — written by you, by AI, or both. Run it through 18 free checks that don't call an AI model at all: privacy leaks, phrasing that sounds like AI wrote it, readability, currency mix-ups, leftover markdown, and more. Want a first draft too? There's a free repurposing tool for that as well.</p>
       <a class="btn-primary hero-primary-cta" href="app.html">Check your draft free, no signup &rarr;</a>
       <p class="form-note">Free to use. Paste something, see what needs fixing in seconds.</p>
 
@@ -398,7 +444,7 @@
 
 <section class="checks rule">
   <div class="wrap">
-    <h2>16 checks. Zero AI calls.</h2>
+    <h2>18 checks. Zero AI calls.</h2>
     <p class="intro">Everything below runs on plain code — regex, checksums, formulas — the same way every single time. No model, no "probably right." A few of them:</p>
     <div class="checks-grid">
       <a class="check-card" href="privacy-leak-checker.html">
@@ -419,7 +465,7 @@
       </a>
     </div>
     <p style="margin-top:22px;font-size:0.92rem;color:var(--ink-soft);">
-      See all 16 (readability, markdown cleanup, jargon, duplicate posts, unsourced stats, and more) — <a href="app.html">open the full tool &rarr;</a>
+      See all 18 (readability, markdown cleanup, jargon, duplicate posts, unsourced stats, ambiguous dates, and more) — <a href="app.html">open the full tool &rarr;</a>
     </p>
   </div>
 </section>

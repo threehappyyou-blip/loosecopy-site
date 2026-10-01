@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Where Your Text Actually Goes — Loosecopy</title>
 <meta name="description" content="What Loosecopy stores, what it doesn't, and exactly where your pasted text goes when you generate drafts — checked against the real code, not just asserted.">
@@ -85,6 +87,24 @@
 
   .also{font-size:0.88rem; color:var(--ink-soft); margin-top:32px;}
   .also a{color:var(--bluepencil);}
+
+  /* Dark mode: manual toggle (data-theme attribute) layers over OS preference. lc_theme in localStorage. */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1D1F1B; --paper-card:#25271F; --ink:#EDEEE6; --ink-soft:#A3A89E;
+      --redline:#D97B72; --redline-wash:#3D211D; --bluepencil:#7FA6BD; --bluepencil-wash:#1F2F38;
+      --border:#3A3D35; --good:#7AB885; --good-wash:#1F3324;
+    }
+    :root:not([data-theme="light"]) .btn-primary:hover{ background:#C2645A; color:#1D1F1B; }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1D1F1B; --paper-card:#25271F; --ink:#EDEEE6; --ink-soft:#A3A89E;
+    --redline:#D97B72; --redline-wash:#3D211D; --bluepencil:#7FA6BD; --bluepencil-wash:#1F2F38;
+    --border:#3A3D35; --good:#7AB885; --good-wash:#1F3324;
+  }
+  :root[data-theme="dark"] .btn-primary:hover{ background:#C2645A; color:#1D1F1B; }
+  .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:2px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
+  .theme-toggle:hover{border-color:var(--bluepencil);color:var(--bluepencil);}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -95,11 +115,37 @@
   <div class="wrap">
     <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
     <div class="header-links">
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
       <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749; Support</a>
       <a class="back" href="/">&larr; back to home</a>
     </div>
   </div>
 </header>
+
+<script>(function(){
+  var btn = document.getElementById('themeToggle');
+  if(!btn) return;
+  function current(){
+    var attr = document.documentElement.getAttribute('data-theme');
+    if(attr === 'dark') return 'dark';
+    if(attr === 'light') return 'light';
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  function paint(){
+    var mode = current();
+    btn.innerHTML = mode === 'dark' ? '&#9728;' : '&#9790;';
+    btn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('title', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  paint();
+  btn.addEventListener('click', function(){
+    var next = current() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('lc_theme', next); }catch(e){}
+    paint();
+  });
+})();</script>
+
 
 <main class="wrap">
   <h1>Where your text actually goes</h1>

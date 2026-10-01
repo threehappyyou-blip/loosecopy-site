@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your Post Journal — Loosecopy</title>
 <meta name="description" content="A private, local log of what you actually posted and what happened after — stored in your browser only, so you can learn from your own track record over time.">
@@ -107,6 +109,32 @@
   .patterns-text b{color:var(--bluepencil);}
   .also{font-size:0.88rem; color:var(--ink-soft); margin-top:36px;}
   .also a{color:var(--bluepencil);}
+  .backup-row{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:28px;}
+  .btn-secondary{
+    background:var(--paper-card); color:var(--ink); border:1px solid var(--border);
+    padding:9px 16px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    font-weight:600; font-size:0.85rem; cursor:pointer; text-decoration:none; display:inline-block;
+  }
+  .btn-secondary:hover{border-color:var(--bluepencil); color:var(--bluepencil);}
+  .backup-msg{font-size:0.82rem; color:var(--ink-soft);}
+
+  /* Dark mode: manual toggle (data-theme attribute) layers over OS preference. lc_theme in localStorage. */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1D1F1B; --paper-card:#25271F; --ink:#EDEEE6; --ink-soft:#A3A89E;
+      --redline:#D97B72; --redline-wash:#3D211D; --bluepencil:#7FA6BD; --bluepencil-wash:#1F2F38;
+      --border:#3A3D35; --good:#7AB885; --good-wash:#1F3324;
+    }
+    :root:not([data-theme="light"]) .btn-primary:hover{ background:#C2645A; color:#1D1F1B; }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1D1F1B; --paper-card:#25271F; --ink:#EDEEE6; --ink-soft:#A3A89E;
+    --redline:#D97B72; --redline-wash:#3D211D; --bluepencil:#7FA6BD; --bluepencil-wash:#1F2F38;
+    --border:#3A3D35; --good:#7AB885; --good-wash:#1F3324;
+  }
+  :root[data-theme="dark"] .btn-primary:hover{ background:#C2645A; color:#1D1F1B; }
+  .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:2px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
+  .theme-toggle:hover{border-color:var(--bluepencil);color:var(--bluepencil);}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -117,16 +145,49 @@
   <div class="wrap">
     <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
     <div class="header-links">
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
       <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749; Support</a>
       <a class="back" href="/">&larr; back to home</a>
     </div>
   </div>
 </header>
 
+<script>(function(){
+  var btn = document.getElementById('themeToggle');
+  if(!btn) return;
+  function current(){
+    var attr = document.documentElement.getAttribute('data-theme');
+    if(attr === 'dark') return 'dark';
+    if(attr === 'light') return 'light';
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  function paint(){
+    var mode = current();
+    btn.innerHTML = mode === 'dark' ? '&#9728;' : '&#9790;';
+    btn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('title', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  paint();
+  btn.addEventListener('click', function(){
+    var next = current() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('lc_theme', next); }catch(e){}
+    paint();
+  });
+})();</script>
+
+
 <main class="wrap">
   <h1>Your post journal</h1>
   <p class="lede">A place to log what you actually posted and what happened after. No chatbot session remembers this for you — it forgets the moment you close the tab. This does the opposite: it's yours, and it stays.</p>
-  <p class="privacy-note">Stored in this browser only — nothing here is sent to our servers. Clear your browser data and it's gone, same as anything else that lives here.</p>
+  <p class="privacy-note">Stored in this browser only — nothing here is sent to our servers. Clear your browser data and it's gone, same as anything else that lives here — unless you've exported a backup.</p>
+
+  <div class="backup-row">
+    <button class="btn-secondary" id="exportBtn">Export backup (.json)</button>
+    <label class="btn-secondary file-label" for="importFile">Import backup</label>
+    <input type="file" id="importFile" accept="application/json,.json" style="display:none;">
+    <span class="backup-msg" id="backupMsg"></span>
+  </div>
 
   <div class="add-form">
     <h2>Log a post</h2>
@@ -190,6 +251,9 @@
   const insightsTrend = document.getElementById('insightsTrend');
   const patternsCard = document.getElementById('patternsCard');
   const patternsText = document.getElementById('patternsText');
+  const exportBtn = document.getElementById('exportBtn');
+  const importFile = document.getElementById('importFile');
+  const backupMsg = document.getElementById('backupMsg');
 
   function load(){
     try {
@@ -368,6 +432,72 @@
     fNote.value = '';
     document.querySelector('input[name="fFlagged"][value="no"]').checked = true;
     render();
+  });
+
+  // 기록장 백업(내보내기/가져오기): localStorage 전용 저장이라 브라우저 데이터를 지우거나
+  // 컴퓨터를 바꾸면 기록이 통째로 사라진다는 게 "계정 없음" 설계의 유일한 약점 — 계정을 만들지 않고도
+  // 사용자가 직접 JSON 파일로 백업/복원할 수 있게 해서 그 약점을 메운다. 가져오기는 기존 기록을
+  // id 기준으로 중복 제거하며 병합(덮어쓰기 아님) — 같은 파일을 여러 번 가져와도 안전함.
+  exportBtn.addEventListener('click', () => {
+    const entries = load();
+    if (!entries.length){
+      backupMsg.textContent = 'Nothing to export yet — add a post first.';
+      return;
+    }
+    const payload = JSON.stringify(entries, null, 2);
+    const blob = new Blob([payload], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const today = new Date().toISOString().slice(0,10);
+    a.href = url;
+    a.download = `loosecopy-journal-backup-${today}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    backupMsg.textContent = `Exported ${entries.length} ${entries.length === 1 ? 'entry' : 'entries'}.`;
+  });
+
+  importFile.addEventListener('change', () => {
+    const file = importFile.files && importFile.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      let incoming;
+      try {
+        incoming = JSON.parse(String(reader.result));
+      } catch(e){
+        backupMsg.textContent = "That file isn't valid JSON — nothing was imported.";
+        importFile.value = '';
+        return;
+      }
+      if (!Array.isArray(incoming)){
+        backupMsg.textContent = "That file doesn't look like a journal backup — nothing was imported.";
+        importFile.value = '';
+        return;
+      }
+      const valid = incoming.filter(e => e && typeof e === 'object' && e.id != null && typeof e.text === 'string');
+      if (!valid.length){
+        backupMsg.textContent = 'No valid entries found in that file — nothing was imported.';
+        importFile.value = '';
+        return;
+      }
+      const existing = load();
+      const existingIds = new Set(existing.map(e => String(e.id)));
+      const toAdd = valid.filter(e => !existingIds.has(String(e.id)));
+      const skipped = valid.length - toAdd.length;
+      if (toAdd.length){
+        save(existing.concat(toAdd));
+        render();
+      }
+      backupMsg.textContent = `Imported ${toAdd.length} ${toAdd.length === 1 ? 'entry' : 'entries'}` + (skipped ? `, skipped ${skipped} already in your journal.` : '.');
+      importFile.value = '';
+    };
+    reader.onerror = () => {
+      backupMsg.textContent = 'Could not read that file — nothing was imported.';
+      importFile.value = '';
+    };
+    reader.readAsText(file);
   });
 
   render();

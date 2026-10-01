@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loosecopy — Try it</title>
 <meta name="description" content="Paste a blog post or your notes. Get a Twitter thread and a LinkedIn post drafted in your voice.">
@@ -202,6 +204,8 @@
   .cf-marked mark.hit-contrast{background:var(--redline-wash);}
   .cf-marked mark.hit-stat{background:var(--redline-wash);}
   .cf-marked mark.hit-ok{background:#DEEAE0;}
+  .cf-marked mark.hit-date{background:var(--redline-wash);}
+  .cf-marked mark.hit-absolute{background:var(--redline-wash);}
   .cf-mark-a, .cf-mark-noun, .cf-mark-contact{background:#FCE9B8; border-bottom:2px solid #D9A63C;}
   .cf-mark-num{background:#DDE9D8; border-bottom:2px solid #6E9C5E;}
   .cf-mark-date, .cf-mark-format, .cf-mark-acro{background:#DDE6EA; border-bottom:2px solid #3A5A6E;}
@@ -231,6 +235,24 @@
     .cf-label{min-width:0;}
     .cf-headline{white-space:normal;}
   }
+
+  /* Dark mode: manual toggle (data-theme attribute) layers over OS preference. lc_theme in localStorage. */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1D1F1B; --paper-card:#25271F; --ink:#EDEEE6; --ink-soft:#A3A89E;
+      --redline:#D97B72; --redline-wash:#3D211D; --bluepencil:#7FA6BD; --bluepencil-wash:#1F2F38;
+      --border:#3A3D35; --good:#7AB885; --good-wash:#1F3324;
+    }
+    :root:not([data-theme="light"]) .btn-primary:hover{ background:#C2645A; color:#1D1F1B; }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1D1F1B; --paper-card:#25271F; --ink:#EDEEE6; --ink-soft:#A3A89E;
+    --redline:#D97B72; --redline-wash:#3D211D; --bluepencil:#7FA6BD; --bluepencil-wash:#1F2F38;
+    --border:#3A3D35; --good:#7AB885; --good-wash:#1F3324;
+  }
+  :root[data-theme="dark"] .btn-primary:hover{ background:#C2645A; color:#1D1F1B; }
+  .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:2px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
+  .theme-toggle:hover{border-color:var(--bluepencil);color:var(--bluepencil);}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -241,11 +263,37 @@
   <div class="wrap">
     <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
     <div class="header-links">
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
       <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749; Support</a>
       <a class="back" href="/">&larr; back to home</a>
     </div>
   </div>
 </header>
+
+<script>(function(){
+  var btn = document.getElementById('themeToggle');
+  if(!btn) return;
+  function current(){
+    var attr = document.documentElement.getAttribute('data-theme');
+    if(attr === 'dark') return 'dark';
+    if(attr === 'light') return 'light';
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  function paint(){
+    var mode = current();
+    btn.innerHTML = mode === 'dark' ? '&#9728;' : '&#9790;';
+    btn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('title', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  paint();
+  btn.addEventListener('click', function(){
+    var next = current() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('lc_theme', next); }catch(e){}
+    paint();
+  });
+})();</script>
+
 
 <main class="wrap">
   <h1>Paste something you wrote</h1>
@@ -261,7 +309,7 @@
 
   <div class="checkall-box" id="instantCheckBox">
     <button type="button" class="checkall-btn" id="instantCheckBtn">Just check it — no AI, instant</button>
-    <span class="muted checkall-hint">Runs 16 quick mechanical checks on what you pasted above. No signup, no waiting, nothing leaves your browser — this is the same engine as the free checker pages, just without needing to visit each one separately.</span>
+    <span class="muted checkall-hint">Runs 18 quick mechanical checks on what you pasted above. No signup, no waiting, nothing leaves your browser — this is the same engine as the free checker pages, just without needing to visit each one separately.</span>
     <div class="checkall-results" id="instantResults"></div>
   </div>
 
@@ -306,7 +354,7 @@
     </label>
     <div class="checkall-box" id="checkallBox">
       <button type="button" class="checkall-btn" id="checkallBtn">Check everything</button>
-      <span class="muted checkall-hint">Runs 16 quick mechanical checks against both drafts below — nothing leaves your browser.</span>
+      <span class="muted checkall-hint">Runs 18 quick mechanical checks against both drafts below — nothing leaves your browser.</span>
       <div class="checkall-results" id="checkallResults"></div>
       <button type="button" class="btn-secondary-sm" id="saveJournalBtn" style="display:none; margin-top:12px;">Save this to your journal</button>
       <p class="voice-msg" id="saveJournalMsg" style="display:none;"></p>
@@ -615,13 +663,14 @@ function checkNumberConsistency(draftText){
 }
 
 // ============================================================================
-// Unified "Check everything" engine — ported, tier-by-tier, from the 16
+// Unified "Check everything" engine — ported, tier-by-tier, from the 18
 // standalone checker pages already live on the site (ai-authenticity-checker,
 // reads-like-a-translation, sounds-generic, number-unit-checker,
 // markdown-cleanup-checker, privacy-leak-checker, readability-score,
 // jargon-checker, link-placement-checker, passive-voice-checker,
 // hashtag-checker, hook-checker, emoji-checker, wall-of-text-checker,
-// structural-ai-tell-checker, unattributed-stat-checker).
+// structural-ai-tell-checker, unattributed-stat-checker, date-format-checker,
+// absolute-claims-checker).
 // Each standalone page keeps its own copy of this logic (so it keeps working
 // as its own linkable, indexable page) — if you fix a false positive in one,
 // consider fixing it here too, and vice versa.
@@ -1473,6 +1522,106 @@ function cfCheckUnattributedStat(text){
   return { status, headline, detail, count: unattributedCount, markedHtml, extraHtml: null };
 }
 
+// ---- 17. Which date did you mean? (date-format-checker.html) ----
+function cfLooksLikeVersionPrefix(text, idx){
+  const before = text.slice(Math.max(0, idx - 14), idx).toLowerCase();
+  return /\bv(?:er|ersion)?\.?\s*$/.test(before);
+}
+function cfCheckDateAmbiguity(text){
+  const t = String(text || '');
+  if (cfWordCount(t) < 5) {
+    return { status:'good', headline:'Too short to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  }
+
+  const dateRegex = /\b(\d{1,2})([\/\-.])(\d{1,2})\2(\d{2,4})\b/g;
+  const hits = [];
+  let m;
+  while ((m = dateRegex.exec(t)) !== null) {
+    const a = parseInt(m[1], 10);
+    const b = parseInt(m[3], 10);
+    const yearRaw = m[4];
+    if (a < 1 || a > 31 || b < 1 || b > 31) continue;
+    if (yearRaw.length === 4) {
+      const year = parseInt(yearRaw, 10);
+      if (year < 1900 || year > 2099) continue;
+    }
+    if (cfLooksLikeVersionPrefix(t, m.index)) continue;
+    const ambiguous = a <= 12 && b <= 12 && a !== b;
+    hits.push({ index: m.index, text: m[0], cls: ambiguous ? 'hit-date' : 'hit-ok', ambiguous });
+  }
+
+  const ambiguousCount = hits.filter(h => h.ambiguous).length;
+  if (!hits.length) {
+    return { status:'good', headline:'No numeric dates found.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  }
+
+  let status, headline, detail;
+  if (ambiguousCount === 0) {
+    status = 'good';
+    headline = `${hits.length} numeric date${hits.length===1?'':'s'} found, all unambiguous.`;
+    detail = 'Every date here has at least one number above 12, so there\'s only one way to read it.';
+  } else if (ambiguousCount === 1) {
+    status = 'notice';
+    headline = '1 date could be misread.';
+    detail = 'A reader using the other month/day order would land on a different date. Spelling out the month ("March 4, 2026") removes the ambiguity.';
+  } else {
+    status = 'warn';
+    headline = `${ambiguousCount} dates could be misread.`;
+    detail = 'Each reads as a different day depending on whether your reader expects month-first or day-first. Worth spelling out the month for any date that matters.';
+  }
+
+  const markedHtml = cfMarkHtml(t, cfDedupeOverlaps(hits));
+  return { status, headline, detail, count: ambiguousCount, markedHtml, extraHtml: null };
+}
+
+// ---- 18. Does this sound too good to be true? (absolute-claims-checker.html) ----
+const CF_ABSOLUTE_PHRASES = [
+  '100% guaranteed', '100% safe', '100% effective', '100% accurate',
+  'guaranteed to work', 'guaranteed results', 'never fails', 'never fail',
+  'always works', 'works every time', 'proven to work', 'scientifically proven',
+  'clinically proven', 'no one can deny', 'nobody can deny', 'everyone agrees',
+  'everyone knows', "it's impossible to fail", 'impossible to fail',
+  "there's no doubt", 'without a doubt', 'undeniably', 'unquestionably',
+  'indisputably', 'zero risk', 'completely risk-free', 'completely safe',
+  'totally safe', 'no exceptions', 'every single time', 'without fail',
+  'always right', 'never wrong',
+];
+function cfEscapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function cfCheckAbsoluteClaims(text){
+  const t = String(text || '');
+  if (cfWordCount(t) < 5) {
+    return { status:'good', headline:'Too short to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  }
+
+  const hits = [];
+  CF_ABSOLUTE_PHRASES.forEach(phrase => {
+    const re = new RegExp('\\b' + cfEscapeRegExp(phrase) + '\\b', 'gi');
+    let m;
+    while ((m = re.exec(t)) !== null) {
+      hits.push({ index: m.index, text: m[0], cls: 'hit-absolute' });
+    }
+  });
+  hits.sort((a,b) => a.index - b.index);
+
+  let status, headline, detail;
+  if (hits.length === 0) {
+    status = 'good';
+    headline = 'No unhedged absolute claims found.';
+    detail = 'Nothing here reads as an unqualified "always/never/guaranteed"-style claim.';
+  } else if (hits.length <= 2) {
+    status = 'notice';
+    headline = `${hits.length} absolute claim${hits.length===1?'':'s'} found.`;
+    detail = 'Softening to "usually" or "in our testing," or adding a source, makes the claim harder to challenge, not weaker.';
+  } else {
+    status = 'warn';
+    headline = `${hits.length} absolute claims found.`;
+    detail = 'This reads like marketing copy stacking certainty on certainty — also a common AI-hype tell. Consider softening some of these or backing them with a source.';
+  }
+
+  const markedHtml = hits.length ? cfMarkHtml(t, hits) : null;
+  return { status, headline, detail, count: hits.length, markedHtml, extraHtml: null };
+}
+
 // ---- Registry (panel order) ----
 const CF_CHECKS = [
   { id:'hook',        label:'Opening line',     more:'/hook-checker.html',             run:cfCheckHook },
@@ -1491,6 +1640,8 @@ const CF_CHECKS = [
   { id:'privacy',     label:'Privacy leak',      more:'/privacy-leak-checker.html',     run:cfCheckPrivacy },
   { id:'structural',  label:'Structural AI tells', more:'/structural-ai-tell-checker.html', run:cfCheckStructural },
   { id:'stats',       label:'Unsourced stats',   more:'/unattributed-stat-checker.html', run:cfCheckUnattributedStat },
+  { id:'dates',       label:'Ambiguous dates',   more:'/date-format-checker.html',       run:cfCheckDateAmbiguity },
+  { id:'absolute',    label:'Overconfident claims', more:'/absolute-claims-checker.html', run:cfCheckAbsoluteClaims },
 ];
 const CF_STATUS_ORDER = { warn: 0, notice: 1, good: 2 };
 function cfWorstStatus(a, b){ if (!a) return b; if (!b) return a; return CF_STATUS_ORDER[a] <= CF_STATUS_ORDER[b] ? a : b; }

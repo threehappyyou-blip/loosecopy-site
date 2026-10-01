@@ -5,17 +5,17 @@
 <script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Where Did That Number Come From? — Free Tool by Loosecopy</title>
-<meta name="description" content="Paste your draft and find any percentage, 'X out of Y', or 'Nx' claim that doesn't have a source nearby — so you can add one, or double-check the number, before you post it.">
-<link rel="canonical" href="https://loosecopy.com/unattributed-stat-checker.html">
+<title>Too Good To Be True? — Free Tool by Loosecopy</title>
+<meta name="description" content="Paste your draft and find unhedged, absolute claims — '100% guaranteed,' 'never fails,' 'everyone agrees' — that are easy for a reader to challenge and read as hype even when they're true.">
+<link rel="canonical" href="https://loosecopy.com/absolute-claims-checker.html">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://loosecopy.com/unattributed-stat-checker.html">
-<meta property="og:title" content="Where Did That Number Come From? — Free Tool by Loosecopy">
-<meta property="og:description" content="Paste your draft and find any percentage, 'X out of Y', or 'Nx' claim that doesn't have a source nearby — so you can add one, or double-check the number, before you post it.">
+<meta property="og:url" content="https://loosecopy.com/absolute-claims-checker.html">
+<meta property="og:title" content="Too Good To Be True? — Free Tool by Loosecopy">
+<meta property="og:description" content="Paste your draft and find unhedged, absolute claims — '100% guaranteed,' 'never fails,' 'everyone agrees' — that are easy for a reader to challenge and read as hype even when they're true.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Where Did That Number Come From? — Free Tool by Loosecopy">
-<meta name="twitter:description" content="Paste your draft and find any percentage, 'X out of Y', or 'Nx' claim that doesn't have a source nearby — so you can add one, or double-check the number, before you post it.">
+<meta name="twitter:title" content="Too Good To Be True? — Free Tool by Loosecopy">
+<meta name="twitter:description" content="Paste your draft and find unhedged, absolute claims — '100% guaranteed,' 'never fails,' 'everyone agrees' — that are easy for a reader to challenge and read as hype even when they're true.">
 <meta name="twitter:image" content="https://loosecopy.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -87,11 +87,10 @@
     padding:14px 16px; margin-bottom:20px; font-size:0.94rem; line-height:1.7; white-space:pre-wrap;
   }
   .marked mark{padding:0 2px; border-radius:2px;}
-  .marked mark.hit-ok{background:var(--good-wash);}
-  .marked mark.hit-stat{background:var(--redline-wash);}
-  .legend{display:flex; gap:16px; flex-wrap:wrap; font-size:0.8rem; color:var(--ink-soft); margin-bottom:10px;}
-  .legend span{display:inline-flex; align-items:center; gap:6px;}
-  .legend i{width:10px; height:10px; border-radius:2px; display:inline-block;}
+  .marked mark.hit-absolute{background:var(--redline-wash);}
+
+  .examples{background:var(--paper-card); border:1px solid var(--border); border-radius:2px; padding:14px 18px; margin-bottom:20px; font-size:0.88rem; color:var(--ink-soft);}
+  .examples b{color:var(--ink);}
 
   .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
   .callout a{color:var(--bluepencil); font-weight:600;}
@@ -115,7 +114,7 @@
   .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:2px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
   .theme-toggle:hover{border-color:var(--bluepencil);color:var(--bluepencil);}
 </style>
-<!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
+<!-- Google AdSense (Auto ads) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -157,8 +156,10 @@
 
 
 <main class="wrap">
-  <h1>Where did that number come from?</h1>
-  <p class="lede">Finds any percentage, "X out of Y", or "Nx" claim in your draft and checks whether a source — a study, a survey, a link, an "according to" — sits next to it. This doesn't check whether the number is <em>true</em>; it just checks whether you said where it came from. That matters more than usual with AI drafts, which occasionally invent a statistic that sounds exactly right.</p>
+  <h1>Does this sound too good to be true?</h1>
+  <p class="lede">Finds unhedged, absolute-certainty phrases — "100% guaranteed," "never fails," "everyone agrees," "scientifically proven" — in your draft. A claim with no room for exception is the easiest kind for a skeptical reader to pick apart, and it's also one of the most common tells of marketing-speak or AI-generated hype copy. This doesn't check whether the claim is <em>true</em> — only whether you said it in a way that invites a "really? always?" reply.</p>
+
+  <div class="examples"><b>Flagged:</b> "100% guaranteed," "never fails," "everyone agrees," "without a doubt" &nbsp;&middot;&nbsp; <b>Not flagged:</b> "usually works," "in our testing," "most users," "100% of the 40 people surveyed" (a real stat, not a certainty word)</div>
 
   <textarea id="input" placeholder="Paste your draft here..."></textarea>
   <div class="row">
@@ -169,92 +170,85 @@
   <div class="results" id="results">
     <div class="verdict" id="verdict"></div>
     <div class="stat-row" id="statRow"></div>
-    <div class="legend" id="legend" style="display:none;">
-      <span><i style="background:var(--good-wash);"></i>has a source nearby</span>
-      <span><i style="background:var(--redline-wash);"></i>no source found nearby</span>
-    </div>
     <div class="marked" id="marked" style="display:none;"></div>
-    <div class="callout">A hallucinated statistic is one of the most common ways an AI-assisted post ends up wrong in public — see <a href="/fact-check-ai-draft.html">fact-check an AI draft in 5 minutes</a> for how to actually verify a number, not just flag that it's missing a source. <a href="/app.html">Back to the generator &rarr;</a></div>
+    <div class="callout">If the claim involves a number, <a href="/unattributed-stat-checker.html">the unsourced-statistic checker</a> is the sibling tool — this one catches overconfident <em>wording</em>, that one catches missing <em>sources</em>. <a href="/app.html">Back to the generator &rarr;</a></div>
   </div>
 
-  <p class="disclaimer">This only looks for a source-shaped phrase near each number ("according to," "study," "survey," a link, and similar) — it can't tell whether that source actually says what you claim, and it can miss attribution phrased in an unusual way. Treat a flag as "add a source" or "double-check this," not "this number is wrong."</p>
+  <p class="disclaimer">This only matches a curated list of absolute-certainty phrases (not common words like "all" or "always" on their own, which show up constantly in ordinary writing) — so it stays quiet unless the wording is genuinely unhedged. It can still miss an overconfident claim phrased in an unusual way, and a flag doesn't mean the claim is false — just that it's worded in a way that's easy to challenge.</p>
 </main>
 
 <script>
 (function(){
-  // 출처 없는 통계 체커: %, "X out of Y", "Nx" 형태의 주장을 찾고, 같은 문장+바로 앞 문장에
-  // 출처 표현(according to/study/survey/링크 등)이 있는지 확인. 숫자의 진위 자체는 검증하지 않음.
-  // 전부 정규식만 사용, AI 재호출 없음. app.html의 cfCheckUnattributedStat과 로직을 동일하게 유지할 것.
+  // 단정적 표현(과잉확신) 체커: "100% guaranteed", "never fails" 등 근거 없는 단정 문구를
+  // 큐레이션된 구문 목록으로만 매칭(흔한 단어 "always"/"all" 단독은 제외해 오탐 최소화,
+  // jargon-checker.html과 동일한 설계 원칙). 전부 정규식만 사용, AI 재호출 없음.
+  // app.html의 cfCheckAbsoluteClaims와 구문 목록을 동일하게 유지할 것.
 
   function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
   function wordCount(text){ return (text.trim().match(/\S+/g) || []).length; }
-  function dedupeOverlaps(hits){
-    hits.sort((a,b) => a.index - b.index);
-    const out = [];
-    let lastEnd = -1;
-    hits.forEach(h => { if (h.index >= lastEnd) { out.push(h); lastEnd = h.index + h.text.length; } });
-    return out;
-  }
   function markHtml(text, hits){
     let html = '';
     let cursor = 0;
     hits.forEach(h => {
       html += escapeHtml(text.slice(cursor, h.index));
-      html += `<mark class="${h.cls}">${escapeHtml(h.text)}</mark>`;
+      html += `<mark class="hit-absolute">${escapeHtml(h.text)}</mark>`;
       cursor = h.index + h.text.length;
     });
     html += escapeHtml(text.slice(cursor));
     return html.replace(/\n/g, "<br>");
   }
 
-  const statRegex = /\b\d+(?:\.\d+)?\s?%|\b\d+\s+(?:out of|in)\s+\d+\b|\b\d+(?:\.\d+)?x\b/gi;
-  const attributionRegex = /\b(?:according to|source|study|studies|survey(?:ed)?|research(?:ers)?|report(?:ed|s)?|data from|found that|analysis (?:by|from)|cited|via|per\s+[A-Z]|https?:\/\/|www\.)/i;
+  const ABSOLUTE_PHRASES = [
+    '100% guaranteed', '100% safe', '100% effective', '100% accurate',
+    'guaranteed to work', 'guaranteed results', 'never fails', 'never fail',
+    'always works', 'works every time', 'proven to work', 'scientifically proven',
+    'clinically proven', 'no one can deny', 'nobody can deny', 'everyone agrees',
+    'everyone knows', "it's impossible to fail", 'impossible to fail',
+    "there's no doubt", 'without a doubt', 'undeniably', 'unquestionably',
+    'indisputably', 'zero risk', 'completely risk-free', 'completely safe',
+    'totally safe', 'no exceptions', 'every single time', 'without fail',
+    'always right', 'never wrong',
+  ];
+
+  function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  function findHits(t){
+    const hits = [];
+    ABSOLUTE_PHRASES.forEach(phrase => {
+      const re = new RegExp('\\b' + escapeRegExp(phrase) + '\\b', 'gi');
+      let m;
+      while ((m = re.exec(t)) !== null) {
+        hits.push({ index: m.index, text: m[0] });
+      }
+    });
+    hits.sort((a,b) => a.index - b.index);
+    return hits;
+  }
 
   function analyze(text){
     const t = String(text || '');
-    if (wordCount(t) < 10) {
-      return { status:'good', headline:'Nothing to check.', detail:'Paste a bit more text first.', total:0, unattributed:0, hits:[], rawText:t };
+    if (wordCount(t) < 5) {
+      return { status:'good', headline:'Too short to check.', detail:'Paste a bit more text first.', count:0, hits:[], rawText:t };
     }
 
-    const matches = [...t.matchAll(statRegex)];
-    if (!matches.length) {
-      return { status:'good', headline:'No statistics found.', detail:'Nothing that looks like a %, "X out of Y", or "Nx" claim in here.', total:0, unattributed:0, hits:[], rawText:t };
-    }
-
-    const sentences = [...t.matchAll(/[^.!?\n]+[.!?]*/g)];
-    function sentenceIndexFor(pos){
-      for (let i = sentences.length - 1; i >= 0; i--){
-        if (sentences[i].index <= pos) return i;
-      }
-      return 0;
-    }
-
-    let unattributedCount = 0;
-    const hits = [];
-    matches.forEach(m => {
-      const si = sentenceIndexFor(m.index);
-      const windowText = [sentences[si-1], sentences[si]].filter(Boolean).map(s => s[0]).join(' ');
-      const attributed = attributionRegex.test(windowText);
-      if (!attributed) unattributedCount++;
-      hits.push({ index: m.index, text: m[0], cls: attributed ? 'hit-ok' : 'hit-stat' });
-    });
+    const hits = findHits(t);
 
     let status, headline, detail;
-    if (unattributedCount === 0) {
+    if (hits.length === 0) {
       status = 'good';
-      headline = `${matches.length} statistic${matches.length===1?'':'s'} found, all with a source nearby.`;
-      detail = 'A number with a source next to it reads as more trustworthy, and it\'s one less thing an AI-hallucination worry can attach to.';
-    } else if (unattributedCount < matches.length) {
+      headline = 'No unhedged absolute claims found.';
+      detail = 'Nothing here reads as an unqualified "always/never/guaranteed"-style claim.';
+    } else if (hits.length <= 2) {
       status = 'notice';
-      headline = `${unattributedCount} of ${matches.length} statistics have no source nearby.`;
-      detail = 'A quick "according to..." or a link next to each number would cover the rest.';
+      headline = `${hits.length} absolute claim${hits.length===1?'':'s'} found.`;
+      detail = 'Worth a look — softening to "usually," "in most cases," or "in our testing," or adding a source, makes the claim harder to challenge, not weaker.';
     } else {
       status = 'warn';
-      headline = `${matches.length} statistic${matches.length===1?'':'s'}, none with a source nearby.`;
-      detail = 'Doesn\'t mean the numbers are wrong — just that nothing here backs them up yet. Worth adding where each one came from, especially if an AI draft suggested it.';
+      headline = `${hits.length} absolute claims found.`;
+      detail = 'This reads like marketing copy stacking certainty on certainty, which is also a common AI-hype tell. Consider softening at least some of these or backing them with a source.';
     }
 
-    return { status, headline, detail, total: matches.length, unattributed: unattributedCount, hits: dedupeOverlaps(hits), rawText: t };
+    return { status, headline, detail, count: hits.length, hits, rawText: t };
   }
 
   const input = document.getElementById("input");
@@ -263,7 +257,6 @@
   const results = document.getElementById("results");
   const verdictEl = document.getElementById("verdict");
   const statRowEl = document.getElementById("statRow");
-  const legendEl = document.getElementById("legend");
   const markedEl = document.getElementById("marked");
 
   input.addEventListener("input", () => {
@@ -279,16 +272,13 @@
     verdictEl.innerHTML = `<strong>${r.headline}</strong>${r.detail}`;
 
     statRowEl.innerHTML = `
-      <div class="stat"><b>${r.total}</b>statistic${r.total===1?'':'s'} found</div>
-      <div class="stat"><b>${r.unattributed}</b>missing a source</div>
+      <div class="stat"><b>${r.count}</b>absolute claim${r.count===1?'':'s'} found</div>
     `;
 
     if (r.hits && r.hits.length) {
-      legendEl.style.display = 'flex';
       markedEl.style.display = 'block';
       markedEl.innerHTML = markHtml(r.rawText, r.hits);
     } else {
-      legendEl.style.display = 'none';
       markedEl.style.display = 'none';
     }
 
