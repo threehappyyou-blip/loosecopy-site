@@ -72,6 +72,7 @@
   }
   textarea:focus{border-color:var(--accent);}
   .count-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;position:relative;}
+  .limit-counters{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:8px;}
   .muted{color:var(--ink-soft);font-size:0.88rem;}
 
   .btn-primary{
@@ -105,7 +106,7 @@
     font-family:'Space Mono',monospace; font-size:0.94rem;
   }
   .tweet .count-row{margin-top:6px;}
-  .tweet .over{color:var(--redline); font-weight:700;}
+  .over{color:var(--redline); font-weight:700;}
 
   .linkedin-box textarea{
     min-height:220px; font-family:'Space Mono',monospace; font-size:0.94rem;
@@ -440,6 +441,8 @@
         <span class="muted" id="linkedinCount">0 characters</span>
         <button class="copy-btn" data-copy="linkedinText">Copy</button>
       </div>
+      <div class="limit-counters" id="limitCounters"></div>
+      <button type="button" class="btn-secondary-sm" id="splitToThreadBtn" style="margin-top:10px;">Split this into a Twitter/X thread</button>
     </div>
   </div>
 </main>
@@ -454,6 +457,8 @@ const results = document.getElementById('results');
 const tweetContainer = document.getElementById('tweetContainer');
 const linkedinText = document.getElementById('linkedinText');
 const linkedinCount = document.getElementById('linkedinCount');
+const limitCountersEl = document.getElementById('limitCounters');
+const splitToThreadBtn = document.getElementById('splitToThreadBtn');
 const reviewCheck = document.getElementById('reviewCheck');
 const inputTip = document.getElementById('inputTip');
 const voiceCollapsed = document.getElementById('voiceCollapsed');
@@ -2105,6 +2110,66 @@ function updateLinkedinCount(){
 }
 linkedinText.addEventListener('input', updateLinkedinCount);
 
+// Cross-platform length awareness for the LinkedIn draft, in case you've rewritten
+// it and want to know where it'd stand if reused elsewhere. Pure display — updates
+// as you type, nothing here sends or copies anything.
+const PLATFORM_LIMITS = [
+  { name: 'Twitter/X', limit: 280 },
+  { name: 'LinkedIn', limit: 3000 },
+  { name: 'Threads', limit: 500 },
+  { name: 'Instagram caption', limit: 2200 }
+];
+function renderLimitCounters(){
+  const len = linkedinText.value.length;
+  limitCountersEl.innerHTML = PLATFORM_LIMITS.map(p => {
+    const over = len > p.limit;
+    return '<span class="muted' + (over ? ' over' : '') + '">' + p.name + ': ' + len + '/' + p.limit + '</span>';
+  }).join('');
+}
+linkedinText.addEventListener('input', renderLimitCounters);
+
+// Splits text into a numbered Twitter/X thread on word boundaries. `reserve`
+// holds back room in each chunk for the " (i/N)" label added at the end.
+function splitIntoTweets(text, limit = 280, reserve = 9){
+  const words = text.split(/\s+/).filter(Boolean);
+  const budget = limit - reserve;
+  const chunks = [];
+  let current = '';
+  for (const word of words){
+    const candidate = current ? current + ' ' + word : word;
+    if (candidate.length > budget){
+      if (current) chunks.push(current);
+      if (word.length > budget){
+        let w = word;
+        while (w.length > budget){
+          chunks.push(w.slice(0, budget));
+          w = w.slice(budget);
+        }
+        current = w;
+      } else {
+        current = word;
+      }
+    } else {
+      current = candidate;
+    }
+  }
+  if (current) chunks.push(current);
+  const N = chunks.length;
+  return chunks.map((c, i) => c + ' (' + (i + 1) + '/' + N + ')');
+}
+
+// Re-threads the (possibly hand-edited) LinkedIn draft through the same
+// renderTweets() the AI output uses, so the result gets the normal per-tweet
+// counter and review-gated Copy button — no separate copy path, and the
+// review checkbox resets because this is new content to re-check.
+splitToThreadBtn.addEventListener('click', () => {
+  const text = linkedinText.value.trim();
+  if (!text) return;
+  renderTweets(splitIntoTweets(text, 280, 9).join('\n'));
+  reviewCheck.checked = false;
+  applyReviewGate();
+});
+
 document.querySelectorAll('.copy-btn[data-copy]').forEach(btn => {
   btn.addEventListener('click', () => {
     if (!reviewCheck.checked) { nudgeReviewGate(btn); return; }
@@ -2145,6 +2210,7 @@ generateBtn.addEventListener('click', async () => {
     linkedinText.value = data.linkedin || '';
     linkedinText.dataset.original = data.linkedin || '';
     updateLinkedinCount();
+    renderLimitCounters();
     reviewCheck.checked = false;
     applyReviewGate();
     checkallResultsEl.style.display = 'none';

@@ -22,28 +22,30 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#EDEEE6; --paper-card:#F8F7F1; --ink:#23282B; --ink-soft:#5B615F;
-    --redline:#A8342E; --redline-wash:#EFDAD6; --bluepencil:#3A5A6E; --bluepencil-wash:#DDE6EA; --border:#D8D9CE;
+    --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
+    --redline:#DC2626; --redline-wash:#FDE8E8; --bluepencil:#2563EB; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF;
     --max:820px;
   }
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
   a{color:var(--bluepencil);}
   :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
-  h1,h2{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;margin:0;}
+  h1,h2{font-family:'Sora',sans-serif;font-weight:500;line-height:1.15;margin:0;}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
   header{padding:26px 0;}
   header .wrap{display:flex;align-items:center;justify-content:space-between;}
-  .wordmark{font-family:'Fraunces',serif;font-size:1.3rem;}
-  .wordmark em{font-style:italic;color:var(--redline);}
+  .wordmark{font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;}
+  .wordmark em{font-style:normal;color:var(--accent);}
   .wordmark a{color:inherit;text-decoration:none;}
   .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
   .header-links{display:flex;align-items:center;gap:16px;}
-  .support-link{font-size:0.85rem;color:var(--bluepencil);text-decoration:none;font-weight:600;}
+  .support-link{font-size:0.85rem;color:var(--ink-soft);text-decoration:none;font-weight:600;}
   .support-link:hover{text-decoration:underline;}
+  .support-text{}
+  @media (max-width:480px){ .support-text{display:none;} }
 
   main{padding:20px 0 80px;}
   h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
@@ -51,43 +53,43 @@
 
   textarea{
     width:100%; min-height:200px; padding:16px; border:1px solid var(--border);
-    background:var(--paper-card); border-radius:2px; font-family:'Public Sans',sans-serif;
+    background:var(--paper-card); border-radius:10px; font-family:'Inter',sans-serif;
     font-size:1rem; color:var(--ink); resize:vertical;
   }
   .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
   .muted{color:var(--ink-soft); font-size:0.88rem;}
 
   .btn-primary{
-    background:var(--redline); color:var(--paper-card); border:none;
-    padding:13px 22px; border-radius:2px; font-family:'Public Sans',sans-serif;
+    background:var(--accent); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:10px; font-family:'Inter',sans-serif;
     font-weight:600; font-size:1rem; cursor:pointer;
   }
-  .btn-primary:hover{background:#8f2c27;}
+  .btn-primary:hover{background:var(--accent-hover);}
 
   .results{display:none; margin-top:36px;}
   .verdict{
-    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    background:var(--paper-card); border:1px solid var(--border); border-radius:10px;
     padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
   }
-  .verdict strong{display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+  .verdict strong{display:block; font-family:'Sora',sans-serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
   .stat-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
   .stat{
-    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    background:var(--paper-card); border:1px solid var(--border); border-radius:10px;
     padding:10px 16px; font-size:0.88rem; color:var(--ink-soft); flex:1 1 140px;
   }
-  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
+  .stat b{display:block; font-family:'Sora',sans-serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
   .highlighted{
-    white-space:pre-wrap; background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    white-space:pre-wrap; background:var(--paper-card); border:1px solid var(--border); border-radius:10px;
     padding:16px 18px; font-size:0.96rem; line-height:1.75; margin-bottom:16px;
   }
   mark.format{background:#DDE6EA; border-bottom:2px solid #3A5A6E;}
   mark.placeholder{background:#F3D9C4; border-bottom:2px solid #B5651D;}
   .legend{font-size:0.82rem; color:var(--ink-soft); margin:-6px 0 20px;}
-  .legend span{padding:1px 6px; border-radius:2px; margin-right:4px;}
+  .legend span{padding:1px 6px; border-radius:10px; margin-right:4px;}
 
   .findings{margin-bottom:20px;}
   .finding{
-    background:var(--paper-card); border:1px solid var(--border); border-radius:2px;
+    background:var(--paper-card); border:1px solid var(--border); border-radius:10px;
     padding:10px 14px; margin-bottom:8px; font-size:0.92rem;
   }
   .finding .ftag{
@@ -99,7 +101,7 @@
   .finding .orig{font-family:'Space Mono',monospace; color:var(--ink);}
   .finding .note{display:block; margin-top:4px; color:var(--ink-soft); font-size:0.88rem;}
 
-  .callout{background:var(--bluepencil-wash); border-radius:2px; padding:16px 18px; font-size:0.92rem;}
+  .callout{background:var(--bluepencil-wash); border-radius:10px; padding:16px 18px; font-size:0.92rem;}
   .callout a{color:var(--bluepencil); font-weight:600;}
   .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
   .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px; line-height:1.6;}
@@ -108,19 +110,19 @@
   /* Dark mode: manual toggle (data-theme attribute) layers over OS preference. lc_theme in localStorage. */
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --paper:#1D1F1B; --paper-card:#25271F; --ink:#EDEEE6; --ink-soft:#A3A89E;
-      --redline:#D97B72; --redline-wash:#3D211D; --bluepencil:#7FA6BD; --bluepencil-wash:#1F2F38;
-      --border:#3A3D35; --good:#7AB885; --good-wash:#1F3324;
+      --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
+      --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
     }
-    :root:not([data-theme="light"]) .btn-primary:hover{ background:#C2645A; color:#1D1F1B; }
+    :root:not([data-theme="light"]) .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   }
   :root[data-theme="dark"]{
-    --paper:#1D1F1B; --paper-card:#25271F; --ink:#EDEEE6; --ink-soft:#A3A89E;
-    --redline:#D97B72; --redline-wash:#3D211D; --bluepencil:#7FA6BD; --bluepencil-wash:#1F2F38;
-    --border:#3A3D35; --good:#7AB885; --good-wash:#1F3324;
+    --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
+    --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
   }
-  :root[data-theme="dark"] .btn-primary:hover{ background:#C2645A; color:#1D1F1B; }
-  .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:2px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
+  :root[data-theme="dark"] .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
+  .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:10px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
   .theme-toggle:hover{border-color:var(--bluepencil);color:var(--bluepencil);}
   :root[data-fontsize="87.5"]{font-size:87.5%;}
   :root[data-fontsize="112.5"]{font-size:112.5%;}
@@ -135,12 +137,12 @@
 
 <header>
   <div class="wrap">
-    <div class="wordmark"><a href="/">Loose<em>·</em>copy</a></div>
+    <div class="wordmark"><a href="/">Loose<em>copy</em></a></div>
     <div class="header-links">
       <button id="fontDec" class="theme-toggle fontsize-btn" type="button" aria-label="Decrease text size" title="Decrease text size">A&minus;</button>
       <button id="fontInc" class="theme-toggle fontsize-btn" type="button" aria-label="Increase text size" title="Increase text size">A+</button>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
-      <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749; Support</a>
+      <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749;<span class="support-text"> Support</span></a>
       <a class="back" href="/">&larr; back to home</a>
     </div>
   </div>
