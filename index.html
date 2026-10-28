@@ -5,8 +5,8 @@
 <script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loosecopy — 20 free checks before you hit publish</title>
-<meta name="description" content="20 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
+<title>Loosecopy — 21 free checks before you hit publish</title>
+<meta name="description" content="21 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -16,15 +16,15 @@
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://loosecopy.com">
-<meta property="og:title" content="Loosecopy — 20 free checks before you hit publish">
-<meta property="og:description" content="20 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
+<meta property="og:title" content="Loosecopy — 21 free checks before you hit publish">
+<meta property="og:description" content="21 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Loosecopy — 20 free checks before you hit publish">
-<meta name="twitter:description" content="20 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
+<meta name="twitter:title" content="Loosecopy — 21 free checks before you hit publish">
+<meta name="twitter:description" content="21 free checks that don't use AI at all — privacy leaks, AI-sounding phrasing, readability, translation-stiff wording, and more. Plus a free tool to draft a Twitter thread and LinkedIn post, if you want one.">
 <meta name="twitter:image" content="https://loosecopy.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,13 +38,13 @@
     --border:#E3E6EE;
     --accent:#4F46E5;
     --accent-hover:#4338CA;
-    --accent-wash:#EEF0FF;
+    --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
     --accent-2:#0EA5A5;
-    --redline:#DC2626;
+    --redline:#B91C1C;
     --redline-wash:#FDE8E8;
-    --bluepencil:#2563EB;
+    --bluepencil:#1D4ED8;
     --bluepencil-wash:#E0EAFF;
-    --good:#16A34A;
+    --good:#166534;
     --good-wash:#E3F6E8;
     --shadow-sm:0 1px 2px rgba(20,22,41,0.06);
     --shadow-md:0 6px 16px rgba(20,22,41,0.07), 0 1px 3px rgba(20,22,41,0.06);
@@ -102,7 +102,7 @@
   .nav-cta{
     font-family:'Inter',sans-serif;font-size:0.9rem;font-weight:600;
     padding:9px 16px;background:var(--accent);border:none;border-radius:var(--radius-sm);
-    text-decoration:none;color:#fff;box-shadow:var(--shadow-sm);
+    text-decoration:none;color:var(--paper-card);box-shadow:var(--shadow-sm);
   }
   .nav-cta:hover{background:var(--accent-hover);}
   .nav-extra{display:flex;align-items:center;gap:16px;}
@@ -144,7 +144,7 @@
   .hero-form input[type=email]:focus{border-color:var(--accent);}
   .btn-primary{
     background:var(--accent);
-    color:#fff;
+    color:var(--paper-card);
     border:none;
     padding:14px 22px;
     border-radius:var(--radius-sm);
@@ -202,7 +202,7 @@
   .hv-chip{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;padding:5px 10px;border-radius:999px;}
   .hv-chip-warn{background:var(--redline-wash);color:#9B1C1C;}
   .hv-chip-notice{background:var(--bluepencil-wash);color:#1D4ED8;}
-  .hv-chip-good{background:var(--good-wash);color:#15803D;}
+  .hv-chip-good{background:var(--good-wash);color:#166534;}
   .hv-dot-mini{width:6px;height:6px;border-radius:50%;}
   .hv-chip-warn .hv-dot-mini{background:var(--redline);}
   .hv-chip-notice .hv-dot-mini{background:var(--bluepencil);}
@@ -264,7 +264,7 @@
   }
   .compare .lbl{display:flex;align-items:center;gap:8px;font-size:0.84rem;font-weight:700;margin-bottom:12px;}
   .compare.bad .lbl{color:#9B1C1C;}
-  .compare.good .lbl{color:#15803D;}
+  .compare.good .lbl{color:#166534;}
   .compare p{font-family:'Space Mono',monospace;font-size:0.88rem;line-height:1.7;margin:0;color:var(--ink);}
   .different-note{grid-column:1/-1;margin-top:18px;font-size:0.92rem;color:var(--ink-soft);}
 
@@ -298,7 +298,7 @@
   .bento-stat span{font-size:0.82rem;color:var(--ink-soft);margin-top:8px;line-height:1.4;}
   .bento-cta{
     grid-column:span 2;display:flex;align-items:center;justify-content:space-between;gap:12px;
-    background:var(--accent);color:#fff;border-radius:var(--radius-md);padding:24px;text-decoration:none;
+    background:var(--accent);color:var(--paper-card);border-radius:var(--radius-md);padding:24px;text-decoration:none;
     box-shadow:var(--shadow-md);transition:background 0.18s ease;
   }
   .bento-cta:hover{background:var(--accent-hover);}
@@ -333,7 +333,7 @@
     color:var(--ink-soft);
     font-size:0.95rem;
   }
-  footer .wordmark{margin-top:24px;opacity:0.55;font-size:1rem;}
+  footer .wordmark{margin-top:24px;font-size:1rem;}
 
   @media (max-width:980px){
     .steps{grid-template-columns:1fr 1fr;row-gap:28px;}
@@ -358,7 +358,7 @@
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
       --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
-      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414;
       --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
       --good:#4ADE80; --good-wash:#16301F;
       --shadow-sm:0 1px 2px rgba(0,0,0,0.3); --shadow-md:0 6px 16px rgba(0,0,0,0.4); --shadow-lg:0 18px 40px rgba(0,0,0,0.5);
@@ -372,7 +372,7 @@
   }
   :root[data-theme="dark"]{
     --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
-    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414;
     --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
     --good:#4ADE80; --good-wash:#16301F;
     --shadow-sm:0 1px 2px rgba(0,0,0,0.3); --shadow-md:0 6px 16px rgba(0,0,0,0.4); --shadow-lg:0 18px 40px rgba(0,0,0,0.5);
@@ -386,6 +386,7 @@
   :root[data-fontsize="87.5"]{font-size:87.5%;}
   :root[data-fontsize="112.5"]{font-size:112.5%;}
   :root[data-fontsize="125"]{font-size:125%;}
+  mark{color:inherit;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -396,7 +397,7 @@
   <div class="wrap">
     <div class="wordmark">Loose<em>copy</em></div>
     <div class="nav-group">
-      <a class="nav-cta" href="app.html">Check it &rarr;</a>
+      <a class="nav-cta" href="/app">Check it &rarr;</a>
       <button id="fontDec" class="icon-btn fontsize-btn" type="button" aria-label="Decrease text size" title="Decrease text size">A&minus;</button>
       <button id="fontInc" class="icon-btn fontsize-btn" type="button" aria-label="Increase text size" title="Increase text size">A+</button>
       <button id="themeToggle" class="icon-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
@@ -468,12 +469,12 @@
     <div>
       <span class="eyebrow">⚡ 0 AI calls to check your text</span>
       <h1>Draft with AI.<br>Check without it.</h1>
-      <p class="sub">Paste anything you're about to post — written by you, by AI, or both. Run it through 20 free checks that don't call an AI model at all: privacy leaks, phrasing that sounds like AI wrote it, readability, currency mix-ups, leftover markdown, and more.</p>
-      <a class="btn-primary hero-primary-cta" href="app.html">Check your draft free, no signup &rarr;</a>
+      <p class="sub">Paste anything you're about to post — written by you, by AI, or both. Run it through 21 free checks that don't call an AI model at all: privacy leaks, phrasing that sounds like AI wrote it, readability, currency mix-ups, leftover markdown, and more.</p>
+      <a class="btn-primary hero-primary-cta" href="/app">Check your draft free, no signup &rarr;</a>
       <p class="form-note">Free to use. Paste something, see what needs fixing in seconds.</p>
 
       <div class="stat-strip" data-reveal>
-        <span class="stat-chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> 20 rule-based checks</span>
+        <span class="stat-chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> 21 rule-based checks</span>
         <span class="stat-chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="7" y1="7" x2="17" y2="17"/></svg> Nothing sent to a model</span>
         <span class="stat-chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/></svg> Runs in your browser</span>
       </div>
@@ -526,7 +527,7 @@
       </div>
       <div class="step" data-reveal>
         <div class="step-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="9" cy="7" r="1.8" fill="currentColor" stroke="none"/><line x1="4" y1="12" x2="20" y2="12"/><circle cx="15" cy="12" r="1.8" fill="currentColor" stroke="none"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="7" cy="17" r="1.8" fill="currentColor" stroke="none"/></svg></div>
-        <h3>Run the free checks</h3><p>20 rule-based checks — privacy leaks, AI-sounding phrasing, readability, and more. No AI model involved in the checking itself.</p>
+        <h3>Run the free checks</h3><p>21 rule-based checks — privacy leaks, AI-sounding phrasing, readability, and more. No AI model involved in the checking itself.</p>
       </div>
       <div class="step" data-reveal>
         <div class="step-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
@@ -555,7 +556,7 @@
       </div>
       <p class="different-note">
         Curious if your own writing already reads like the box on the left?
-        <a href="ai-authenticity-checker.html">Try our free AI-checker &rarr;</a>
+        <a href="/ai-authenticity-checker">Try our free AI-checker &rarr;</a>
       </p>
     </div>
   </div>
@@ -563,15 +564,15 @@
 
 <section class="checks section-tint">
   <div class="wrap">
-    <h2 data-reveal>20 checks. Zero AI calls.</h2>
+    <h2 data-reveal>21 checks. Zero AI calls.</h2>
     <p class="section-intro" data-reveal>Everything below runs on plain code — regex, checksums, formulas — the same way every single time. No model, no "probably right." A few of them:</p>
     <div class="bento" data-reveal>
-      <a class="bento-card" href="ai-authenticity-checker.html">
+      <a class="bento-card" href="/ai-authenticity-checker">
         <div class="b-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-4 0-7 3-7 7v5c0 3 2 5 7 5s7-2 7-5v-5c0-4-3-7-7-7Z"/><circle cx="9.3" cy="11" r="1" fill="currentColor" stroke="none"/><circle cx="14.7" cy="11" r="1" fill="currentColor" stroke="none"/></svg></div>
         <div class="lbl">Sounds-like-AI check</div>
         <p>Flags the phrasing patterns that get posts called out as AI-written — the thing that started this whole site.</p>
       </a>
-      <a class="bento-card" href="privacy-leak-checker.html">
+      <a class="bento-card" href="/privacy-leak-checker">
         <div class="b-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
         <div class="lbl">Privacy leak check</div>
         <p>Catches emails, phone numbers, API keys, and Luhn-valid card numbers before you post them by accident.</p>
@@ -584,19 +585,19 @@
         <b>0</b>
         <span>AI calls to run the checks — nothing leaves your browser</span>
       </div>
-      <a class="bento-card" href="reads-like-a-translation.html">
+      <a class="bento-card" href="/reads-like-a-translation">
         <div class="b-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 4 6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-6-4-9s1.5-6.4 4-9Z"/></svg></div>
         <div class="lbl">Reads-like-a-translation check</div>
         <p>Catches the overly formal connectors and stiff phrasing that read as translated, not casual.</p>
       </a>
-      <a class="bento-card" href="number-unit-checker.html">
+      <a class="bento-card" href="/number-unit-checker">
         <div class="b-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="3" x2="7" y2="21"/><line x1="17" y1="3" x2="15" y2="21"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="3" y1="15" x2="19" y2="15"/></svg></div>
         <div class="lbl">Numbers &amp; currency check</div>
         <p>Converts 만/억/lakh/crore and flags currency symbols a global audience won't recognize.</p>
       </a>
-      <a class="bento-cta" href="app.html">
+      <a class="bento-cta" href="/app">
         <div>
-          <div class="lbl">See all 20 checks</div>
+          <div class="lbl">See all 21 checks</div>
           <p>Readability, markdown cleanup, jargon, unsourced stats, ambiguous dates, overconfident claims &amp; more</p>
         </div>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -624,8 +625,8 @@
 
 <footer>
   <div class="wrap">
-    <p>Built by a solo operator writing in a second language, who got flagged for posting AI-written content on Reddit — and built the tool that should've existed instead. <a href="trust.html">Read the pledge that came out of it &rarr;</a> If that just happened to you, <a href="got-flagged-as-ai.html">here's what to actually do &rarr;</a></p>
-    <p style="font-size:0.85rem;margin-top:14px;"><a href="privacy-policy.html">Privacy Policy</a></p>
+    <p>Built by a solo operator writing in a second language, who got flagged for posting AI-written content on Reddit — and built the tool that should've existed instead. <a href="/trust">Read the pledge that came out of it &rarr;</a> If that just happened to you, <a href="/got-flagged-as-ai">here's what to actually do &rarr;</a></p>
+    <p style="font-size:0.85rem;margin-top:14px;"><a href="/privacy-policy">Privacy Policy</a></p>
     <div class="wordmark">Loosecopy</div>
   </div>
 </footer>
@@ -689,5 +690,6 @@
   sweep();
 })();</script>
 
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

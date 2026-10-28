@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — Loosecopy</title>
 <meta name="description" content="What Loosecopy collects, what it doesn't, who we share it with, and how to reach us about it — plain language, dated, and kept current.">
-<link rel="canonical" href="https://loosecopy.com/privacy-policy.html">
+<link rel="canonical" href="https://loosecopy.com/privacy-policy">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://loosecopy.com/privacy-policy.html">
+<meta property="og:url" content="https://loosecopy.com/privacy-policy">
 <meta property="og:title" content="Privacy Policy — Loosecopy">
 <meta property="og:description" content="What Loosecopy collects, what it doesn't, who we share it with, and how to reach us about it — plain language, dated, and kept current.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
@@ -26,7 +26,7 @@
 <style>
   :root{
     --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
-    --redline:#DC2626; --redline-wash:#FDE8E8; --bluepencil:#2563EB; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF;
+    --redline:#B91C1C; --redline-wash:#FDE8E8; --bluepencil:#1D4ED8; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
     --max:820px;
   }
   *{box-sizing:border-box;}
@@ -59,7 +59,7 @@
   .short-version{
     background:var(--bluepencil-wash); border-radius:10px; padding:18px 20px; margin-bottom:36px; font-size:0.95rem;
   }
-  .short-version .label{font-family:'Space Mono',monospace; font-size:0.75rem; text-transform:uppercase; color:var(--ink-soft); display:block; margin-bottom:8px;}
+  .short-version .label{font-family:'Space Mono',monospace; font-size:0.75rem; text-transform:uppercase; color:var(--ink); display:block; margin-bottom:8px;}
   .short-version ul{margin:0; padding-left:20px;}
   .short-version li{margin-bottom:6px;}
 
@@ -84,14 +84,14 @@
     :root:not([data-theme="light"]){
       --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
       --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
     }
     :root:not([data-theme="light"]) .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   }
   :root[data-theme="dark"]{
     --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
     --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
   }
   :root[data-theme="dark"] .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:10px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
@@ -101,6 +101,7 @@
   :root[data-fontsize="125"]{font-size:125%;}
   .fontsize-btn{font-weight:700;}
   .theme-toggle:disabled{opacity:0.35;cursor:default;}
+  mark{color:inherit;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -177,12 +178,12 @@
 <main class="wrap">
   <h1>Privacy Policy</h1>
   <p class="lede">The plain-language version and the actual policy are the same thing here — no separate "in simple terms" box hiding a denser real document underneath.</p>
-  <div class="verified">Last updated: September 2026</div>
+  <div class="verified">Last updated: October 2026</div>
 
   <div class="short-version">
     <span class="label">The short version</span>
     <ul>
-      <li>We collect your email only if you choose to join the waitlist.</li>
+      <li>We collect your email only if you choose to join the waitlist, or add it to an issue report so we can reply.</li>
       <li>We don't store the text you paste in, the drafts you generate, or any history of either — there's no account for any of it to attach to.</li>
       <li>If you save an optional "voice" sample so drafts match your tone, that's stored in your browser only — never on our servers.</li>
       <li>The post journal works the same way — if you log what you posted, those entries stay in your browser too.</li>
@@ -193,7 +194,8 @@
 
   <section>
     <h2>What we collect</h2>
-    <p>If you join the waitlist, we collect the email address you enter. That's handled entirely by Formspree, a third-party form service — they hold the submission and notify us; we don't run a separate database of emails ourselves.</p>
+    <p>If you join the waitlist, we collect the email address you enter. If you send an issue report, we collect what you write in it, plus your email only if you choose to add one. Both are handled entirely by Formspree, a third-party form service — they hold the submission and notify us; we don't run a separate database of our own.</p>
+    <p>Beyond that, only anonymous tallies: page visits, counted by Cloudflare Web Analytics without cookies, and — when you copy a draft — which platform it was for and whether you edited it first, so we can see how often drafts get changed before posting. Neither includes your text or anything that identifies you.</p>
     <p>That's the only information we intentionally collect right now. There's no account system, no login, and no user profile for anything else to be attached to.</p>
   </section>
 
@@ -206,17 +208,17 @@
       <li>Any "voice" writing sample you optionally save to help match your tone — that's kept in your browser, not collected by us</li>
       <li>Anything you log in the post journal — the posts, notes, and outcomes you record there stay in your browser, not with us</li>
     </ul>
-    <p class="source-note">Full technical detail, checked against the real code: <a href="/data-handling.html">where your text actually goes →</a></p>
+    <p class="source-note">Full technical detail, checked against the real code: <a href="/data-handling">where your text actually goes →</a></p>
   </section>
 
   <section>
     <h2>Who else touches your data</h2>
     <p>Running Loosecopy means a few outside services are involved. Here's what each one sees:</p>
     <ul>
-      <li><b>Formspree</b> — receives and stores your email address if you join the waitlist.</li>
+      <li><b>Formspree</b> — receives and stores your email address if you join the waitlist, and the contents of any issue report you send (with your email only if you include it).</li>
       <li><b>Anthropic (Claude API)</b> — receives the text you paste in, to generate your drafts. Under Anthropic's standard commercial API terms, prompt content isn't retained by default or used to train models without permission.</li>
       <li><b>Vercel</b> — hosts the server that forwards your text to the Claude API and returns the drafts to your browser.</li>
-      <li><b>Cloudflare</b> — hosts this website itself.</li>
+      <li><b>Cloudflare</b> — hosts this website itself, and counts page visits with Cloudflare Web Analytics, which doesn't use cookies.</li>
       <li><b>Google AdSense</b> — serves the ads on this site and may set cookies to do it; see the cookies section below.</li>
       <li><b>Ko-fi</b> — if you click "Support" and choose to donate, Ko-fi (not Loosecopy) handles the payment and whatever information it needs to process it. Their own privacy policy covers that, not ours.</li>
     </ul>
@@ -235,19 +237,20 @@
 
   <section>
     <h2>Your choices</h2>
-    <p>Want your waitlist email removed, or have a question about any of this? <a href="/report-an-issue.html">Tell us here</a> — the same form that routes bug reports goes to the one person who reads every submission, and this counts too.</p>
+    <p>Want your waitlist email removed, or have a question about any of this? <a href="/report-an-issue">Tell us here</a> — the same form that routes bug reports goes to the one person who reads every submission, and this counts too.</p>
   </section>
 
   <section>
     <h2>Changes to this policy</h2>
-    <p>If this policy changes in a way that matters, it gets a dated entry on <a href="/changelog.html">the public changelog</a> — the same place every other real change to this site gets logged, not a silent edit to this page alone.</p>
+    <p>If this policy changes in a way that matters, it gets a dated entry on <a href="/changelog">the public changelog</a> — the same place every other real change to this site gets logged, not a silent edit to this page alone.</p>
   </section>
 
   <p class="also">
-    See the rule everything else here is built on: <a href="/trust.html">the permanent pledge on publishing →</a>
-    Curious what's stored technically, not just legally? <a href="/data-handling.html">Where your text actually goes →</a>
+    See the rule everything else here is built on: <a href="/trust">the permanent pledge on publishing →</a>
+    Curious what's stored technically, not just legally? <a href="/data-handling">Where your text actually goes →</a>
   </p>
 </main>
 
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

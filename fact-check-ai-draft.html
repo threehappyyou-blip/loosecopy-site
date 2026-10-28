@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fact-Check Your AI Draft in 5 Minutes — Loosecopy</title>
 <meta name="description" content="A fast, sourced method for catching invented facts in an AI-generated draft before you post it.">
-<link rel="canonical" href="https://loosecopy.com/fact-check-ai-draft.html">
+<link rel="canonical" href="https://loosecopy.com/fact-check-ai-draft">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://loosecopy.com/fact-check-ai-draft.html">
+<meta property="og:url" content="https://loosecopy.com/fact-check-ai-draft">
 <meta property="og:title" content="Fact-Check Your AI Draft in 5 Minutes — Loosecopy">
 <meta property="og:description" content="A fast, sourced method for catching invented facts in an AI-generated draft before you post it.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
@@ -26,7 +26,7 @@
 <style>
   :root{
     --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
-    --redline:#DC2626; --redline-wash:#FDE8E8; --bluepencil:#2563EB; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF;
+    --redline:#B91C1C; --redline-wash:#FDE8E8; --bluepencil:#1D4ED8; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
     --max:820px;
   }
   *{box-sizing:border-box;}
@@ -63,7 +63,7 @@
   }
   .stat-row{display:flex; flex-wrap:wrap; gap:12px; margin:12px 0;}
   .stat{
-    font-family:'Space Mono',monospace; background:#F3F5F1; border:1px solid var(--border);
+    font-family:'Space Mono',monospace; background:var(--paper-card); border:1px solid var(--border);
     border-radius:10px; padding:10px 14px; font-size:0.85rem; color:var(--ink); flex:1 1 160px;
   }
   .stat b{display:block; font-size:1.3rem; color:var(--redline); font-family:'Sora',sans-serif; font-weight:500;}
@@ -78,7 +78,7 @@
   }
   .step::before{
     content:counter(step); position:absolute; left:16px; top:18px; width:26px; height:26px;
-    background:var(--bluepencil); color:#fff; border-radius:50%; display:flex; align-items:center;
+    background:var(--bluepencil); color:var(--paper-card); border-radius:50%; display:flex; align-items:center;
     justify-content:center; font-family:'Space Mono',monospace; font-size:0.85rem; font-weight:700;
   }
   .step h3{font-size:1rem; margin:0 0 6px; font-family:'Inter',sans-serif; font-weight:700;}
@@ -86,7 +86,7 @@
 
   .risky{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin:16px 0;}
   .risky div{
-    background:var(--redline-wash); border-radius:10px; padding:12px 14px; font-size:0.88rem; color:#5c231f;
+    background:var(--redline-wash); border-radius:10px; padding:12px 14px; font-size:0.88rem; color:var(--ink);
   }
   .risky div b{display:block; font-size:0.9rem; margin-bottom:3px;}
 
@@ -112,14 +112,14 @@
     :root:not([data-theme="light"]){
       --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
       --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
     }
     :root:not([data-theme="light"]) .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   }
   :root[data-theme="dark"]{
     --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
     --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
   }
   :root[data-theme="dark"] .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:10px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
@@ -129,6 +129,7 @@
   :root[data-fontsize="125"]{font-size:125%;}
   .fontsize-btn{font-weight:700;}
   .theme-toggle:disabled{opacity:0.35;cursor:default;}
+  mark{color:inherit;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -262,11 +263,12 @@
   </div>
 
   <p class="also">
-    This is the deep-dive on one line of the <a href="/pre-publish-checklist.html">pre-publish checklist →</a>
-    Curious why detectors can't just catch this instead? <a href="/ai-detectors-explained.html">That's a different problem, sourced here →</a>
-    Ready to draft something? <a href="/app.html">Back to Loosecopy →</a>
+    This is the deep-dive on one line of the <a href="/pre-publish-checklist">pre-publish checklist →</a>
+    Curious why detectors can't just catch this instead? <a href="/ai-detectors-explained">That's a different problem, sourced here →</a>
+    Ready to draft something? <a href="/app">Back to Loosecopy →</a>
   </p>
 </main>
 
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

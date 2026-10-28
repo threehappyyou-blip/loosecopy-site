@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Content Glossary — Loosecopy</title>
 <meta name="description" content="Plain-language definitions for terms that come up around AI-written content, disclosure, and detection — sourced, and added to over time.">
-<link rel="canonical" href="https://loosecopy.com/ai-glossary.html">
+<link rel="canonical" href="https://loosecopy.com/ai-glossary">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://loosecopy.com/ai-glossary.html">
+<meta property="og:url" content="https://loosecopy.com/ai-glossary">
 <meta property="og:title" content="AI Content Glossary — Loosecopy">
 <meta property="og:description" content="Plain-language definitions for terms that come up around AI-written content, disclosure, and detection — sourced, and added to over time.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
@@ -26,7 +26,7 @@
 <style>
   :root{
     --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
-    --redline:#DC2626; --redline-wash:#FDE8E8; --bluepencil:#2563EB; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF;
+    --redline:#B91C1C; --redline-wash:#FDE8E8; --bluepencil:#1D4ED8; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
     --max:820px;
   }
   *{box-sizing:border-box;}
@@ -83,14 +83,14 @@
     :root:not([data-theme="light"]){
       --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
       --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
     }
     :root:not([data-theme="light"]) .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   }
   :root[data-theme="dark"]{
     --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
     --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
   }
   :root[data-theme="dark"] .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:10px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
@@ -100,6 +100,7 @@
   :root[data-fontsize="125"]{font-size:125%;}
   .fontsize-btn{font-weight:700;}
   .theme-toggle:disabled{opacity:0.35;cursor:default;}
+  mark{color:inherit;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -196,7 +197,7 @@
 
     <div class="term" data-term="false positive false negative detection">
       <h2>False positive / false negative</h2>
-      <p>In AI-detection terms: a <strong>false positive</strong> is human-written text incorrectly flagged as AI-generated. A <strong>false negative</strong> is AI-generated text that gets waved through as human. Every detector makes both kinds of mistakes — the question is always which kind it makes more often, and to whom. See our <a href="/ai-detectors-explained.html">detector reliability breakdown →</a> for real numbers.</p>
+      <p>In AI-detection terms: a <strong>false positive</strong> is human-written text incorrectly flagged as AI-generated. A <strong>false negative</strong> is AI-generated text that gets waved through as human. Every detector makes both kinds of mistakes — the question is always which kind it makes more often, and to whom. See our <a href="/ai-detectors-explained">detector reliability breakdown →</a> for real numbers.</p>
     </div>
 
     <div class="term" data-term="hallucination">
@@ -206,12 +207,12 @@
 
     <div class="term" data-term="human in the loop">
       <h2>Human-in-the-loop</h2>
-      <p>A workflow where a person reviews, edits, or approves an AI's output before it's used or published — as opposed to a fully automated pipeline where AI output goes straight out the door. It's less a specific technology than a design choice. It's also the one design choice this entire product refuses to remove: see <a href="/trust.html">the pledge this is built on →</a>.</p>
+      <p>A workflow where a person reviews, edits, or approves an AI's output before it's used or published — as opposed to a fully automated pipeline where AI output goes straight out the door. It's less a specific technology than a design choice. It's also the one design choice this entire product refuses to remove: see <a href="/trust">the pledge this is built on →</a>.</p>
     </div>
 
     <div class="term" data-term="perplexity detection">
       <h2>Perplexity</h2>
-      <p>A statistical measure of how predictable a piece of text is to a language model — simpler, more repetitive phrasing scores as more predictable ("lower perplexity"), while more varied or complex phrasing scores as less predictable. Most AI-text detectors lean heavily on this number. The catch: simpler, more repetitive phrasing is also common in non-native English writing, which is a documented reason those writers get falsely flagged far more often. Details on <a href="/ai-detectors-explained.html">the detector reliability page →</a>.</p>
+      <p>A statistical measure of how predictable a piece of text is to a language model — simpler, more repetitive phrasing scores as more predictable ("lower perplexity"), while more varied or complex phrasing scores as less predictable. Most AI-text detectors lean heavily on this number. The catch: simpler, more repetitive phrasing is also common in non-native English writing, which is a documented reason those writers get falsely flagged far more often. Details on <a href="/ai-detectors-explained">the detector reliability page →</a>.</p>
     </div>
 
     <div class="term" data-term="provenance content credentials">
@@ -221,13 +222,13 @@
 
     <div class="term" data-term="scaled content abuse google spam">
       <h2>Scaled content abuse</h2>
-      <p>Google's own term for its policy against mass-producing low-value pages — "many pages generated for the primary purpose of manipulating search rankings and not helping users," their own wording specifically names doing this with generative AI as an example. The target is the mass-production-without-value pattern, not the fact that a tool was involved in drafting. More on Google's actual stance on <a href="/ai-disclosure-policies.html">the policy breakdown page →</a>.</p>
+      <p>Google's own term for its policy against mass-producing low-value pages — "many pages generated for the primary purpose of manipulating search rankings and not helping users," their own wording specifically names doing this with generative AI as an example. The target is the mass-production-without-value pattern, not the fact that a tool was involved in drafting. More on Google's actual stance on <a href="/ai-disclosure-policies">the policy breakdown page →</a>.</p>
       <p class="source">Source: <a href="https://developers.google.com/search/docs/essentials/spam-policies" target="_blank" rel="noopener">developers.google.com — Google Search spam policies</a></p>
     </div>
 
     <div class="term" data-term="synthetic media deepfake">
       <h2>Synthetic media</h2>
-      <p>Media — images, video, or audio — that's been wholly or partly generated or manipulated by AI, especially where it depicts a real person doing or saying something they didn't. This is the category most platform "manipulated media" policies are actually built around, and notably, most of those policies (X included) are written for images/video/audio specifically, not plain text — see <a href="/ai-disclosure-policies.html">how each platform actually draws that line →</a>.</p>
+      <p>Media — images, video, or audio — that's been wholly or partly generated or manipulated by AI, especially where it depicts a real person doing or saying something they didn't. This is the category most platform "manipulated media" policies are actually built around, and notably, most of those policies (X included) are written for images/video/audio specifically, not plain text — see <a href="/ai-disclosure-policies">how each platform actually draws that line →</a>.</p>
     </div>
 
   </div>
@@ -255,5 +256,6 @@ filterInput.addEventListener('input', () => {
 });
 </script>
 
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

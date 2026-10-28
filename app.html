@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loosecopy — Try it</title>
 <meta name="description" content="Paste a blog post or your notes. Get a Twitter thread and a LinkedIn post drafted in your voice.">
-<link rel="canonical" href="https://loosecopy.com/app.html">
+<link rel="canonical" href="https://loosecopy.com/app">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://loosecopy.com/app.html">
+<meta property="og:url" content="https://loosecopy.com/app">
 <meta property="og:title" content="Loosecopy — Try it">
 <meta property="og:description" content="Paste a blog post or your notes. Get a Twitter thread and a LinkedIn post drafted in your voice.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
@@ -26,9 +26,9 @@
 <style>
   :root{
     --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
-    --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF;
-    --redline:#DC2626; --redline-wash:#FDE8E8; --bluepencil:#2563EB; --bluepencil-wash:#E0EAFF;
-    --good:#16A34A; --good-wash:#E3F6E8; --border:#E3E6EE;
+    --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
+    --redline:#B91C1C; --redline-wash:#FDE8E8; --bluepencil:#1D4ED8; --bluepencil-wash:#E0EAFF;
+    --good:#166534; --good-wash:#E3F6E8; --border:#E3E6EE;
     --radius-sm:10px; --radius-md:16px;
     --shadow-sm:0 1px 2px rgba(20,22,41,0.06);
     --shadow-md:0 6px 16px rgba(20,22,41,0.07), 0 1px 3px rgba(20,22,41,0.06);
@@ -76,7 +76,7 @@
   .muted{color:var(--ink-soft);font-size:0.88rem;}
 
   .btn-primary{
-    background:var(--accent); color:#fff; border:none;
+    background:var(--accent); color:var(--paper-card); border:none;
     padding:13px 22px; border-radius:var(--radius-sm); font-family:'Inter',sans-serif;
     font-weight:600; font-size:1rem; cursor:pointer; margin-top:16px; box-shadow:var(--shadow-md);
   }
@@ -158,7 +158,7 @@
   .voice-textarea{width:100%; min-height:90px; padding:10px 12px; border:1px solid var(--border); background:var(--paper); border-radius:var(--radius-sm); font-family:'Inter',sans-serif; font-size:0.92rem; color:var(--ink); resize:vertical;}
   .voice-privacy-note{font-size:0.78rem; color:var(--ink-soft); margin-top:6px;}
   .voice-actions{display:flex; gap:10px; margin-top:10px;}
-  .btn-secondary-sm{background:var(--accent); color:#fff; border:none; padding:7px 14px; border-radius:var(--radius-sm); font-size:0.85rem; cursor:pointer; font-family:'Inter',sans-serif;}
+  .btn-secondary-sm{background:var(--accent); color:var(--paper-card); border:none; padding:7px 14px; border-radius:var(--radius-sm); font-size:0.85rem; cursor:pointer; font-family:'Inter',sans-serif;}
   .btn-secondary-sm:hover{background:var(--accent-hover);}
   .btn-text-sm{background:none; border:none; color:var(--ink-soft); font-size:0.85rem; cursor:pointer; font-family:'Inter',sans-serif; text-decoration:underline; padding:0;}
   .voice-code-row, .voice-restore-row{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:14px; padding-top:14px; border-top:1px solid var(--border); font-size:0.85rem; color:var(--ink-soft);}
@@ -171,14 +171,14 @@
     font-size:0.88rem; color:#9B1C1C; background:var(--redline-wash); border-left:3px solid var(--redline);
     padding:8px 12px; border-radius:var(--radius-sm); margin:0 0 20px;
   }
-  .input-tip.tip-dup{border-left-color:#9a7d1f; background:#FCE9B8; color:#5c4a10;}
+  .input-tip.tip-dup{border-left-color:var(--amber); background:var(--amber-wash); color:var(--ink);}
 
   .loading{display:none; margin-top:20px; color:var(--ink-soft); font-style:italic;}
 
   /* ---- Unified "Check everything" panel ---- */
   .checkall-box{margin:0 0 24px;}
   .checkall-btn{
-    background:var(--accent); color:#fff; border:none; padding:12px 22px; border-radius:var(--radius-sm);
+    background:var(--accent); color:var(--paper-card); border:none; padding:12px 22px; border-radius:var(--radius-sm);
     font-family:'Inter',sans-serif; font-weight:600; font-size:0.98rem; cursor:pointer; box-shadow:var(--shadow-sm);
   }
   .checkall-btn:hover{background:var(--accent-hover);}
@@ -221,11 +221,14 @@
   .cf-marked mark.hit-clocktime{background:var(--redline-wash);}
   .cf-marked mark.hit-reltime{background:var(--bluepencil-wash);}
   .cf-marked mark.hit-rhetorical{background:var(--redline-wash);}
-  .cf-mark-a, .cf-mark-noun, .cf-mark-contact{background:#FCE9B8; border-bottom:2px solid #D9A63C;}
-  .cf-mark-num{background:#DDE9D8; border-bottom:2px solid #6E9C5E;}
-  .cf-mark-date, .cf-mark-format, .cf-mark-acro{background:#DDE6EA; border-bottom:2px solid #3A5A6E;}
-  .cf-mark-placeholder, .cf-mark-jargon, .cf-mark-link, .cf-mark-confident{background:#F3D9C4; border-bottom:2px solid #B5651D;}
+  .cf-mark-a, .cf-mark-noun, .cf-mark-contact{background:var(--amber-wash); border-bottom:2px solid var(--amber);}
+  .cf-mark-num{background:var(--good-wash); border-bottom:2px solid var(--good);}
+  .cf-mark-date, .cf-mark-format, .cf-mark-acro{background:var(--bluepencil-wash); border-bottom:2px solid var(--bluepencil);}
+  .cf-mark-placeholder, .cf-mark-jargon, .cf-mark-link, .cf-mark-confident{background:var(--orange-wash); border-bottom:2px solid var(--amber);}
   .cf-mark-credential{background:var(--redline-wash); border-bottom:2px solid var(--redline);}
+  .cf-mark-hidden-invisible{background:var(--redline-wash); border-bottom:2px solid var(--redline); font-family:'Space Mono',monospace; font-size:0.72em; padding:0 3px;}
+  .cf-mark-hidden-space, .cf-mark-hidden-spacing{background:var(--bluepencil-wash); border-bottom:2px solid var(--bluepencil);}
+  .cf-mark-hidden-fullwidth{background:var(--accent-wash); border-bottom:2px solid var(--accent);}
 
   .cf-row{padding:6px 0 0; font-size:0.87rem; color:var(--ink-soft); margin-top:8px; border-top:1px solid var(--border);}
   .cf-row-warn{color:#9B1C1C;}
@@ -255,7 +258,7 @@
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
       --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
-      --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38;
+      --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414;
       --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
       --border:#2A2E3C; --good:#4ADE80; --good-wash:#16301F;
       --shadow-sm:0 1px 2px rgba(0,0,0,0.3); --shadow-md:0 6px 16px rgba(0,0,0,0.4);
@@ -265,7 +268,7 @@
   }
   :root[data-theme="dark"]{
     --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
-    --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38;
+    --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414;
     --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
     --border:#2A2E3C; --good:#4ADE80; --good-wash:#16301F;
     --shadow-sm:0 1px 2px rgba(0,0,0,0.3); --shadow-md:0 6px 16px rgba(0,0,0,0.4);
@@ -279,6 +282,7 @@
   :root[data-fontsize="125"]{font-size:125%;}
   .fontsize-btn{font-weight:700;}
   .theme-toggle:disabled{opacity:0.35;cursor:default;}
+  mark{color:inherit;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -370,11 +374,11 @@
     <span class="muted">min 50, max 8,000</span>
   </div>
   <p class="input-tip" id="inputTip"></p>
-  <p class="muted" style="margin-top:6px;"><a href="/before-you-paste.html" target="_blank" rel="noopener">5 minutes of prep before you paste, so you edit less after &rarr;</a></p>
+  <p class="muted" style="margin-top:6px;"><a href="/before-you-paste" target="_blank" rel="noopener">5 minutes of prep before you paste, so you edit less after &rarr;</a></p>
 
   <div class="checkall-box" id="instantCheckBox">
     <button type="button" class="checkall-btn" id="instantCheckBtn">Just check it — no AI, instant</button>
-    <span class="muted checkall-hint">Runs 20 quick mechanical checks on what you pasted above. No signup, no waiting, nothing leaves your browser — this is the same engine as the free checker pages, just without needing to visit each one separately.</span>
+    <span class="muted checkall-hint">Runs 21 quick mechanical checks on what you pasted above. No signup, no waiting, nothing leaves your browser — this is the same engine as the free checker pages, just without needing to visit each one separately.</span>
     <div class="checkall-results" id="instantResults"></div>
   </div>
 
@@ -419,12 +423,12 @@
     </label>
     <div class="checkall-box" id="checkallBox">
       <button type="button" class="checkall-btn" id="checkallBtn">Check everything</button>
-      <span class="muted checkall-hint">Runs 20 quick mechanical checks against both drafts below — nothing leaves your browser.</span>
+      <span class="muted checkall-hint">Runs 21 quick mechanical checks against both drafts below — nothing leaves your browser.</span>
       <div class="checkall-results" id="checkallResults"></div>
       <button type="button" class="btn-secondary-sm" id="saveJournalBtn" style="display:none; margin-top:12px;">Save this to your journal</button>
       <p class="voice-msg" id="saveJournalMsg" style="display:none;"></p>
     </div>
-    <p class="ai-check-link">Other resources: <a href="/make-it-sound-like-you.html" target="_blank" rel="noopener">make it sound like you</a> · <a href="/ai-disclosure-helper.html" target="_blank" rel="noopener">grab a disclosure line</a> · <a href="/pre-publish-checklist.html" target="_blank" rel="noopener">final checklist</a> · <a href="/fact-check-ai-draft.html" target="_blank" rel="noopener">fact-check in 5 min</a> · <a href="/why-platforms-differ.html" target="_blank" rel="noopener">why these read differently</a> · <a href="/post-journal.html" target="_blank" rel="noopener">log this post</a></p>
+    <p class="ai-check-link">Other resources: <a href="/make-it-sound-like-you" target="_blank" rel="noopener">make it sound like you</a> · <a href="/ai-disclosure-helper" target="_blank" rel="noopener">grab a disclosure line</a> · <a href="/pre-publish-checklist" target="_blank" rel="noopener">final checklist</a> · <a href="/fact-check-ai-draft" target="_blank" rel="noopener">fact-check in 5 min</a> · <a href="/why-platforms-differ" target="_blank" rel="noopener">why these read differently</a> · <a href="/post-journal" target="_blank" rel="noopener">log this post</a></p>
     <p class="voice-check-note" id="voiceCheckNote" style="display:none;"></p>
 
     <div class="draft-block">
@@ -791,7 +795,7 @@ function checkNumberConsistency(draftText){
 }
 
 // ============================================================================
-// Unified "Check everything" engine — ported, tier-by-tier, from the 20
+// Unified "Check everything" engine — ported, tier-by-tier, from the 21
 // standalone checker pages already live on the site (ai-authenticity-checker,
 // reads-like-a-translation, sounds-generic, number-unit-checker,
 // markdown-cleanup-checker, privacy-leak-checker, readability-score,
@@ -832,6 +836,7 @@ function cfMarkHtml(text, hits, clsFn){
 }
 
 // ---- 1. Does this sound like AI? (ai-authenticity-checker.html) ----
+// 주의: ai-authenticity-checker.html의 PHRASES와 같은 목록·순서를 유지할 것 — 한쪽만 고치면 두 페이지 판정이 어긋남.
 const CF_AUTH_PHRASES = [
   ["in today's fast-paced world"], ["in this day and age"], ["in an era where"], ["in a world where"],
   ["in conclusion"], ["in summary"], ["to sum up"], ["at the end of the day"], ["overall,"],
@@ -1861,27 +1866,198 @@ function cfCheckRhetorical(text){
 }
 
 // ---- Registry (panel order) ----
+// ---- 21. Hidden characters & stray punctuation (hidden-character-checker.html) ----
+// <lc-hidden-core>
+// ---- Hidden-character checker core: rules only, no AI ----
+// Finds invisible characters, spaces that only look like spaces, full-width punctuation left
+// over from Chinese/Japanese/Korean input methods, and a space typed before punctuation.
+// Kept identical in hidden-character-checker.html and app.html (Check everything) — edit both together.
+var LC_HC_INVISIBLE = {
+  0x200B:'zero-width space', 0x200C:'zero-width non-joiner', 0x200D:'zero-width joiner',
+  0x200E:'left-to-right mark', 0x200F:'right-to-left mark', 0x2060:'word joiner',
+  0xFEFF:'byte-order mark', 0x00AD:'soft hyphen', 0x180E:'Mongolian vowel separator',
+  0x202A:'left-to-right embedding', 0x202B:'right-to-left embedding', 0x202C:'pop directional formatting',
+  0x202D:'left-to-right override', 0x202E:'right-to-left override', 0x2066:'left-to-right isolate',
+  0x2067:'right-to-left isolate', 0x2068:'first strong isolate', 0x2069:'pop directional isolate'
+};
+var LC_HC_SPACES = {
+  0x00A0:'no-break space', 0x202F:'narrow no-break space', 0x205F:'medium mathematical space',
+  0x2000:'en quad', 0x2001:'em quad', 0x2002:'en space', 0x2003:'em space', 0x2004:'three-per-em space',
+  0x2005:'four-per-em space', 0x2006:'six-per-em space', 0x2007:'figure space',
+  0x2008:'punctuation space', 0x2009:'thin space', 0x200A:'hair space'
+};
+var LC_HC_CJK_PUNCT = { 0x3000:' ', 0x3001:',', 0x3002:'.', 0x300C:'"', 0x300D:'"', 0x300E:'"', 0x300F:'"', 0x3010:'[', 0x3011:']' };
+var LC_HC_FW_NAMES = {
+  0x3000:'full-width space', 0x3001:'ideographic comma', 0x3002:'ideographic full stop',
+  0x300C:'corner bracket', 0x300D:'corner bracket', 0x300E:'white corner bracket', 0x300F:'white corner bracket',
+  0x3010:'lenticular bracket', 0x3011:'lenticular bracket', 0xFF0C:'full-width comma', 0xFF0E:'full-width period',
+  0xFF01:'full-width exclamation mark', 0xFF1F:'full-width question mark', 0xFF1A:'full-width colon',
+  0xFF1B:'full-width semicolon', 0xFF08:'full-width parenthesis', 0xFF09:'full-width parenthesis'
+};
+var LC_HC_OPENERS = [0x300C, 0x300E, 0x3010, 0xFF08, 0xFF3B, 0xFF5B];
+var LC_HC_CLOSERS = [0x300D, 0x300F, 0x3011, 0xFF09, 0xFF3D, 0xFF5D, 0x3001, 0x3002, 0xFF0C, 0xFF0E, 0xFF01, 0xFF1F, 0xFF1A, 0xFF1B];
+var LC_HC_INVISIBLE_RE = /[​-‏⁠﻿­᠎‪-‮⁦-⁩]/g;
+var LC_HC_SPACE_RE = /[  -   ]/g;
+var LC_HC_FW_RUN_RE = /[　-。「-』【】！-～]+/g;
+var LC_HC_CJK_RE = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u;
+var LC_HC_PICTO_RE = /\p{Extended_Pictographic}/u;
+var LC_HC_ALNUM_RE = /[\p{L}\p{N}]/u;
+var LC_HC_SPACE_BEFORE_RE = /( +)(?=[!?，；：！？、。]|,|[:;](?=\s|$)|\.(?=\s|$|["'”’)\]]))/g;
+
+function lcHcCodeBefore(text, i){
+  if (i <= 0) return null;
+  var c = text.charCodeAt(i - 1);
+  if (c >= 0xDC00 && c <= 0xDFFF && i >= 2) return text.codePointAt(i - 2);
+  return c;
+}
+function lcHcCodeAt(text, i){ return i < text.length ? text.codePointAt(i) : null; }
+function lcHcIsCjk(cp){ return cp != null && LC_HC_CJK_RE.test(String.fromCodePoint(cp)); }
+function lcHcIsAlnum(cp){ return cp != null && LC_HC_ALNUM_RE.test(String.fromCodePoint(cp)); }
+function lcHcIsWs(cp){ return cp == null || cp === 0x20 || cp === 0x09 || cp === 0x0A || cp === 0x0D; }
+// Nearest character before/after a position, skipping plain spaces and tabs (a newline stops the search).
+function lcHcNeighborBefore(text, i){
+  while (i > 0 && (text[i - 1] === ' ' || text[i - 1] === '\t')) i--;
+  return lcHcCodeBefore(text, i);
+}
+function lcHcNeighborAfter(text, j){
+  while (j < text.length && (text[j] === ' ' || text[j] === '\t')) j++;
+  return lcHcCodeAt(text, j);
+}
+function lcHcEmojiJoiner(text, i){
+  var before = lcHcCodeBefore(text, i), after = lcHcCodeAt(text, i + 1);
+  var beforeOk = before != null && (LC_HC_PICTO_RE.test(String.fromCodePoint(before)) || before === 0xFE0F || (before >= 0x1F3FB && before <= 0x1F3FF));
+  return beforeOk && after != null && LC_HC_PICTO_RE.test(String.fromCodePoint(after));
+}
+function lcHcConvertRun(run){
+  var out = '';
+  for (var k = 0; k < run.length; k++){
+    var cp = run.charCodeAt(k);
+    if (LC_HC_CJK_PUNCT[cp] !== undefined) out += LC_HC_CJK_PUNCT[cp];
+    else if (cp >= 0xFF01 && cp <= 0xFF5E) out += String.fromCharCode(cp - 0xFEE0);
+    else out += run[k];
+  }
+  return out;
+}
+function lcHcRunName(run){
+  if (run.length === 1) return LC_HC_FW_NAMES[run.charCodeAt(0)] || 'full-width character';
+  if (/^[０-９]+$/.test(run)) return 'full-width digits';
+  if (/^[Ａ-Ｚａ-ｚ]+$/.test(run)) return 'full-width letters';
+  return 'full-width characters';
+}
+
+function lcHiddenScan(text){
+  var hits = [], m, i;
+  if (!text) return hits;
+
+  LC_HC_INVISIBLE_RE.lastIndex = 0;
+  while ((m = LC_HC_INVISIBLE_RE.exec(text)) !== null){
+    var cp = m[0].charCodeAt(0);
+    if (cp === 0x200D && lcHcEmojiJoiner(text, m.index)) continue;
+    hits.push({ index:m.index, text:m[0], cat:'invisible', name:LC_HC_INVISIBLE[cp], fix:'' });
+  }
+
+  LC_HC_SPACE_RE.lastIndex = 0;
+  while ((m = LC_HC_SPACE_RE.exec(text)) !== null){
+    var before = lcHcCodeBefore(text, m.index), after = lcHcCodeAt(text, m.index + 1);
+    var nextIsPunct = after != null && /[,;:!?.，；：！？、。]/.test(String.fromCodePoint(after));
+    var fix = (lcHcIsWs(before) || lcHcIsWs(after) || nextIsPunct) ? '' : ' ';
+    hits.push({ index:m.index, text:m[0], cat:'space', name:LC_HC_SPACES[m[0].charCodeAt(0)], fix:fix });
+  }
+
+  LC_HC_FW_RUN_RE.lastIndex = 0;
+  while ((m = LC_HC_FW_RUN_RE.exec(text)) !== null){
+    var start = m.index, end = m.index + m[0].length;
+    if (lcHcIsCjk(lcHcNeighborBefore(text, start)) || lcHcIsCjk(lcHcNeighborAfter(text, end))) continue;
+    var conv = lcHcConvertRun(m[0]);
+    var prevCp = lcHcCodeBefore(text, start), nextCp = lcHcCodeAt(text, end);
+    var firstCp = m[0].charCodeAt(0), lastCp = m[0].charCodeAt(m[0].length - 1);
+    if (LC_HC_OPENERS.indexOf(firstCp) !== -1 && lcHcIsAlnum(prevCp)) conv = ' ' + conv;
+    // A full-width comma/period sitting between digits is a number separator (3，000 / 3．5): no space after it.
+    var beforeLast = m[0].length > 1 ? lcHcConvertRun(m[0].charAt(m[0].length - 2)) : text.charAt(start - 1);
+    var numberSep = (lastCp === 0xFF0C || lastCp === 0xFF0E) && /\d/.test(beforeLast) && nextCp != null && /\d/.test(String.fromCodePoint(nextCp));
+    if (LC_HC_CLOSERS.indexOf(lastCp) !== -1 && lcHcIsAlnum(nextCp) && !numberSep) conv = conv + ' ';
+    if (lcHcIsWs(prevCp)) conv = conv.replace(/^ +/, '');
+    if (lcHcIsWs(nextCp)) conv = conv.replace(/ +$/, '');
+    hits.push({ index:start, text:m[0], cat:'fullwidth', name:lcHcRunName(m[0]), fix:conv });
+  }
+
+  LC_HC_SPACE_BEFORE_RE.lastIndex = 0;
+  while ((m = LC_HC_SPACE_BEFORE_RE.exec(text)) !== null){
+    var prev = lcHcCodeBefore(text, m.index);
+    if (!lcHcIsAlnum(prev) || lcHcIsCjk(prev)) continue;
+    hits.push({ index:m.index, text:m[1], cat:'spacing', name:'space before punctuation', fix:'' });
+  }
+
+  hits.sort(function(a, b){ return a.index - b.index; });
+  var out = [], lastEnd = -1;
+  for (i = 0; i < hits.length; i++){
+    if (hits[i].index >= lastEnd){ out.push(hits[i]); lastEnd = hits[i].index + hits[i].text.length; }
+  }
+  return out;
+}
+
+function lcHiddenClean(text){
+  for (var pass = 0; pass < 5; pass++){
+    var hits = lcHiddenScan(text);
+    if (!hits.length) break;
+    var out = '', cursor = 0;
+    for (var i = 0; i < hits.length; i++){
+      out += text.slice(cursor, hits[i].index) + hits[i].fix;
+      cursor = hits[i].index + hits[i].text.length;
+    }
+    text = out + text.slice(cursor);
+  }
+  return text;
+}
+// </lc-hidden-core>
+function cfHiddenCode(s){ return Array.from(s).map(ch => 'U+' + ch.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')).join(' '); }
+function cfHiddenMarkHtml(text, hits){
+  let html = '', cursor = 0;
+  hits.forEach(h => {
+    html += cfEscapeHtml(text.slice(cursor, h.index));
+    const shown = h.cat === 'invisible' ? cfHiddenCode(h.text) : cfEscapeHtml(h.text);
+    html += `<mark class="cf-mark-hidden-${h.cat}" title="${cfEscapeHtml(h.name)}">${shown}</mark>`;
+    cursor = h.index + h.text.length;
+  });
+  html += cfEscapeHtml(text.slice(cursor));
+  return html.replace(/\n/g, "<br>");
+}
+function cfCheckHidden(text){
+  if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
+  const hits = lcHiddenScan(text);
+  const c = { invisible:0, space:0, fullwidth:0, spacing:0 };
+  hits.forEach(h => c[h.cat]++);
+  let status, headline, detail;
+  if (!hits.length) { status='good'; headline='Clean.'; detail='No invisible characters, look-alike spaces, or stray full-width punctuation.'; }
+  else if (c.invisible || hits.length >= 3) { status='warn'; headline='Hidden characters found.'; detail='Some of these are invisible or can show up oddly once posted — the full tool gives you a cleaned copy.'; }
+  else { status='notice'; headline='A stray character or two.'; detail='Easy to miss by eye — the full tool gives you a cleaned copy.'; }
+  return { status, headline, detail, count: hits.length,
+    markedHtml: hits.length ? cfHiddenMarkHtml(text, hits) : null,
+    extraHtml: hits.length ? `<div class="cf-stat-row"><span>${c.invisible} invisible</span><span>${c.space} look-alike spaces</span><span>${c.fullwidth} full-width</span><span>${c.spacing} space before punctuation</span></div>` : null };
+}
+
 const CF_CHECKS = [
-  { id:'hook',        label:'Opening line',     more:'/hook-checker.html',             run:cfCheckHook },
-  { id:'authenticity',label:'Sounds like AI',    more:'/ai-authenticity-checker.html',  run:cfCheckAuthenticity },
-  { id:'translation', label:'Reads stiff',       more:'/reads-like-a-translation.html', run:cfCheckTranslation },
-  { id:'generic',     label:'Too generic',       more:'/sounds-generic.html',           run:cfCheckGeneric },
-  { id:'jargon',      label:'Jargon & acronyms', more:'/jargon-checker.html',           run:cfCheckJargon },
-  { id:'passive',     label:'Passive voice',     more:'/passive-voice-checker.html',    run:cfCheckPassive },
-  { id:'readability', label:'Readability',       more:'/readability-score.html',        run:cfCheckReadability },
-  { id:'wall',        label:'Wall of text',      more:'/wall-of-text-checker.html',     run:cfCheckWallOfText },
-  { id:'emoji',       label:'Emoji',             more:'/emoji-checker.html',            run:cfCheckEmoji },
-  { id:'hashtags',    label:'Hashtags',          more:'/hashtag-checker.html',          run:cfCheckHashtags },
-  { id:'linkplacement',label:'Link placement',   more:'/link-placement-checker.html',   run:cfCheckLinkPlacement },
-  { id:'markdown',    label:'Formatting',        more:'/markdown-cleanup-checker.html', run:cfCheckMarkdown },
-  { id:'numbers',     label:'Big numbers',       more:'/number-unit-checker.html',      run:cfCheckNumbers },
-  { id:'privacy',     label:'Privacy leak',      more:'/privacy-leak-checker.html',     run:cfCheckPrivacy },
-  { id:'structural',  label:'Structural AI tells', more:'/structural-ai-tell-checker.html', run:cfCheckStructural },
-  { id:'stats',       label:'Unsourced stats',   more:'/unattributed-stat-checker.html', run:cfCheckUnattributedStat },
-  { id:'dates',       label:'Ambiguous dates',   more:'/date-format-checker.html',       run:cfCheckDateAmbiguity },
-  { id:'absolute',    label:'Overconfident claims', more:'/absolute-claims-checker.html', run:cfCheckAbsoluteClaims },
-  { id:'timeamb',     label:'Ambiguous times',   more:'/time-ambiguity-checker.html',    run:cfCheckTimeAmbiguity },
-  { id:'rhetorical',  label:'Rhetorical questions', more:'/rhetorical-question-checker.html', run:cfCheckRhetorical },
+  { id:'hook',        label:'Opening line',     more:'/hook-checker',             run:cfCheckHook },
+  { id:'authenticity',label:'Sounds like AI',    more:'/ai-authenticity-checker',  run:cfCheckAuthenticity },
+  { id:'translation', label:'Reads stiff',       more:'/reads-like-a-translation', run:cfCheckTranslation },
+  { id:'generic',     label:'Too generic',       more:'/sounds-generic',           run:cfCheckGeneric },
+  { id:'jargon',      label:'Jargon & acronyms', more:'/jargon-checker',           run:cfCheckJargon },
+  { id:'passive',     label:'Passive voice',     more:'/passive-voice-checker',    run:cfCheckPassive },
+  { id:'readability', label:'Readability',       more:'/readability-score',        run:cfCheckReadability },
+  { id:'wall',        label:'Wall of text',      more:'/wall-of-text-checker',     run:cfCheckWallOfText },
+  { id:'emoji',       label:'Emoji',             more:'/emoji-checker',            run:cfCheckEmoji },
+  { id:'hashtags',    label:'Hashtags',          more:'/hashtag-checker',          run:cfCheckHashtags },
+  { id:'linkplacement',label:'Link placement',   more:'/link-placement-checker',   run:cfCheckLinkPlacement },
+  { id:'markdown',    label:'Formatting',        more:'/markdown-cleanup-checker', run:cfCheckMarkdown },
+  { id:'numbers',     label:'Big numbers',       more:'/number-unit-checker',      run:cfCheckNumbers },
+  { id:'privacy',     label:'Privacy leak',      more:'/privacy-leak-checker',     run:cfCheckPrivacy },
+  { id:'structural',  label:'Structural AI tells', more:'/structural-ai-tell-checker', run:cfCheckStructural },
+  { id:'stats',       label:'Unsourced stats',   more:'/unattributed-stat-checker', run:cfCheckUnattributedStat },
+  { id:'dates',       label:'Ambiguous dates',   more:'/date-format-checker',       run:cfCheckDateAmbiguity },
+  { id:'absolute',    label:'Overconfident claims', more:'/absolute-claims-checker', run:cfCheckAbsoluteClaims },
+  { id:'timeamb',     label:'Ambiguous times',   more:'/time-ambiguity-checker',    run:cfCheckTimeAmbiguity },
+  { id:'rhetorical',  label:'Rhetorical questions', more:'/rhetorical-question-checker', run:cfCheckRhetorical },
+  { id:'hidden',      label:'Hidden characters', more:'/hidden-character-checker',       run:cfCheckHidden },
 ];
 const CF_STATUS_ORDER = { warn: 0, notice: 1, good: 2 };
 function cfWorstStatus(a, b){ if (!a) return b; if (!b) return a; return CF_STATUS_ORDER[a] <= CF_STATUS_ORDER[b] ? a : b; }
@@ -2039,6 +2215,29 @@ function runInputCheck(){
 }
 
 instantCheckBtn.addEventListener('click', runInputCheck);
+
+// ---- 체커 페이지에서 넘어온 글 받기 (lc_handoff — 브라우저 안에서만, 한 번 쓰고 삭제, 10분 지나면 무시) ----
+// 체커 페이지의 "Run all 21 checks on this text"를 누르면 그 글을 입력창에 넣고 바로 21개 검사를 돌린다.
+(function(){
+  function receiveHandoff(){
+    let data = null;
+    try {
+      const raw = localStorage.getItem('lc_handoff');
+      localStorage.removeItem('lc_handoff');
+      data = raw ? JSON.parse(raw) : null;
+    } catch (e) { data = null; }
+    if (!data || typeof data.text !== 'string' || !data.text.trim()) return;
+    if (!data.t || Date.now() - data.t > 10 * 60 * 1000) return;
+    input.value = data.text;
+    input.dispatchEvent(new Event('input'));
+    hideDraftBanner();
+    runInputCheck();
+    const box = document.getElementById('instantCheckBox');
+    if (box) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', receiveHandoff);
+  else setTimeout(receiveHandoff, 0);
+})();
 
 input.addEventListener('input', () => {
   inputCount.textContent = input.value.length + ' characters';
@@ -2240,5 +2439,6 @@ generateBtn.addEventListener('click', async () => {
 });
 </script>
 
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

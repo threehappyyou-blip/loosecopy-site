@@ -6,52 +6,53 @@ Loosecopy is a small, independently-run tool. It has no user accounts: pasted te
 
 ## Core product
 
-- [Try Loosecopy](https://loosecopy.com/app.html): The generator itself — paste text, get a Twitter thread and LinkedIn post draft back, plus a one-click "Check everything" pass across 20 mechanical quality checks, runnable instantly on raw input with no draft generation required. The 20 checks also run standalone, directly on pasted text, with no draft generation and no AI call required.
+- [Try Loosecopy](https://loosecopy.com/app): The generator itself — paste text, get a Twitter thread and LinkedIn post draft back, plus a one-click "Check everything" pass across 20 mechanical quality checks, runnable instantly on raw input with no draft generation required. The 20 checks also run standalone, directly on pasted text, with no draft generation and no AI call required.
 - [Homepage / waitlist](https://loosecopy.com/): What the product does and how to get early access.
 
 ## Trust & policy
 
-- [What We'll Never Build](https://loosecopy.com/trust.html): The permanent pledge — no auto-publish, no write-access OAuth to any platform, no scheduled posting.
-- [Privacy Policy](https://loosecopy.com/privacy-policy.html): What is and isn't collected, who processes it, and how to reach us.
-- [Where Your Text Actually Goes](https://loosecopy.com/data-handling.html): A technical, code-level account of what happens to pasted text.
-- [Changelog](https://loosecopy.com/changelog.html): Every real, dated change to the product and its policies — including bugs, not just features.
-- [Report a Problem](https://loosecopy.com/report-an-issue.html): Bug reports and policy-compliance issues, read by a person.
+- [What We'll Never Build](https://loosecopy.com/trust): The permanent pledge — no auto-publish, no write-access OAuth to any platform, no scheduled posting.
+- [Privacy Policy](https://loosecopy.com/privacy-policy): What is and isn't collected, who processes it, and how to reach us.
+- [Where Your Text Actually Goes](https://loosecopy.com/data-handling): A technical, code-level account of what happens to pasted text.
+- [Changelog](https://loosecopy.com/changelog): Every real, dated change to the product and its policies — including bugs, not just features.
+- [Report a Problem](https://loosecopy.com/report-an-issue): Bug reports and policy-compliance issues, read by a person.
 
 ## Free tools
 
-- [Does This Sound Like AI?](https://loosecopy.com/ai-authenticity-checker.html): Free checker that flags AI-sounding phrasing and patterns in any pasted text.
-- [AI Disclosure Line Generator](https://loosecopy.com/ai-disclosure-helper.html): Ready-made phrases for disclosing AI assistance, by platform and tone.
-- [Do I Need to Disclose AI Use?](https://loosecopy.com/disclosure-decision-tool.html): A 2-question interactive tool giving a plain-language answer.
-- [Fact-Check Your AI Draft in 5 Minutes](https://loosecopy.com/fact-check-ai-draft.html): A fast method for catching invented facts before publishing.
-- [Before You Paste](https://loosecopy.com/before-you-paste.html): How to prep input text so the generated draft needs less editing.
-- [Make It Sound Like You](https://loosecopy.com/make-it-sound-like-you.html): Six concrete edits for removing generic AI phrasing from a draft.
-- [Why Your Twitter Thread and LinkedIn Post Shouldn't Match](https://loosecopy.com/why-platforms-differ.html): Sourced guidance on platform-specific tone and length.
-- [Just Got Flagged as AI-Written?](https://loosecopy.com/got-flagged-as-ai.html): A practical guide for responding to a false-positive AI accusation.
-- [Pre-Publish Checklist](https://loosecopy.com/pre-publish-checklist.html): A 7-item interactive checklist to run before posting.
-- [Link-Placement Checker](https://loosecopy.com/link-placement-checker.html): Flags a link left in the body of a post instead of the first comment.
-- [Hashtag Checker](https://loosecopy.com/hashtag-checker.html): Checks hashtag count against commonly recommended ranges and flags duplicates or hard-to-read tags.
-- [Passive-Voice Checker](https://loosecopy.com/passive-voice-checker.html): Finds passive constructions in a draft and suggests the active version.
-- [Jargon Checker](https://loosecopy.com/jargon-checker.html): Flags corporate jargon and buzzwords that don't translate well for a global audience.
-- [Markdown Cleanup Checker](https://loosecopy.com/markdown-cleanup-checker.html): Catches markdown formatting that won't render correctly when pasted into Twitter or LinkedIn.
-- [Number & Unit Checker](https://loosecopy.com/number-unit-checker.html): Checks that big numbers and units convert correctly for a global audience.
-- [Privacy-Leak Checker](https://loosecopy.com/privacy-leak-checker.html): Flags anything in a draft you might not mean to publish.
-- [Readability Score](https://loosecopy.com/readability-score.html): Scores how hard a draft is to read.
-- [Reads Like a Translation](https://loosecopy.com/reads-like-a-translation.html): Flags phrasing that reads like a stiff translation rather than natural English.
-- [Sounds Generic](https://loosecopy.com/sounds-generic.html): Flags generic phrasing that could describe any product or post.
-- [Post Journal](https://loosecopy.com/post-journal.html): A private log, stored in your browser, of what you posted and what happened.
-- [Hook Checker](https://loosecopy.com/hook-checker.html): Checks your opening line for cliché openers and length that risks getting cut off.
-- [Emoji Checker](https://loosecopy.com/emoji-checker.html): Counts emoji usage and flags the emoji-as-bullet-point pattern.
-- [Wall-of-Text Checker](https://loosecopy.com/wall-of-text-checker.html): Flags paragraphs long enough, unbroken, to read as a wall of text.
-- [Structural AI-Tell Checker](https://loosecopy.com/structural-ai-tell-checker.html): Flags sentence-length uniformity, em dash overuse, and the "not just X, it's Y" construction — structural patterns, not phrases.
-- [Unattributed-Statistic Checker](https://loosecopy.com/unattributed-stat-checker.html): Flags a percentage, "X out of Y", or "Nx" claim with no source stated nearby.
-- [Date-Format Checker](https://loosecopy.com/date-format-checker.html): Flags numeric dates like "3/4/2026" that read as a different day depending on whether the reader expects month-first or day-first.
-- [Absolute-Claims Checker](https://loosecopy.com/absolute-claims-checker.html): Flags unhedged certainty phrases like "100% guaranteed" or "never fails" that read as marketing hype and are easy for a reader to challenge.
-- [Time-Ambiguity Checker](https://loosecopy.com/time-ambiguity-checker.html): Flags bare clock times with no time zone attached, and relative-day words like "tomorrow" that read differently depending on when or where someone sees the post.
-- [Rhetorical-Question Checker](https://loosecopy.com/rhetorical-question-checker.html): Flags short tag-questions like "Sound familiar?" stacked up as filler — a structural count, not a phrase list.
+- [Does This Sound Like AI?](https://loosecopy.com/ai-authenticity-checker): Free checker that flags AI-sounding phrasing and patterns in any pasted text.
+- [AI Disclosure Line Generator](https://loosecopy.com/ai-disclosure-helper): Ready-made phrases for disclosing AI assistance, by platform and tone.
+- [Do I Need to Disclose AI Use?](https://loosecopy.com/disclosure-decision-tool): A 2-question interactive tool giving a plain-language answer.
+- [Fact-Check Your AI Draft in 5 Minutes](https://loosecopy.com/fact-check-ai-draft): A fast method for catching invented facts before publishing.
+- [Before You Paste](https://loosecopy.com/before-you-paste): How to prep input text so the generated draft needs less editing.
+- [Make It Sound Like You](https://loosecopy.com/make-it-sound-like-you): Six concrete edits for removing generic AI phrasing from a draft.
+- [Why Your Twitter Thread and LinkedIn Post Shouldn't Match](https://loosecopy.com/why-platforms-differ): Sourced guidance on platform-specific tone and length.
+- [Just Got Flagged as AI-Written?](https://loosecopy.com/got-flagged-as-ai): A practical guide for responding to a false-positive AI accusation.
+- [Pre-Publish Checklist](https://loosecopy.com/pre-publish-checklist): A 7-item interactive checklist to run before posting.
+- [Link-Placement Checker](https://loosecopy.com/link-placement-checker): Flags a link left in the body of a post instead of the first comment.
+- [Hashtag Checker](https://loosecopy.com/hashtag-checker): Checks hashtag count against commonly recommended ranges and flags duplicates or hard-to-read tags.
+- [Passive-Voice Checker](https://loosecopy.com/passive-voice-checker): Finds passive constructions in a draft and suggests the active version.
+- [Jargon Checker](https://loosecopy.com/jargon-checker): Flags corporate jargon and buzzwords that don't translate well for a global audience.
+- [Markdown Cleanup Checker](https://loosecopy.com/markdown-cleanup-checker): Catches markdown formatting that won't render correctly when pasted into Twitter or LinkedIn.
+- [Hidden Character Checker](https://loosecopy.com/hidden-character-checker): Finds invisible characters (zero-width spaces, look-alike spaces such as U+202F) and full-width punctuation left by Chinese, Japanese or Korean keyboards, and copies a cleaned version.
+- [Number & Unit Checker](https://loosecopy.com/number-unit-checker): Checks that big numbers and units convert correctly for a global audience.
+- [Privacy-Leak Checker](https://loosecopy.com/privacy-leak-checker): Flags anything in a draft you might not mean to publish.
+- [Readability Score](https://loosecopy.com/readability-score): Scores how hard a draft is to read.
+- [Reads Like a Translation](https://loosecopy.com/reads-like-a-translation): Flags phrasing that reads like a stiff translation rather than natural English.
+- [Sounds Generic](https://loosecopy.com/sounds-generic): Flags generic phrasing that could describe any product or post.
+- [Post Journal](https://loosecopy.com/post-journal): A private log, stored in your browser, of what you posted and what happened.
+- [Hook Checker](https://loosecopy.com/hook-checker): Checks your opening line for cliché openers and length that risks getting cut off.
+- [Emoji Checker](https://loosecopy.com/emoji-checker): Counts emoji usage and flags the emoji-as-bullet-point pattern.
+- [Wall-of-Text Checker](https://loosecopy.com/wall-of-text-checker): Flags paragraphs long enough, unbroken, to read as a wall of text.
+- [Structural AI-Tell Checker](https://loosecopy.com/structural-ai-tell-checker): Flags sentence-length uniformity, em dash overuse, and the "not just X, it's Y" construction — structural patterns, not phrases.
+- [Unattributed-Statistic Checker](https://loosecopy.com/unattributed-stat-checker): Flags a percentage, "X out of Y", or "Nx" claim with no source stated nearby.
+- [Date-Format Checker](https://loosecopy.com/date-format-checker): Flags numeric dates like "3/4/2026" that read as a different day depending on whether the reader expects month-first or day-first.
+- [Absolute-Claims Checker](https://loosecopy.com/absolute-claims-checker): Flags unhedged certainty phrases like "100% guaranteed" or "never fails" that read as marketing hype and are easy for a reader to challenge.
+- [Time-Ambiguity Checker](https://loosecopy.com/time-ambiguity-checker): Flags bare clock times with no time zone attached, and relative-day words like "tomorrow" that read differently depending on when or where someone sees the post.
+- [Rhetorical-Question Checker](https://loosecopy.com/rhetorical-question-checker): Flags short tag-questions like "Sound familiar?" stacked up as filler — a structural count, not a phrase list.
 
 ## Research & reference
 
-- [Why AI Detectors Get It Wrong](https://loosecopy.com/ai-detectors-explained.html): Sourced research on AI-text-detector unreliability.
-- [AI Disclosure Rules by Platform](https://loosecopy.com/ai-disclosure-policies.html): What X, LinkedIn, Meta, and Google actually require, with sources.
-- [Does Disclosing AI Use Actually Help?](https://loosecopy.com/does-disclosure-help.html): Research on disclosure's real, mixed effect on audience trust.
-- [AI Content Glossary](https://loosecopy.com/ai-glossary.html): Plain-language definitions of terms used across the above pages.
+- [Why AI Detectors Get It Wrong](https://loosecopy.com/ai-detectors-explained): Sourced research on AI-text-detector unreliability.
+- [AI Disclosure Rules by Platform](https://loosecopy.com/ai-disclosure-policies): What X, LinkedIn, Meta, and Google actually require, with sources.
+- [Does Disclosing AI Use Actually Help?](https://loosecopy.com/does-disclosure-help): Research on disclosure's real, mixed effect on audience trust.
+- [AI Content Glossary](https://loosecopy.com/ai-glossary): Plain-language definitions of terms used across the above pages.

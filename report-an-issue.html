@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Report a Problem — Loosecopy</title>
 <meta name="description" content="Found a bug, or a place where Loosecopy isn't living up to its own rules? Tell us — it goes straight into the public changelog once it's handled.">
-<link rel="canonical" href="https://loosecopy.com/report-an-issue.html">
+<link rel="canonical" href="https://loosecopy.com/report-an-issue">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://loosecopy.com/report-an-issue.html">
+<meta property="og:url" content="https://loosecopy.com/report-an-issue">
 <meta property="og:title" content="Report a Problem — Loosecopy">
 <meta property="og:description" content="Found a bug, or a place where Loosecopy isn't living up to its own rules? Tell us — it goes straight into the public changelog once it's handled.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
@@ -26,7 +26,7 @@
 <style>
   :root{
     --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
-    --redline:#DC2626; --redline-wash:#FDE8E8; --bluepencil:#2563EB; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF;
+    --redline:#B91C1C; --redline-wash:#FDE8E8; --bluepencil:#1D4ED8; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
     --max:820px;
   }
   *{box-sizing:border-box;}
@@ -63,12 +63,13 @@
   .hint{font-size:0.82rem; color:var(--ink-soft); margin-top:5px;}
 
   .btn-primary{
-    background:var(--accent); color:#fff; border:none; padding:13px 26px; font-size:1rem;
+    background:var(--accent); color:var(--paper-card); border:none; padding:13px 26px; font-size:1rem;
     font-weight:600; border-radius:10px; cursor:pointer; font-family:'Inter',sans-serif;
   }
   .btn-primary:hover{background:var(--accent-hover);}
 
   .form-thanks{display:none; margin-top:18px; padding:16px 20px; background:var(--bluepencil-wash); border-radius:10px; font-size:0.95rem;}
+  .form-error{display:none; margin-top:18px; padding:14px 18px; background:var(--redline-wash); border-left:3px solid var(--redline); border-radius:10px; font-size:0.95rem;}
 
   .loop-note{
     background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--bluepencil);
@@ -83,14 +84,14 @@
     :root:not([data-theme="light"]){
       --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
       --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
     }
     :root:not([data-theme="light"]) .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   }
   :root[data-theme="dark"]{
     --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
     --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
   }
   :root[data-theme="dark"] .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:10px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
@@ -100,6 +101,7 @@
   :root[data-fontsize="125"]{font-size:125%;}
   .fontsize-btn{font-weight:700;}
   .theme-toggle:disabled{opacity:0.35;cursor:default;}
+  mark{color:inherit;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -175,12 +177,11 @@
 
 <main class="wrap">
   <h1>Something broken? Or something that doesn't match what we said?</h1>
-  <p class="lede">A bug, a page that's out of date, a place where the product doesn't actually do what <a href="/trust.html">the pledge</a> says it does — tell us. This isn't a general feedback box; it goes to one person who reads every submission.</p>
+  <p class="lede">A bug, a page that's out of date, a place where the product doesn't actually do what <a href="/trust">the pledge</a> says it does — tell us. This isn't a general feedback box; it goes to one person who reads every submission.</p>
 
-  <form id="issueForm" action="https://formspree.io/f/YOUR_ISSUE_FORM_ID" method="POST">
-    <!-- TODO(운영자): 위 action의 YOUR_ISSUE_FORM_ID를 실제 Formspree 폼 ID로 교체하세요.
-         지난번 waitlist 폼(xdeoqjkw)과 같은 계정에서 새 폼을 하나 더 만들면 됩니다:
-         formspree.io 로그인 → New Form → 이름 예: "Loosecopy Issue Reports" → 발급된 /f/xxxxxxx 값을 여기에 붙여넣기. -->
+  <form id="issueForm" action="https://formspree.io/f/xdeoqjkw" method="POST">
+    <input type="hidden" name="_subject" value="Loosecopy issue report">
+    <input type="hidden" name="form" value="issue-report">
     <div class="field">
       <label for="what">What happened? <span class="optional">be as specific as you can</span></label>
       <textarea id="what" name="what" required placeholder="e.g. The review checkbox on app.html doesn't disable the copy buttons anymore, tested on Safari on Sept 16."></textarea>
@@ -197,37 +198,44 @@
       <p class="hint">Leave this blank to report anonymously. We can't follow up if we can't reach you, but the report still gets read either way.</p>
     </div>
 
-    <button class="btn-primary" type="submit">Send report</button>
-    <p class="form-thanks" id="formThanks">Got it — thank you. If this turns into a real fix, it'll show up dated in the <a href="/changelog.html">changelog</a>, not fixed quietly.</p>
+    <button class="btn-primary" type="submit" id="issueSubmit">Send report</button>
+    <p class="form-error" id="formError" role="alert">That didn't go through — please try again in a minute. What you typed is still here.</p>
+    <p class="form-thanks" id="formThanks">Got it — thank you. If this turns into a real fix, it'll show up dated in the <a href="/changelog">changelog</a>, not fixed quietly.</p>
   </form>
 
   <div class="loop-note">
-    Why this connects to the changelog: a bug report that just disappears into an inbox isn't accountability, it's a suggestion box. Anything reported here that leads to an actual fix gets a dated entry on <a href="/changelog.html">the public changelog</a> — so "we take feedback seriously" is something you can go check, not just something we say.
+    Why this connects to the changelog: a bug report that just disappears into an inbox isn't accountability, it's a suggestion box. Anything reported here that leads to an actual fix gets a dated entry on <a href="/changelog">the public changelog</a> — so "we take feedback seriously" is something you can go check, not just something we say.
   </div>
 
-  <p class="also">See everything that's already been fixed this way: <a href="/changelog.html">the full changelog →</a></p>
+  <p class="also">See everything that's already been fixed this way: <a href="/changelog">the full changelog →</a></p>
 </main>
 
 <script>
 document.getElementById('issueForm').addEventListener('submit', function(e){
   e.preventDefault();
   var form = e.target;
+  var btn = document.getElementById('issueSubmit');
+  var thanks = document.getElementById('formThanks');
+  var error = document.getElementById('formError');
+  function failed(){ error.style.display = 'block'; }
+  thanks.style.display = 'none';
+  error.style.display = 'none';
+  btn.disabled = true;
   fetch(form.action, {
     method: 'POST',
     body: new FormData(form),
     headers: { 'Accept': 'application/json' }
   }).then(function(res){
     if (res.ok) {
-      document.getElementById('formThanks').style.display = 'block';
+      thanks.style.display = 'block';
       form.reset();
     } else {
-      alert('Something went wrong — please try again, or email directly if it keeps failing.');
+      failed();
     }
-  }).catch(function(){
-    alert('Something went wrong — please try again, or email directly if it keeps failing.');
-  });
+  }).catch(failed).then(function(){ btn.disabled = false; });
 });
 </script>
 
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

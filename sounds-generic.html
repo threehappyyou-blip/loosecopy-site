@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Does This Sound Generic? — Free Checker by Loosecopy</title>
 <meta name="description" content="Paste your draft and see how many concrete specifics — numbers, names, dates — it actually has. Vague, could-be-anyone posts read weaker to people, and platforms have started ranking them lower too.">
-<link rel="canonical" href="https://loosecopy.com/sounds-generic.html">
+<link rel="canonical" href="https://loosecopy.com/sounds-generic">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://loosecopy.com/sounds-generic.html">
+<meta property="og:url" content="https://loosecopy.com/sounds-generic">
 <meta property="og:title" content="Does This Sound Generic? — Free Checker by Loosecopy">
 <meta property="og:description" content="Paste your draft and see how many concrete specifics — numbers, names, dates — it actually has. Vague, could-be-anyone posts read weaker to people, and platforms have started ranking them lower too.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
@@ -26,7 +26,7 @@
 <style>
   :root{
     --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
-    --redline:#DC2626; --redline-wash:#FDE8E8; --bluepencil:#2563EB; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF;
+    --redline:#B91C1C; --redline-wash:#FDE8E8; --bluepencil:#1D4ED8; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
     --max:820px;
   }
   *{box-sizing:border-box;}
@@ -82,11 +82,11 @@
     white-space:pre-wrap; background:var(--paper-card); border:1px solid var(--border); border-radius:10px;
     padding:16px 18px; font-size:0.96rem; line-height:1.75; margin-bottom:20px;
   }
-  mark.num{background:#DDE9D8; border-bottom:2px solid #6E9C5E;}
-  mark.date{background:#DDE6EA; border-bottom:2px solid #3A5A6E;}
-  mark.noun{background:#FCE9B8; border-bottom:2px solid #D9A63C;}
+  mark.num{background:var(--good-wash); border-bottom:2px solid var(--good);}
+  mark.date{background:var(--bluepencil-wash); border-bottom:2px solid var(--bluepencil);}
+  mark.noun{background:var(--amber-wash); border-bottom:2px solid var(--amber);}
   .legend{font-size:0.82rem; color:var(--ink-soft); margin:-10px 0 20px;}
-  .legend span{padding:1px 6px; border-radius:10px; margin-right:4px;}
+  .legend span{padding:1px 6px; border-radius:10px; margin-right:4px; color:var(--ink);}
 
   .callout{background:var(--bluepencil-wash); border-radius:10px; padding:16px 18px; font-size:0.92rem;}
   .callout a{color:var(--bluepencil); font-weight:600;}
@@ -99,14 +99,14 @@
     :root:not([data-theme="light"]){
       --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
       --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
     }
     :root:not([data-theme="light"]) .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   }
   :root[data-theme="dark"]{
     --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
     --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
   }
   :root[data-theme="dark"] .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:10px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
@@ -116,6 +116,17 @@
   :root[data-fontsize="125"]{font-size:125%;}
   .fontsize-btn{font-weight:700;}
   .theme-toggle:disabled{opacity:0.35;cursor:default;}
+  .lc-all-checks{margin-top:44px; padding-top:24px; border-top:1px solid var(--border);}
+  .lc-all-checks h2{font-size:1.15rem; margin-bottom:4px;}
+  .lc-all-checks > p{margin:0 0 16px;}
+  .lc-ac-groups{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:16px 24px;}
+  .lc-ac-group h3{font-family:'Inter',sans-serif; font-size:0.78rem; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 6px;}
+  .lc-ac-group ul{list-style:none; margin:0; padding:0;}
+  .lc-ac-group li{font-size:0.92rem; padding:3px 0;}
+  .lc-ac-group a{text-decoration:none;}
+  .lc-ac-group a:hover{text-decoration:underline;}
+  .lc-ac-group [aria-current]{color:var(--ink); font-weight:600;}
+  mark{color:inherit;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -203,21 +214,56 @@
     <div class="verdict" id="verdict"></div>
     <div class="stat-row" id="statRow"></div>
     <div class="legend">
-      <span style="background:#DDE9D8;border-bottom:2px solid #6E9C5E;">numbers</span>
-      <span style="background:#DDE6EA;border-bottom:2px solid #3A5A6E;">dates / timeframes</span>
-      <span style="background:#FCE9B8;border-bottom:2px solid #D9A63C;">possible names, places, products</span>
+      <span style="background:var(--good-wash);border-bottom:2px solid var(--good);">numbers</span>
+      <span style="background:var(--bluepencil-wash);border-bottom:2px solid var(--bluepencil);">dates / timeframes</span>
+      <span style="background:var(--amber-wash);border-bottom:2px solid var(--amber);">possible names, places, products</span>
     </div>
     <div class="highlighted" id="highlighted"></div>
     <div class="callout">
       This isn't a LinkedIn-detector — it can't see how any platform actually ranks your post. It just counts one thing writing advice has always agreed on: specifics beat vague abstraction.
       Missing a number, name, or date? Adding just one real one usually does more than a full rewrite.
-      Also worried about tone, not content? <a href="/reads-like-a-translation.html">Check if it reads stiff →</a>
-      <a href="/app.html">Try the generator →</a>
+      Also worried about tone, not content? <a href="/reads-like-a-translation">Check if it reads stiff →</a>
+      <a href="/app" class="lc-handoff">Run all 21 checks on this text →</a>
     </div>
     <p class="source-note">Background on the 2026 LinkedIn reporting: <a href="https://neilpatel.com/blog/linkedin-ai-slop-crackdown-content-strategy/" target="_blank" rel="noopener">Neil Patel — LinkedIn's AI-content crackdown</a>. LinkedIn's own detection-accuracy claims are self-reported and not independently verified — treat the direction as more solid than the exact numbers.</p>
   </div>
 
   <p class="disclaimer">Heuristic counter, not a ranking predictor. "Proper nouns" are guessed from capitalization, so it will miss lowercase brand names and occasionally flag a word that isn't really a name. False negatives and false positives both happen — read the highlights, don't just trust the score.</p>
+  <nav class="lc-all-checks" aria-labelledby="lcAllChecksTitle">
+    <h2 id="lcAllChecksTitle">All 21 free checks</h2>
+    <p class="muted">Same rules every time, no AI, nothing leaves your browser. <a href="/app" class="lc-handoff">Or run all of them at once →</a></p>
+    <div class="lc-ac-groups">
+      <div class="lc-ac-group"><h3>Sounds like you</h3><ul>
+        <li><a href="/ai-authenticity-checker">Sounds like AI</a></li>
+        <li><a href="/structural-ai-tell-checker">Structural AI tells</a></li>
+        <li><span aria-current="page">Too generic</span></li>
+        <li><a href="/reads-like-a-translation">Reads stiff or translated</a></li>
+        <li><a href="/jargon-checker">Jargon &amp; acronyms</a></li>
+        <li><a href="/passive-voice-checker">Passive voice</a></li>
+        <li><a href="/rhetorical-question-checker">Rhetorical questions</a></li>
+        <li><a href="/absolute-claims-checker">Overconfident claims</a></li>
+      </ul></div>
+      <div class="lc-ac-group"><h3>Fits the platform</h3><ul>
+        <li><a href="/hook-checker">Opening line</a></li>
+        <li><a href="/hashtag-checker">Hashtags</a></li>
+        <li><a href="/emoji-checker">Emoji</a></li>
+        <li><a href="/link-placement-checker">Link placement</a></li>
+        <li><a href="/wall-of-text-checker">Wall of text</a></li>
+        <li><a href="/readability-score">Readability</a></li>
+        <li><a href="/markdown-cleanup-checker">Leftover formatting</a></li>
+        <li><a href="/hidden-character-checker">Hidden characters</a></li>
+      </ul></div>
+      <div class="lc-ac-group"><h3>Clear &amp; accurate</h3><ul>
+        <li><a href="/unattributed-stat-checker">Unsourced stats</a></li>
+        <li><a href="/number-unit-checker">Big numbers &amp; units</a></li>
+        <li><a href="/date-format-checker">Ambiguous dates</a></li>
+        <li><a href="/time-ambiguity-checker">Ambiguous times</a></li>
+      </ul></div>
+      <div class="lc-ac-group"><h3>Safe to post</h3><ul>
+        <li><a href="/privacy-leak-checker">Privacy leaks</a></li>
+      </ul></div>
+    </div>
+  </nav>
 </main>
 
 <script>
@@ -348,5 +394,16 @@
 })();
 </script>
 
+<script>(function(){
+  // "Run all 21 checks on this text": 이 페이지 입력창의 글을 브라우저 안에서만(localStorage, 10분 유효, 한 번 쓰면 삭제) app으로 넘긴다. 서버 전송 없음.
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a.lc-handoff') : null;
+    if (!a) return;
+    var ta = document.querySelector('main textarea');
+    var text = ta ? ta.value : '';
+    try { if (text.trim()) localStorage.setItem('lc_handoff', JSON.stringify({ text: text, t: Date.now() })); } catch (err) {}
+  });
+})();</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

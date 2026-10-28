@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Do I Need to Disclose AI Use? — Loosecopy</title>
 <meta name="description" content="Answer two questions and get a plain-language answer on whether you need to disclose AI assistance — grounded in each platform's actual policy.">
-<link rel="canonical" href="https://loosecopy.com/disclosure-decision-tool.html">
+<link rel="canonical" href="https://loosecopy.com/disclosure-decision-tool">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://loosecopy.com/disclosure-decision-tool.html">
+<meta property="og:url" content="https://loosecopy.com/disclosure-decision-tool">
 <meta property="og:title" content="Do I Need to Disclose AI Use? — Loosecopy">
 <meta property="og:description" content="Answer two questions and get a plain-language answer on whether you need to disclose AI assistance — grounded in each platform's actual policy.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
@@ -26,7 +26,7 @@
 <style>
   :root{
     --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
-    --redline:#DC2626; --redline-wash:#FDE8E8; --bluepencil:#2563EB; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF;
+    --redline:#B91C1C; --redline-wash:#FDE8E8; --bluepencil:#1D4ED8; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
     --max:820px;
   }
   *{box-sizing:border-box;}
@@ -59,7 +59,7 @@
     border-radius:10px; padding:13px 16px; cursor:pointer; font-size:0.95rem;
   }
   .opt input{width:17px; height:17px; flex-shrink:0; accent-color:var(--bluepencil);}
-  .opt.selected{border-left:3px solid var(--bluepencil); background:#F3F5F1;}
+  .opt.selected{border-left:3px solid var(--bluepencil); background:var(--paper-card);}
 
   .result{
     margin-top:8px; padding:22px 24px; border-radius:10px; background:var(--bluepencil-wash);
@@ -69,7 +69,7 @@
   .result h2{font-size:1.05rem; margin-bottom:10px;}
   .result p{margin:0 0 10px; font-size:0.97rem;}
   .result p:last-child{margin-bottom:0;}
-  .result.override{background:var(--redline-wash); color:#5c231f;}
+  .result.override{background:var(--redline-wash); color:var(--ink);}
 
   .placeholder{
     margin-top:8px; padding:18px 20px; border:1px dashed var(--border); border-radius:10px;
@@ -86,14 +86,14 @@
     :root:not([data-theme="light"]){
       --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
       --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
     }
     :root:not([data-theme="light"]) .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   }
   :root[data-theme="dark"]{
     --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
     --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
   }
   :root[data-theme="dark"] .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:10px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
@@ -103,6 +103,7 @@
   :root[data-fontsize="125"]{font-size:125%;}
   .fontsize-btn{font-weight:700;}
   .theme-toggle:disabled{opacity:0.35;cursor:default;}
+  mark{color:inherit;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -178,7 +179,7 @@
 
 <main class="wrap">
   <h1>Do I actually need to disclose this?</h1>
-  <p class="lede">Answer two questions, get a straight answer — built on the same sourced research as our <a href="/ai-disclosure-policies.html">full policy breakdown</a>, just aimed at your specific case.</p>
+  <p class="lede">Answer two questions, get a straight answer — built on the same sourced research as our <a href="/ai-disclosure-policies">full policy breakdown</a>, just aimed at your specific case.</p>
 
   <div class="q-block">
     <h2>1. Where is this going?</h2>
@@ -203,8 +204,8 @@
   <div class="placeholder" id="placeholder">Answer both questions to see your answer.</div>
   <div class="result" id="result"></div>
 
-  <p class="source-note">Platform answers are based on official policy pages as of September 2026 — see <a href="/ai-disclosure-policies.html">sources and dates →</a>. This isn't legal advice.</p>
-  <p class="also">Ready to write your own line? <a href="/ai-disclosure-helper.html">Copy a ready-made disclosure phrase →</a></p>
+  <p class="source-note">Platform answers are based on official policy pages as of September 2026 — see <a href="/ai-disclosure-policies">sources and dates →</a>. This isn't legal advice.</p>
+  <p class="also">Ready to write your own line? <a href="/ai-disclosure-helper">Copy a ready-made disclosure phrase →</a></p>
 </main>
 
 <script>
@@ -269,5 +270,6 @@ document.querySelectorAll('input[name="context"]').forEach(el => {
 });
 </script>
 
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Why AI Detectors Get It Wrong — Loosecopy</title>
 <meta name="description" content="Getting flagged as 'AI-written' isn't proof of anything. A sourced look at what the research actually says about AI-text-detector accuracy.">
-<link rel="canonical" href="https://loosecopy.com/ai-detectors-explained.html">
+<link rel="canonical" href="https://loosecopy.com/ai-detectors-explained">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://loosecopy.com/ai-detectors-explained.html">
+<meta property="og:url" content="https://loosecopy.com/ai-detectors-explained">
 <meta property="og:title" content="Why AI Detectors Get It Wrong — Loosecopy">
 <meta property="og:description" content="Getting flagged as 'AI-written' isn't proof of anything. A sourced look at what the research actually says about AI-text-detector accuracy.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
@@ -26,7 +26,7 @@
 <style>
   :root{
     --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
-    --redline:#DC2626; --redline-wash:#FDE8E8; --bluepencil:#2563EB; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF;
+    --redline:#B91C1C; --redline-wash:#FDE8E8; --bluepencil:#1D4ED8; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
     --max:820px;
   }
   *{box-sizing:border-box;}
@@ -67,13 +67,13 @@
   .finding p{margin:0 0 10px; font-size:0.96rem;}
   .stat-row{display:flex; flex-wrap:wrap; gap:12px; margin:12px 0;}
   .stat{
-    font-family:'Space Mono',monospace; background:#F3F5F1; border:1px solid var(--border);
+    font-family:'Space Mono',monospace; background:var(--paper-card); border:1px solid var(--border);
     border-radius:10px; padding:10px 14px; font-size:0.85rem; color:var(--ink); flex:1 1 200px;
   }
   .stat b{display:block; font-size:1.3rem; color:var(--redline); font-family:'Sora',sans-serif; font-weight:500;}
   .takeaway{
     border-left:3px solid var(--bluepencil); padding:8px 14px; margin:12px 0; font-size:0.92rem;
-    background:#F3F5F1; color:var(--ink);
+    background:var(--paper-card); color:var(--ink);
   }
   .source{font-size:0.82rem; color:var(--ink-soft);}
   .source a{color:var(--bluepencil);}
@@ -87,7 +87,7 @@
 
   .legal-note{
     margin-top:24px; padding:16px 20px; border-left:3px solid var(--redline); background:var(--redline-wash);
-    font-size:0.88rem; color:#5c231f; border-radius:10px;
+    font-size:0.88rem; color:var(--ink); border-radius:10px;
   }
 
   .also{font-size:0.88rem; color:var(--ink-soft); margin-top:32px;}
@@ -100,14 +100,14 @@
     :root:not([data-theme="light"]){
       --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
       --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
     }
     :root:not([data-theme="light"]) .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   }
   :root[data-theme="dark"]{
     --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
     --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
   }
   :root[data-theme="dark"] .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:10px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
@@ -117,6 +117,7 @@
   :root[data-fontsize="125"]{font-size:125%;}
   .fontsize-btn{font-weight:700;}
   .theme-toggle:disabled{opacity:0.35;cursor:default;}
+  mark{color:inherit;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -243,10 +244,10 @@
     <h2>So what should you actually do with this?</h2>
     <ul>
       <li>Don't treat a detector score — yours or someone else's — as proof of anything. The research above says the tools themselves don't support that level of confidence.</li>
-      <li>Disclosure beats hoping you pass a scan. A short, honest line ("drafted with AI, edited by me") holds up regardless of what any detector says — though it's worth knowing <a href="/does-disclosure-help.html">disclosure has its own real trust costs, honestly →</a>. <a href="/ai-disclosure-helper.html">Grab a ready-made line anyway →</a></li>
-      <li>The review step is what actually matters — not for fooling a detector, but because it's the difference between AI drafting and you publishing. <a href="/trust.html">That's the one rule we don't bend on →</a></li>
+      <li>Disclosure beats hoping you pass a scan. A short, honest line ("drafted with AI, edited by me") holds up regardless of what any detector says — though it's worth knowing <a href="/does-disclosure-help">disclosure has its own real trust costs, honestly →</a>. <a href="/ai-disclosure-helper">Grab a ready-made line anyway →</a></li>
+      <li>The review step is what actually matters — not for fooling a detector, but because it's the difference between AI drafting and you publishing. <a href="/trust">That's the one rule we don't bend on →</a></li>
       <li>If you were flagged and you didn't use AI (or used it and then genuinely rewrote it), you're not imagining that the system got it wrong. The research above says it does — a lot, especially if English isn't your first language.</li>
-      <li>Actually dealing with this right now? <a href="/got-flagged-as-ai.html">Here's exactly what to do next →</a></li>
+      <li>Actually dealing with this right now? <a href="/got-flagged-as-ai">Here's exactly what to do next →</a></li>
     </ul>
   </div>
 
@@ -255,11 +256,12 @@
   </div>
 
   <p class="also">
-    Want to check your own writing before you post it? <a href="/ai-authenticity-checker.html">Run our free checker →</a>
-    Curious what platforms actually require? <a href="/ai-disclosure-policies.html">See the sourced policy breakdown →</a>
-    Ran into an unfamiliar term above? <a href="/ai-glossary.html">Check the glossary →</a>
+    Want to check your own writing before you post it? <a href="/ai-authenticity-checker">Run our free checker →</a>
+    Curious what platforms actually require? <a href="/ai-disclosure-policies">See the sourced policy breakdown →</a>
+    Ran into an unfamiliar term above? <a href="/ai-glossary">Check the glossary →</a>
   </p>
 </main>
 
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

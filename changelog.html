@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Changelog — Loosecopy</title>
 <meta name="description" content="Every real, dated change to Loosecopy and the rule it's built on — published as it happens, not cleaned up after the fact.">
-<link rel="canonical" href="https://loosecopy.com/changelog.html">
+<link rel="canonical" href="https://loosecopy.com/changelog">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://loosecopy.com/changelog.html">
+<meta property="og:url" content="https://loosecopy.com/changelog">
 <meta property="og:title" content="Changelog — Loosecopy">
 <meta property="og:description" content="Every real, dated change to Loosecopy and the rule it's built on — published as it happens, not cleaned up after the fact.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
@@ -26,7 +26,7 @@
 <style>
   :root{
     --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
-    --redline:#DC2626; --redline-wash:#FDE8E8; --bluepencil:#2563EB; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF;
+    --redline:#B91C1C; --redline-wash:#FDE8E8; --bluepencil:#1D4ED8; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
     --max:820px;
   }
   *{box-sizing:border-box;}
@@ -85,14 +85,14 @@
     :root:not([data-theme="light"]){
       --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
       --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
     }
     :root:not([data-theme="light"]) .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   }
   :root[data-theme="dark"]{
     --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
     --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
   }
   :root[data-theme="dark"] .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:10px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
@@ -102,6 +102,7 @@
   :root[data-fontsize="125"]{font-size:125%;}
   .fontsize-btn{font-weight:700;}
   .theme-toggle:disabled{opacity:0.35;cursor:default;}
+  mark{color:inherit;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -181,31 +182,43 @@
   <div class="meta-note">Newest first. Nothing here is backdated or removed after the fact — if something needs correcting, it gets a new dated entry, not a silent edit.</div>
 
   <div class="day">
+    <div class="date-head">2026-10-28</div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/hidden-character-checker">A hidden-character checker</a> — finds invisible characters (zero-width spaces, and look-alike spaces such as U+202F, which have turned up in some AI chat output) plus full-width punctuation left over from Chinese, Japanese, or Korean keyboards, then gives you a cleaned copy. It's also the 21st check in Check everything.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p>Every checker page now lists all 21 checks, grouped, plus a "Run all 21 checks on this text" link that carries what you pasted over to <a href="/app">the generator page</a> and runs Check everything on it. The text moves inside your browser only — it's not sent anywhere, it's deleted the moment it's used, and it's ignored if it's more than 10 minutes old.</p></div>
+    <div class="entry"><span class="tag fixed">Fixed</span><p><a href="/ai-authenticity-checker">The "Does this sound like AI?" checker</a> and Check everything were checking against two different phrase lists, so the same text could get two different verdicts. They now share one list. The standalone page also picked up the site's header, dark mode, and text-size controls.</p></div>
+    <div class="entry"><span class="tag fixed">Fixed</span><p>Dark mode readability: result highlights on several checkers, the stat boxes on the research pages, the legal notes, and some buttons were hard or impossible to read in dark mode. Red, blue, and green text are also slightly darker in light mode now. An automated contrast check passes on every page, in both modes.</p></div>
+    <div class="entry"><span class="tag fixed">Fixed</span><p><a href="/report-an-issue">The issue-report form</a> had been failing since September — it pointed at a placeholder form address. It works now, and if sending fails it no longer tells you to email an address that doesn't exist anywhere on this site.</p></div>
+    <div class="entry"><span class="tag fixed">Fixed</span><p>Page addresses: links, the sitemap, and search-engine tags all pointed at "/page.html" addresses that quietly redirect to "/page". They now use the final address directly. Old links still work.</p></div>
+    <div class="entry"><span class="tag fixed">Fixed</span><p>A few internal files — developer notes, server code, and an unfinished demo page — could be opened by anyone who guessed the address. They're no longer served.</p></div>
+    <div class="entry"><span class="tag policy">Policy</span><p>Updated <a href="/privacy-policy">the privacy policy</a> and <a href="/data-handling">the data page</a> to match what the site now does: issue reports go through Formspree, the same form service as the waitlist; page visits are counted with Cloudflare Web Analytics, which uses no cookies; and copying a draft sends only which platform it was for and whether you'd edited it — never the text itself.</p></div>
+  </div>
+
+  <div class="day">
     <div class="date-head">2026-10-20</div>
-    <div class="entry"><span class="tag added">Added</span><p>Extended the October 1st visual redesign to the remaining 37 pages — new typography and color system, rounded corners instead of the old flat corners, the logo fix, and the mobile header fix, now applied site-wide instead of just <a href="/">the homepage</a> and <a href="/app.html">the generator page</a>. Severity colors (warnings in red, notices in blue, good in green) are untouched — only the brand color and type changed.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p>A cross-platform length check on <a href="/app.html">the generator page</a>'s LinkedIn draft — shows where your edited text stands against Twitter/X, LinkedIn, Threads, and Instagram-caption limits as you type, plus a "split into a Twitter/X thread" button if you've rewritten it and want a matching thread from it. Goes through the same review checkbox and per-tweet Copy buttons as a normal AI-generated thread — nothing here skips the review gate.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p>Extended the October 1st visual redesign to the remaining 37 pages — new typography and color system, rounded corners instead of the old flat corners, the logo fix, and the mobile header fix, now applied site-wide instead of just <a href="/">the homepage</a> and <a href="/app">the generator page</a>. Severity colors (warnings in red, notices in blue, good in green) are untouched — only the brand color and type changed.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p>A cross-platform length check on <a href="/app">the generator page</a>'s LinkedIn draft — shows where your edited text stands against Twitter/X, LinkedIn, Threads, and Instagram-caption limits as you type, plus a "split into a Twitter/X thread" button if you've rewritten it and want a matching thread from it. Goes through the same review checkbox and per-tweet Copy buttons as a normal AI-generated thread — nothing here skips the review gate.</p></div>
   </div>
 
   <div class="day">
     <div class="date-head">2026-10-01</div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/date-format-checker.html">A date-format ambiguity checker</a> — flags a numeric date like "3/4/2026" that reads as a different day depending on whether the reader expects month-first or day-first. Leaves ISO dates and spelled-out months alone, since those already read the same way everywhere.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/absolute-claims-checker.html">An absolute-claims checker</a> — flags unhedged certainty phrases like "100% guaranteed" or "never fails" that read as marketing hype and are easy for a reader to challenge. Only matches a curated phrase list, not common words like "all" or "always" on their own, to stay quiet on ordinary writing.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p>Export and import buttons on <a href="/post-journal.html">the post journal</a>. It's browser-only storage, so clearing your browser data used to mean losing it for good — now you can back it up to a file yourself and bring it back later, no account required.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/date-format-checker">A date-format ambiguity checker</a> — flags a numeric date like "3/4/2026" that reads as a different day depending on whether the reader expects month-first or day-first. Leaves ISO dates and spelled-out months alone, since those already read the same way everywhere.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/absolute-claims-checker">An absolute-claims checker</a> — flags unhedged certainty phrases like "100% guaranteed" or "never fails" that read as marketing hype and are easy for a reader to challenge. Only matches a curated phrase list, not common words like "all" or "always" on their own, to stay quiet on ordinary writing.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p>Export and import buttons on <a href="/post-journal">the post journal</a>. It's browser-only storage, so clearing your browser data used to mean losing it for good — now you can back it up to a file yourself and bring it back later, no account required.</p></div>
     <div class="entry"><span class="tag added">Added</span><p>A dark mode toggle, site-wide. Remembers your choice once you pick one; otherwise follows your system setting automatically.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/time-ambiguity-checker.html">A time-ambiguity checker</a> — flags a bare clock time like "3pm" with no time zone named nearby, and relative-day words like "tomorrow" or "next Friday" that read differently once a post is seen later or shared elsewhere.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/rhetorical-question-checker.html">A rhetorical-question checker</a> — counts short tag-questions like "Sound familiar?" or "Make sense?" used as filler. A structural count, not a phrase list, so it catches tag-questions that were never on a list, the same approach as the structural AI-tell checker.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p>Auto-saved drafts on <a href="/app.html">the generator page</a>. What you paste is now saved as you type, in your browser only — refresh or close the tab by accident and you'll be offered it back instead of starting over.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/time-ambiguity-checker">A time-ambiguity checker</a> — flags a bare clock time like "3pm" with no time zone named nearby, and relative-day words like "tomorrow" or "next Friday" that read differently once a post is seen later or shared elsewhere.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/rhetorical-question-checker">A rhetorical-question checker</a> — counts short tag-questions like "Sound familiar?" or "Make sense?" used as filler. A structural count, not a phrase list, so it catches tag-questions that were never on a list, the same approach as the structural AI-tell checker.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p>Auto-saved drafts on <a href="/app">the generator page</a>. What you paste is now saved as you type, in your browser only — refresh or close the tab by accident and you'll be offered it back instead of starting over.</p></div>
     <div class="entry"><span class="tag added">Added</span><p>A text-size control, site-wide, next to the dark mode toggle. Three steps up or down from the default, remembered per browser.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p>A visual redesign of <a href="/">the homepage</a> and <a href="/app.html">the generator page</a> — new typography and color system, icon-based steps, a feature grid, and card depth, replacing the original flat, manuscript-styled look. The other free checker pages keep their current look for now; this will likely extend to them in a later round.</p></div>
-    <div class="entry"><span class="tag fixed">Fixed</span><p>The header on mobile was overlapping itself on <a href="/">the homepage</a> and <a href="/app.html">the generator page</a> — the logo, buttons, and links were cramped together at narrow widths. Fixed as part of the redesign above.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p>A visual redesign of <a href="/">the homepage</a> and <a href="/app">the generator page</a> — new typography and color system, icon-based steps, a feature grid, and card depth, replacing the original flat, manuscript-styled look. The other free checker pages keep their current look for now; this will likely extend to them in a later round.</p></div>
+    <div class="entry"><span class="tag fixed">Fixed</span><p>The header on mobile was overlapping itself on <a href="/">the homepage</a> and <a href="/app">the generator page</a> — the logo, buttons, and links were cramped together at narrow widths. Fixed as part of the redesign above.</p></div>
   </div>
 
   <div class="day">
     <div class="date-head">2026-09-30</div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/structural-ai-tell-checker.html">A structural AI-tell checker</a> — flags sentence-length uniformity, em dash overuse, and the "not just X, it's Y" construction repeated more than once. Different axis from the existing phrasing checker: this looks at sentence structure, not word choice, and is upfront that none of it proves anything by itself.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/unattributed-stat-checker.html">An unattributed-statistic checker</a> — flags a percentage, "X out of Y", or "Nx" claim with no source stated nearby. Doesn't check whether the number is true, just whether you said where it came from.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/structural-ai-tell-checker">A structural AI-tell checker</a> — flags sentence-length uniformity, em dash overuse, and the "not just X, it's Y" construction repeated more than once. Different axis from the existing phrasing checker: this looks at sentence structure, not word choice, and is upfront that none of it proves anything by itself.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/unattributed-stat-checker">An unattributed-statistic checker</a> — flags a percentage, "X out of Y", or "Nx" claim with no source stated nearby. Doesn't check whether the number is true, just whether you said where it came from.</p></div>
     <div class="entry"><span class="tag added">Added</span><p>"Check everything" now also runs directly on what you paste, before generating anything — no AI call, no waiting. Previously the 14 (now 16) mechanical checks only appeared after using the AI drafting tool, which didn't match a homepage that leads with the checks themselves. Fixed the mismatch.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p>A "save this to your journal" button on the check results — writes straight into the same private, browser-only log <a href="/post-journal.html">the journal page</a> already reads, so you don't have to re-paste what you just checked.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p>A "save this to your journal" button on the check results — writes straight into the same private, browser-only log <a href="/post-journal">the journal page</a> already reads, so you don't have to re-paste what you just checked.</p></div>
   </div>
 
   <div class="day">
@@ -215,28 +228,28 @@
 
   <div class="day">
     <div class="date-head">2026-09-23</div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/hook-checker.html">A hook checker</a> — flags tired opening-line clichés and lines long enough to get cut off before anyone clicks "see more."</p></div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/emoji-checker.html">An emoji checker</a> — counts emoji and flags the emoji-as-bullet-point habit specifically.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/wall-of-text-checker.html">A wall-of-text checker</a> — measures paragraph length and flags chunks long enough to read as a wall of text.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/hook-checker">A hook checker</a> — flags tired opening-line clichés and lines long enough to get cut off before anyone clicks "see more."</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/emoji-checker">An emoji checker</a> — counts emoji and flags the emoji-as-bullet-point habit specifically.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/wall-of-text-checker">A wall-of-text checker</a> — measures paragraph length and flags chunks long enough to read as a wall of text.</p></div>
     <div class="entry"><span class="tag fixed">Fixed</span><p>The sitemap and <a href="/llms.txt">llms.txt</a> were both quietly out of date — 11 already-live free tools were missing from both, invisible to search engines and AI crawlers alike. Caught while adding today's 3 new tools; all of them are listed now.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p>A single "Check everything" button on <a href="/app.html">the generator page</a> — runs all 14 mechanical checks (AI-sounding phrasing, jargon, passive voice, readability, hashtags, and more) against both drafts at once and shows the results in place, worst issues first. Replaces the wall of 17 separate check-links that used to sit here — a real problem a user flagged after actually trying the tool. The standalone check pages stay up on their own for anyone who lands on one directly.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p>A single "Check everything" button on <a href="/app">the generator page</a> — runs all 14 mechanical checks (AI-sounding phrasing, jargon, passive voice, readability, hashtags, and more) against both drafts at once and shows the results in place, worst issues first. Replaces the wall of 17 separate check-links that used to sit here — a real problem a user flagged after actually trying the tool. The standalone check pages stay up on their own for anyone who lands on one directly.</p></div>
     <div class="entry"><span class="tag fixed">Fixed</span><p>Clicking a Copy button before checking the review box did nothing — no message, easy to mistake for broken. It now shows a short note pointing back to the checkbox and scrolls it into view, instead of failing silently.</p></div>
   </div>
 
   <div class="day">
     <div class="date-head">2026-09-22</div>
     <div class="entry"><span class="tag policy">Policy</span><p>Retired the $9/mo plan. Loosecopy is free for everyone now — no paid tier, nothing gated behind a paywall — supported instead by optional <a href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">Ko-fi donations</a> and Google AdSense.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/link-placement-checker.html">A link-placement checker</a> — flags a link left in the body of a post instead of the first comment.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/hashtag-checker.html">A hashtag checker</a> — flags too many, too few, duplicates, or tags that are hard to read at a glance.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/passive-voice-checker.html">A passive-voice checker</a> — finds passive constructions and suggests the active version.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/link-placement-checker">A link-placement checker</a> — flags a link left in the body of a post instead of the first comment.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/hashtag-checker">A hashtag checker</a> — flags too many, too few, duplicates, or tags that are hard to read at a glance.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/passive-voice-checker">A passive-voice checker</a> — finds passive constructions and suggests the active version.</p></div>
   </div>
 
   <div class="day">
     <div class="date-head">2026-09-15</div>
-    <div class="entry"><span class="tag policy">Policy</span><p>Published <a href="/trust.html">the trust page</a>: a permanent, dated commitment to never auto-publish on your behalf.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/pre-publish-checklist.html">A 7-point pre-publish checklist</a> — a last check before anything goes out.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/ai-disclosure-policies.html">A sourced, dated guide</a> to what X, LinkedIn, Meta, and Google actually require around AI disclosure.</p></div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/ai-disclosure-helper.html">A free disclosure-phrase generator</a> — copy a ready-made line instead of writing one from scratch.</p></div>
+    <div class="entry"><span class="tag policy">Policy</span><p>Published <a href="/trust">the trust page</a>: a permanent, dated commitment to never auto-publish on your behalf.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/pre-publish-checklist">A 7-point pre-publish checklist</a> — a last check before anything goes out.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/ai-disclosure-policies">A sourced, dated guide</a> to what X, LinkedIn, Meta, and Google actually require around AI disclosure.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/ai-disclosure-helper">A free disclosure-phrase generator</a> — copy a ready-made line instead of writing one from scratch.</p></div>
     <div class="entry"><span class="tag added">Added</span><p>A live readiness check in the drafting tool that tells you if your input is too thin or too long, before you generate anything.</p></div>
     <div class="entry"><span class="tag added">Added</span><p>A mandatory review checkbox on every draft — copy buttons stay disabled until you confirm you've read and edited it, and it resets every time you regenerate.</p></div>
     <div class="entry"><span class="tag fixed">Fixed</span><p>The waitlist signup form, which had been silently failing for every visitor since launch.</p></div>
@@ -245,7 +258,7 @@
 
   <div class="day">
     <div class="date-head">2026-09-14</div>
-    <div class="entry"><span class="tag added">Added</span><p><a href="/ai-authenticity-checker.html">A free, standalone AI-tell checker</a> — works on any writing, not just Loosecopy's own drafts.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/ai-authenticity-checker">A free, standalone AI-tell checker</a> — works on any writing, not just Loosecopy's own drafts.</p></div>
     <div class="entry"><span class="tag policy">Policy</span><p>Set a permanent internal rule: a feature doesn't ship if its main effect is letting someone publish without reviewing first.</p></div>
   </div>
 
@@ -267,10 +280,11 @@
   <div class="end-note">This log gets a new entry whenever something real changes — a fix, a new tool, a policy commitment. Check back, or judge us by how long it's been since the last one.</div>
 
   <p class="also">
-    Found something that should be on this list? <a href="/report-an-issue.html">Report it →</a> — if it leads to a fix, it gets logged here, dated.
-    See the rule this log is tracking: <a href="/trust.html">the permanent pledge →</a>
+    Found something that should be on this list? <a href="/report-an-issue">Report it →</a> — if it leads to a fix, it gets logged here, dated.
+    See the rule this log is tracking: <a href="/trust">the permanent pledge →</a>
   </p>
 </main>
 
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

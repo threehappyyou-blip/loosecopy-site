@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Before You Paste — Loosecopy</title>
 <meta name="description" content="5 minutes of prep before you paste your notes in — so the draft that comes back needs less editing, not more.">
-<link rel="canonical" href="https://loosecopy.com/before-you-paste.html">
+<link rel="canonical" href="https://loosecopy.com/before-you-paste">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://loosecopy.com/before-you-paste.html">
+<meta property="og:url" content="https://loosecopy.com/before-you-paste">
 <meta property="og:title" content="Before You Paste — Loosecopy">
 <meta property="og:description" content="5 minutes of prep before you paste your notes in — so the draft that comes back needs less editing, not more.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
@@ -26,7 +26,7 @@
 <style>
   :root{
     --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
-    --redline:#DC2626; --redline-wash:#FDE8E8; --bluepencil:#2563EB; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF;
+    --redline:#B91C1C; --redline-wash:#FDE8E8; --bluepencil:#1D4ED8; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
     --max:820px;
   }
   *{box-sizing:border-box;}
@@ -65,13 +65,13 @@
   }
   .step::before{
     content:counter(step); position:absolute; left:16px; top:18px; width:26px; height:26px;
-    background:var(--bluepencil); color:#fff; border-radius:50%; display:flex; align-items:center;
+    background:var(--bluepencil); color:var(--paper-card); border-radius:50%; display:flex; align-items:center;
     justify-content:center; font-family:'Space Mono',monospace; font-size:0.85rem; font-weight:700;
   }
   .step h3{font-size:1rem; margin:0 0 6px; font-family:'Inter',sans-serif; font-weight:700;}
   .step p{margin:0; font-size:0.94rem; color:var(--ink);}
   .example{
-    margin-top:10px; font-family:'Space Mono',monospace; font-size:0.82rem; background:#F3F5F1;
+    margin-top:10px; font-family:'Space Mono',monospace; font-size:0.82rem; background:var(--paper-card);
     border-radius:10px; padding:10px 12px; line-height:1.6;
   }
   .example .bad{color:var(--redline); display:block;}
@@ -93,14 +93,14 @@
     :root:not([data-theme="light"]){
       --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
       --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
     }
     :root:not([data-theme="light"]) .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   }
   :root[data-theme="dark"]{
     --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
     --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
-    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --good:#4ADE80; --good-wash:#16301F;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
   }
   :root[data-theme="dark"] .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
   .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:10px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
@@ -110,6 +110,7 @@
   :root[data-fontsize="125"]{font-size:125%;}
   .fontsize-btn{font-weight:700;}
   .theme-toggle:disabled{opacity:0.35;cursor:default;}
+  mark{color:inherit;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -188,7 +189,7 @@
   <p class="lede">Most of the editing work people do after generating a draft could've been avoided with about five minutes of prep before hitting Generate. This is that five minutes.</p>
 
   <div class="origin">
-    <a href="/make-it-sound-like-you.html">"Make it sound like you"</a> is about fixing a draft after it comes back generic. This page is the earlier half of that problem — what you give the AI in the first place has more influence on how generic the result sounds than any edit you'll make afterward.
+    <a href="/make-it-sound-like-you">"Make it sound like you"</a> is about fixing a draft after it comes back generic. This page is the earlier half of that problem — what you give the AI in the first place has more influence on how generic the result sounds than any edit you'll make afterward.
   </div>
 
   <h2>Five things worth doing before you paste</h2>
@@ -229,11 +230,12 @@
   </div>
 
   <p class="also">
-    Draft already back and still sounds generic? <a href="/make-it-sound-like-you.html">6 concrete edits to fix that →</a>
-    Ready to try it? <a href="/app.html">Paste your notes into Loosecopy →</a>
-    Curious why the Twitter and LinkedIn drafts read so differently? <a href="/why-platforms-differ.html">Here's why that's on purpose →</a>
+    Draft already back and still sounds generic? <a href="/make-it-sound-like-you">6 concrete edits to fix that →</a>
+    Ready to try it? <a href="/app">Paste your notes into Loosecopy →</a>
+    Curious why the Twitter and LinkedIn drafts read so differently? <a href="/why-platforms-differ">Here's why that's on purpose →</a>
   </p>
 </main>
 
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

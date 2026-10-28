@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hidden Characters in Your Post? Find and Remove Them — Free Tool by Loosecopy</title>
+<meta name="description" content="Paste your draft to find invisible characters (zero-width spaces, look-alike spaces like U+202F) and full-width punctuation left by Chinese, Japanese or Korean keyboards — then copy a cleaned version. Runs in your browser.">
+<link rel="canonical" href="https://loosecopy.com/hidden-character-checker">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://loosecopy.com/hidden-character-checker">
+<meta property="og:title" content="Hidden Characters in Your Post? Find and Remove Them — Free Tool by Loosecopy">
+<meta property="og:description" content="Paste your draft to find invisible characters (zero-width spaces, look-alike spaces like U+202F) and full-width punctuation left by Chinese, Japanese or Korean keyboards — then copy a cleaned version. Runs in your browser.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hidden Characters in Your Post? Find and Remove Them — Free Tool by Loosecopy">
+<meta name="twitter:description" content="Paste your draft to find invisible characters (zero-width spaces, look-alike spaces like U+202F) and full-width punctuation left by Chinese, Japanese or Korean keyboards — then copy a cleaned version. Runs in your browser.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
+    --redline:#B91C1C; --redline-wash:#FDE8E8; --bluepencil:#1D4ED8; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Sora',sans-serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;}
+  .wordmark em{font-style:normal;color:var(--accent);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+  .header-links{display:flex;align-items:center;gap:16px;}
+  .support-link{font-size:0.85rem;color:var(--ink-soft);text-decoration:none;font-weight:600;}
+  .support-link:hover{text-decoration:underline;}
+  .support-text{}
+  @media (max-width:480px){ .support-text{display:none;} }
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 28px;max-width:64ch;}
+
+  textarea{
+    width:100%; min-height:200px; padding:16px; border:1px solid var(--border);
+    background:var(--paper-card); border-radius:10px; font-family:'Inter',sans-serif;
+    font-size:1rem; color:var(--ink); resize:vertical;
+  }
+  .row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+  .muted{color:var(--ink-soft); font-size:0.88rem;}
+
+  .btn-primary{
+    background:var(--accent); color:var(--paper-card); border:none;
+    padding:13px 22px; border-radius:10px; font-family:'Inter',sans-serif;
+    font-weight:600; font-size:1rem; cursor:pointer;
+  }
+  .btn-primary:hover{background:var(--accent-hover);}
+
+  .results{display:none; margin-top:36px;}
+  .verdict{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:10px;
+    padding:16px 18px; margin-bottom:20px; font-size:0.98rem;
+  }
+  .verdict strong{display:block; font-family:'Sora',sans-serif; font-size:1.15rem; font-weight:500; margin-bottom:4px;}
+  .stat-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;}
+  .stat{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:10px;
+    padding:10px 16px; font-size:0.88rem; color:var(--ink-soft); flex:1 1 140px;
+  }
+  .stat b{display:block; font-family:'Sora',sans-serif; font-size:1.3rem; color:var(--ink); font-weight:500;}
+  .highlighted{
+    white-space:pre-wrap; background:var(--paper-card); border:1px solid var(--border); border-radius:10px;
+    padding:16px 18px; font-size:0.96rem; line-height:1.75; margin-bottom:16px;
+  }
+  mark.hc-invisible{background:var(--redline-wash); border-bottom:2px solid var(--redline); font-family:'Space Mono',monospace; font-size:0.72em; padding:0 3px; border-radius:4px;}
+  mark.hc-space, mark.hc-spacing{background:var(--bluepencil-wash); border-bottom:2px solid var(--bluepencil); padding:0 2px;}
+  mark.hc-fullwidth{background:var(--accent-wash); border-bottom:2px solid var(--accent);}
+  .legend{font-size:0.82rem; color:var(--ink-soft); margin:-6px 0 20px;}
+  .legend span{padding:1px 6px; border-radius:10px; margin-right:4px; color:var(--ink);}
+  .legend .hc-l-invisible{background:var(--redline-wash); border-bottom:2px solid var(--redline);}
+  .legend .hc-l-space{background:var(--bluepencil-wash); border-bottom:2px solid var(--bluepencil);}
+  .legend .hc-l-fullwidth{background:var(--accent-wash); border-bottom:2px solid var(--accent);}
+
+  .findings{margin-bottom:20px;}
+  .finding{
+    background:var(--paper-card); border:1px solid var(--border); border-radius:10px;
+    padding:10px 14px; margin-bottom:8px; font-size:0.92rem;
+  }
+  .finding .ftag{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.7rem; text-transform:uppercase;
+    padding:2px 7px; border-radius:10px; margin-right:8px; border:1px solid var(--border); color:var(--ink-soft);
+  }
+  .finding .ftag.invisible{border-color:var(--redline); color:var(--redline);}
+  .finding .ftag.space, .finding .ftag.spacing{border-color:var(--bluepencil); color:var(--bluepencil);}
+  .finding .ftag.fullwidth{border-color:var(--accent); color:var(--accent);}
+  .finding .cnt{float:right; font-weight:600; color:var(--ink-soft); margin-left:10px;}
+  .finding .orig{font-family:'Space Mono',monospace; color:var(--ink);}
+  .finding .note{display:block; margin-top:4px; color:var(--ink-soft); font-size:0.88rem;}
+
+  .callout{background:var(--bluepencil-wash); border-radius:10px; padding:16px 18px; font-size:0.92rem;}
+  .callout a{color:var(--bluepencil); font-weight:600;}
+  .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
+  .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px; line-height:1.6;}
+  .source-note a{color:var(--bluepencil);}
+  .cleaned{margin:4px 0 20px;}
+  .cleaned h2{font-size:1.05rem; margin-bottom:8px;}
+  .cleaned textarea{min-height:120px; background:var(--paper);}
+  .btn-secondary{background:var(--paper-card); color:var(--ink); border:1px solid var(--border); padding:10px 18px; border-radius:10px; font-family:'Inter',sans-serif; font-weight:600; font-size:0.95rem; cursor:pointer;}
+  .btn-secondary:hover{border-color:var(--accent); color:var(--accent);}
+
+  /* Dark mode: manual toggle (data-theme attribute) layers over OS preference. lc_theme in localStorage. */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
+      --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
+    }
+    :root:not([data-theme="light"]) .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
+    --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
+  }
+  :root[data-theme="dark"] .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
+  .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:10px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
+  .theme-toggle:hover{border-color:var(--bluepencil);color:var(--bluepencil);}
+  :root[data-fontsize="87.5"]{font-size:87.5%;}
+  :root[data-fontsize="112.5"]{font-size:112.5%;}
+  :root[data-fontsize="125"]{font-size:125%;}
+  .fontsize-btn{font-weight:700;}
+  .theme-toggle:disabled{opacity:0.35;cursor:default;}
+  .lc-all-checks{margin-top:44px; padding-top:24px; border-top:1px solid var(--border);}
+  .lc-all-checks h2{font-size:1.15rem; margin-bottom:4px;}
+  .lc-all-checks > p{margin:0 0 16px;}
+  .lc-ac-groups{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:16px 24px;}
+  .lc-ac-group h3{font-family:'Inter',sans-serif; font-size:0.78rem; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 6px;}
+  .lc-ac-group ul{list-style:none; margin:0; padding:0;}
+  .lc-ac-group li{font-size:0.92rem; padding:3px 0;}
+  .lc-ac-group a{text-decoration:none;}
+  .lc-ac-group a:hover{text-decoration:underline;}
+  .lc-ac-group [aria-current]{color:var(--ink); font-weight:600;}
+  mark{color:inherit;}
+</style>
+<!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>copy</em></a></div>
+    <div class="header-links">
+      <button id="fontDec" class="theme-toggle fontsize-btn" type="button" aria-label="Decrease text size" title="Decrease text size">A&minus;</button>
+      <button id="fontInc" class="theme-toggle fontsize-btn" type="button" aria-label="Increase text size" title="Increase text size">A+</button>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
+      <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749;<span class="support-text"> Support</span></a>
+      <a class="back" href="/">&larr; back to home</a>
+    </div>
+  </div>
+</header>
+
+<script>(function(){
+  var btn = document.getElementById('themeToggle');
+  if(!btn) return;
+  function current(){
+    var attr = document.documentElement.getAttribute('data-theme');
+    if(attr === 'dark') return 'dark';
+    if(attr === 'light') return 'light';
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  function paint(){
+    var mode = current();
+    btn.innerHTML = mode === 'dark' ? '&#9728;' : '&#9790;';
+    btn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('title', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  paint();
+  btn.addEventListener('click', function(){
+    var next = current() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('lc_theme', next); }catch(e){}
+    paint();
+  });
+})();</script>
+
+
+<script>(function(){
+  var dec = document.getElementById('fontDec');
+  var inc = document.getElementById('fontInc');
+  if(!dec || !inc) return;
+  var STEPS = ['87.5','100','112.5','125'];
+  function currentStep(){
+    var v = document.documentElement.getAttribute('data-fontsize');
+    var i = STEPS.indexOf(v);
+    return i === -1 ? 1 : i;
+  }
+  function apply(i){
+    i = Math.max(0, Math.min(STEPS.length - 1, i));
+    var step = STEPS[i];
+    if(step === '100'){
+      document.documentElement.removeAttribute('data-fontsize');
+      try{ localStorage.removeItem('lc_fontscale'); }catch(e){}
+    } else {
+      document.documentElement.setAttribute('data-fontsize', step);
+      try{ localStorage.setItem('lc_fontscale', step); }catch(e){}
+    }
+    dec.disabled = (i === 0);
+    inc.disabled = (i === STEPS.length - 1);
+  }
+  apply(currentStep());
+  dec.addEventListener('click', function(){ apply(currentStep() - 1); });
+  inc.addEventListener('click', function(){ apply(currentStep() + 1); });
+})();</script>
+
+
+<main class="wrap">
+  <h1>Is anything invisible hiding in your post?</h1>
+  <p class="lede">Text copied out of an AI chat, a document, or a web page — or typed with a Chinese, Japanese or Korean keyboard — can carry characters you can't see: zero-width spaces, spaces that only look normal, full-width punctuation like <code>，</code> or <code>！</code>, a space before a question mark. They can split a hashtag or @mention in two, make search miss your post, or show up as odd gaps. This finds them and hands you a cleaned copy.</p>
+
+  <textarea id="input" placeholder="Paste your tweet, post, or paragraph here..."></textarea>
+  <div class="row">
+    <button class="btn-primary" id="checkBtn">Check my text</button>
+    <span class="muted" id="wordcount"></span>
+  </div>
+
+  <div class="results" id="results">
+    <div class="verdict" id="verdict"></div>
+    <div class="stat-row" id="statRow"></div>
+    <div class="legend">
+      <span class="hc-l-invisible">invisible</span>
+      <span class="hc-l-space">look-alike space / space before punctuation</span>
+      <span class="hc-l-fullwidth">full-width character</span>
+    </div>
+    <div class="highlighted" id="highlighted"></div>
+    <div class="findings" id="findings"></div>
+    <div class="cleaned" id="cleanedBox" style="display:none;">
+      <h2>Cleaned version</h2>
+      <textarea id="cleaned" readonly></textarea>
+      <div class="row">
+        <button type="button" class="btn-secondary" id="copyCleanBtn">Copy cleaned text</button>
+        <span class="muted">Only the characters listed above were changed — give it one read before you post.</span>
+      </div>
+    </div>
+    <div class="callout">
+      Copying from an AI chat, a doc, or a web page picks these up far more often than typing straight into the post box. If you also write in Chinese, Japanese or Korean, switch your keyboard to half-width mode before typing English.
+      <a href="/app" class="lc-handoff">Run all 21 checks on this text →</a>
+    </div>
+    <p class="source-note">About the "hidden AI watermark" rumor: narrow no-break spaces (U+202F) really have turned up in AI chat output — users reported GPT-5 doing it in <a href="https://community.openai.com/t/gpt-5-non-reasoning-outputs-u-202f-narrow-no-break-space-instead-of-normal-spaces-breaks-text-rendering-on-macos-apps/1362321" target="_blank" rel="noopener">October 2025, where it showed up as squashed gaps on some apps</a>. There's no evidence it's a watermark, and cleaning it out won't make AI-written text pass a detector — <a href="/ai-detectors-explained">detectors score the writing itself</a>. It's still worth cleaning for how the post displays.</p>
+  </div>
+
+  <p class="disclaimer">Rule-based, not a parser — it looks for a fixed list of invisible and look-alike characters, and it leaves full-width punctuation alone when it sits next to Chinese, Japanese or Korean text, where it belongs. Emoji that are built from several pieces (like 👨‍👩‍👧) are left intact. It doesn't check spelling or grammar.</p>
+  <nav class="lc-all-checks" aria-labelledby="lcAllChecksTitle">
+    <h2 id="lcAllChecksTitle">All 21 free checks</h2>
+    <p class="muted">Same rules every time, no AI, nothing leaves your browser. <a href="/app" class="lc-handoff">Or run all of them at once →</a></p>
+    <div class="lc-ac-groups">
+      <div class="lc-ac-group"><h3>Sounds like you</h3><ul>
+        <li><a href="/ai-authenticity-checker">Sounds like AI</a></li>
+        <li><a href="/structural-ai-tell-checker">Structural AI tells</a></li>
+        <li><a href="/sounds-generic">Too generic</a></li>
+        <li><a href="/reads-like-a-translation">Reads stiff or translated</a></li>
+        <li><a href="/jargon-checker">Jargon &amp; acronyms</a></li>
+        <li><a href="/passive-voice-checker">Passive voice</a></li>
+        <li><a href="/rhetorical-question-checker">Rhetorical questions</a></li>
+        <li><a href="/absolute-claims-checker">Overconfident claims</a></li>
+      </ul></div>
+      <div class="lc-ac-group"><h3>Fits the platform</h3><ul>
+        <li><a href="/hook-checker">Opening line</a></li>
+        <li><a href="/hashtag-checker">Hashtags</a></li>
+        <li><a href="/emoji-checker">Emoji</a></li>
+        <li><a href="/link-placement-checker">Link placement</a></li>
+        <li><a href="/wall-of-text-checker">Wall of text</a></li>
+        <li><a href="/readability-score">Readability</a></li>
+        <li><a href="/markdown-cleanup-checker">Leftover formatting</a></li>
+        <li><span aria-current="page">Hidden characters</span></li>
+      </ul></div>
+      <div class="lc-ac-group"><h3>Clear &amp; accurate</h3><ul>
+        <li><a href="/unattributed-stat-checker">Unsourced stats</a></li>
+        <li><a href="/number-unit-checker">Big numbers &amp; units</a></li>
+        <li><a href="/date-format-checker">Ambiguous dates</a></li>
+        <li><a href="/time-ambiguity-checker">Ambiguous times</a></li>
+      </ul></div>
+      <div class="lc-ac-group"><h3>Safe to post</h3><ul>
+        <li><a href="/privacy-leak-checker">Privacy leaks</a></li>
+      </ul></div>
+    </div>
+  </nav>
+</main>
+
+<script>
+(function(){
+  // 숨은 문자 감지: 제로폭 문자, 공백처럼 보이는 다른 문자, CJK 입력기 전각 문자, 문장부호 앞 공백.
+  // 규칙(정규식)만 사용, AI 재호출 없음. 아래 core 부분은 app.html의 Check everything(21번 체크)과 똑같이 유지할 것.
+// <lc-hidden-core>
+// ---- Hidden-character checker core: rules only, no AI ----
+// Finds invisible characters, spaces that only look like spaces, full-width punctuation left
+// over from Chinese/Japanese/Korean input methods, and a space typed before punctuation.
+// Kept identical in hidden-character-checker.html and app.html (Check everything) — edit both together.
+var LC_HC_INVISIBLE = {
+  0x200B:'zero-width space', 0x200C:'zero-width non-joiner', 0x200D:'zero-width joiner',
+  0x200E:'left-to-right mark', 0x200F:'right-to-left mark', 0x2060:'word joiner',
+  0xFEFF:'byte-order mark', 0x00AD:'soft hyphen', 0x180E:'Mongolian vowel separator',
+  0x202A:'left-to-right embedding', 0x202B:'right-to-left embedding', 0x202C:'pop directional formatting',
+  0x202D:'left-to-right override', 0x202E:'right-to-left override', 0x2066:'left-to-right isolate',
+  0x2067:'right-to-left isolate', 0x2068:'first strong isolate', 0x2069:'pop directional isolate'
+};
+var LC_HC_SPACES = {
+  0x00A0:'no-break space', 0x202F:'narrow no-break space', 0x205F:'medium mathematical space',
+  0x2000:'en quad', 0x2001:'em quad', 0x2002:'en space', 0x2003:'em space', 0x2004:'three-per-em space',
+  0x2005:'four-per-em space', 0x2006:'six-per-em space', 0x2007:'figure space',
+  0x2008:'punctuation space', 0x2009:'thin space', 0x200A:'hair space'
+};
+var LC_HC_CJK_PUNCT = { 0x3000:' ', 0x3001:',', 0x3002:'.', 0x300C:'"', 0x300D:'"', 0x300E:'"', 0x300F:'"', 0x3010:'[', 0x3011:']' };
+var LC_HC_FW_NAMES = {
+  0x3000:'full-width space', 0x3001:'ideographic comma', 0x3002:'ideographic full stop',
+  0x300C:'corner bracket', 0x300D:'corner bracket', 0x300E:'white corner bracket', 0x300F:'white corner bracket',
+  0x3010:'lenticular bracket', 0x3011:'lenticular bracket', 0xFF0C:'full-width comma', 0xFF0E:'full-width period',
+  0xFF01:'full-width exclamation mark', 0xFF1F:'full-width question mark', 0xFF1A:'full-width colon',
+  0xFF1B:'full-width semicolon', 0xFF08:'full-width parenthesis', 0xFF09:'full-width parenthesis'
+};
+var LC_HC_OPENERS = [0x300C, 0x300E, 0x3010, 0xFF08, 0xFF3B, 0xFF5B];
+var LC_HC_CLOSERS = [0x300D, 0x300F, 0x3011, 0xFF09, 0xFF3D, 0xFF5D, 0x3001, 0x3002, 0xFF0C, 0xFF0E, 0xFF01, 0xFF1F, 0xFF1A, 0xFF1B];
+var LC_HC_INVISIBLE_RE = /[​-‏⁠﻿­᠎‪-‮⁦-⁩]/g;
+var LC_HC_SPACE_RE = /[  -   ]/g;
+var LC_HC_FW_RUN_RE = /[　-。「-』【】！-～]+/g;
+var LC_HC_CJK_RE = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u;
+var LC_HC_PICTO_RE = /\p{Extended_Pictographic}/u;
+var LC_HC_ALNUM_RE = /[\p{L}\p{N}]/u;
+var LC_HC_SPACE_BEFORE_RE = /( +)(?=[!?，；：！？、。]|,|[:;](?=\s|$)|\.(?=\s|$|["'”’)\]]))/g;
+
+function lcHcCodeBefore(text, i){
+  if (i <= 0) return null;
+  var c = text.charCodeAt(i - 1);
+  if (c >= 0xDC00 && c <= 0xDFFF && i >= 2) return text.codePointAt(i - 2);
+  return c;
+}
+function lcHcCodeAt(text, i){ return i < text.length ? text.codePointAt(i) : null; }
+function lcHcIsCjk(cp){ return cp != null && LC_HC_CJK_RE.test(String.fromCodePoint(cp)); }
+function lcHcIsAlnum(cp){ return cp != null && LC_HC_ALNUM_RE.test(String.fromCodePoint(cp)); }
+function lcHcIsWs(cp){ return cp == null || cp === 0x20 || cp === 0x09 || cp === 0x0A || cp === 0x0D; }
+// Nearest character before/after a position, skipping plain spaces and tabs (a newline stops the search).
+function lcHcNeighborBefore(text, i){
+  while (i > 0 && (text[i - 1] === ' ' || text[i - 1] === '\t')) i--;
+  return lcHcCodeBefore(text, i);
+}
+function lcHcNeighborAfter(text, j){
+  while (j < text.length && (text[j] === ' ' || text[j] === '\t')) j++;
+  return lcHcCodeAt(text, j);
+}
+function lcHcEmojiJoiner(text, i){
+  var before = lcHcCodeBefore(text, i), after = lcHcCodeAt(text, i + 1);
+  var beforeOk = before != null && (LC_HC_PICTO_RE.test(String.fromCodePoint(before)) || before === 0xFE0F || (before >= 0x1F3FB && before <= 0x1F3FF));
+  return beforeOk && after != null && LC_HC_PICTO_RE.test(String.fromCodePoint(after));
+}
+function lcHcConvertRun(run){
+  var out = '';
+  for (var k = 0; k < run.length; k++){
+    var cp = run.charCodeAt(k);
+    if (LC_HC_CJK_PUNCT[cp] !== undefined) out += LC_HC_CJK_PUNCT[cp];
+    else if (cp >= 0xFF01 && cp <= 0xFF5E) out += String.fromCharCode(cp - 0xFEE0);
+    else out += run[k];
+  }
+  return out;
+}
+function lcHcRunName(run){
+  if (run.length === 1) return LC_HC_FW_NAMES[run.charCodeAt(0)] || 'full-width character';
+  if (/^[０-９]+$/.test(run)) return 'full-width digits';
+  if (/^[Ａ-Ｚａ-ｚ]+$/.test(run)) return 'full-width letters';
+  return 'full-width characters';
+}
+
+function lcHiddenScan(text){
+  var hits = [], m, i;
+  if (!text) return hits;
+
+  LC_HC_INVISIBLE_RE.lastIndex = 0;
+  while ((m = LC_HC_INVISIBLE_RE.exec(text)) !== null){
+    var cp = m[0].charCodeAt(0);
+    if (cp === 0x200D && lcHcEmojiJoiner(text, m.index)) continue;
+    hits.push({ index:m.index, text:m[0], cat:'invisible', name:LC_HC_INVISIBLE[cp], fix:'' });
+  }
+
+  LC_HC_SPACE_RE.lastIndex = 0;
+  while ((m = LC_HC_SPACE_RE.exec(text)) !== null){
+    var before = lcHcCodeBefore(text, m.index), after = lcHcCodeAt(text, m.index + 1);
+    var nextIsPunct = after != null && /[,;:!?.，；：！？、。]/.test(String.fromCodePoint(after));
+    var fix = (lcHcIsWs(before) || lcHcIsWs(after) || nextIsPunct) ? '' : ' ';
+    hits.push({ index:m.index, text:m[0], cat:'space', name:LC_HC_SPACES[m[0].charCodeAt(0)], fix:fix });
+  }
+
+  LC_HC_FW_RUN_RE.lastIndex = 0;
+  while ((m = LC_HC_FW_RUN_RE.exec(text)) !== null){
+    var start = m.index, end = m.index + m[0].length;
+    if (lcHcIsCjk(lcHcNeighborBefore(text, start)) || lcHcIsCjk(lcHcNeighborAfter(text, end))) continue;
+    var conv = lcHcConvertRun(m[0]);
+    var prevCp = lcHcCodeBefore(text, start), nextCp = lcHcCodeAt(text, end);
+    var firstCp = m[0].charCodeAt(0), lastCp = m[0].charCodeAt(m[0].length - 1);
+    if (LC_HC_OPENERS.indexOf(firstCp) !== -1 && lcHcIsAlnum(prevCp)) conv = ' ' + conv;
+    // A full-width comma/period sitting between digits is a number separator (3，000 / 3．5): no space after it.
+    var beforeLast = m[0].length > 1 ? lcHcConvertRun(m[0].charAt(m[0].length - 2)) : text.charAt(start - 1);
+    var numberSep = (lastCp === 0xFF0C || lastCp === 0xFF0E) && /\d/.test(beforeLast) && nextCp != null && /\d/.test(String.fromCodePoint(nextCp));
+    if (LC_HC_CLOSERS.indexOf(lastCp) !== -1 && lcHcIsAlnum(nextCp) && !numberSep) conv = conv + ' ';
+    if (lcHcIsWs(prevCp)) conv = conv.replace(/^ +/, '');
+    if (lcHcIsWs(nextCp)) conv = conv.replace(/ +$/, '');
+    hits.push({ index:start, text:m[0], cat:'fullwidth', name:lcHcRunName(m[0]), fix:conv });
+  }
+
+  LC_HC_SPACE_BEFORE_RE.lastIndex = 0;
+  while ((m = LC_HC_SPACE_BEFORE_RE.exec(text)) !== null){
+    var prev = lcHcCodeBefore(text, m.index);
+    if (!lcHcIsAlnum(prev) || lcHcIsCjk(prev)) continue;
+    hits.push({ index:m.index, text:m[1], cat:'spacing', name:'space before punctuation', fix:'' });
+  }
+
+  hits.sort(function(a, b){ return a.index - b.index; });
+  var out = [], lastEnd = -1;
+  for (i = 0; i < hits.length; i++){
+    if (hits[i].index >= lastEnd){ out.push(hits[i]); lastEnd = hits[i].index + hits[i].text.length; }
+  }
+  return out;
+}
+
+function lcHiddenClean(text){
+  for (var pass = 0; pass < 5; pass++){
+    var hits = lcHiddenScan(text);
+    if (!hits.length) break;
+    var out = '', cursor = 0;
+    for (var i = 0; i < hits.length; i++){
+      out += text.slice(cursor, hits[i].index) + hits[i].fix;
+      cursor = hits[i].index + hits[i].text.length;
+    }
+    text = out + text.slice(cursor);
+  }
+  return text;
+}
+// </lc-hidden-core>
+
+  const NOTES = {
+    invisible: "Invisible — it takes up no space on screen, but it's still in the text. It can split a hashtag, @mention or link in two, and makes search miss the word. Safe to delete.",
+    bidi: "Changes the direction text is displayed in, so what you see can differ from what's actually there. Delete it unless you're mixing in Arabic or Hebrew.",
+    space: "Looks like a normal space but isn't one — some apps show it as a squashed or extra-wide gap, and search can treat the words on either side as stuck together. Swap it for a normal space.",
+    narrow: "Looks like a normal space but isn't one. This one has turned up in some AI chat output — it isn't a known watermark, but some apps show it as a squashed gap. Swap it for a normal space.",
+    fullwidth: "Full-width character from a Chinese, Japanese or Korean keyboard. Next to English it looks oversized and oddly spaced, and it can break hashtags and links. Swap it for the regular one.",
+    spacing: "A space before punctuation — normal in French, and some keyboards add it, but English doesn't use one."
+  };
+  const TAGS = { invisible:'invisible', space:'look-alike space', fullwidth:'full-width', spacing:'spacing' };
+  function noteFor(h){
+    if (h.cat === 'invisible') return /directional|left-to-right|right-to-left/.test(h.name) ? NOTES.bidi : NOTES.invisible;
+    if (h.cat === 'space') return h.name === 'narrow no-break space' ? NOTES.narrow : NOTES.space;
+    return NOTES[h.cat];
+  }
+  function codeOf(s){ return Array.from(s).map(ch => 'U+' + ch.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')).join(' '); }
+  function escapeHtml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+  function highlight(text, hits){
+    let html = '', cursor = 0;
+    hits.forEach(h => {
+      html += escapeHtml(text.slice(cursor, h.index));
+      const shown = h.cat === 'invisible' ? codeOf(h.text) : escapeHtml(h.text);
+      html += `<mark class="hc-${h.cat}" title="${escapeHtml(h.name)}">${shown}</mark>`;
+      cursor = h.index + h.text.length;
+    });
+    html += escapeHtml(text.slice(cursor));
+    return html.replace(/\n/g, "<br>");
+  }
+  function verdictFor(hits){
+    if (!hits.length) return ["Clean.", "No invisible characters, look-alike spaces, or stray full-width punctuation."];
+    if (hits.some(h => h.cat === 'invisible') || hits.length >= 3) return ["Hidden characters found.", "Some of these are invisible or can show up oddly once posted — the cleaned version below fixes all of them."];
+    return ["A stray character or two.", "Easy to miss by eye — the cleaned version below fixes it."];
+  }
+
+  const input = document.getElementById("input");
+  const wordcountEl = document.getElementById("wordcount");
+  const btn = document.getElementById("checkBtn");
+  const results = document.getElementById("results");
+  const verdictEl = document.getElementById("verdict");
+  const statRowEl = document.getElementById("statRow");
+  const highlightedEl = document.getElementById("highlighted");
+  const findingsEl = document.getElementById("findings");
+  const cleanedBox = document.getElementById("cleanedBox");
+  const cleanedEl = document.getElementById("cleaned");
+  const copyBtn = document.getElementById("copyCleanBtn");
+
+  input.addEventListener("input", () => {
+    const wc = (input.value.trim().match(/\S+/g) || []).length;
+    wordcountEl.textContent = wc + " words";
+  });
+
+  btn.addEventListener("click", () => {
+    const text = input.value;
+    if (!text.trim()) return;
+    const hits = lcHiddenScan(text);
+    const counts = { invisible:0, space:0, fullwidth:0, spacing:0 };
+    hits.forEach(h => counts[h.cat]++);
+
+    const [headline, detail] = verdictFor(hits);
+    verdictEl.innerHTML = `<strong>${headline}</strong>${detail}`;
+    statRowEl.innerHTML = `
+      <div class="stat"><b>${counts.invisible}</b>invisible</div>
+      <div class="stat"><b>${counts.space}</b>look-alike spaces</div>
+      <div class="stat"><b>${counts.fullwidth}</b>full-width</div>
+      <div class="stat"><b>${counts.spacing}</b>space before punctuation</div>
+    `;
+    highlightedEl.innerHTML = hits.length ? highlight(text, hits) : escapeHtml(text).replace(/\n/g, "<br>");
+
+    const groups = new Map();
+    hits.forEach(h => {
+      const key = h.cat + '|' + h.name + '|' + (h.cat === 'fullwidth' ? h.text : '');
+      if (!groups.has(key)) groups.set(key, { h, n: 0 });
+      groups.get(key).n++;
+    });
+    findingsEl.innerHTML = [...groups.values()].map(({h, n}) => {
+      const shown = h.cat === 'fullwidth' ? escapeHtml(h.text) + ' ' : '';
+      return `<div class="finding"><span class="cnt">×${n}</span><span class="ftag ${h.cat}">${TAGS[h.cat]}</span><span class="orig">${shown}${escapeHtml(h.name)} (${codeOf(Array.from(h.text)[0])})</span><span class="note">${escapeHtml(noteFor(h))}</span></div>`;
+    }).join('');
+
+    if (hits.length) {
+      cleanedEl.value = lcHiddenClean(text);
+      cleanedBox.style.display = 'block';
+    } else {
+      cleanedBox.style.display = 'none';
+    }
+    results.style.display = "block";
+  });
+
+  copyBtn.addEventListener("click", () => {
+    const done = () => { copyBtn.textContent = "Copied"; setTimeout(() => { copyBtn.textContent = "Copy cleaned text"; }, 1400); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(cleanedEl.value).then(done, () => { cleanedEl.select(); });
+    } else {
+      cleanedEl.select();
+    }
+  });
+})();
+</script>
+
+<script>(function(){
+  // "Run all 21 checks on this text": 이 페이지 입력창의 글을 브라우저 안에서만(localStorage, 10분 유효, 한 번 쓰면 삭제) app으로 넘긴다. 서버 전송 없음.
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a.lc-handoff') : null;
+    if (!a) return;
+    var ta = document.querySelector('main textarea');
+    var text = ta ? ta.value : '';
+    try { if (text.trim()) localStorage.setItem('lc_handoff', JSON.stringify({ text: text, t: Date.now() })); } catch (err) {}
+  });
+})();</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
