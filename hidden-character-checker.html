@@ -5,17 +5,17 @@
 <script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hidden Characters in Your Post? Find and Remove Them — Free Tool by Loosecopy</title>
-<meta name="description" content="Paste your draft to find invisible characters (zero-width spaces, look-alike spaces like U+202F) and full-width punctuation left by Chinese, Japanese or Korean keyboards — then copy a cleaned version. Runs in your browser.">
+<title>Hidden Character Remover: Zero-Width &amp; U+202F — Loosecopy</title>
+<meta name="description" content="Find and remove invisible characters (zero-width spaces, U+202F narrow no-break spaces) and full-width punctuation, then copy clean text. Free.">
 <link rel="canonical" href="https://loosecopy.com/hidden-character-checker">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://loosecopy.com/hidden-character-checker">
-<meta property="og:title" content="Hidden Characters in Your Post? Find and Remove Them — Free Tool by Loosecopy">
-<meta property="og:description" content="Paste your draft to find invisible characters (zero-width spaces, look-alike spaces like U+202F) and full-width punctuation left by Chinese, Japanese or Korean keyboards — then copy a cleaned version. Runs in your browser.">
+<meta property="og:title" content="Hidden Character Remover: Zero-Width &amp; U+202F — Loosecopy">
+<meta property="og:description" content="Find and remove invisible characters (zero-width spaces, U+202F narrow no-break spaces) and full-width punctuation, then copy clean text. Free.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Hidden Characters in Your Post? Find and Remove Them — Free Tool by Loosecopy">
-<meta name="twitter:description" content="Paste your draft to find invisible characters (zero-width spaces, look-alike spaces like U+202F) and full-width punctuation left by Chinese, Japanese or Korean keyboards — then copy a cleaned version. Runs in your browser.">
+<meta name="twitter:title" content="Hidden Character Remover: Zero-Width &amp; U+202F — Loosecopy">
+<meta name="twitter:description" content="Find and remove invisible characters (zero-width spaces, U+202F narrow no-break spaces) and full-width punctuation, then copy clean text. Free.">
 <meta name="twitter:image" content="https://loosecopy.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -45,7 +45,7 @@
   .support-link{font-size:0.85rem;color:var(--ink-soft);text-decoration:none;font-weight:600;}
   .support-link:hover{text-decoration:underline;}
   .support-text{}
-  @media (max-width:480px){ .support-text{display:none;} }
+  @media (max-width:480px){ .support-text{display:none;} .back{display:none;} header .wrap{gap:12px;} }
 
   main{padding:20px 0 80px;}
   h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
@@ -151,9 +151,93 @@
   .lc-ac-group a:hover{text-decoration:underline;}
   .lc-ac-group [aria-current]{color:var(--ink); font-weight:600;}
   mark{color:inherit;}
+
+  /* ---- Explainer, examples & FAQ below the tool (SEO round 2026-11) ---- */
+  .lc-more{margin-top:44px;}
+  .lc-more h2{font-size:1.25rem; margin:34px 0 10px;}
+  .lc-more h3{font-size:1rem; margin:20px 0 6px;}
+  .lc-more p, .lc-more li{font-size:0.95rem; line-height:1.65;}
+  .lc-more ul{padding-left:20px; margin:8px 0;}
+  .lc-more li{margin:4px 0;}
+  .lc-more code{font-family:'Space Mono',monospace; font-size:0.86em; background:var(--paper-card); border:1px solid var(--border); border-radius:6px; padding:1px 5px; overflow-wrap:anywhere;}
+  .lc-ex{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0;}
+  .lc-ex > div{background:var(--paper-card); border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:0.92rem; overflow-wrap:anywhere;}
+  .lc-ex .lc-ex-h{display:block; font-size:0.74rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px;}
+  @media (max-width:560px){ .lc-ex{grid-template-columns:1fr;} }
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
+<script type="application/ld+json" data-lc="app">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Hidden Character Remover",
+ "url": "https://loosecopy.com/hidden-character-checker",
+ "description": "Find and remove invisible characters (zero-width spaces, U+202F narrow no-break spaces) and full-width punctuation, then copy clean text. Free.",
+ "applicationCategory": "UtilitiesApplication",
+ "operatingSystem": "Any",
+ "browserRequirements": "Requires JavaScript",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "Loosecopy",
+  "url": "https://loosecopy.com/"
+ }
+}
+</script>
+<script type="application/ld+json" data-lc="faq">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What is U+202F, the narrow no-break space?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It's a space that is a little narrower than a normal one and stops a line from breaking at that point. It has real uses, such as before ! and ? in French typography or between a number and its unit. Pasted into a social post, some apps show it as an oddly squashed gap."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does ChatGPT add a hidden watermark to its text?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "There's no public evidence of one. In April 2025, researchers at Rumi noticed narrow no-break spaces in long answers from OpenAI's o3 and o4-mini models (summary), and in October 2025 users reported GPT-5 using them in place of normal spaces (OpenAI forum thread). OpenAI hasn't said they are a watermark, and the same characters show up in text people type themselves, so they prove nothing about who wrote something."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Will removing these characters make AI text undetectable?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No, and that isn't the point of this tool. Most AI detectors judge word patterns, not spacing characters, and they're unreliable for other reasons (here's the research). The reason to clean these out is that they break hashtags, links and spacing."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I remove zero-width spaces from text?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Paste the text above and copy the cleaned version. In most code editors you can also search for \\u200B with regular expressions turned on and replace it with nothing."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Why does my English text have full-width commas like ，?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Your keyboard was probably still in full-width mode from typing Chinese, Japanese or Korean. Switching the input method to half-width before typing English avoids it, and this tool converts any that slipped through."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -225,7 +309,7 @@
 
 
 <main class="wrap">
-  <h1>Is anything invisible hiding in your post?</h1>
+  <h1>Find hidden characters before you post</h1>
   <p class="lede">Text copied out of an AI chat, a document, or a web page — or typed with a Chinese, Japanese or Korean keyboard — can carry characters you can't see: zero-width spaces, spaces that only look normal, full-width punctuation like <code>，</code> or <code>！</code>, a space before a question mark. They can split a hashtag or @mention in two, make search miss your post, or show up as odd gaps. This finds them and hands you a cleaned copy.</p>
 
   <textarea id="input" placeholder="Paste your tweet, post, or paragraph here..."></textarea>
@@ -260,6 +344,31 @@
   </div>
 
   <p class="disclaimer">Rule-based, not a parser — it looks for a fixed list of invisible and look-alike characters, and it leaves full-width punctuation alone when it sits next to Chinese, Japanese or Korean text, where it belongs. Emoji that are built from several pieces (like 👨‍👩‍👧) are left intact. It doesn't check spelling or grammar.</p>
+  <section class="lc-more" aria-label="About this hidden character remover">
+  <h2>How the hidden character remover works</h2>
+<p>It looks for four kinds of characters and shows each one as a visible label, like <code>U+200B</code>, so you can see exactly what will change.</p>
+<ul>
+<li><b>Invisible characters:</b> zero-width space (U+200B), zero-width non-joiner and joiner (U+200C, U+200D), word joiner (U+2060), byte-order mark (U+FEFF), soft hyphen (U+00AD) and left-to-right or right-to-left marks.</li>
+<li><b>Look-alike spaces:</b> no-break space (U+00A0), narrow no-break space (U+202F), thin and hair spaces, and others that look like a normal space but behave differently.</li>
+<li><b>Full-width characters</b> from Chinese, Japanese or Korean keyboards, such as <code>，</code> <code>。</code> <code>！</code> or the full-width space, when they sit inside English text.</li>
+<li><b>Spacing:</b> a stray space right before punctuation.</li>
+</ul>
+<p>Two things are left alone on purpose. Full-width punctuation next to Chinese, Japanese or Korean text stays, because that's where it belongs. The joiners inside emoji like 👩‍💻 stay too, because removing them would split the emoji in two. All of it runs in your browser.</p>
+  <h2>Examples</h2>
+<div class="lc-ex"><div><span class="lc-ex-h">Before</span><code>#launch[U+200B]day</code> (the hidden space breaks the hashtag)</div><div><span class="lc-ex-h">After</span><code>#launchday</code></div></div><div class="lc-ex"><div><span class="lc-ex-h">Before</span><code>Thanks，everyone！</code></div><div><span class="lc-ex-h">After</span><code>Thanks, everyone!</code></div></div><div class="lc-ex"><div><span class="lc-ex-h">Before</span><code>Doors open at 3[U+202F]pm</code> (shows as a squashed gap in some apps)</div><div><span class="lc-ex-h">After</span><code>Doors open at 3 pm</code></div></div>
+  <h2>Questions people ask</h2>
+  <h3>What is U+202F, the narrow no-break space?</h3>
+  <p>It's a space that is a little narrower than a normal one and stops a line from breaking at that point. It has real uses, such as before ! and ? in French typography or between a number and its unit. Pasted into a social post, some apps show it as an oddly squashed gap.</p>
+  <h3>Does ChatGPT add a hidden watermark to its text?</h3>
+  <p>There's no public evidence of one. In April 2025, researchers at Rumi noticed narrow no-break spaces in long answers from OpenAI's o3 and o4-mini models (<a href="https://www.windows7forums.com/threads/unveiling-hidden-unicode-characters-in-openais-chatgpt-models-the-invisible-watermark-debate.361510" target="_blank" rel="noopener">summary</a>), and in October 2025 users reported GPT-5 using them in place of normal spaces (<a href="https://community.openai.com/t/gpt-5-non-reasoning-outputs-u-202f-narrow-no-break-space-instead-of-normal-spaces-breaks-text-rendering-on-macos-apps/1362321" target="_blank" rel="noopener">OpenAI forum thread</a>). OpenAI hasn't said they are a watermark, and the same characters show up in text people type themselves, so they prove nothing about who wrote something.</p>
+  <h3>Will removing these characters make AI text undetectable?</h3>
+  <p>No, and that isn't the point of this tool. Most AI detectors judge word patterns, not spacing characters, and they're unreliable for other reasons (<a href="/ai-detectors-explained">here's the research</a>). The reason to clean these out is that they break hashtags, links and spacing.</p>
+  <h3>How do I remove zero-width spaces from text?</h3>
+  <p>Paste the text above and copy the cleaned version. In most code editors you can also search for <code>\u200B</code> with regular expressions turned on and replace it with nothing.</p>
+  <h3>Why does my English text have full-width commas like ，?</h3>
+  <p>Your keyboard was probably still in full-width mode from typing Chinese, Japanese or Korean. Switching the input method to half-width before typing English avoids it, and this tool converts any that slipped through.</p>
+  <p><b>Want the full story on the "ChatGPT watermark" rumor?</b> <a href="/chatgpt-hidden-characters">Read the guide →</a></p>
+</section>
   <nav class="lc-all-checks" aria-labelledby="lcAllChecksTitle">
     <h2 id="lcAllChecksTitle">All 21 free checks</h2>
     <p class="muted">Same rules every time, no AI, nothing leaves your browser. <a href="/app" class="lc-handoff">Or run all of them at once →</a></p>

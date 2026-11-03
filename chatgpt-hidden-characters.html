@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatGPT Hidden Characters: Watermark or Not? — Loosecopy</title>
+<meta name="description" content="Some ChatGPT answers contain narrow no-break spaces (U+202F). What they are, why there&#x27;s no evidence they&#x27;re a watermark, and when to remove them.">
+<link rel="canonical" href="https://loosecopy.com/chatgpt-hidden-characters">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://loosecopy.com/chatgpt-hidden-characters">
+<meta property="og:title" content="ChatGPT Hidden Characters: Watermark or Not? — Loosecopy">
+<meta property="og:description" content="Some ChatGPT answers contain narrow no-break spaces (U+202F). What they are, why there&#x27;s no evidence they&#x27;re a watermark, and when to remove them.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ChatGPT Hidden Characters: Watermark or Not? — Loosecopy">
+<meta name="twitter:description" content="Some ChatGPT answers contain narrow no-break spaces (U+202F). What they are, why there&#x27;s no evidence they&#x27;re a watermark, and when to remove them.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
+    --redline:#B91C1C; --redline-wash:#FDE8E8; --bluepencil:#1D4ED8; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Sora',sans-serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;}
+  .wordmark em{font-style:normal;color:var(--accent);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+  .header-links{display:flex;align-items:center;gap:16px;}
+  .support-link{font-size:0.85rem;color:var(--ink-soft);text-decoration:none;font-weight:600;}
+  .support-link:hover{text-decoration:underline;}
+  .support-text{}
+  @media (max-width:480px){ .support-text{display:none;} .back{display:none;} header .wrap{gap:12px;} }
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 8px;max-width:62ch;}
+
+  .verified{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.82rem;
+    color:var(--ink-soft); background:var(--paper-card); border:1px solid var(--border);
+    border-radius:10px; padding:6px 12px; margin:14px 0 20px;
+  }
+
+  .origin{
+    background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--bluepencil);
+    border-radius:10px; padding:16px 20px; margin-bottom:36px; font-size:0.95rem; color:var(--ink);
+  }
+
+  .finding{margin-bottom:28px; background:var(--paper-card); border:1px solid var(--border); border-radius:10px; padding:20px 22px;}
+  .finding h2{font-size:1.1rem; margin-bottom:10px;}
+  .finding p{margin:0 0 10px; font-size:0.96rem;}
+  .stat-row{display:flex; flex-wrap:wrap; gap:12px; margin:12px 0;}
+  .stat{
+    font-family:'Space Mono',monospace; background:var(--paper-card); border:1px solid var(--border);
+    border-radius:10px; padding:10px 14px; font-size:0.85rem; color:var(--ink); flex:1 1 200px;
+  }
+  .stat b{display:block; font-size:1.3rem; color:var(--redline); font-family:'Sora',sans-serif; font-weight:500;}
+  .takeaway{
+    border-left:3px solid var(--bluepencil); padding:8px 14px; margin:12px 0; font-size:0.92rem;
+    background:var(--paper-card); color:var(--ink);
+  }
+  .source{font-size:0.82rem; color:var(--ink-soft);}
+  .source a{color:var(--bluepencil);}
+
+  .so-what{
+    margin-top:8px; padding:20px 22px; background:var(--bluepencil-wash); border-radius:10px;
+  }
+  .so-what h2{font-size:1.15rem; margin-bottom:10px;}
+  .so-what ul{margin:10px 0 0; padding-left:20px;}
+  .so-what li{margin-bottom:8px; font-size:0.96rem;}
+
+  .legal-note{
+    margin-top:24px; padding:16px 20px; border-left:3px solid var(--redline); background:var(--redline-wash);
+    font-size:0.88rem; color:var(--ink); border-radius:10px;
+  }
+
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:32px;}
+  .also a{color:var(--bluepencil);}
+
+  @media (max-width:520px){ .stat-row{flex-direction:column;} }
+
+  /* Dark mode: manual toggle (data-theme attribute) layers over OS preference. lc_theme in localStorage. */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
+      --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
+    }
+    :root:not([data-theme="light"]) .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
+    --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
+  }
+  :root[data-theme="dark"] .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
+  .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:10px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
+  .theme-toggle:hover{border-color:var(--bluepencil);color:var(--bluepencil);}
+  :root[data-fontsize="87.5"]{font-size:87.5%;}
+  :root[data-fontsize="112.5"]{font-size:112.5%;}
+  :root[data-fontsize="125"]{font-size:125%;}
+  .fontsize-btn{font-weight:700;}
+  .theme-toggle:disabled{opacity:0.35;cursor:default;}
+  mark{color:inherit;}
+
+  /* ---- Guide pages (SEO round 2026-11) ---- */
+  .lc-more{margin-top:28px;}
+  .lc-more h2{font-size:1.25rem; margin:34px 0 10px;}
+  .lc-more h3{font-size:1rem; margin:20px 0 6px;}
+  .lc-more p, .lc-more li{font-size:0.97rem; line-height:1.7;}
+  .lc-more ul, .lc-more ol{padding-left:22px; margin:8px 0;}
+  .lc-more li{margin:6px 0;}
+  .lc-more code{font-family:'Space Mono',monospace; font-size:0.86em; background:var(--paper-card); border:1px solid var(--border); border-radius:6px; padding:1px 5px; overflow-wrap:anywhere;}
+  .keyfacts{background:var(--paper-card); border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:10px; padding:14px 18px 10px; margin:20px 0 8px;}
+  .keyfacts h2{font-size:1rem; margin:0 0 6px;}
+  .keyfacts ul{margin:0; padding-left:18px;}
+  .keyfacts li{font-size:0.94rem; margin:5px 0;}
+  .lc-sources{font-size:0.88rem;}
+  .lc-sources li{font-size:0.88rem;}
+  .lc-cta{background:var(--accent-wash); border-radius:10px; padding:14px 18px; margin:26px 0;}
+  .lc-all-checks{margin-top:44px; padding-top:24px; border-top:1px solid var(--border);}
+  .lc-all-checks h2{font-size:1.15rem; margin-bottom:4px;}
+  .lc-all-checks > p{margin:0 0 16px;}
+  .lc-ac-groups{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:16px 24px;}
+  .lc-ac-group h3{font-family:'Inter',sans-serif; font-size:0.78rem; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 6px;}
+  .lc-ac-group ul{list-style:none; margin:0; padding:0;}
+  .lc-ac-group li{font-size:0.92rem; padding:3px 0;}
+  .lc-ac-group a{text-decoration:none;}
+  .lc-ac-group a:hover{text-decoration:underline;}
+</style>
+<!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
+<script type="application/ld+json" data-lc="guide">
+{
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "headline": "Hidden characters in ChatGPT text: a watermark, or something else?",
+ "description": "Some ChatGPT answers contain narrow no-break spaces (U+202F). What they are, why there's no evidence they're a watermark, and when to remove them.",
+ "datePublished": "2026-11-03",
+ "dateModified": "2026-11-03",
+ "inLanguage": "en",
+ "mainEntityOfPage": "https://loosecopy.com/chatgpt-hidden-characters",
+ "author": {
+  "@type": "Organization",
+  "name": "Loosecopy",
+  "url": "https://loosecopy.com/"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "Loosecopy",
+  "url": "https://loosecopy.com/",
+  "logo": {
+   "@type": "ImageObject",
+   "url": "https://loosecopy.com/apple-touch-icon.png"
+  }
+ },
+ "image": "https://loosecopy.com/og-image.png"
+}
+</script>
+<script type="application/ld+json" data-lc="guide">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Does ChatGPT put invisible characters in its answers?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Sometimes. Since 2025, users have found narrow no-break spaces (U+202F) in answers from some OpenAI models. It doesn't happen in every answer, and word processors and websites insert similar characters too."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is the narrow no-break space a ChatGPT watermark?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "There's no evidence that it is. OpenAI hasn't said so, the character has normal typographic uses, and find-and-replace removes it, which would make it a weak watermark."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can teachers or AI detectors see hidden characters?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Anyone can see them with a tool like ours or an editor that shows invisible characters. Finding one doesn't prove AI use, though, because people's own keyboards and apps produce the same characters."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I remove hidden characters from ChatGPT text?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Paste the text into the hidden character remover and copy the cleaned version. It swaps look-alike spaces for normal ones and removes zero-width characters, while keeping emoji intact."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Will removing them help my text pass an AI detector?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Detectors mostly judge wording, and they misjudge human writing often enough that their scores shouldn't be trusted either way. Clean the characters to fix formatting, not to hide anything."
+   }
+  }
+ ]
+}
+</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>copy</em></a></div>
+    <div class="header-links">
+      <button id="fontDec" class="theme-toggle fontsize-btn" type="button" aria-label="Decrease text size" title="Decrease text size">A&minus;</button>
+      <button id="fontInc" class="theme-toggle fontsize-btn" type="button" aria-label="Increase text size" title="Increase text size">A+</button>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
+      <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749;<span class="support-text"> Support</span></a>
+      <a class="back" href="/">&larr; back to home</a>
+    </div>
+  </div>
+</header>
+
+<script>(function(){
+  var btn = document.getElementById('themeToggle');
+  if(!btn) return;
+  function current(){
+    var attr = document.documentElement.getAttribute('data-theme');
+    if(attr === 'dark') return 'dark';
+    if(attr === 'light') return 'light';
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  function paint(){
+    var mode = current();
+    btn.innerHTML = mode === 'dark' ? '&#9728;' : '&#9790;';
+    btn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('title', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  paint();
+  btn.addEventListener('click', function(){
+    var next = current() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('lc_theme', next); }catch(e){}
+    paint();
+  });
+})();</script>
+
+
+<script>(function(){
+  var dec = document.getElementById('fontDec');
+  var inc = document.getElementById('fontInc');
+  if(!dec || !inc) return;
+  var STEPS = ['87.5','100','112.5','125'];
+  function currentStep(){
+    var v = document.documentElement.getAttribute('data-fontsize');
+    var i = STEPS.indexOf(v);
+    return i === -1 ? 1 : i;
+  }
+  function apply(i){
+    i = Math.max(0, Math.min(STEPS.length - 1, i));
+    var step = STEPS[i];
+    if(step === '100'){
+      document.documentElement.removeAttribute('data-fontsize');
+      try{ localStorage.removeItem('lc_fontscale'); }catch(e){}
+    } else {
+      document.documentElement.setAttribute('data-fontsize', step);
+      try{ localStorage.setItem('lc_fontscale', step); }catch(e){}
+    }
+    dec.disabled = (i === 0);
+    inc.disabled = (i === STEPS.length - 1);
+  }
+  apply(currentStep());
+  dec.addEventListener('click', function(){ apply(currentStep() - 1); });
+  inc.addEventListener('click', function(){ apply(currentStep() + 1); });
+})();</script>
+
+
+<main class="wrap">
+  <h1>Hidden characters in ChatGPT text: a watermark, or something else?</h1>
+  <p class="lede">If text pasted from ChatGPT shows odd gaps, or you've read that AI tools hide watermark characters in their answers, here's what's actually going on, what the evidence shows, and when cleaning the text is worth doing.</p>
+  <div class="verified">Last verified: November 2026</div>
+  <div class="keyfacts"><h2>Key facts</h2><ul>
+<li>Some OpenAI models have put narrow no-break spaces (U+202F) where a normal space belongs: o3 and o4-mini in April 2025, and GPT-5 in October 2025.</li>
+<li>OpenAI hasn't said these characters are a watermark, and there's no public evidence that they are.</li>
+<li>The same characters have ordinary uses, so finding one says nothing reliable about who wrote a text.</li>
+<li>In a social post they can split hashtags and @mentions, break links, and show up as squashed gaps.</li>
+<li>If you also type in Chinese, Japanese or Korean, full-width punctuation like ， and ！ is a more common hidden problem in English posts.</li>
+</ul></div>
+<article class="lc-more">
+<h2>What are the "hidden characters" people keep finding?</h2>
+<p>Three groups cause most of the trouble:</p>
+<ul>
+<li><b>Zero-width characters:</b> the zero-width space (U+200B), the zero-width joiner and non-joiner (U+200D, U+200C), the word joiner (U+2060) and the byte-order mark (U+FEFF). They take up no width at all, so you can't see them.</li>
+<li><b>Look-alike spaces:</b> the no-break space (U+00A0) and the narrow no-break space (U+202F). They look like a normal space, or a slightly thinner one, but software treats them as different characters.</li>
+<li><b>Full-width punctuation</b> from Chinese, Japanese and Korean keyboards, such as <code>，</code> <code>。</code> <code>！</code> and <code>？</code>. You can see these, but next to English letters they look oversized and oddly spaced, and they're easy to miss when you proofread your own writing.</li>
+</ul>
+
+<h2>Is ChatGPT watermarking its text?</h2>
+<p>There's no evidence that it is. Here's what has actually been reported:</p>
+<ul>
+<li><b>April 2025:</b> Researchers at Rumi, a startup working on academic integrity, noticed narrow no-break spaces in long answers from OpenAI's then-new o3 and o4-mini models. Older models such as GPT-4o didn't show the pattern, and OpenAI didn't confirm or deny any watermarking program (<a href="https://www.windows7forums.com/threads/unveiling-hidden-unicode-characters-in-openais-chatgpt-models-the-invisible-watermark-debate.361510" target="_blank" rel="noopener">summary</a>).</li>
+<li><b>October 2025:</b> Users on OpenAI's developer forum reported that GPT-5 had started putting U+202F in place of ordinary spaces in headings, table headers and sometimes regular sentences, where some macOS apps drew it as a very narrow gap. No OpenAI staff member replied in the thread (<a href="https://community.openai.com/t/gpt-5-non-reasoning-outputs-u-202f-narrow-no-break-space-instead-of-normal-spaces-breaks-text-rendering-on-macos-apps/1362321" target="_blank" rel="noopener">forum thread</a>).</li>
+</ul>
+<p>One forum user guessed the character slipped in through training data, and others have suggested the models picked it up from professionally typeset text. Neither explanation is official. What is clear is that a watermark anyone can delete with find-and-replace wouldn't be much of a watermark.</p>
+
+<h2>Can a hidden character prove a text was written by AI?</h2>
+<p>No. These characters show up in plenty of text written by people:</p>
+<ul>
+<li>French typography puts a thin no-break space before ; ! and ?, and many style guides put one between a number and its unit.</li>
+<li>Word processors and web pages insert no-break spaces all the time, and they come along when you copy and paste.</li>
+<li>Anyone typing with a Chinese, Japanese or Korean keyboard can produce full-width punctuation without noticing.</li>
+</ul>
+<p>The signal also vanishes after a simple find-and-replace, so it can't carry much weight. It isn't something to accuse a person over, and AI detectors in general are far less reliable than their confident percentages suggest (<a href="/ai-detectors-explained">here's the research</a>).</p>
+
+<h2>What goes wrong when they end up in a post</h2>
+<ul>
+<li>A zero-width space inside a hashtag splits it, so <code>#launch[U+200B]day</code> only links #launch.</li>
+<li>@mentions and links can fail for the same reason.</li>
+<li>Search and find-in-page miss words that contain a hidden character.</li>
+<li>Some apps draw U+202F as a squashed gap, which makes a post look broken.</li>
+</ul>
+<p>That's the practical reason to clean them out before you publish.</p>
+
+<h2>When you shouldn't remove them</h2>
+<ul>
+<li>In French text, the narrow spaces before punctuation are correct and expected.</li>
+<li>In Persian and some other languages, the zero-width non-joiner (U+200C) is part of correct spelling.</li>
+<li>Inside emoji such as 👩‍💻, the zero-width joiner holds the pieces together. Remove it and the emoji splits in two.</li>
+<li>Inside Chinese, Japanese or Korean sentences, full-width punctuation is the right choice.</li>
+</ul>
+<p>A careful cleaner keeps those cases. Tools that remove every invisible character don't.</p>
+
+<h2>How to find and remove hidden characters</h2>
+<ol>
+<li>Paste your text into the free <a href="/hidden-character-checker">hidden character remover</a>. It shows each character as a label like <code>U+202F</code> and gives you a cleaned copy, while leaving emoji and Chinese, Japanese or Korean text alone.</li>
+<li>In a code editor, turn on regular expressions and search for <code>\u200B</code>, <code>\u202F</code> or <code>\u00A0</code>.</li>
+<li>If you type in more than one language, switch your keyboard to half-width mode before typing English.</li>
+</ol>
+<div class="lc-cta">Check a draft now: <a href="/hidden-character-checker">find hidden characters before you post →</a></div>
+
+<h2>Sources</h2>
+<ul class="lc-sources">
+<li><a href="https://community.openai.com/t/gpt-5-non-reasoning-outputs-u-202f-narrow-no-break-space-instead-of-normal-spaces-breaks-text-rendering-on-macos-apps/1362321" target="_blank" rel="noopener">OpenAI Developer Community: GPT-5 outputs U+202F instead of normal spaces</a> (thread started October 13, 2025)</li>
+<li><a href="https://www.windows7forums.com/threads/unveiling-hidden-unicode-characters-in-openais-chatgpt-models-the-invisible-watermark-debate.361510" target="_blank" rel="noopener">Windows Forum: summary of Rumi's findings on o3 and o4-mini</a> (April 2025)</li>
+<li><a href="https://hackernoon.com/find-and-remove-invisible-unicode-without-breaking-emoji" target="_blank" rel="noopener">HackerNoon: Find and remove invisible Unicode without breaking emoji</a> (technical guide)</li>
+<li><a href="https://www.unicode.org/charts/PDF/U2000.pdf" target="_blank" rel="noopener">Unicode Consortium: General Punctuation code chart (U+2000 to U+206F)</a></li>
+</ul>
+
+<h2>Questions people ask</h2>
+<h3>Does ChatGPT put invisible characters in its answers?</h3>
+<p>Sometimes. Since 2025, users have found narrow no-break spaces (U+202F) in answers from some OpenAI models. It doesn't happen in every answer, and word processors and websites insert similar characters too.</p>
+<h3>Is the narrow no-break space a ChatGPT watermark?</h3>
+<p>There's no evidence that it is. OpenAI hasn't said so, the character has normal typographic uses, and find-and-replace removes it, which would make it a weak watermark.</p>
+<h3>Can teachers or AI detectors see hidden characters?</h3>
+<p>Anyone can see them with a tool like ours or an editor that shows invisible characters. Finding one doesn't prove AI use, though, because people's own keyboards and apps produce the same characters.</p>
+<h3>How do I remove hidden characters from ChatGPT text?</h3>
+<p>Paste the text into the <a href="/hidden-character-checker">hidden character remover</a> and copy the cleaned version. It swaps look-alike spaces for normal ones and removes zero-width characters, while keeping emoji intact.</p>
+<h3>Will removing them help my text pass an AI detector?</h3>
+<p>No. Detectors mostly judge wording, and they misjudge human writing often enough that their scores shouldn't be trusted either way. Clean the characters to fix formatting, not to hide anything.</p>
+</article>
+  <nav class="lc-all-checks" aria-labelledby="lcAllChecksTitle">
+    <h2 id="lcAllChecksTitle">All 21 free checks</h2>
+    <p class="muted">Same rules every time, no AI, nothing leaves your browser. <a href="/app">Or run all of them at once →</a></p>
+    <div class="lc-ac-groups">
+      <div class="lc-ac-group"><h3>Sounds like you</h3><ul>
+        <li><a href="/ai-authenticity-checker">Sounds like AI</a></li>
+        <li><a href="/structural-ai-tell-checker">Structural AI tells</a></li>
+        <li><a href="/sounds-generic">Too generic</a></li>
+        <li><a href="/reads-like-a-translation">Reads stiff or translated</a></li>
+        <li><a href="/jargon-checker">Jargon &amp; acronyms</a></li>
+        <li><a href="/passive-voice-checker">Passive voice</a></li>
+        <li><a href="/rhetorical-question-checker">Rhetorical questions</a></li>
+        <li><a href="/absolute-claims-checker">Overconfident claims</a></li>
+      </ul></div>
+      <div class="lc-ac-group"><h3>Fits the platform</h3><ul>
+        <li><a href="/hook-checker">Opening line</a></li>
+        <li><a href="/hashtag-checker">Hashtags</a></li>
+        <li><a href="/emoji-checker">Emoji</a></li>
+        <li><a href="/link-placement-checker">Link placement</a></li>
+        <li><a href="/wall-of-text-checker">Wall of text</a></li>
+        <li><a href="/readability-score">Readability</a></li>
+        <li><a href="/markdown-cleanup-checker">Leftover formatting</a></li>
+        <li><a href="/hidden-character-checker">Hidden characters</a></li>
+      </ul></div>
+      <div class="lc-ac-group"><h3>Clear &amp; accurate</h3><ul>
+        <li><a href="/unattributed-stat-checker">Unsourced stats</a></li>
+        <li><a href="/number-unit-checker">Big numbers &amp; units</a></li>
+        <li><a href="/date-format-checker">Ambiguous dates</a></li>
+        <li><a href="/time-ambiguity-checker">Ambiguous times</a></li>
+      </ul></div>
+      <div class="lc-ac-group"><h3>Safe to post</h3><ul>
+        <li><a href="/privacy-leak-checker">Privacy leaks</a></li>
+      </ul></div>
+    </div>
+  </nav>
+</main>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

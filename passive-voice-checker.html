@@ -5,17 +5,17 @@
 <script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How Much of This Is Passive Voice? — Free Tool by Loosecopy</title>
-<meta name="description" content="Paste your draft and find be-verb + participle patterns ('was launched', 'has been reviewed') that often signal passive voice — the kind of construction that quietly hides who actually did the thing, and reads less direct on social platforms.">
+<title>Free Passive Voice Checker — Loosecopy</title>
+<meta name="description" content="Paste your draft to find passive voice (&#x27;was launched&#x27;, &#x27;has been reviewed&#x27;) that hides who did what. Free, no sign-up, and it runs in your browser.">
 <link rel="canonical" href="https://loosecopy.com/passive-voice-checker">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://loosecopy.com/passive-voice-checker">
-<meta property="og:title" content="How Much of This Is Passive Voice? — Free Tool by Loosecopy">
-<meta property="og:description" content="Paste your draft and find be-verb + participle patterns ('was launched', 'has been reviewed') that often signal passive voice — the kind of construction that quietly hides who actually did the thing, and reads less direct on social platforms.">
+<meta property="og:title" content="Free Passive Voice Checker — Loosecopy">
+<meta property="og:description" content="Paste your draft to find passive voice (&#x27;was launched&#x27;, &#x27;has been reviewed&#x27;) that hides who did what. Free, no sign-up, and it runs in your browser.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How Much of This Is Passive Voice? — Free Tool by Loosecopy">
-<meta name="twitter:description" content="Paste your draft and find be-verb + participle patterns ('was launched', 'has been reviewed') that often signal passive voice — the kind of construction that quietly hides who actually did the thing, and reads less direct on social platforms.">
+<meta name="twitter:title" content="Free Passive Voice Checker — Loosecopy">
+<meta name="twitter:description" content="Paste your draft to find passive voice (&#x27;was launched&#x27;, &#x27;has been reviewed&#x27;) that hides who did what. Free, no sign-up, and it runs in your browser.">
 <meta name="twitter:image" content="https://loosecopy.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -45,7 +45,7 @@
   .support-link{font-size:0.85rem;color:var(--ink-soft);text-decoration:none;font-weight:600;}
   .support-link:hover{text-decoration:underline;}
   .support-text{}
-  @media (max-width:480px){ .support-text{display:none;} }
+  @media (max-width:480px){ .support-text{display:none;} .back{display:none;} header .wrap{gap:12px;} }
 
   main{padding:20px 0 80px;}
   h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
@@ -102,6 +102,14 @@
 
   .callout{background:var(--bluepencil-wash); border-radius:10px; padding:16px 18px; font-size:0.92rem;}
   .callout a{color:var(--bluepencil); font-weight:600;}
+  .lc-more{margin-top:44px;}
+  .lc-more h2{font-size:1.25rem; margin:34px 0 10px;}
+  .lc-more h3{font-size:1rem; margin:20px 0 6px;}
+  .lc-more p, .lc-more li{font-size:0.95rem; line-height:1.65;}
+  .lc-ex{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0;}
+  .lc-ex > div{background:var(--paper-card); border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:0.92rem; overflow-wrap:anywhere;}
+  .lc-ex .lc-ex-h{display:block; font-size:0.74rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px;}
+  @media (max-width:560px){ .lc-ex{grid-template-columns:1fr;} }
   .disclaimer{font-size:0.82rem; color:var(--ink-soft); margin-top:24px; line-height:1.6;}
   .source-note{font-size:0.8rem; color:var(--ink-soft); margin-top:8px; line-height:1.6;}
   .source-note a{color:var(--bluepencil);}
@@ -142,6 +150,77 @@
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
+<script type="application/ld+json" data-lc="app">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Passive Voice Checker",
+ "url": "https://loosecopy.com/passive-voice-checker",
+ "description": "Paste your draft to find passive voice ('was launched', 'has been reviewed') that hides who did what. Free, no sign-up, and it runs in your browser.",
+ "applicationCategory": "UtilitiesApplication",
+ "operatingSystem": "Any",
+ "browserRequirements": "Requires JavaScript",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "Loosecopy",
+  "url": "https://loosecopy.com/"
+ }
+}
+</script>
+<script type="application/ld+json" data-lc="faq">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What is passive voice?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A sentence is passive when the thing being acted on becomes the subject: “The report was written by Sam” instead of “Sam wrote the report.” The person doing the action moves into a “by” phrase or drops out of the sentence."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is passive voice wrong?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. It’s a choice. It reads as vague when it hides who did something, and natural when the doer doesn’t matter. The checker shows where it appears so you can decide sentence by sentence."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does it catch every passive sentence?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. It catches a be-verb plus a participle (“was launched”) and informal “get” passives (“got approved”). It doesn’t yet catch passives after “will be,” “can be” or “should be,” and it can mistake an adjective for a participle, as in “I was excited.”"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Will it rewrite my sentences for me?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. It highlights each passive construction and says why it was flagged. You choose whether to change it, so the post stays in your own words."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is my text sent anywhere?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. There’s no sign-up, the check runs in your browser, and nothing you paste is stored or sent."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -236,6 +315,30 @@
   </div>
 
   <p class="disclaimer">This is pattern-matching, not real grammar parsing — it can't reliably tell true passive voice ("was designed by the team") apart from a participial adjective ("was excited," "was tired"), so treat every highlight as a candidate to glance at, not a verdict. It also misses some real passives (contractions like "it's written" aren't caught) and passive voice isn't always wrong — sometimes the actor genuinely doesn't matter ("the site was down for an hour"). Use judgment, not a zero target.</p>
+  <section class="lc-more" aria-label="About this passive voice checker">
+  <h2>How the passive voice checker works</h2>
+<p>It looks for a form of “to be” (is, are, was, were, been, being) followed by a past participle, like “was launched” or “has been reviewed,” and for informal passives with “get,” like “got shared.” When a “by …” phrase follows, as in “was reviewed by the team,” the match is marked as more certain, because the sentence names the doer after the fact.</p>
+<p>The rules are fixed and there’s no AI involved, so the same text always gets the same result, and every highlight shows which words triggered it.</p>
+  <h2>When passive voice is the better choice</h2>
+<p>Passive voice isn’t a grammar error. It often reads better when the doer is unknown or beside the point (“The office was broken into overnight”), when the result matters more than who caused it (“Shipping fees were cut by half”), and in research write-ups, where passive is the norm.</p>
+<p>It causes trouble when it hides your own part in something. “Mistakes were made” or “The update was pushed early” leave readers asking who did it. Those are the sentences worth rewriting with a clear subject.</p>
+  <h2>Examples</h2>
+<div class="lc-ex"><div><span class="lc-ex-h">Before</span>The new pricing was announced on Monday, and the feedback was reviewed by the team.</div><div><span class="lc-ex-h">After</span>We announced the new pricing on Monday, and the team reviewed the feedback.</div></div>
+<div class="lc-ex"><div><span class="lc-ex-h">Before</span>Mistakes were made during the rollout.</div><div><span class="lc-ex-h">After</span>We made mistakes during the rollout. Here’s what we changed.</div></div>
+  <h2>Questions people ask</h2>
+  <h3>What is passive voice?</h3>
+  <p>A sentence is passive when the thing being acted on becomes the subject: “The report was written by Sam” instead of “Sam wrote the report.” The person doing the action moves into a “by” phrase or drops out of the sentence.</p>
+  <h3>Is passive voice wrong?</h3>
+  <p>No. It’s a choice. It reads as vague when it hides who did something, and natural when the doer doesn’t matter. The checker shows where it appears so you can decide sentence by sentence.</p>
+  <h3>Does it catch every passive sentence?</h3>
+  <p>No. It catches a be-verb plus a participle (“was launched”) and informal “get” passives (“got approved”). It doesn’t yet catch passives after “will be,” “can be” or “should be,” and it can mistake an adjective for a participle, as in “I was excited.”</p>
+  <h3>Will it rewrite my sentences for me?</h3>
+  <p>No. It highlights each passive construction and says why it was flagged. You choose whether to change it, so the post stays in your own words.</p>
+  <h3>Is my text sent anywhere?</h3>
+  <p>No. There’s no sign-up, the check runs in your browser, and nothing you paste is stored or sent.</p>
+  <p><b>Want plainer sentences overall?</b> <a href="/readability-score">Check the readability score →</a></p>
+</section>
+
   <nav class="lc-all-checks" aria-labelledby="lcAllChecksTitle">
     <h2 id="lcAllChecksTitle">All 21 free checks</h2>
     <p class="muted">Same rules every time, no AI, nothing leaves your browser. <a href="/app" class="lc-handoff">Or run all of them at once →</a></p>

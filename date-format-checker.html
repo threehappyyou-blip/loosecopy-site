@@ -5,17 +5,17 @@
 <script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Which Date Did You Mean? — Free Tool by Loosecopy</title>
-<meta name="description" content="Paste your draft and find any numeric date like 3/4/2026 that reads as a different day depending on where your reader lives — before it confuses half your audience.">
+<title>Ambiguous Date Checker: MM/DD vs DD/MM — Loosecopy</title>
+<meta name="description" content="Find numeric dates like 3/4/2026 that readers in the US and elsewhere read as different days, before they confuse half your audience. Free.">
 <link rel="canonical" href="https://loosecopy.com/date-format-checker">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://loosecopy.com/date-format-checker">
-<meta property="og:title" content="Which Date Did You Mean? — Free Tool by Loosecopy">
-<meta property="og:description" content="Paste your draft and find any numeric date like 3/4/2026 that reads as a different day depending on where your reader lives — before it confuses half your audience.">
+<meta property="og:title" content="Ambiguous Date Checker: MM/DD vs DD/MM — Loosecopy">
+<meta property="og:description" content="Find numeric dates like 3/4/2026 that readers in the US and elsewhere read as different days, before they confuse half your audience. Free.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Which Date Did You Mean? — Free Tool by Loosecopy">
-<meta name="twitter:description" content="Paste your draft and find any numeric date like 3/4/2026 that reads as a different day depending on where your reader lives — before it confuses half your audience.">
+<meta name="twitter:title" content="Ambiguous Date Checker: MM/DD vs DD/MM — Loosecopy">
+<meta name="twitter:description" content="Find numeric dates like 3/4/2026 that readers in the US and elsewhere read as different days, before they confuse half your audience. Free.">
 <meta name="twitter:image" content="https://loosecopy.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -46,7 +46,7 @@
   .support-link{font-size:0.85rem;color:var(--ink-soft);text-decoration:none;font-weight:600;}
   .support-link:hover{text-decoration:underline;}
   .support-text{}
-  @media (max-width:480px){ .support-text{display:none;} }
+  @media (max-width:480px){ .support-text{display:none;} .back{display:none;} header .wrap{gap:12px;} }
 
   main{padding:20px 0 80px;}
   h1{font-size:clamp(1.5rem,3.6vw,2rem);margin-bottom:8px;}
@@ -135,9 +135,93 @@
   .lc-ac-group a:hover{text-decoration:underline;}
   .lc-ac-group [aria-current]{color:var(--ink); font-weight:600;}
   mark{color:inherit;}
+
+  /* ---- Explainer, examples & FAQ below the tool (SEO round 2026-11) ---- */
+  .lc-more{margin-top:44px;}
+  .lc-more h2{font-size:1.25rem; margin:34px 0 10px;}
+  .lc-more h3{font-size:1rem; margin:20px 0 6px;}
+  .lc-more p, .lc-more li{font-size:0.95rem; line-height:1.65;}
+  .lc-more ul{padding-left:20px; margin:8px 0;}
+  .lc-more li{margin:4px 0;}
+  .lc-more code{font-family:'Space Mono',monospace; font-size:0.86em; background:var(--paper-card); border:1px solid var(--border); border-radius:6px; padding:1px 5px; overflow-wrap:anywhere;}
+  .lc-ex{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0;}
+  .lc-ex > div{background:var(--paper-card); border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:0.92rem; overflow-wrap:anywhere;}
+  .lc-ex .lc-ex-h{display:block; font-size:0.74rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px;}
+  @media (max-width:560px){ .lc-ex{grid-template-columns:1fr;} }
 </style>
 <!-- Google AdSense (Auto ads) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
+<script type="application/ld+json" data-lc="app">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Ambiguous Date Checker",
+ "url": "https://loosecopy.com/date-format-checker",
+ "description": "Find numeric dates like 3/4/2026 that readers in the US and elsewhere read as different days, before they confuse half your audience. Free.",
+ "applicationCategory": "UtilitiesApplication",
+ "operatingSystem": "Any",
+ "browserRequirements": "Requires JavaScript",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "Loosecopy",
+  "url": "https://loosecopy.com/"
+ }
+}
+</script>
+<script type="application/ld+json" data-lc="faq">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Is 03/04/2026 March 4 or April 3?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It depends on who's reading. In the US it's March 4, because the month comes first. In most other countries it's 3 April, because the day comes first."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which countries write the month first?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The United States is the main one. Most other countries write the day first, and several, including China, Japan and Korea, put the year first, as in 2026-03-04."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What's the safest date format for a global audience?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Write the month as a word, like 4 March 2026 or March 4, 2026, or use the ISO format 2026-03-04. Both read the same way everywhere."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Why wasn't 25/12/2026 flagged?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "25 can only be a day, so there's only one way to read it. The checker flags a date only when both numbers could be a month."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does it check that the date is correct?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. It only checks whether the format can be read two ways. A date in a safe format can still be the wrong date."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -209,7 +293,7 @@
 
 
 <main class="wrap">
-  <h1>Which date did you mean?</h1>
+  <h1>Which date did you mean? Check MM/DD vs DD/MM</h1>
   <p class="lede">Paste your draft and find any numeric date — like <code>3/4/2026</code> — that genuinely reads two different ways depending on where your reader lives. Americans read month-first (March 4); most of the rest of the world reads day-first (April 3). This only flags dates where <em>both</em> readings are actually possible — it leaves ISO dates ("2026-03-04") and spelled-out dates ("March 4, 2026") alone, since those already read the same way everywhere.</p>
 
   <div class="examples"><b>Ambiguous:</b> 3/4/2026, 03-04-26, 9.10.2026 &nbsp;&middot;&nbsp; <b>Not ambiguous:</b> 2026-03-04 (ISO), 25/12/2026 (25 can only be a day), March 4 2026</div>
@@ -232,6 +316,24 @@
   </div>
 
   <p class="disclaimer">This checks the <em>format</em> only, not whether the date itself is correct. A date is flagged as ambiguous only when both the first and second number could plausibly be a month (1–12) and they differ — "25/12/2026" isn't flagged because 25 can only be a day. If you genuinely mean the same date either way (like 3/3/2026), it's left alone too.</p>
+  <section class="lc-more" aria-label="About this ambiguous date checker">
+  <h2>How the date checker works</h2>
+<p>It finds numeric dates written with slashes, dashes or dots and flags the ones that could be two different days. A date counts as ambiguous only when both of the first two numbers could be a month (1 to 12) and they're different, so 3/4/2026 is flagged but 25/12/2026 isn't.</p>
+<p>ISO dates like 2026-03-04 and dates with the month written out are left alone, since everyone reads them the same way. It checks the format only, not whether the date is right.</p>
+  <h2>Examples</h2>
+<div class="lc-ex"><div><span class="lc-ex-h">Before</span>Webinar on <code>03/04/2026</code></div><div><span class="lc-ex-h">After</span>Webinar on 4 March 2026</div></div><div class="lc-ex"><div><span class="lc-ex-h">Before</span>Offer ends <code>06.07.26</code></div><div><span class="lc-ex-h">After</span>Offer ends 6 July 2026</div></div><div class="lc-ex"><div><span class="lc-ex-h">Before</span>Applications due <code>12/11</code></div><div><span class="lc-ex-h">After</span>Applications due 11 December</div></div>
+  <h2>Questions people ask</h2>
+  <h3>Is 03/04/2026 March 4 or April 3?</h3>
+  <p>It depends on who's reading. In the US it's March 4, because the month comes first. In most other countries it's 3 April, because the day comes first.</p>
+  <h3>Which countries write the month first?</h3>
+  <p>The United States is the main one. Most other countries write the day first, and several, including China, Japan and Korea, put the year first, as in 2026-03-04.</p>
+  <h3>What's the safest date format for a global audience?</h3>
+  <p>Write the month as a word, like 4 March 2026 or March 4, 2026, or use the ISO format 2026-03-04. Both read the same way everywhere.</p>
+  <h3>Why wasn't 25/12/2026 flagged?</h3>
+  <p>25 can only be a day, so there's only one way to read it. The checker flags a date only when both numbers could be a month.</p>
+  <h3>Does it check that the date is correct?</h3>
+  <p>No. It only checks whether the format can be read two ways. A date in a safe format can still be the wrong date.</p>
+</section>
   <nav class="lc-all-checks" aria-labelledby="lcAllChecksTitle">
     <h2 id="lcAllChecksTitle">All 21 free checks</h2>
     <p class="muted">Same rules every time, no AI, nothing leaves your browser. <a href="/app" class="lc-handoff">Or run all of them at once →</a></p>

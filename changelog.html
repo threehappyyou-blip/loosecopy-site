@@ -45,7 +45,7 @@
   .support-link{font-size:0.85rem;color:var(--ink-soft);text-decoration:none;font-weight:600;}
   .support-link:hover{text-decoration:underline;}
   .support-text{}
-  @media (max-width:480px){ .support-text{display:none;} }
+  @media (max-width:480px){ .support-text{display:none;} .back{display:none;} header .wrap{gap:12px;} }
 
   main{padding:20px 0 80px;}
   h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
@@ -180,6 +180,16 @@
   <h1>Every real change, dated</h1>
   <p class="lede">Not a highlight reel — the actual log, including the bugs. A claim like "we take this seriously" means nothing on its own; a dated record you can check against reality means something. This page is that record, and it only grows.</p>
   <div class="meta-note">Newest first. Nothing here is backdated or removed after the fact — if something needs correcting, it gets a new dated entry, not a silent edit.</div>
+
+  <div class="day">
+    <div class="date-head">2026-11-03</div>
+    <div class="entry"><span class="tag added">Added</span><p>Two sourced, dated guides: <a href="/chatgpt-hidden-characters">hidden characters in ChatGPT text</a> (what the narrow no-break spaces some models produce actually are, and why there's no evidence they're a watermark), and <a href="/linkedin-link-in-comments">LinkedIn links in the post or the first comment</a> (what large studies found, and why it matters whether you post from a profile or a company page).</p></div>
+    <div class="entry"><span class="tag added">Added</span><p>"How it works" explanations, before-and-after examples, and common questions on six tool pages: <a href="/hidden-character-checker">hidden characters</a>, <a href="/number-unit-checker">big numbers</a>, <a href="/date-format-checker">dates</a>, <a href="/time-ambiguity-checker">times</a>, <a href="/link-placement-checker">link placement</a>, and <a href="/ai-authenticity-checker">AI-sounding phrases</a>. Each explanation describes the actual rules the check uses.</p></div>
+    <div class="entry"><span class="tag fixed">Fixed</span><p>Page titles in search results were clever questions that didn't say what each tool was ("How much of this is passive voice?" instead of "Passive Voice Checker"). They now say it plainly, and the descriptions are short enough not to get cut off.</p></div>
+    <div class="entry"><span class="tag fixed">Fixed</span><p>On phones, the header on most pages was cramped, with the logo running into the buttons. The "back to home" link now hides on small screens, since the logo already goes home. The <a href="/number-unit-checker">number converter</a> also no longer scrolls sideways on phones.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p>The same "how it works" explanation, examples, and common questions on <a href="/passive-voice-checker">the passive voice checker</a>, including when passive voice is the better choice and which patterns the check doesn't catch yet.</p></div>
+    <div class="entry"><span class="tag added">Added</span><p><a href="/about">An about page</a>: who makes Loosecopy (one developer writing in a second language), why it exists, and how it's paid for.</p></div>
+  </div>
 
   <div class="day">
     <div class="date-head">2026-10-28</div>

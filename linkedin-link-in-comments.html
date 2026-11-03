@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Should LinkedIn Links Go in the Comments? — Loosecopy</title>
+<meta name="description" content="Big studies find LinkedIn posts with links get fewer impressions, mostly on company pages. When the first comment helps and when it costs you clicks.">
+<link rel="canonical" href="https://loosecopy.com/linkedin-link-in-comments">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://loosecopy.com/linkedin-link-in-comments">
+<meta property="og:title" content="Should LinkedIn Links Go in the Comments? — Loosecopy">
+<meta property="og:description" content="Big studies find LinkedIn posts with links get fewer impressions, mostly on company pages. When the first comment helps and when it costs you clicks.">
+<meta property="og:image" content="https://loosecopy.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Should LinkedIn Links Go in the Comments? — Loosecopy">
+<meta name="twitter:description" content="Big studies find LinkedIn posts with links get fewer impressions, mostly on company pages. When the first comment helps and when it costs you clicks.">
+<meta name="twitter:image" content="https://loosecopy.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7FB; --paper-card:#FFFFFF; --ink:#14161F; --ink-soft:#667085;
+    --redline:#B91C1C; --redline-wash:#FDE8E8; --bluepencil:#1D4ED8; --bluepencil-wash:#E0EAFF; --border:#E3E6EE; --accent:#4F46E5; --accent-hover:#4338CA; --accent-wash:#EEF0FF; --amber:#B45309; --amber-wash:#FEF3C7; --orange-wash:#F3D9C4;
+    --max:820px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--bluepencil);}
+  :focus-visible{outline:2px solid var(--bluepencil);outline-offset:3px;}
+  h1,h2{font-family:'Sora',sans-serif;font-weight:500;line-height:1.15;margin:0;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .wordmark{font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;}
+  .wordmark em{font-style:normal;color:var(--accent);}
+  .wordmark a{color:inherit;text-decoration:none;}
+  .back{font-size:0.9rem;color:var(--ink-soft);text-decoration:none;}
+  .header-links{display:flex;align-items:center;gap:16px;}
+  .support-link{font-size:0.85rem;color:var(--ink-soft);text-decoration:none;font-weight:600;}
+  .support-link:hover{text-decoration:underline;}
+  .support-text{}
+  @media (max-width:480px){ .support-text{display:none;} .back{display:none;} header .wrap{gap:12px;} }
+
+  main{padding:20px 0 80px;}
+  h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
+  .lede{color:var(--ink-soft);margin:0 0 8px;max-width:62ch;}
+
+  .verified{
+    display:inline-block; font-family:'Space Mono',monospace; font-size:0.82rem;
+    color:var(--ink-soft); background:var(--paper-card); border:1px solid var(--border);
+    border-radius:10px; padding:6px 12px; margin:14px 0 20px;
+  }
+
+  .origin{
+    background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--bluepencil);
+    border-radius:10px; padding:16px 20px; margin-bottom:36px; font-size:0.95rem; color:var(--ink);
+  }
+
+  .finding{margin-bottom:28px; background:var(--paper-card); border:1px solid var(--border); border-radius:10px; padding:20px 22px;}
+  .finding h2{font-size:1.1rem; margin-bottom:10px;}
+  .finding p{margin:0 0 10px; font-size:0.96rem;}
+  .stat-row{display:flex; flex-wrap:wrap; gap:12px; margin:12px 0;}
+  .stat{
+    font-family:'Space Mono',monospace; background:var(--paper-card); border:1px solid var(--border);
+    border-radius:10px; padding:10px 14px; font-size:0.85rem; color:var(--ink); flex:1 1 200px;
+  }
+  .stat b{display:block; font-size:1.3rem; color:var(--redline); font-family:'Sora',sans-serif; font-weight:500;}
+  .takeaway{
+    border-left:3px solid var(--bluepencil); padding:8px 14px; margin:12px 0; font-size:0.92rem;
+    background:var(--paper-card); color:var(--ink);
+  }
+  .source{font-size:0.82rem; color:var(--ink-soft);}
+  .source a{color:var(--bluepencil);}
+
+  .so-what{
+    margin-top:8px; padding:20px 22px; background:var(--bluepencil-wash); border-radius:10px;
+  }
+  .so-what h2{font-size:1.15rem; margin-bottom:10px;}
+  .so-what ul{margin:10px 0 0; padding-left:20px;}
+  .so-what li{margin-bottom:8px; font-size:0.96rem;}
+
+  .legal-note{
+    margin-top:24px; padding:16px 20px; border-left:3px solid var(--redline); background:var(--redline-wash);
+    font-size:0.88rem; color:var(--ink); border-radius:10px;
+  }
+
+  .also{font-size:0.88rem; color:var(--ink-soft); margin-top:32px;}
+  .also a{color:var(--bluepencil);}
+
+  @media (max-width:520px){ .stat-row{flex-direction:column;} }
+
+  /* Dark mode: manual toggle (data-theme attribute) layers over OS preference. lc_theme in localStorage. */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
+      --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
+      --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
+    }
+    :root:not([data-theme="light"]) .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0E1016; --paper-card:#171A24; --ink:#ECEDF3; --ink-soft:#9299AC;
+    --redline:#F87171; --redline-wash:#3A2020; --bluepencil:#60A5FA; --bluepencil-wash:#1E293F;
+    --border:#2A2E3C; --accent:#818CF8; --accent-hover:#A5B4FC; --accent-wash:#1E1F38; --amber:#FBBF24; --amber-wash:#3A2E12; --orange-wash:#3B2414; --good:#4ADE80; --good-wash:#16301F;
+  }
+  :root[data-theme="dark"] .btn-primary:hover{ background:var(--accent-hover); color:#0E1016; }
+  .theme-toggle{background:none;border:1px solid var(--border);color:var(--ink-soft);border-radius:10px;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0;}
+  .theme-toggle:hover{border-color:var(--bluepencil);color:var(--bluepencil);}
+  :root[data-fontsize="87.5"]{font-size:87.5%;}
+  :root[data-fontsize="112.5"]{font-size:112.5%;}
+  :root[data-fontsize="125"]{font-size:125%;}
+  .fontsize-btn{font-weight:700;}
+  .theme-toggle:disabled{opacity:0.35;cursor:default;}
+  mark{color:inherit;}
+
+  /* ---- Guide pages (SEO round 2026-11) ---- */
+  .lc-more{margin-top:28px;}
+  .lc-more h2{font-size:1.25rem; margin:34px 0 10px;}
+  .lc-more h3{font-size:1rem; margin:20px 0 6px;}
+  .lc-more p, .lc-more li{font-size:0.97rem; line-height:1.7;}
+  .lc-more ul, .lc-more ol{padding-left:22px; margin:8px 0;}
+  .lc-more li{margin:6px 0;}
+  .lc-more code{font-family:'Space Mono',monospace; font-size:0.86em; background:var(--paper-card); border:1px solid var(--border); border-radius:6px; padding:1px 5px; overflow-wrap:anywhere;}
+  .keyfacts{background:var(--paper-card); border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:10px; padding:14px 18px 10px; margin:20px 0 8px;}
+  .keyfacts h2{font-size:1rem; margin:0 0 6px;}
+  .keyfacts ul{margin:0; padding-left:18px;}
+  .keyfacts li{font-size:0.94rem; margin:5px 0;}
+  .lc-sources{font-size:0.88rem;}
+  .lc-sources li{font-size:0.88rem;}
+  .lc-cta{background:var(--accent-wash); border-radius:10px; padding:14px 18px; margin:26px 0;}
+  .lc-all-checks{margin-top:44px; padding-top:24px; border-top:1px solid var(--border);}
+  .lc-all-checks h2{font-size:1.15rem; margin-bottom:4px;}
+  .lc-all-checks > p{margin:0 0 16px;}
+  .lc-ac-groups{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:16px 24px;}
+  .lc-ac-group h3{font-family:'Inter',sans-serif; font-size:0.78rem; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 6px;}
+  .lc-ac-group ul{list-style:none; margin:0; padding:0;}
+  .lc-ac-group li{font-size:0.92rem; padding:3px 0;}
+  .lc-ac-group a{text-decoration:none;}
+  .lc-ac-group a:hover{text-decoration:underline;}
+</style>
+<!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
+<script type="application/ld+json" data-lc="guide">
+{
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "headline": "Should your LinkedIn link go in the post or the first comment?",
+ "description": "Big studies find LinkedIn posts with links get fewer impressions, mostly on company pages. When the first comment helps and when it costs you clicks.",
+ "datePublished": "2026-11-03",
+ "dateModified": "2026-11-03",
+ "inLanguage": "en",
+ "mainEntityOfPage": "https://loosecopy.com/linkedin-link-in-comments",
+ "author": {
+  "@type": "Organization",
+  "name": "Loosecopy",
+  "url": "https://loosecopy.com/"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "Loosecopy",
+  "url": "https://loosecopy.com/",
+  "logo": {
+   "@type": "ImageObject",
+   "url": "https://loosecopy.com/apple-touch-icon.png"
+  }
+ },
+ "image": "https://loosecopy.com/og-image.png"
+}
+</script>
+<script type="application/ld+json" data-lc="guide">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Does LinkedIn penalize posts with external links?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "LinkedIn hasn't put a number on it, but large studies find posts with links get fewer impressions, roughly 19% to 36% fewer at the median depending on the study. The gap looks bigger for company pages."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is it better to put the link in the first comment on LinkedIn?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It usually protects reach but loses clicks, because people have to open the comments to find it. Use it when you mainly want the post seen, and keep the link in the post when the click is the whole point."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do company pages lose more reach from links than personal profiles?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "In Ordinal's data, yes. Company pages took most of the penalty, while personal profiles showed almost none."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does LinkedIn penalize links in comments too?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Some 2026 articles say so, but the ones we found don't show data for it. The documented cost of the first-comment approach is fewer clicks."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How can I see what links cost my own posts?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Compare impressions on similar posts with and without a link in LinkedIn's post analytics, and use a tracked short link to count clicks. Your own audience is the sample that matters most."
+   }
+  }
+ ]
+}
+</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark"><a href="/">Loose<em>copy</em></a></div>
+    <div class="header-links">
+      <button id="fontDec" class="theme-toggle fontsize-btn" type="button" aria-label="Decrease text size" title="Decrease text size">A&minus;</button>
+      <button id="fontInc" class="theme-toggle fontsize-btn" type="button" aria-label="Increase text size" title="Increase text size">A+</button>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
+      <a class="support-link" href="https://ko-fi.com/poppopmake" target="_blank" rel="noopener">&#9749;<span class="support-text"> Support</span></a>
+      <a class="back" href="/">&larr; back to home</a>
+    </div>
+  </div>
+</header>
+
+<script>(function(){
+  var btn = document.getElementById('themeToggle');
+  if(!btn) return;
+  function current(){
+    var attr = document.documentElement.getAttribute('data-theme');
+    if(attr === 'dark') return 'dark';
+    if(attr === 'light') return 'light';
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  function paint(){
+    var mode = current();
+    btn.innerHTML = mode === 'dark' ? '&#9728;' : '&#9790;';
+    btn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('title', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  paint();
+  btn.addEventListener('click', function(){
+    var next = current() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('lc_theme', next); }catch(e){}
+    paint();
+  });
+})();</script>
+
+
+<script>(function(){
+  var dec = document.getElementById('fontDec');
+  var inc = document.getElementById('fontInc');
+  if(!dec || !inc) return;
+  var STEPS = ['87.5','100','112.5','125'];
+  function currentStep(){
+    var v = document.documentElement.getAttribute('data-fontsize');
+    var i = STEPS.indexOf(v);
+    return i === -1 ? 1 : i;
+  }
+  function apply(i){
+    i = Math.max(0, Math.min(STEPS.length - 1, i));
+    var step = STEPS[i];
+    if(step === '100'){
+      document.documentElement.removeAttribute('data-fontsize');
+      try{ localStorage.removeItem('lc_fontscale'); }catch(e){}
+    } else {
+      document.documentElement.setAttribute('data-fontsize', step);
+      try{ localStorage.setItem('lc_fontscale', step); }catch(e){}
+    }
+    dec.disabled = (i === 0);
+    inc.disabled = (i === STEPS.length - 1);
+  }
+  apply(currentStep());
+  dec.addEventListener('click', function(){ apply(currentStep() - 1); });
+  inc.addEventListener('click', function(){ apply(currentStep() + 1); });
+})();</script>
+
+
+<main class="wrap">
+  <h1>Should your LinkedIn link go in the post or the first comment?</h1>
+  <p class="lede">The standard advice is to never put a link in a LinkedIn post. The data is more mixed than that, and the right call depends on whether you need the reach or the click.</p>
+  <div class="verified">Last verified: November 2026</div>
+  <div class="keyfacts"><h2>Key facts</h2><ul>
+<li>Large studies find that posts with a link get fewer impressions: 18.8% fewer in Richard van der Blom's analysis of 1.3 million posts (April 2025), and 36% fewer at the median in LinkPost's 2026 study of about 358,000 posts.</li>
+<li>Ordinal's data suggests the hit lands mostly on company pages, with almost no effect on personal profiles.</li>
+<li>LinkedIn hasn't published what a link costs, so every figure is an observed pattern, not a rule.</li>
+<li>Putting the link in the first comment tends to protect reach but loses clicks, because readers have to open the comments to find it.</li>
+<li>Figures as high as 60% circulate online, but the articles quoting them don't show the data.</li>
+</ul></div>
+<article class="lc-more">
+<h2>Does LinkedIn reduce reach for posts with links?</h2>
+<p>Probably, though by less than the scariest numbers suggest. These are the larger studies we found:</p>
+<ul>
+<li><b>LinkPost (2026):</b> about 358,000 posts. Median impressions were 448 for posts with links and 705 for posts without, a 36% gap.</li>
+<li><b>Richard van der Blom (April 2025):</b> about 1.3 million posts. One external link in the post body cut median reach by 18.8%. His 2026 update reported a smaller effect.</li>
+<li><b>Ordinal (early 2023 to early 2026):</b> a 26.5% loss across all accounts, concentrated on company pages.</li>
+</ul>
+<p>These are correlations. Posts with links may also differ in other ways, such as being more promotional, so part of the gap may come from the content rather than the link itself.</p>
+
+<h2>Personal profile or company page: why it matters</h2>
+<p>In Ordinal's data, company pages carried most of the penalty, while personal profiles showed almost none. If you post from your own profile, a link may cost you much less than the headline numbers suggest. If you run a company page, it's worth taking the gap seriously.</p>
+
+<h2>Does the first-comment trick still work?</h2>
+<p>It can still protect reach, but it isn't free:</p>
+<ul>
+<li>Ordinal's 2026 summary says it still helps company pages but costs a large share of clicks, and calls it "not the free workaround it was in 2023".</li>
+<li>An older Agorapulse test (around 2019) found link-in-comment posts got 169% more impressions than standard link posts, but fewer likes and shares. It was small, six posts of each type, and the formats weren't identical.</li>
+<li>Some 2026 articles claim LinkedIn now penalizes links in comments too. None of the ones we found show data for it.</li>
+</ul>
+
+<h2>Post or comment: a simple way to decide</h2>
+<ul>
+<li><b>When reach matters most</b> (building an audience, a personal brand): make the post complete on its own, and put the link in the first comment or offer it to anyone who asks.</li>
+<li><b>When the click matters most</b> (sign-ups, sales, event registration): keep the link in the post and accept fewer impressions. Give people a reason to click in the first two lines.</li>
+<li><b>On a company page:</b> assume the penalty is real, and compare first-comment links with posts that carry no link at all.</li>
+<li><b>Either way:</b> compare your own posts in LinkedIn's analytics, and use a tracked short link so you count real clicks, not just impressions.</li>
+</ul>
+
+<h2>What about X (Twitter)?</h2>
+<p>It's less documented. Some creators report a similar drop for posts with links on X, but there's no large public study comparable to the LinkedIn ones. A common pattern is to put the link in the last post of a thread or in a reply.</p>
+<div class="lc-cta">Before you post: catch raw links with the <a href="/link-placement-checker">link placement checker</a>, and make sure your first line earns the click with the <a href="/hook-checker">hook checker</a>.</div>
+
+<h2>Sources</h2>
+<ul class="lc-sources">
+<li><a href="https://www.tryordinal.com/blog/linkedin-link-penalty-study" target="_blank" rel="noopener">Ordinal: LinkedIn link penalty study</a> (summarizes LinkPost 2026, van der Blom and Ordinal's own data)</li>
+<li><a href="https://agorapulse.com/social-media-lab/linkedin-comments-link" target="_blank" rel="noopener">Agorapulse Social Media Lab: Does LinkedIn punish "link in the comments" posts?</a></li>
+<li><a href="https://www.agilitypr.com/pr-news/social-media-influencer-marketing/the-linkedin-link-tax-why-sharing-your-blog-is-costing-you-60-percent-of-your-audience/" target="_blank" rel="noopener">AgilityPR: The LinkedIn link tax</a> (August 2026; source for the 1.3-million-post figure, while its 60% figure has no stated source)</li>
+</ul>
+
+<h2>Questions people ask</h2>
+<h3>Does LinkedIn penalize posts with external links?</h3>
+<p>LinkedIn hasn't put a number on it, but large studies find posts with links get fewer impressions, roughly 19% to 36% fewer at the median depending on the study. The gap looks bigger for company pages.</p>
+<h3>Is it better to put the link in the first comment on LinkedIn?</h3>
+<p>It usually protects reach but loses clicks, because people have to open the comments to find it. Use it when you mainly want the post seen, and keep the link in the post when the click is the whole point.</p>
+<h3>Do company pages lose more reach from links than personal profiles?</h3>
+<p>In Ordinal's data, yes. Company pages took most of the penalty, while personal profiles showed almost none.</p>
+<h3>Does LinkedIn penalize links in comments too?</h3>
+<p>Some 2026 articles say so, but the ones we found don't show data for it. The documented cost of the first-comment approach is fewer clicks.</p>
+<h3>How can I see what links cost my own posts?</h3>
+<p>Compare impressions on similar posts with and without a link in LinkedIn's post analytics, and use a tracked short link to count clicks. Your own audience is the sample that matters most.</p>
+</article>
+  <nav class="lc-all-checks" aria-labelledby="lcAllChecksTitle">
+    <h2 id="lcAllChecksTitle">All 21 free checks</h2>
+    <p class="muted">Same rules every time, no AI, nothing leaves your browser. <a href="/app">Or run all of them at once →</a></p>
+    <div class="lc-ac-groups">
+      <div class="lc-ac-group"><h3>Sounds like you</h3><ul>
+        <li><a href="/ai-authenticity-checker">Sounds like AI</a></li>
+        <li><a href="/structural-ai-tell-checker">Structural AI tells</a></li>
+        <li><a href="/sounds-generic">Too generic</a></li>
+        <li><a href="/reads-like-a-translation">Reads stiff or translated</a></li>
+        <li><a href="/jargon-checker">Jargon &amp; acronyms</a></li>
+        <li><a href="/passive-voice-checker">Passive voice</a></li>
+        <li><a href="/rhetorical-question-checker">Rhetorical questions</a></li>
+        <li><a href="/absolute-claims-checker">Overconfident claims</a></li>
+      </ul></div>
+      <div class="lc-ac-group"><h3>Fits the platform</h3><ul>
+        <li><a href="/hook-checker">Opening line</a></li>
+        <li><a href="/hashtag-checker">Hashtags</a></li>
+        <li><a href="/emoji-checker">Emoji</a></li>
+        <li><a href="/link-placement-checker">Link placement</a></li>
+        <li><a href="/wall-of-text-checker">Wall of text</a></li>
+        <li><a href="/readability-score">Readability</a></li>
+        <li><a href="/markdown-cleanup-checker">Leftover formatting</a></li>
+        <li><a href="/hidden-character-checker">Hidden characters</a></li>
+      </ul></div>
+      <div class="lc-ac-group"><h3>Clear &amp; accurate</h3><ul>
+        <li><a href="/unattributed-stat-checker">Unsourced stats</a></li>
+        <li><a href="/number-unit-checker">Big numbers &amp; units</a></li>
+        <li><a href="/date-format-checker">Ambiguous dates</a></li>
+        <li><a href="/time-ambiguity-checker">Ambiguous times</a></li>
+      </ul></div>
+      <div class="lc-ac-group"><h3>Safe to post</h3><ul>
+        <li><a href="/privacy-leak-checker">Privacy leaks</a></li>
+      </ul></div>
+    </div>
+  </nav>
+</main>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

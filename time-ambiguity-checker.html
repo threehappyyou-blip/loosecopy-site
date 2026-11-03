@@ -5,17 +5,17 @@
 <script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Which Time Did You Mean? — Free Tool by Loosecopy</title>
-<meta name="description" content="Paste your draft and find clock times with no time zone attached, and relative-day words like 'tomorrow' or 'next Friday' — both read differently depending on when or where someone sees your post.">
+<title>Missing Time Zone Checker for Posts — Loosecopy</title>
+<meta name="description" content="Flag clock times like &#x27;3pm&#x27; with no time zone, and words like &#x27;tomorrow&#x27; or &#x27;next Friday&#x27; that read differently by the time people see your post.">
 <link rel="canonical" href="https://loosecopy.com/time-ambiguity-checker">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://loosecopy.com/time-ambiguity-checker">
-<meta property="og:title" content="Which Time Did You Mean? — Free Tool by Loosecopy">
-<meta property="og:description" content="Paste your draft and find clock times with no time zone attached, and relative-day words like 'tomorrow' or 'next Friday' — both read differently depending on when or where someone sees your post.">
+<meta property="og:title" content="Missing Time Zone Checker for Posts — Loosecopy">
+<meta property="og:description" content="Flag clock times like &#x27;3pm&#x27; with no time zone, and words like &#x27;tomorrow&#x27; or &#x27;next Friday&#x27; that read differently by the time people see your post.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Which Time Did You Mean? — Free Tool by Loosecopy">
-<meta name="twitter:description" content="Paste your draft and find clock times with no time zone attached, and relative-day words like 'tomorrow' or 'next Friday' — both read differently depending on when or where someone sees your post.">
+<meta name="twitter:title" content="Missing Time Zone Checker for Posts — Loosecopy">
+<meta name="twitter:description" content="Flag clock times like &#x27;3pm&#x27; with no time zone, and words like &#x27;tomorrow&#x27; or &#x27;next Friday&#x27; that read differently by the time people see your post.">
 <meta name="twitter:image" content="https://loosecopy.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -46,7 +46,7 @@
   .support-link{font-size:0.85rem;color:var(--ink-soft);text-decoration:none;font-weight:600;}
   .support-link:hover{text-decoration:underline;}
   .support-text{}
-  @media (max-width:480px){ .support-text{display:none;} }
+  @media (max-width:480px){ .support-text{display:none;} .back{display:none;} header .wrap{gap:12px;} }
 
   main{padding:20px 0 80px;}
   h1{font-size:clamp(1.5rem,3.6vw,2rem);margin-bottom:8px;}
@@ -135,9 +135,93 @@
   .lc-ac-group a:hover{text-decoration:underline;}
   .lc-ac-group [aria-current]{color:var(--ink); font-weight:600;}
   mark{color:inherit;}
+
+  /* ---- Explainer, examples & FAQ below the tool (SEO round 2026-11) ---- */
+  .lc-more{margin-top:44px;}
+  .lc-more h2{font-size:1.25rem; margin:34px 0 10px;}
+  .lc-more h3{font-size:1rem; margin:20px 0 6px;}
+  .lc-more p, .lc-more li{font-size:0.95rem; line-height:1.65;}
+  .lc-more ul{padding-left:20px; margin:8px 0;}
+  .lc-more li{margin:4px 0;}
+  .lc-more code{font-family:'Space Mono',monospace; font-size:0.86em; background:var(--paper-card); border:1px solid var(--border); border-radius:6px; padding:1px 5px; overflow-wrap:anywhere;}
+  .lc-ex{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0;}
+  .lc-ex > div{background:var(--paper-card); border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:0.92rem; overflow-wrap:anywhere;}
+  .lc-ex .lc-ex-h{display:block; font-size:0.74rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px;}
+  @media (max-width:560px){ .lc-ex{grid-template-columns:1fr;} }
 </style>
 <!-- Google AdSense (Auto ads) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
+<script type="application/ld+json" data-lc="app">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Missing Time Zone Checker",
+ "url": "https://loosecopy.com/time-ambiguity-checker",
+ "description": "Flag clock times like '3pm' with no time zone, and words like 'tomorrow' or 'next Friday' that read differently by the time people see your post.",
+ "applicationCategory": "UtilitiesApplication",
+ "operatingSystem": "Any",
+ "browserRequirements": "Requires JavaScript",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "Loosecopy",
+  "url": "https://loosecopy.com/"
+ }
+}
+</script>
+<script type="application/ld+json" data-lc="faq">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How should I write a time for an international audience?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Add a time zone, and if your readers are spread out, a second one, like \"3pm New York / 9pm Paris\". City names stay correct when the clocks change. For events, a link to a time zone converter beats a long list of cities."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Should I write EST or ET?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Use ET (or CT, PT) unless you only mean winter. EST is Eastern Standard Time, which is wrong from March to early November, when the US East Coast is on daylight time (EDT)."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Why does the checker flag \"tomorrow\"?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Posts get read hours or days after you publish them, and shared into other time zones. By then \"tomorrow\" might mean today or yesterday. A date never goes out of date."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What counts as a time zone for the checker?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "An abbreviation like ET, PT, CET or JST, a UTC or GMT offset like UTC+9, or a phrase like \"your time\" or \"local time\" in the same sentence."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is my text sent anywhere?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. The check runs in your browser, and nothing you paste is stored or sent."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -209,7 +293,7 @@
 
 
 <main class="wrap">
-  <h1>Which time did you mean?</h1>
+  <h1>Which time did you mean? Check for missing time zones</h1>
   <p class="lede">Paste your draft and find two things that read differently depending on who's reading and when: a clock time like <code>3pm</code> with no time zone attached, and relative-day words like "tomorrow" or "next Friday" that mean something different once a post is read later or shared somewhere else.</p>
 
   <div class="examples"><b>Flagged:</b> "see you at 3pm", "the call starts at 9am", "tomorrow", "next Friday", "this weekend" &nbsp;&middot;&nbsp; <b>Not flagged:</b> "3pm EST", "10:00 UTC+1", "your local time", "March 4" (an actual date, not a relative one)</div>
@@ -232,6 +316,24 @@
   </div>
 
   <p class="disclaimer">Heuristic, not a calendar: a clock time is flagged only when no time-zone abbreviation, UTC/GMT offset, or phrase like "your time" appears anywhere in the same sentence. Relative-day words are flagged every time they appear — most are completely fine for something meant to be read same-day, this is just a nudge to consider whether this post might be read later, shared, or seen by someone in another time zone.</p>
+  <section class="lc-more" aria-label="About this missing time zone checker">
+  <h2>How the time zone checker works</h2>
+<p>It flags two things. A clock time like 3pm or 9:30 gets flagged when nothing in the same sentence says which time zone it's in: no abbreviation like ET or CET, no UTC or GMT offset, and no phrase like "your local time".</p>
+<p>Relative words like tomorrow, tonight, next Friday or this weekend are flagged every time, because posts are often read hours or days later by people in other time zones. If the timing is obvious from context, you can ignore them.</p>
+  <h2>Examples</h2>
+<div class="lc-ex"><div><span class="lc-ex-h">Before</span>Live Q&amp;A at <code>3pm tomorrow</code></div><div><span class="lc-ex-h">After</span>Live Q&amp;A on 14 November, 3pm New York / 9pm Paris</div></div><div class="lc-ex"><div><span class="lc-ex-h">Before</span>Doors open <code>next Friday</code></div><div><span class="lc-ex-h">After</span>Doors open on 6 March</div></div><div class="lc-ex"><div><span class="lc-ex-h">Before</span>Call at <code>9:30</code></div><div><span class="lc-ex-h">After</span>Call at 9:30 CET (8:30 UTC)</div></div>
+  <h2>Questions people ask</h2>
+  <h3>How should I write a time for an international audience?</h3>
+  <p>Add a time zone, and if your readers are spread out, a second one, like "3pm New York / 9pm Paris". City names stay correct when the clocks change. For events, a link to a time zone converter beats a long list of cities.</p>
+  <h3>Should I write EST or ET?</h3>
+  <p>Use ET (or CT, PT) unless you only mean winter. EST is Eastern Standard Time, which is wrong from March to early November, when the US East Coast is on daylight time (EDT).</p>
+  <h3>Why does the checker flag "tomorrow"?</h3>
+  <p>Posts get read hours or days after you publish them, and shared into other time zones. By then "tomorrow" might mean today or yesterday. A date never goes out of date.</p>
+  <h3>What counts as a time zone for the checker?</h3>
+  <p>An abbreviation like ET, PT, CET or JST, a UTC or GMT offset like UTC+9, or a phrase like "your time" or "local time" in the same sentence.</p>
+  <h3>Is my text sent anywhere?</h3>
+  <p>No. The check runs in your browser, and nothing you paste is stored or sent.</p>
+</section>
   <nav class="lc-all-checks" aria-labelledby="lcAllChecksTitle">
     <h2 id="lcAllChecksTitle">All 21 free checks</h2>
     <p class="muted">Same rules every time, no AI, nothing leaves your browser. <a href="/app" class="lc-handoff">Or run all of them at once →</a></p>

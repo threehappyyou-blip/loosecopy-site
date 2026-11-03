@@ -5,17 +5,17 @@
 <script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Big Number Converter (만/億/lakh/crore) — Free Tool by Loosecopy</title>
-<meta name="description" content="Convert 만/億/亿, lakh, and crore figures to correct English million/billion numbers — for the moment a big number gets translated in your head and quietly loses an order of magnitude.">
+<title>Lakh &amp; Crore to Million Converter, plus 만/億 — Loosecopy</title>
+<meta name="description" content="Convert lakh, crore, 만, 万, 억 and 億 figures to the right million or billion, and catch currency with no USD reference before you post. Free.">
 <link rel="canonical" href="https://loosecopy.com/number-unit-checker">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://loosecopy.com/number-unit-checker">
-<meta property="og:title" content="Big Number Converter (만/億/lakh/crore) — Free Tool by Loosecopy">
-<meta property="og:description" content="Convert 만/億/亿, lakh, and crore figures to correct English million/billion numbers — for the moment a big number gets translated in your head and quietly loses an order of magnitude.">
+<meta property="og:title" content="Lakh &amp; Crore to Million Converter, plus 만/億 — Loosecopy">
+<meta property="og:description" content="Convert lakh, crore, 만, 万, 억 and 億 figures to the right million or billion, and catch currency with no USD reference before you post. Free.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Big Number Converter (만/億/lakh/crore) — Free Tool by Loosecopy">
-<meta name="twitter:description" content="Convert 만/億/亿, lakh, and crore figures to correct English million/billion numbers — for the moment a big number gets translated in your head and quietly loses an order of magnitude.">
+<meta name="twitter:title" content="Lakh &amp; Crore to Million Converter, plus 만/億 — Loosecopy">
+<meta name="twitter:description" content="Convert lakh, crore, 만, 万, 억 and 億 figures to the right million or billion, and catch currency with no USD reference before you post. Free.">
 <meta name="twitter:image" content="https://loosecopy.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -45,7 +45,7 @@
   .support-link{font-size:0.85rem;color:var(--ink-soft);text-decoration:none;font-weight:600;}
   .support-link:hover{text-decoration:underline;}
   .support-text{}
-  @media (max-width:480px){ .support-text{display:none;} }
+  @media (max-width:480px){ .support-text{display:none;} .back{display:none;} header .wrap{gap:12px;} }
 
   main{padding:20px 0 80px;}
   h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
@@ -68,6 +68,7 @@
   .calc-row select{
     padding:9px 10px; border:1px solid var(--border); background:var(--paper); border-radius:10px;
     font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--ink);
+    max-width:100%; min-width:0; text-overflow:ellipsis;
   }
   .calc-row .rm-row{background:none; border:none; color:var(--ink-soft); cursor:pointer; font-size:0.85rem; text-decoration:underline; padding:4px;}
   .calc-add{
@@ -147,9 +148,93 @@
   .lc-ac-group a:hover{text-decoration:underline;}
   .lc-ac-group [aria-current]{color:var(--ink); font-weight:600;}
   mark{color:inherit;}
+
+  /* ---- Explainer, examples & FAQ below the tool (SEO round 2026-11) ---- */
+  .lc-more{margin-top:44px;}
+  .lc-more h2{font-size:1.25rem; margin:34px 0 10px;}
+  .lc-more h3{font-size:1rem; margin:20px 0 6px;}
+  .lc-more p, .lc-more li{font-size:0.95rem; line-height:1.65;}
+  .lc-more ul{padding-left:20px; margin:8px 0;}
+  .lc-more li{margin:4px 0;}
+  .lc-more code{font-family:'Space Mono',monospace; font-size:0.86em; background:var(--paper-card); border:1px solid var(--border); border-radius:6px; padding:1px 5px; overflow-wrap:anywhere;}
+  .lc-ex{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0;}
+  .lc-ex > div{background:var(--paper-card); border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:0.92rem; overflow-wrap:anywhere;}
+  .lc-ex .lc-ex-h{display:block; font-size:0.74rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px;}
+  @media (max-width:560px){ .lc-ex{grid-template-columns:1fr;} }
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
+<script type="application/ld+json" data-lc="app">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Lakh, Crore and 만/億 Converter",
+ "url": "https://loosecopy.com/number-unit-checker",
+ "description": "Convert lakh, crore, 만, 万, 억 and 億 figures to the right million or billion, and catch currency with no USD reference before you post. Free.",
+ "applicationCategory": "UtilitiesApplication",
+ "operatingSystem": "Any",
+ "browserRequirements": "Requires JavaScript",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "Loosecopy",
+  "url": "https://loosecopy.com/"
+ }
+}
+</script>
+<script type="application/ld+json" data-lc="faq">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How many million is 1 crore?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "1 crore is 10,000,000, or 10 million. 10 crore is 100 million, and 100 crore is 1 billion."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How many million is 1 lakh?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "1 lakh is 100,000, which is 0.1 million. It takes 10 lakh to make 1 million, and 100 lakh to make 1 crore."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I convert 억 or 億 to million?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "1억 (億 in Japanese, 亿 in Chinese) is 100,000,000, so 1억 is 100 million and 10억 is 1 billion. The usual slip is reading 1억 as 1 million, which is off by a factor of 100."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is 만 in English numbers?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "1만 (万) is 10,000. 100만 is 1 million and 1,000만 is 10 million. English groups digits in threes while these units group them in fours, which is why the conversion trips people up."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Should I convert currency for an international audience?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "If most of your readers don't use that currency, an approximate US-dollar figure helps, as long as you round it and check the rate on the day you post. The checker flags ₩, ₹, ¥, € and £ amounts with no USD figure nearby so you can decide."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -221,7 +306,7 @@
 
 
 <main class="wrap">
-  <h1>Does your big number actually convert right?</h1>
+  <h1>Convert lakh, crore, 만 and 億 to millions</h1>
   <p class="lede">A lot of the world doesn't count in English's thousand/million/billion groups. Korean and Japanese count in 10,000s (만/万) and 100,000,000s (억/億) — Chinese shares those two but not the next one up. India, Pakistan, Bangladesh, Nepal, and Sri Lanka count in lakh (100,000) and crore (10,000,000). Converting any of these to English in your head is where a whole digit's worth of value quietly goes missing.</p>
   <div class="fact-note">1억/億 = 100 million &nbsp;·&nbsp; 1 crore = 10 million &nbsp;·&nbsp; 1 lakh = 100,000</div>
 
@@ -252,6 +337,32 @@
   </div>
 
   <p class="disclaimer">This tool handles single-unit figures and the common "thousand-prefix" compounds (5천만, 5千万, 2천5백만, 3천억). It does NOT auto-sum additive compounds like "3억 2천만" — it shows 3억 and 2천만 as two separate conversions instead of guessing how to combine them, since a wrong sum would be worse than no sum. When in doubt, use the calculator above — it's built to handle exactly that case correctly. <b>About 兆:</b> in Japanese it reliably means one trillion, same as Korean 조 — but in Chinese, 兆 is genuinely ambiguous and has been used for one million, one trillion, and ten quadrillion depending on era and context. Because of that, the auto-scanner deliberately skips 兆 entirely; the calculator offers it only as an explicit, clearly-labeled manual choice, so you're the one confirming which value you mean, not the tool guessing. <b>About currency:</b> the scanner flags a non-USD amount (₩, ₹, ¥, €, £, or a code like KRW/INR/JPY/EUR/GBP) when there's no "$"/USD mention in the same sentence — but it never computes a conversion itself. Exchange rates move daily, so a hardcoded rate baked into this tool would quietly go stale and mislead you; adding your own rough, current number is safer than trusting an old one from us.</p>
+  <section class="lc-more" aria-label="About this lakh, crore and 만/億 converter">
+  <h2>How the converter works</h2>
+<p>Use the calculator for a single figure, or paste a draft. The draft scan finds 만, 万, 억, 億, 亿 and 조 figures, the words lakh and crore, and currency amounts in ₩, ₹, ¥, € or £ (or codes like KRW and INR) that have no US-dollar figure nearby.</p>
+<p>It converts single figures and the common thousand-prefix compounds like 5천만 or 3천억. It doesn't add up mixed compounds such as 3억 2천만. Those show as two separate conversions, so you can add them yourself.</p>
+  <h2>Quick conversion table</h2>
+<ul>
+<li>1 lakh = 100,000, and 10 lakh = 1 million</li>
+<li>1 crore = 10 million, and 100 crore = 1 billion</li>
+<li>1만 (万) = 10,000, and 100만 = 1 million</li>
+<li>1억 (億, 亿) = 100 million, and 10억 = 1 billion</li>
+<li>1조 (Korean) = 1 trillion</li>
+</ul>
+  <h2>Examples</h2>
+<div class="lc-ex"><div><span class="lc-ex-h">Before</span>Revenue hit <code>3억</code> won</div><div><span class="lc-ex-h">After</span>Revenue hit 300 million won</div></div><div class="lc-ex"><div><span class="lc-ex-h">Before</span>The video passed <code>2.5 crore</code> views</div><div><span class="lc-ex-h">After</span>The video passed 25 million views</div></div><div class="lc-ex"><div><span class="lc-ex-h">Before</span>Plans start at <code>₹999</code></div><div><span class="lc-ex-h">After</span>Plans start at ₹999 (about US$11, checked on the day you post)</div></div>
+  <h2>Questions people ask</h2>
+  <h3>How many million is 1 crore?</h3>
+  <p>1 crore is 10,000,000, or 10 million. 10 crore is 100 million, and 100 crore is 1 billion.</p>
+  <h3>How many million is 1 lakh?</h3>
+  <p>1 lakh is 100,000, which is 0.1 million. It takes 10 lakh to make 1 million, and 100 lakh to make 1 crore.</p>
+  <h3>How do I convert 억 or 億 to million?</h3>
+  <p>1억 (億 in Japanese, 亿 in Chinese) is 100,000,000, so 1억 is 100 million and 10억 is 1 billion. The usual slip is reading 1억 as 1 million, which is off by a factor of 100.</p>
+  <h3>What is 만 in English numbers?</h3>
+  <p>1만 (万) is 10,000. 100만 is 1 million and 1,000만 is 10 million. English groups digits in threes while these units group them in fours, which is why the conversion trips people up.</p>
+  <h3>Should I convert currency for an international audience?</h3>
+  <p>If most of your readers don't use that currency, an approximate US-dollar figure helps, as long as you round it and check the rate on the day you post. The checker flags ₩, ₹, ¥, € and £ amounts with no USD figure nearby so you can decide.</p>
+</section>
   <nav class="lc-all-checks" aria-labelledby="lcAllChecksTitle">
     <h2 id="lcAllChecksTitle">All 21 free checks</h2>
     <p class="muted">Same rules every time, no AI, nothing leaves your browser. <a href="/app" class="lc-handoff">Or run all of them at once →</a></p>

@@ -5,17 +5,17 @@
 <script>(function(){try{var t=localStorage.getItem('lc_theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}try{var f=localStorage.getItem('lc_fontscale');if(f&&f!=='100'){document.documentElement.setAttribute('data-fontsize',f);}}catch(e){}})();</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Is the Link Hurting Your Reach? — Free Tool by Loosecopy</title>
-<meta name="description" content="Paste your draft and see if it has a raw link sitting in the body. LinkedIn's algorithm is documented to push posts with outbound links less than native ones — moving the link to the first comment is a common workaround.">
+<title>LinkedIn Link Checker: Post or First Comment? — Loosecopy</title>
+<meta name="description" content="Check your draft for raw links before you post. LinkedIn tends to show posts with outbound links to fewer people; the usual fix is the first comment.">
 <link rel="canonical" href="https://loosecopy.com/link-placement-checker">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://loosecopy.com/link-placement-checker">
-<meta property="og:title" content="Is the Link Hurting Your Reach? — Free Tool by Loosecopy">
-<meta property="og:description" content="Paste your draft and see if it has a raw link sitting in the body. LinkedIn's algorithm is documented to push posts with outbound links less than native ones — moving the link to the first comment is a common workaround.">
+<meta property="og:title" content="LinkedIn Link Checker: Post or First Comment? — Loosecopy">
+<meta property="og:description" content="Check your draft for raw links before you post. LinkedIn tends to show posts with outbound links to fewer people; the usual fix is the first comment.">
 <meta property="og:image" content="https://loosecopy.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Is the Link Hurting Your Reach? — Free Tool by Loosecopy">
-<meta name="twitter:description" content="Paste your draft and see if it has a raw link sitting in the body. LinkedIn's algorithm is documented to push posts with outbound links less than native ones — moving the link to the first comment is a common workaround.">
+<meta name="twitter:title" content="LinkedIn Link Checker: Post or First Comment? — Loosecopy">
+<meta name="twitter:description" content="Check your draft for raw links before you post. LinkedIn tends to show posts with outbound links to fewer people; the usual fix is the first comment.">
 <meta name="twitter:image" content="https://loosecopy.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -45,7 +45,7 @@
   .support-link{font-size:0.85rem;color:var(--ink-soft);text-decoration:none;font-weight:600;}
   .support-link:hover{text-decoration:underline;}
   .support-text{}
-  @media (max-width:480px){ .support-text{display:none;} }
+  @media (max-width:480px){ .support-text{display:none;} .back{display:none;} header .wrap{gap:12px;} }
 
   main{padding:20px 0 80px;}
   h1{font-size:clamp(1.6rem,4vw,2.1rem);margin-bottom:8px;}
@@ -135,9 +135,93 @@
   .lc-ac-group a:hover{text-decoration:underline;}
   .lc-ac-group [aria-current]{color:var(--ink); font-weight:600;}
   mark{color:inherit;}
+
+  /* ---- Explainer, examples & FAQ below the tool (SEO round 2026-11) ---- */
+  .lc-more{margin-top:44px;}
+  .lc-more h2{font-size:1.25rem; margin:34px 0 10px;}
+  .lc-more h3{font-size:1rem; margin:20px 0 6px;}
+  .lc-more p, .lc-more li{font-size:0.95rem; line-height:1.65;}
+  .lc-more ul{padding-left:20px; margin:8px 0;}
+  .lc-more li{margin:4px 0;}
+  .lc-more code{font-family:'Space Mono',monospace; font-size:0.86em; background:var(--paper-card); border:1px solid var(--border); border-radius:6px; padding:1px 5px; overflow-wrap:anywhere;}
+  .lc-ex{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0;}
+  .lc-ex > div{background:var(--paper-card); border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:0.92rem; overflow-wrap:anywhere;}
+  .lc-ex .lc-ex-h{display:block; font-size:0.74rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px;}
+  @media (max-width:560px){ .lc-ex{grid-template-columns:1fr;} }
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
+<script type="application/ld+json" data-lc="app">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Link Placement Checker",
+ "url": "https://loosecopy.com/link-placement-checker",
+ "description": "Check your draft for raw links before you post. LinkedIn tends to show posts with outbound links to fewer people; the usual fix is the first comment.",
+ "applicationCategory": "UtilitiesApplication",
+ "operatingSystem": "Any",
+ "browserRequirements": "Requires JavaScript",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "publisher": {
+  "@type": "Organization",
+  "name": "Loosecopy",
+  "url": "https://loosecopy.com/"
+ }
+}
+</script>
+<script type="application/ld+json" data-lc="faq">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Does LinkedIn penalize posts with links?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "LinkedIn hasn't put a number on it, but studies covering hundreds of thousands of posts find that posts with links get fewer impressions, by roughly a quarter to a third at the median. The gap looks larger for company pages than for personal profiles."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Should I put the link in the first comment?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It tends to protect reach, but fewer people click it. Use the first comment when you mostly want the post seen, and the post itself when the click is the whole point."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do links hurt reach on X (Twitter)?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It's less clear. Some creators report a similar effect on X, but there's no equivalent official statement or large public study, so this checker's flag matters less there."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does the checker know which platform I am posting to?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. It flags every link because it can't tell where the text is going. You decide whether each one stays."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is my text sent anywhere?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. The check runs in your browser, and nothing you paste is stored or sent."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -209,7 +293,7 @@
 
 
 <main class="wrap">
-  <h1>Is a raw link sitting in your post?</h1>
+  <h1>LinkedIn links: in the post or the first comment?</h1>
   <p class="lede">LinkedIn keeps people on LinkedIn — its own team has said the algorithm doesn't prioritize posts with outbound links as much as native content. The common workaround is to leave the link out of the body and drop it in the first comment instead. This finds any URL sitting in your draft so you can decide where it belongs.</p>
 
   <textarea id="input" placeholder="Paste your post here..."></textarea>
@@ -228,6 +312,28 @@
   </div>
 
   <p class="disclaimer">This flags any URL-shaped text, whether or not it's actually going to LinkedIn — for a Twitter/X thread, a link in the body is far less of a concern. It also can't tell if a link is essential (like a signup link) versus optional; sometimes the link has to stay in the post, and that's a fine call to make.</p>
+  <section class="lc-more" aria-label="About this link placement checker">
+  <h2>How the link checker works</h2>
+<p>It flags any URL-shaped text in the body of your draft, so you can decide before you post whether the link belongs there, in the first comment, or nowhere.</p>
+<p>It can't tell a must-have link, like a sign-up page, from an optional one, and it flags links even for X, where the reach question is less clear. Treat each flag as a prompt to decide, not a rule.</p>
+  <h2>What the data says about links on LinkedIn</h2>
+<p>LinkedIn hasn't published how much a link costs you, but large studies keep finding a gap. A 2026 analysis of about 358,000 posts by LinkPost, summarized by <a href="https://www.tryordinal.com/blog/linkedin-link-penalty-study" target="_blank" rel="noopener">Ordinal</a>, found a median of 448 impressions for posts with links against 705 for posts without, a 36% difference. Ordinal's own data put the loss at 26.5% and found it mostly hit company pages, with almost no effect on personal profiles.</p>
+<p>Moving the link to the first comment isn't free either. According to the same summary, it still helps company pages but costs a large share of clicks, because readers have to open the comments to find it. If the click matters more than the reach, a link in the post can still be the right call.</p>
+  <h2>Example</h2>
+<div class="lc-ex"><div><span class="lc-ex-h">Before</span>New post on our pricing changes: <code>https://example.com/pricing</code></div><div><span class="lc-ex-h">After</span>New post on our pricing changes. Link in the first comment.</div></div>
+  <h2>Questions people ask</h2>
+  <h3>Does LinkedIn penalize posts with links?</h3>
+  <p>LinkedIn hasn't put a number on it, but studies covering hundreds of thousands of posts find that posts with links get fewer impressions, by roughly a quarter to a third at the median. The gap looks larger for company pages than for personal profiles.</p>
+  <h3>Should I put the link in the first comment?</h3>
+  <p>It tends to protect reach, but fewer people click it. Use the first comment when you mostly want the post seen, and the post itself when the click is the whole point.</p>
+  <h3>Do links hurt reach on X (Twitter)?</h3>
+  <p>It's less clear. Some creators report a similar effect on X, but there's no equivalent official statement or large public study, so this checker's flag matters less there.</p>
+  <h3>Does the checker know which platform I am posting to?</h3>
+  <p>No. It flags every link because it can't tell where the text is going. You decide whether each one stays.</p>
+  <h3>Is my text sent anywhere?</h3>
+  <p>No. The check runs in your browser, and nothing you paste is stored or sent.</p>
+  <p><b>How much does a link really cost on LinkedIn?</b> <a href="/linkedin-link-in-comments">Read what the studies found →</a></p>
+</section>
   <nav class="lc-all-checks" aria-labelledby="lcAllChecksTitle">
     <h2 id="lcAllChecksTitle">All 21 free checks</h2>
     <p class="muted">Same rules every time, no AI, nothing leaves your browser. <a href="/app" class="lc-handoff">Or run all of them at once →</a></p>

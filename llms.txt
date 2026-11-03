@@ -11,6 +11,7 @@ Loosecopy is a small, independently-run tool. It has no user accounts: pasted te
 
 ## Trust & policy
 
+- [About Loosecopy](https://loosecopy.com/about): Who makes it (one developer writing in a second language), why it exists, and how it's funded.
 - [What We'll Never Build](https://loosecopy.com/trust): The permanent pledge — no auto-publish, no write-access OAuth to any platform, no scheduled posting.
 - [Privacy Policy](https://loosecopy.com/privacy-policy): What is and isn't collected, who processes it, and how to reach us.
 - [Where Your Text Actually Goes](https://loosecopy.com/data-handling): A technical, code-level account of what happens to pasted text.
@@ -51,6 +52,9 @@ Loosecopy is a small, independently-run tool. It has no user accounts: pasted te
 - [Rhetorical-Question Checker](https://loosecopy.com/rhetorical-question-checker): Flags short tag-questions like "Sound familiar?" stacked up as filler — a structural count, not a phrase list.
 
 ## Research & reference
+
+- [Hidden characters in ChatGPT text](https://loosecopy.com/chatgpt-hidden-characters): What the narrow no-break spaces (U+202F) found in some ChatGPT answers are, why there is no evidence they are a watermark, and when to remove them.
+- [LinkedIn links: post or first comment?](https://loosecopy.com/linkedin-link-in-comments): What large studies found about reach for LinkedIn posts with links, the personal-profile vs company-page difference, and the reach-vs-clicks trade-off of the first-comment workaround.
 
 - [Why AI Detectors Get It Wrong](https://loosecopy.com/ai-detectors-explained): Sourced research on AI-text-detector unreliability.
 - [AI Disclosure Rules by Platform](https://loosecopy.com/ai-disclosure-policies): What X, LinkedIn, Meta, and Google actually require, with sources.
