@@ -1,3 +1,8 @@
 .git
 .git/**
 wrangler.jsonc
+worker.js
+*.md
+loosecopy-api-vercel
+loosecopy-api-vercel/**
+thread-splitter-char-counter.html
