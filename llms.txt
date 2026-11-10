@@ -6,7 +6,7 @@ Loosecopy is a small, independently-run tool. It has no user accounts: pasted te
 
 ## Core product
 
-- [Try Loosecopy](https://loosecopy.com/app): The generator itself — paste text, get a Twitter thread and LinkedIn post draft back, plus a one-click "Check everything" pass across 20 mechanical quality checks, runnable instantly on raw input with no draft generation required. The 20 checks also run standalone, directly on pasted text, with no draft generation and no AI call required.
+- [Try Loosecopy](https://loosecopy.com/app): The generator itself — paste text, get a Twitter thread and LinkedIn post draft back, plus a one-click "Check everything" pass across 21 mechanical quality checks, runnable instantly on raw input with no draft generation required. Results start with a short "Fix these first" list, safe one-tap fixes, plain-English explanations (optionally in Korean), and copy buttons that format and count text per platform (X counted the way X counts it). The 21 checks also run standalone, directly on pasted text, with no draft generation and no AI call required.
 - [Homepage / waitlist](https://loosecopy.com/): What the product does and how to get early access.
 
 ## Trust & policy

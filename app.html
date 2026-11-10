@@ -283,6 +283,152 @@
   .fontsize-btn{font-weight:700;}
   .theme-toggle:disabled{opacity:0.35;cursor:default;}
   mark{color:inherit;}
+
+  /* ---- 2026-11-10: less work per post — fix-first list, safe fixes, platform copy, mobile ---- */
+  .lc-top{background:var(--paper-card); border:1px solid var(--border); border-radius:var(--radius-md); box-shadow:var(--shadow-sm); padding:12px 16px; margin-bottom:14px;}
+  .lc-top-head{display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:4px;}
+  .lc-top-head strong{font-family:'Sora',sans-serif; font-size:1rem;}
+  .lc-top-list{list-style:none; margin:0; padding:0;}
+  .lc-top-item{display:flex; align-items:center; gap:10px; padding:9px 0; border-top:1px solid var(--border);}
+  .lc-top-item:first-child{border-top:none;}
+  .lc-top-num{flex-shrink:0; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:0.82rem; background:var(--accent-wash); color:var(--accent);}
+  .lc-top-body{flex:1; min-width:0; display:flex; flex-direction:column; gap:3px;}
+  .lc-top-text{font-size:0.94rem; color:var(--ink);}
+  .lc-tags{display:flex; gap:6px; flex-wrap:wrap;}
+  .lc-tag{display:inline-block; font-size:0.72rem; font-weight:700; letter-spacing:0.02em; padding:1px 8px; border-radius:999px; white-space:nowrap;}
+  .lc-tag-must{background:var(--redline-wash); color:var(--redline);}
+  .lc-tag-check{background:var(--amber-wash); color:var(--amber);}
+  .lc-tag-style{background:var(--bluepencil-wash); color:var(--bluepencil);}
+  .lc-tag-fix{background:var(--good-wash); color:var(--good);}
+  .cf-row-toggle .lc-tag{flex-shrink:0;}
+  .lc-show{flex-shrink:0; background:var(--paper); border:1px solid var(--border); color:var(--ink); padding:6px 12px; border-radius:var(--radius-sm); font-size:0.84rem; cursor:pointer; font-family:'Inter',sans-serif; min-height:38px;}
+  .lc-show:hover{border-color:var(--accent); color:var(--accent);}
+  .lc-good{background:var(--good-wash); border:1px solid var(--good); color:var(--ink); border-radius:var(--radius-md); padding:12px 16px; margin-bottom:14px; font-size:0.94rem;}
+  .lc-good strong{color:var(--good);}
+  .lc-careful{background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--bluepencil); border-radius:var(--radius-sm); padding:10px 14px; margin-bottom:14px; font-size:0.9rem; color:var(--ink);}
+  .lc-group-label{font-family:'Space Mono',monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-soft); margin:8px 2px 0;}
+  .lc-guard{background:var(--amber-wash); border:1px solid var(--amber); border-radius:var(--radius-md); padding:12px 16px; margin-bottom:14px; font-size:0.92rem; color:var(--ink);}
+  .lc-guard p{margin:0 0 8px;}
+  .lc-guard p:last-child{margin-bottom:0;}
+  .lc-linkbtn{background:none; border:none; padding:0; color:var(--accent); text-decoration:underline; cursor:pointer; font:inherit; font-weight:600;}
+  .lc-guard .lc-linkbtn{color:var(--ink);}
+
+  .lc-fix{background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--good); border-radius:var(--radius-md); padding:12px 16px; margin-bottom:14px; box-shadow:var(--shadow-sm);}
+  .lc-fix-row{display:flex; align-items:center; gap:10px 14px; flex-wrap:wrap;}
+  .lc-fix-row p{margin:0; flex:1 1 230px; font-size:0.92rem;}
+  .lc-fix-go{background:var(--good); color:var(--paper-card); border:none; padding:9px 16px; border-radius:var(--radius-sm); font-weight:600; font-size:0.92rem; cursor:pointer; font-family:'Inter',sans-serif; min-height:42px;}
+  .lc-fix-go:hover{filter:brightness(1.1);}
+  .lc-fix-go:disabled{opacity:0.5; cursor:not-allowed;}
+  .lc-fix-detail{margin-top:10px; border-top:1px solid var(--border); padding-top:10px;}
+  .lc-fix-cats{list-style:none; margin:0 0 10px; padding:0; display:flex; flex-direction:column; gap:6px; font-size:0.88rem;}
+  .lc-fix-cats label{display:flex; gap:8px; align-items:flex-start; cursor:pointer;}
+  .lc-fix-cats input{margin-top:3px;}
+  .lc-fix-cats b{color:var(--ink-soft); font-weight:600;}
+  .lc-diff-label{font-size:0.78rem; color:var(--ink-soft); margin:8px 0 4px; font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.03em;}
+  .lc-diff{white-space:pre-wrap; word-break:break-word; background:var(--paper); border:1px solid var(--border); border-radius:var(--radius-sm); padding:10px 12px; font-size:0.87rem; line-height:1.7; max-height:260px; overflow:auto;}
+  .lc-diff del{background:var(--redline-wash); color:var(--redline); text-decoration:line-through;}
+  .lc-diff ins{background:var(--good-wash); color:var(--good); text-decoration:none;}
+  .lc-diff .lc-code{font-family:'Space Mono',monospace; font-size:0.78em;}
+  .lc-diff .lc-gap{color:var(--ink-soft);}
+
+  .lc-copy{background:var(--paper-card); border:1px solid var(--border); border-radius:var(--radius-md); padding:12px 16px; margin-bottom:14px; box-shadow:var(--shadow-sm);}
+  .lc-copy-head{font-weight:600; font-size:0.94rem; margin-bottom:8px;}
+  .lc-copy-head span{font-weight:400; color:var(--ink-soft); font-size:0.85rem;}
+  .lc-copy-btns{display:flex; flex-wrap:wrap; gap:8px;}
+  .lc-copy-btn{display:inline-flex; flex-direction:column; align-items:flex-start; gap:1px; background:var(--paper); border:1px solid var(--border); color:var(--ink); padding:7px 14px; border-radius:var(--radius-sm); cursor:pointer; font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; min-height:46px;}
+  .lc-copy-btn small{font-weight:400; font-size:0.75rem; color:var(--ink-soft);}
+  .lc-copy-btn.is-over small{color:var(--redline); font-weight:700;}
+  .lc-copy-btn:hover{border-color:var(--accent);}
+  .lc-copy-btn.copied{border-color:var(--good);}
+  .lc-copy-btn.copied small{color:var(--good); font-weight:700;}
+  .lc-copy-note{margin-top:10px; font-size:0.87rem; color:var(--ink);}
+  .lc-copy-note a{font-weight:600;}
+  .lc-copy-note .muted{display:block; margin-top:4px;}
+  .lc-parts{margin-top:10px; display:flex; flex-direction:column; gap:8px;}
+  .lc-part{background:var(--paper); border:1px solid var(--border); border-radius:var(--radius-sm); padding:8px 10px;}
+  .lc-part-text{white-space:pre-wrap; word-break:break-word; font-size:0.88rem; font-family:'Space Mono',monospace;}
+  .lc-part-row{display:flex; justify-content:space-between; align-items:center; margin-top:6px; gap:8px;}
+  .lc-link-steps{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; position:relative;}
+  .lc-li-links{margin-top:12px; padding:10px 14px; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--paper-card); font-size:0.87rem;}
+
+  .lc-toast{position:fixed; left:50%; bottom:calc(20px + env(safe-area-inset-bottom, 0px)); transform:translateX(-50%) translateY(10px); background:var(--ink); color:var(--paper-card); padding:10px 14px; border-radius:12px; font-size:0.88rem; box-shadow:var(--shadow-md); display:flex; gap:12px; align-items:center; opacity:0; pointer-events:none; transition:opacity .15s ease, transform .15s ease; z-index:60; max-width:calc(100vw - 32px);}
+  .lc-toast.show{opacity:1; transform:translateX(-50%) translateY(0); pointer-events:auto;}
+  .lc-toast button{background:none; border:1px solid currentColor; color:inherit; border-radius:8px; padding:4px 10px; cursor:pointer; font-weight:600; font-family:'Inter',sans-serif; font-size:0.84rem; white-space:nowrap;}
+  body.lc-has-sticky .lc-toast{bottom:calc(86px + env(safe-area-inset-bottom, 0px));}
+
+  .lc-input-tools{display:flex; gap:8px; flex-wrap:wrap;}
+  .lc-tool-btn{background:var(--paper-card); border:1px solid var(--border); color:var(--ink); padding:8px 14px; border-radius:var(--radius-sm); font-size:0.9rem; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; min-height:44px; margin-bottom:8px; align-items:center;}
+  .lc-tool-btn:hover{border-color:var(--accent); color:var(--accent);}
+  .lc-touch-only{display:none;}
+  .lc-sticky{position:fixed; left:0; right:0; bottom:0; z-index:40; display:none; gap:10px; padding:10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); background:var(--paper-card); border-top:1px solid var(--border); box-shadow:0 -4px 14px rgba(20,22,41,0.08);}
+  .lc-sticky.show{display:flex;}
+  .lc-sticky button{flex:1; min-height:48px; border-radius:var(--radius-sm); font-weight:700; font-size:1rem; font-family:'Inter',sans-serif; cursor:pointer;}
+  .lc-sticky .lc-sticky-check{background:var(--accent); color:var(--paper-card); border:none;}
+  .lc-sticky .lc-sticky-copy{background:var(--paper); color:var(--ink); border:1px solid var(--border);}
+  body.lc-has-sticky main{padding-bottom:120px;}
+  @media (pointer:coarse){
+    .lc-touch-only{display:inline-flex;}
+    /* iPhone Safari zooms the page when you tap a box whose text is smaller than 16px — keep every box at 16px or more. */
+    textarea, input[type="text"], input[type="search"], input:not([type]), select{font-size:max(16px, 1rem) !important;}
+  }
+
+  /* ---- 2026-11-10 round 2: Helper card, 30-second example tour ---- */
+  .lc-today{background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:var(--radius-md); box-shadow:var(--shadow-sm); padding:10px 14px 12px 16px; margin:0 0 14px;}
+  .lc-today[hidden]{display:none;}
+  @media (max-width:400px){ .header-links{gap:6px;} }   /* keeps the header on one line at 360px with the Find button added */
+  body.lc-today-first #lcDemoBtn{display:none;}   /* the card above already offers it */
+  .lc-today-head{display:flex; align-items:center; justify-content:space-between; gap:8px;}
+  .lc-today-label{font-family:'Space Mono',monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); font-weight:700;}
+  .lc-today-x{background:none; border:none; color:var(--ink-soft); font-size:1.25rem; line-height:1; cursor:pointer; border-radius:var(--radius-sm); min-width:40px; min-height:40px; margin-right:-8px;}
+  .lc-today-x:hover{color:var(--ink); background:var(--paper);}
+  .lc-today-title{font-weight:700; margin:0 0 2px; font-size:0.98rem; color:var(--ink);}
+  .lc-today-body{margin:0; font-size:0.9rem; color:var(--ink);}
+  .lc-today-quote{color:var(--ink-soft); font-style:italic;}
+  .lc-today-actions{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:10px;}
+  .lc-today-actions .lc-btn-main, .lc-today-actions .lc-btn-soft{display:inline-flex; align-items:center; padding:8px 14px; border-radius:var(--radius-sm); font-weight:600; font-size:0.9rem; cursor:pointer; font-family:'Inter',sans-serif; min-height:42px; text-decoration:none;}
+  .lc-today-actions .lc-btn-main{background:var(--accent); color:var(--paper-card); border:1px solid var(--accent);}
+  .lc-today-actions .lc-btn-main:hover{background:var(--accent-hover);}
+  .lc-today-actions .lc-btn-soft{background:var(--paper); color:var(--ink); border:1px solid var(--border);}
+  .lc-today-actions .lc-btn-soft:hover{border-color:var(--accent);}
+  .lc-today-off{background:none; border:none; color:var(--ink-soft); font-size:0.8rem; cursor:pointer; text-decoration:underline; margin-left:auto; padding:8px 0; font-family:'Inter',sans-serif; min-height:40px;}
+  .lc-coach{position:absolute; z-index:70; width:max-content; max-width:min(330px, calc(100vw - 32px)); background:var(--ink); color:var(--paper-card); border-radius:12px; padding:12px 14px; box-shadow:var(--shadow-md); font-size:0.9rem; line-height:1.45;}
+  .lc-coach-step{font-family:'Space Mono',monospace; font-size:0.72rem; display:block; margin-bottom:4px;}
+  .lc-coach-actions{display:flex; gap:8px; justify-content:flex-end; margin-top:10px; flex-wrap:wrap;}
+  .lc-coach-actions button{background:none; border:1px solid currentColor; color:inherit; border-radius:8px; padding:6px 12px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; font-size:0.86rem; min-height:40px;}
+  .lc-coach-actions .lc-coach-main{background:var(--paper-card); color:var(--ink); border-color:var(--paper-card);}
+  .lc-coach-target{outline:3px solid var(--accent); outline-offset:3px;}
+
+  /* ---- 2026-11-10 round 3: plain-English (and Korean) explanations, a setup it remembers ---- */
+  .lc-sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
+  .lc-explain{margin:10px 0 8px; padding:10px 12px; background:var(--paper); border:1px solid var(--border); border-radius:var(--radius-sm); font-size:0.88rem; color:var(--ink);}
+  .lc-explain p{margin:0 0 6px;}
+  .lc-explain strong{font-weight:600;}
+  .lc-ex-common{font-family:'Space Mono',monospace; font-size:0.74rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--ink-soft);}
+  .lc-ex-pair{display:flex; flex-wrap:wrap; gap:4px 8px; align-items:baseline;}
+  .lc-ex-before{text-decoration:line-through; color:var(--ink-soft);}
+  .lc-ex-after{color:var(--ink); font-weight:600;}
+  .lc-ko-name{font-weight:400; color:var(--ink-soft);}
+  .lc-top-ko{display:block; font-size:0.84rem; color:var(--ink-soft);}
+  .lc-ignore{margin:8px 0; font-size:0.85rem; display:flex; flex-wrap:wrap; gap:6px; align-items:center; color:var(--ink);}
+  .lc-chip{background:var(--paper-card); border:1px solid var(--border); color:var(--ink); border-radius:999px; padding:5px 12px; font-size:0.85rem; cursor:pointer; font-family:'Inter',sans-serif; min-height:36px;}
+  .lc-chip:hover{border-color:var(--accent);}
+  .lc-chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--paper-card);}
+  .lc-mute{display:inline-block; margin:4px 14px 4px 0; font-size:0.85rem; min-height:32px;}
+  .lc-ask, .lc-prefs-panel{background:var(--paper-card); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:var(--radius-md); padding:12px 16px; margin:0 0 14px; box-shadow:var(--shadow-sm); font-size:0.9rem; color:var(--ink);}
+  .lc-ask p, .lc-prefs-panel p{margin:0 0 6px;}
+  .lc-ask-q{font-weight:600; margin-top:10px !important;}
+  .lc-chips{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:4px;}
+  .lc-ask-actions{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; margin-top:12px;}
+  .lc-ask-actions .lc-btn-main, .lc-ask-actions .lc-btn-soft{display:inline-flex; align-items:center; padding:8px 14px; border-radius:var(--radius-sm); font-weight:600; font-size:0.9rem; cursor:pointer; font-family:'Inter',sans-serif; min-height:42px;}
+  .lc-ask-actions .lc-btn-main{background:var(--accent); color:var(--paper-card); border:1px solid var(--accent);}
+  .lc-ask-actions .lc-btn-main:hover{background:var(--accent-hover);}
+  .lc-ask-actions .lc-btn-soft{background:var(--paper); color:var(--ink); border:1px solid var(--border);}
+  .lc-prefs{margin-top:10px;}
+  .lc-prefs-chip{background:var(--paper-card); border:1px solid var(--border); color:var(--ink); border-radius:999px; padding:6px 14px; font-size:0.85rem; cursor:pointer; font-family:'Inter',sans-serif; min-height:38px; text-align:left;}
+  .lc-prefs-chip:hover{border-color:var(--accent);}
+  .lc-prefs-panel{margin-top:10px;}
+  .lc-prefs-row{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:6px;}
+  .lc-prefs-none{color:var(--ink-soft); font-size:0.85rem;}
 </style>
 <!-- Google AdSense (Auto ads) -- reuses the same publisher account as poppopmake.com; confirm ca-pub-4993996708537660 is correct before this goes live -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4993996708537660" crossorigin="anonymous"></script>
@@ -316,6 +462,7 @@
   <div class="wrap">
     <div class="wordmark"><a href="/">Loose<em>copy</em></a></div>
     <div class="header-links">
+      <span data-lc-finder-slot></span>
       <button id="fontDec" class="theme-toggle fontsize-btn" type="button" aria-label="Decrease text size" title="Decrease text size">A&minus;</button>
       <button id="fontInc" class="theme-toggle fontsize-btn" type="button" aria-label="Increase text size" title="Increase text size">A+</button>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
@@ -383,14 +530,19 @@
   <h1>Paste something you wrote</h1>
   <p class="lede">A blog post, an article, rough notes — whatever you've got. You'll get a Twitter thread and a LinkedIn post back, ready to edit.</p>
 
+  <section class="lc-today" id="lcToday" aria-label="Helper suggestion" hidden></section>
   <div class="input-tip" id="draftRestoreBanner" style="align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-    <span>We found text you were working on last time — want it back?</span>
+    <span id="draftRestoreText">We found text you were working on last time — want it back?</span>
     <span style="display:flex; gap:8px; flex-shrink:0;">
       <button type="button" class="btn-secondary-sm" id="draftRestoreBtn">Restore</button>
       <button type="button" class="btn-text-sm" id="draftDiscardBtn">Discard</button>
     </span>
   </div>
 
+  <div class="lc-input-tools" id="lcInputTools">
+    <button type="button" class="lc-tool-btn lc-touch-only" id="lcPasteBtn">Paste</button>
+    <button type="button" class="lc-tool-btn" id="lcDemoBtn">Try an example</button>
+  </div>
   <textarea id="input" placeholder="Paste your blog post or notes here..."></textarea>
   <div class="count-row">
     <span class="muted" id="inputCount">0 characters</span>
@@ -402,6 +554,7 @@
   <div class="checkall-box" id="instantCheckBox">
     <button type="button" class="checkall-btn" id="instantCheckBtn">Just check it — no AI, instant</button>
     <span class="muted checkall-hint">Runs 21 quick mechanical checks on what you pasted above. No signup, no waiting, nothing leaves your browser — this is the same engine as the free checker pages, just without needing to visit each one separately.</span>
+    <div class="lc-prefs" id="lcPrefs"></div>
     <div class="checkall-results" id="instantResults"></div>
   </div>
 
@@ -456,7 +609,7 @@
 
     <div class="draft-block">
       <h2>Twitter / X thread</h2>
-      <p class="sub">Each tweet is its own box — edit freely, red count means over 280.</p>
+      <p class="sub">Each tweet is its own box — edit freely, red count means over 280. Counted the way X counts: any link = 23, and Korean, Chinese or Japanese characters and emoji = 2 each.</p>
       <div id="tweetContainer"></div>
     </div>
 
@@ -468,11 +621,17 @@
         <span class="muted" id="linkedinCount">0 characters</span>
         <button class="copy-btn" data-copy="linkedinText">Copy</button>
       </div>
+      <div class="lc-li-links" id="lcLiLinks" hidden></div>
       <div class="limit-counters" id="limitCounters"></div>
       <button type="button" class="btn-secondary-sm" id="splitToThreadBtn" style="margin-top:10px;">Split this into a Twitter/X thread</button>
     </div>
   </div>
 </main>
+
+<div class="lc-sticky" id="lcSticky" role="toolbar" aria-label="Quick actions">
+  <button type="button" class="lc-sticky-check">Check</button>
+  <button type="button" class="lc-sticky-copy">Copy</button>
+</div>
 
 <script>
 const input = document.getElementById('input');
@@ -532,6 +691,9 @@ function hideDraftBanner(){
     if (!raw) return;
     const parsed = JSON.parse(raw);
     if (parsed && typeof parsed.text === 'string' && parsed.text.trim()) {
+      // Say when it was saved, so "is this the one I want?" doesn't need a guess.
+      const txt = document.getElementById('draftRestoreText');
+      if (txt && typeof parsed.t === 'number') txt.textContent = `We found text you were working on (saved ${lcWhen(parsed.t)}) — want it back?`;
       draftRestoreBanner.style.display = 'flex';
     }
   } catch (e) { /* unreadable saved draft — ignore */ }
@@ -562,8 +724,9 @@ if (input) {
     draftSaveTimer = setTimeout(() => {
       try {
         const text = input.value;
+        if (input.dataset.demo === '1') return;   // the practice example never replaces your saved draft
         if (text.trim()) {
-          localStorage.setItem(DRAFT_KEY, JSON.stringify({ text }));
+          localStorage.setItem(DRAFT_KEY, JSON.stringify({ text, t: Date.now() }));
         } else {
           localStorage.removeItem(DRAFT_KEY);
         }
@@ -883,6 +1046,7 @@ function cfCheckAuthenticity(text){
   let totalHits = 0;
   const hits = [];
   CF_AUTH_PHRASES.forEach(phrase => {
+    if (lcIgnored('authenticity', phrase)) return;   // a phrase you told us is fine for you
     const re = new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"), "gi");
     let m;
     while ((m = re.exec(text)) !== null){ hits.push({text:m[0], index:m.index}); totalHits++; if(m[0].length===0) re.lastIndex++; }
@@ -922,6 +1086,7 @@ function cfCheckTranslation(text){
   let totalHits = 0;
   const hits = [];
   CF_TRANS_PHRASES.forEach(phrase => {
+    if (lcIgnored('translation', phrase)) return;   // a phrase you told us is fine for you
     const re = new RegExp("\\b"+phrase.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b", "gi");
     let m;
     while ((m = re.exec(text)) !== null){ hits.push({text:m[0], index:m.index}); totalHits++; if(m[0].length===0) re.lastIndex++; }
@@ -1332,7 +1497,7 @@ function cfJargonFindAcronyms(text){
 }
 function cfCheckJargon(text){
   if (!text.trim()) return { status:'good', headline:'Nothing to check.', detail:'', count:0, markedHtml:null, extraHtml:null };
-  const all = cfDedupeOverlaps([...cfJargonFind(text), ...cfJargonFindAcronyms(text)]);
+  const all = cfDedupeOverlaps([...cfJargonFind(text), ...cfJargonFindAcronyms(text)]).filter(h => !lcIgnored('jargon', h.text));   // words you said your readers know
 
   let status, headline, detail;
   if (all.length === 0) { status='good'; headline='Reads clear.'; detail='Nothing that reads as jargon, an idiom, or an unexplained acronym.'; }
@@ -1705,6 +1870,23 @@ function cfCheckDateAmbiguity(text){
     const ambiguous = a <= 12 && b <= 12 && a !== b;
     hits.push({ index: m.index, text: m[0], cls: ambiguous ? 'hit-date' : 'hit-ok', ambiguous });
   }
+  // Day/month with no year ("03/04", "on 3/4"): flagged only when it clearly reads as a date —
+  // zero-padded, or right after a date word — never fractions ("3/4 of users"), scores or "24/7".
+  const shortRe = /(^|[^\d\/.])(\d{1,2})\/(\d{1,2})(?![\d\/])/g;
+  while ((m = shortRe.exec(t)) !== null) {
+    const start = m.index + m[1].length, len = m[2].length + 1 + m[3].length;
+    const a = parseInt(m[2], 10), b = parseInt(m[3], 10);
+    if (a < 1 || a > 31 || b < 1 || b > 31) continue;
+    const before = t.slice(Math.max(0, start - 16), start).toLowerCase(), after = t.slice(start + len, start + len + 10).toLowerCase();
+    if (/^\s*(of|out of|stars?|points?|ratio)\b/.test(after)) continue;
+    const padded = (m[2].length === 2 && m[2][0] === '0') || (m[3].length === 2 && m[3][0] === '0');
+    const dateWord = /\b(on|by|until|till|from|before|after|since|due|deadline|starting|starts|ends?|launch(?:es|ing)?|mon|tue|wed|thu|fri|sat|sun)[a-z]*[\s,.:]*$/.test(before);
+    if (!padded && !dateWord) continue;
+    if (cfLooksLikeVersionPrefix(t, start)) continue;
+    const ambiguous = a <= 12 && b <= 12 && a !== b;
+    hits.push({ index: start, text: m[2] + '/' + m[3], cls: ambiguous ? 'hit-date' : 'hit-ok', ambiguous });
+  }
+  hits.sort((x, y) => x.index - y.index);
 
   const ambiguousCount = hits.filter(h => h.ambiguous).length;
   if (!hits.length) {
@@ -1804,7 +1986,11 @@ function cfCheckTimeAmbiguity(text){
   }
 
   const relRegex = /\b(today|tonight|tomorrow|yesterday)\b|\b(?:this|next|last)\s+(?:morning|afternoon|evening|weekend|week|month|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b|\bin\s+(?:a|an|\d+)\s+(?:hour|hours|day|days|week|weeks)\b/gi;
-  const relHits = [...t.matchAll(relRegex)].map(mm => ({ index: mm.index, text: mm[0], cls: 'hit-reltime' }));
+  // "In today's world / fast-paced world / digital age" means "these days", not a date — don't flag it.
+  const eraSpans = [...t.matchAll(/\bin\s+today['’]s\s+(?:[a-z-]+\s+){0,2}(?:world|age|era|society|landscape|climate|environment|economy|market|marketplace|times|culture)\b/gi)].map(mm => [mm.index, mm.index + mm[0].length]);
+  const relHits = [...t.matchAll(relRegex)]
+    .filter(mm => !eraSpans.some(([a, b]) => mm.index >= a && mm.index < b))
+    .map(mm => ({ index: mm.index, text: mm[0], cls: 'hit-reltime' }));
 
   const allHits = cfDedupeOverlaps([...clockHits, ...relHits]);
   if (!allHits.length) {
@@ -2099,13 +2285,16 @@ function cfRenderRow(row, multiPlatform, expanded){
     if (pp.result.markedHtml) body += `<div class="cf-marked">${pp.result.markedHtml}</div>`;
     body += `</div>`;
   });
+  if (typeof lcRowExtrasHtml === 'function') body += lcRowExtrasHtml(row);
   body += `<a class="cf-more" href="${row.chk.more}" target="_blank" rel="noopener">Open the full tool &rarr;</a>`;
+  const tierTag = row.tier ? `<span class="lc-tag lc-tag-${row.tier}">${LC_TIER_LABEL[row.tier]}</span>` : '';
 
-  return `<div class="cf-item cf-item-${row.status}">
-    <div class="cf-row-toggle${expanded ? ' open' : ''}" data-cf-toggle>
+  return `<div class="cf-item cf-item-${row.status}" data-check="${row.chk.id}">
+    <div class="cf-row-toggle${expanded ? ' open' : ''}" data-cf-toggle role="button" tabindex="0" aria-expanded="${expanded ? 'true' : 'false'}">
       <span class="cf-dot cf-dot-${row.status}"></span>
-      <span class="cf-label">${row.chk.label}</span>
+      <span class="cf-label">${typeof lcCheckLabel === 'function' ? lcCheckLabel(row.chk) : row.chk.label}</span>
       <span class="cf-headline">${combinedHeadline}</span>
+      ${tierTag}
       <span class="cf-chevron">${expanded ? '▾' : '▸'}</span>
     </div>
     <div class="cf-row-body" style="display:${expanded ? 'block' : 'none'};">${body}</div>
@@ -2114,14 +2303,15 @@ function cfRenderRow(row, multiPlatform, expanded){
 
 function cfBuildRows(platforms){
   return CF_CHECKS.map(chk => {
-    const perPlatform = platforms.map(p => ({ label:p.label, short:p.short, result: chk.run(p.text) }));
+    const perPlatform = platforms.map(p => ({ label:p.label, short:p.short, text:p.text, result: chk.run(p.text) }));
     let status = null;
     perPlatform.forEach(pp => { status = cfWorstStatus(status, pp.result.status); });
     return { chk, perPlatform, status };
   });
 }
 
-function cfRenderResults(rows, multiPlatform, targetEl){
+function cfRenderResults(rows, multiPlatform, targetEl, opts){
+  opts = opts || {};
   const counts = { warn:0, notice:0, good:0 };
   rows.forEach(r => counts[r.status]++);
 
@@ -2130,14 +2320,61 @@ function cfRenderResults(rows, multiPlatform, targetEl){
   if (counts.notice) summaryParts.push(`<span class="cf-sum notice">${counts.notice} worth a look</span>`);
   if (counts.good) summaryParts.push(`<span class="cf-sum good">${counts.good} all clear</span>`);
 
-  const sorted = [...rows].sort((a,b) => CF_STATUS_ORDER[a.status] - CF_STATUS_ORDER[b.status]);
-  const attention = sorted.filter(r => r.status !== 'good');
-  const clean = sorted.filter(r => r.status === 'good');
+  // Sort what needs attention into three plain buckets — must fix / check / polish — so someone with
+  // ten spare minutes knows where to start instead of reading 21 rows. (A phone number used to land
+  // below "sounds like AI" because only warn/notice existed.)
+  rows.forEach(r => { r.tier = lcTierFor(r); r.loc = opts.source === 'input' ? lcLocate(r) : null; });
+  const byId = {};
+  rows.forEach(r => { byId[r.chk.id] = r; });
+  const flagged = rows.filter(r => r.status !== 'good');
+  const muted = flagged.filter(r => lcIsMuted(r.chk.id));
+  // Within a bucket: a leaked contact detail first (it can't be taken back once posted), things the
+  // green one-tap box already fixes last (they don't need a slot in the top three), the rest by severity, then top-down.
+  const inBucket = r => r.chk.id === 'privacy' ? 0 : (lcHasSafeFix(r) ? 2 : 1);
+  const attention = flagged.filter(r => !lcIsMuted(r.chk.id)).sort((a, b) =>
+    LC_TIER_RANK[a.tier] - LC_TIER_RANK[b.tier] ||
+    inBucket(a) - inBucket(b) ||
+    CF_STATUS_ORDER[a.status] - CF_STATUS_ORDER[b.status] ||
+    (a.loc ? a.loc.start : 1e9) - (b.loc ? b.loc.start : 1e9));
+  const clean = rows.filter(r => r.status === 'good');
+  const blocking = attention.filter(r => r.tier !== 'style');
+  const top = blocking.slice(0, 3);
 
-  let html = `<div class="cf-summary">${summaryParts.join(' · ')}</div><div class="cf-list">`;
-  attention.forEach(r => { html += cfRenderRow(r, multiPlatform, true); });
+  let html = `<div class="cf-summary">${summaryParts.join(' · ')}</div>`;
+  if (opts.guardHtml) html += opts.guardHtml;
+  html += `<div data-lc-slot="fix"></div>`;
+  if (top.length){
+    html += `<div class="lc-top"><div class="lc-top-head"><strong>${top.some(r => r.tier === 'must') ? 'Fix these first' : 'Check these before you post'}</strong>${blocking.length > 3 ? `<span class="muted">top 3 of ${blocking.length}</span>` : ''}</div><ol class="lc-top-list">`;
+    top.forEach((r, i) => {
+      const quick = lcHasSafeFix(r) ? `<span class="lc-tag lc-tag-fix">One-tap fix above</span>` : '';
+      const canShow = opts.source !== 'input' || r.loc;
+      html += `<li class="lc-top-item" data-top="${r.chk.id}"><span class="lc-top-num" aria-hidden="true">${i + 1}</span><span class="lc-top-body"><span class="lc-top-text">${cfEscapeHtml(lcActionFor(r))}${typeof lcActionKo === 'function' ? lcActionKo(r) : ''}</span><span class="lc-tags"><span class="lc-tag lc-tag-${r.tier}">${LC_TIER_LABEL[r.tier]}</span>${quick}</span></span>${canShow ? `<button type="button" class="lc-show" data-check="${r.chk.id}">Show me</button>` : ''}</li>`;
+    });
+    html += `</ol></div>`;
+  } else if (opts.shortText){
+    // Never say "Good to go" about a few words — most checks had almost nothing to look at.
+    html += `<div class="lc-careful">${attention.length ? 'Nothing that needs fixing' : 'Nothing flagged'} — but this is short, so most checks had very little to look at. Add a sentence or two for a fuller check.${attention.length ? ` ${attention.length === 1 ? 'One optional polish idea' : attention.length + ' optional polish ideas'} below.` : ''}</div>`;
+  } else if (opts.limited){
+    if (!attention.length) html += `<div class="lc-careful">No privacy leaks or hidden characters found.</div>`;
+  } else {
+    html += `<div class="lc-good"><strong>Good to go.</strong> Nothing that needs fixing before you post.${attention.length ? ` ${attention.length === 1 ? 'One optional polish idea' : attention.length + ' optional polish ideas'} below.` : ''}</div>`;
+  }
+  html += `<div data-lc-slot="copy"></div><div data-lc-slot="ask"></div>`;
+
+  html += `<div class="cf-list">`;
+  ['must', 'check', 'style'].forEach(t => {
+    const group = attention.filter(r => r.tier === t);
+    if (!group.length) return;
+    html += `<div class="lc-group-label">${LC_TIER_LABEL[t]} · ${group.length}</div>`;
+    group.forEach(r => { html += cfRenderRow(r, multiPlatform, false); });
+  });
+  if (muted.length){
+    html += `<div class="cf-clean-toggle lc-muted-toggle" data-count="${muted.length}" role="button" tabindex="0">▸ ${muted.length} hidden by you — show</div><div class="cf-clean-list lc-muted-list" style="display:none;">`;
+    muted.forEach(r => { html += cfRenderRow(r, multiPlatform, false); });
+    html += `</div>`;
+  }
   if (clean.length){
-    html += `<div class="cf-clean-toggle" data-count="${clean.length}">▸ ${clean.length} more check${clean.length===1?'':'s'} passed — no issues</div><div class="cf-clean-list" style="display:none;">`;
+    html += `<div class="cf-clean-toggle lc-pass-toggle" data-count="${clean.length}" role="button" tabindex="0">▸ ${clean.length} more check${clean.length===1?'':'s'} passed — no issues</div><div class="cf-clean-list lc-pass-list" style="display:none;">`;
     clean.forEach(r => { html += cfRenderRow(r, multiPlatform, false); });
     html += `</div>`;
   }
@@ -2146,25 +2383,46 @@ function cfRenderResults(rows, multiPlatform, targetEl){
   targetEl.innerHTML = html;
   targetEl.style.display = 'block';
 
+  function setOpen(el, open){
+    const body = el.nextElementSibling;
+    body.style.display = open ? 'block' : 'none';
+    el.classList.toggle('open', open);
+    el.setAttribute('aria-expanded', open ? 'true' : 'false');
+    el.querySelector('.cf-chevron').textContent = open ? '▾' : '▸';
+  }
   targetEl.querySelectorAll('[data-cf-toggle]').forEach(el => {
-    el.addEventListener('click', () => {
-      const body = el.nextElementSibling;
-      const isOpen = body.style.display !== 'none';
-      body.style.display = isOpen ? 'none' : 'block';
-      el.classList.toggle('open', !isOpen);
-      el.querySelector('.cf-chevron').textContent = isOpen ? '▸' : '▾';
+    el.addEventListener('click', e => { if (e.target.closest('button, a, input, label')) return; setOpen(el, el.nextElementSibling.style.display === 'none'); });
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(el, el.nextElementSibling.style.display === 'none'); } });
+  });
+  targetEl.querySelectorAll('.cf-clean-toggle').forEach(tg => {
+    const flip = () => {
+      const list = tg.nextElementSibling;
+      const isOpen = list.style.display !== 'none';
+      list.style.display = isOpen ? 'none' : 'flex';
+      const n = tg.dataset.count;
+      if (tg.classList.contains('lc-muted-toggle')) tg.textContent = (isOpen ? '▸ ' : '▾ ') + n + ' hidden by you — ' + (isOpen ? 'show' : 'hide');
+      else tg.textContent = (isOpen ? '▸ ' : '▾ ') + n + ' more check' + (n === '1' ? '' : 's') + ' passed — no issues';
+    };
+    tg.addEventListener('click', flip);
+    tg.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+  });
+  targetEl.querySelectorAll('.lc-show').forEach(b => {
+    b.addEventListener('click', () => {
+      const id = b.dataset.check, r = byId[id];
+      const item = targetEl.querySelector(`.cf-item[data-check="${id}"]`);
+      if (item) setOpen(item.querySelector('[data-cf-toggle]'), true);
+      if (opts.source === 'input' && r && r.loc) lcSelectInInput(r.loc);
+      else if (item) item.scrollIntoView({ behavior:'smooth', block:'center' });
     });
   });
-  const cleanToggle = targetEl.querySelector('.cf-clean-toggle');
-  if (cleanToggle){
-    cleanToggle.addEventListener('click', () => {
-      const list = targetEl.querySelector('.cf-clean-list');
-      const isOpen = list.style.display !== 'none';
-      list.style.display = isOpen ? 'none' : 'block';
-      const n = cleanToggle.dataset.count;
-      cleanToggle.textContent = (isOpen ? '▸ ' : '▾ ') + n + ' more check' + (n === '1' ? '' : 's') + ' passed — no issues';
-    });
-  }
+  if (typeof lcWireRowExtras === 'function') lcWireRowExtras(targetEl, opts);
+
+  const fixSlot = targetEl.querySelector('[data-lc-slot="fix"]');
+  if (fixSlot && opts.fixTargets) lcRenderFixPanel(fixSlot, opts.fixTargets, opts.onFixed);
+  const copySlot = targetEl.querySelector('[data-lc-slot="copy"]');
+  if (copySlot && opts.source === 'input') lcRenderCopyBar(copySlot);
+  const askSlot = targetEl.querySelector('[data-lc-slot="ask"]');
+  if (askSlot && typeof lcRenderAsk === 'function') lcRenderAsk(askSlot, opts);
 }
 
 function runAllChecks(){
@@ -2181,7 +2439,9 @@ function runAllChecks(){
   }
 
   const rows = cfBuildRows(platforms);
-  cfRenderResults(rows, platforms.length > 1, checkallResultsEl);
+  const fixTargets = [linkedinText, ...tweetContainer.querySelectorAll('textarea')].filter(el => el.value.trim());
+  cfRenderResults(rows, platforms.length > 1, checkallResultsEl, { source:'drafts', fixTargets, onFixed: runAllChecks });
+  if (typeof lcAfterCheck === 'function') lcAfterCheck(rows, 'drafts', platforms.map(p => p.text).join('\n\n'));
 
   lastCheckPlatforms = platforms;
   lastCheckCounts = { warn:0, notice:0, good:0 };
@@ -2207,7 +2467,7 @@ saveJournalBtn.addEventListener('click', () => {
     entries.push({
       id: Date.now() + '-' + Math.random().toString(36).slice(2, 7),
       ts: Date.now(),
-      date: new Date().toISOString().slice(0, 10),
+      date: lcLocalDate(),   // the writer's own calendar day, not UTC (UTC put morning posts in Korea on "yesterday")
       platform: platformCode,
       text: p.text,
       note: summary,
@@ -2227,14 +2487,32 @@ saveJournalBtn.addEventListener('click', () => {
   }
 });
 
-function runInputCheck(){
+function runInputCheck(force){
   const text = input.value;
   if (!text.trim()){
     instantResultsEl.innerHTML = `<p class="muted">Paste something above first.</p>`;
     instantResultsEl.style.display = 'block';
     return;
   }
-  cfRenderResults(cfBuildRows([{ label:'Your draft', short:'Draft', text }]), false, instantResultsEl);
+  // Catch the inputs that would only produce confusing results, and say what to do instead.
+  const guard = force === true ? null : lcInputGuard(text);
+  if (guard && guard.kind === 'url'){
+    instantResultsEl.innerHTML = `<div class="lc-guard"><p><strong>That’s a link, not a post.</strong> Loosecopy can’t open links — nothing you paste here leaves your browser — so paste the text of the post itself.</p></div>`;
+    instantResultsEl.style.display = 'block';
+    return;
+  }
+  let rows = cfBuildRows([{ label:'Your draft', short:'Draft', text }]);
+  const opts = { source:'input', shortText: cfWordCount(text) < 8, fixTargets:[input], onFixed: () => runInputCheck(force === true) };
+  if (guard && guard.kind === 'cjk'){
+    rows = rows.filter(r => r.chk.id === 'privacy' || r.chk.id === 'hidden');
+    opts.limited = true;
+    opts.shortText = false;
+    opts.guardHtml = `<div class="lc-guard"><p><strong>This looks like ${guard.lang} text.</strong> The 21 checks are built for English posts, so most of them would give odd results here. We ran the two that work in any language: privacy leaks and hidden characters.</p><p><button type="button" class="lc-linkbtn" data-lc-runall>Run all 21 checks anyway</button></p></div>`;
+  }
+  cfRenderResults(rows, false, instantResultsEl, opts);
+  const runAll = instantResultsEl.querySelector('[data-lc-runall]');
+  if (runAll) runAll.addEventListener('click', () => runInputCheck(true));
+  if (typeof lcAfterCheck === 'function') lcAfterCheck(rows, 'input', text);
 }
 
 instantCheckBtn.addEventListener('click', runInputCheck);
@@ -2254,6 +2532,7 @@ instantCheckBtn.addEventListener('click', runInputCheck);
     input.value = data.text;
     input.dispatchEvent(new Event('input'));
     hideDraftBanner();
+    if (typeof lcTodayHide === 'function') lcTodayHide();
     runInputCheck();
     const box = document.getElementById('instantCheckBox');
     if (box) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -2302,9 +2581,11 @@ function renderTweets(threadText) {
     const count = document.createElement('span');
     count.className = 'muted';
     function updateCount(){
-      const len = ta.value.length;
+      // X's own count, not .length: a link is always 23, Korean/CJK characters and emoji are 2.
+      const len = lcXLength(ta.value);
       count.textContent = len + ' / 280';
       count.className = len > 280 ? 'muted over' : 'muted';
+      count.title = len !== ta.value.length ? 'Counted the way X counts: links = 23, Korean/Chinese/Japanese characters and emoji = 2' : '';
     }
     ta.addEventListener('input', updateCount);
     updateCount();
@@ -2312,10 +2593,12 @@ function renderTweets(threadText) {
     copyBtn.className = 'copy-btn';
     copyBtn.textContent = 'Copy';
     if (!reviewCheck.checked) copyBtn.classList.add('is-locked');
-    copyBtn.addEventListener('click', () => {
+    copyBtn.addEventListener('click', async () => {
       if (!reviewCheck.checked) { nudgeReviewGate(copyBtn); return; }
       trackCopy('twitter', ta.value.trim() !== ta.dataset.original.trim());
-      navigator.clipboard.writeText(ta.value);
+      const clean = lcCleanForPlatform(ta.value);
+      const ok = await lcCopyText(clean.text);
+      if (ok) { lcFlashCopied(copyBtn); lcRecordCopy('x', clean.text); if (clean.note) lcToast('Copied — ' + clean.note + '.'); }
     });
     row.appendChild(count);
     row.appendChild(copyBtn);
@@ -2342,8 +2625,9 @@ const PLATFORM_LIMITS = [
   { name: 'Instagram caption', limit: 2200 }
 ];
 function renderLimitCounters(){
-  const len = linkedinText.value.length;
+  const raw = linkedinText.value.length;
   limitCountersEl.innerHTML = PLATFORM_LIMITS.map(p => {
+    const len = p.name === 'Twitter/X' ? lcXLength(linkedinText.value) : raw;
     const over = len > p.limit;
     return '<span class="muted' + (over ? ' over' : '') + '">' + p.name + ': ' + len + '/' + p.limit + '</span>';
   }).join('');
@@ -2352,20 +2636,24 @@ linkedinText.addEventListener('input', renderLimitCounters);
 
 // Splits text into a numbered Twitter/X thread on word boundaries. `reserve`
 // holds back room in each chunk for the " (i/N)" label added at the end.
-function splitIntoTweets(text, limit = 280, reserve = 9){
+// Lengths are measured the way the target platform measures them (X by default: links 23,
+// CJK/emoji 2), and a run with no spaces (Japanese/Chinese) is cut between whole characters,
+// never through the middle of an emoji.
+function splitIntoTweets(text, limit = 280, reserve = 9, lenFn = lcXLength){
   const words = text.split(/\s+/).filter(Boolean);
   const budget = limit - reserve;
   const chunks = [];
   let current = '';
   for (const word of words){
     const candidate = current ? current + ' ' + word : word;
-    if (candidate.length > budget){
+    if (lenFn(candidate) > budget){
       if (current) chunks.push(current);
-      if (word.length > budget){
+      if (lenFn(word) > budget){
         let w = word;
-        while (w.length > budget){
-          chunks.push(w.slice(0, budget));
-          w = w.slice(budget);
+        while (lenFn(w) > budget){
+          const head = lcTakeWithin(w, budget, lenFn);
+          chunks.push(head);
+          w = w.slice(head.length);
         }
         current = w;
       } else {
@@ -2393,13 +2681,15 @@ splitToThreadBtn.addEventListener('click', () => {
 });
 
 document.querySelectorAll('.copy-btn[data-copy]').forEach(btn => {
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', async () => {
     if (!reviewCheck.checked) { nudgeReviewGate(btn); return; }
     const el = document.getElementById(btn.dataset.copy);
     if (btn.dataset.copy === 'linkedinText') {
       trackCopy('linkedin', el.value.trim() !== (el.dataset.original || '').trim());
     }
-    navigator.clipboard.writeText(el.value);
+    const clean = lcCleanForPlatform(el.value);
+    const ok = await lcCopyText(clean.text);
+    if (ok) { lcFlashCopied(btn); lcRecordCopy('linkedin', clean.text); if (clean.note) lcToast('Copied — ' + clean.note + '.'); }
   });
 });
 
@@ -2433,6 +2723,7 @@ generateBtn.addEventListener('click', async () => {
     linkedinText.dataset.original = data.linkedin || '';
     updateLinkedinCount();
     renderLimitCounters();
+    lcUpdateLiLinks();
     reviewCheck.checked = false;
     applyReviewGate();
     checkallResultsEl.style.display = 'none';
@@ -2460,7 +2751,1311 @@ generateBtn.addEventListener('click', async () => {
     loading.style.display = 'none';
   }
 });
+
+// ============================================================================
+// 2026-11-10 — "less work per post" layer. Rule-based and local: nothing in this
+// block sends your text anywhere. Copying, and the "Open X / Threads" links, only
+// happen when you press them.
+// ============================================================================
+
+// ---------- small shared helpers ----------
+function lcLocalDate(ts){
+  const d = ts ? new Date(ts) : new Date();
+  const p = n => String(n).padStart(2, '0');
+  return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
+}
+function lcStore(key, fallback){ try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; } catch (e) { return fallback; } }
+function lcSave(key, value){ try { localStorage.setItem(key, JSON.stringify(value)); return true; } catch (e) { return false; } }
+function lcEsc(s){ return cfEscapeHtml(String(s)).replace(/"/g, '&quot;'); }
+function lcGraphemes(s){
+  try { if (window.Intl && Intl.Segmenter) return Array.from(new Intl.Segmenter(undefined, { granularity:'grapheme' }).segment(s), x => x.segment); } catch (e) {}
+  return Array.from(s);
+}
+function lcTakeWithin(s, budget, lenFn){
+  let out = '';
+  for (const g of lcGraphemes(s)){ if (lenFn(out + g) > budget) break; out += g; }
+  return out || lcGraphemes(s)[0];
+}
+let lcToastTimer = null;
+function lcToast(msg, action){
+  let el = document.getElementById('lcToast');
+  if (!el){
+    el = document.createElement('div');
+    el.id = 'lcToast'; el.className = 'lc-toast';
+    el.setAttribute('role', 'status'); el.setAttribute('aria-live', 'polite');
+    document.body.appendChild(el);
+  }
+  el.innerHTML = '';
+  const span = document.createElement('span'); span.textContent = msg; el.appendChild(span);
+  if (action){
+    const b = document.createElement('button'); b.type = 'button'; b.textContent = action.label;
+    b.addEventListener('click', () => { el.classList.remove('show'); action.run(); });
+    el.appendChild(b);
+  }
+  requestAnimationFrame(() => el.classList.add('show'));
+  clearTimeout(lcToastTimer);
+  lcToastTimer = setTimeout(() => el.classList.remove('show'), action ? 9000 : 4200);
+}
+// Replace a box's whole text so the browser's own Ctrl+Z still works afterwards
+// (assigning .value directly wipes the undo history). Falls back to .value if needed.
+function lcReplaceAll(el, text){
+  const prev = document.activeElement;
+  el.focus({ preventScroll:true });
+  el.select();
+  let ok = false;
+  try { ok = document.execCommand('insertText', false, text); } catch (e) { ok = false; }
+  if (!ok || el.value !== text){ el.value = text; el.dispatchEvent(new Event('input', { bubbles:true })); }
+  if (prev !== el){ el.blur(); if (prev && prev.isConnected && prev.focus) prev.focus({ preventScroll:true }); }
+}
+async function lcCopyText(text){
+  try { await navigator.clipboard.writeText(text); return true; }
+  catch (e) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      const ok = document.execCommand('copy'); ta.remove(); return ok;
+    } catch (e2) { return false; }
+  }
+}
+function lcFlashCopied(btn){
+  if (!btn.dataset.lcLabel) btn.dataset.lcLabel = btn.textContent;
+  btn.textContent = 'Copied ✓';
+  clearTimeout(btn._lcT);
+  btn._lcT = setTimeout(() => { btn.textContent = btn.dataset.lcLabel; }, 1600);
+}
+
+// ---------- settings (filled in by "Your setup"; empty means defaults) ----------
+function lcSettings(){ const s = lcStore('lc_settings', null); return (s && typeof s === 'object') ? s : {}; }
+function lcPostsTo(id){ const s = lcSettings(); return Array.isArray(s.platforms) && s.platforms.includes(id); }
+function lcIsMuted(id){ const s = lcSettings(); return Array.isArray(s.muted) && s.muted.includes(id); }
+
+// ---------- X counts characters its own way ----------
+// docs.x.com/fundamentals/counting-characters (twitter-text v3): after NFC, code points in these
+// ranges count 1, everything else 2 (Korean, Chinese, Japanese, most symbols), any emoji sequence
+// counts 2 in total, and any link counts 23 however long it is.
+const LC_X_LIGHT = [[0x0000, 0x10FF], [0x2000, 0x200D], [0x2010, 0x201F], [0x2032, 0x2037]];
+const LC_X_URL_RE = /\bhttps?:\/\/[^\s<>"')\]]+|\bwww\.[^\s<>"')\]]+|\b(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+(?:com|net|org|io|co|dev|app|ai|me|info|biz|us|uk|ca|kr|jp|in|de|fr|au|xyz|so|gg|ly|tv|fm|sh|to|site|store|tech|blog)\b(?:\/[^\s<>"')\]]*)?/gi;
+const LC_EMOJI_SEQ_RE = /\p{Regional_Indicator}{2}|[#*0-9]️?⃣|\p{Extended_Pictographic}(?:️|\p{Emoji_Modifier})?(?:‍\p{Extended_Pictographic}(?:️|\p{Emoji_Modifier})?)*/gu;
+function lcXWeight(cp){
+  for (let i = 0; i < LC_X_LIGHT.length; i++){ if (cp >= LC_X_LIGHT[i][0] && cp <= LC_X_LIGHT[i][1]) return 1; }
+  return 2;
+}
+function lcXPlain(s){
+  let total = 0, last = 0, m;
+  const re = new RegExp(LC_EMOJI_SEQ_RE.source, 'gu');
+  while ((m = re.exec(s)) !== null){
+    for (const ch of s.slice(last, m.index)) total += lcXWeight(ch.codePointAt(0));
+    const seq = m[0];
+    // A lone text-style symbol in the 1-weight range (©, ®) only counts as an emoji when it carries U+FE0F.
+    total += (Array.from(seq).length === 1 && lcXWeight(seq.codePointAt(0)) === 1) ? 1 : 2;
+    last = m.index + seq.length;
+  }
+  for (const ch of s.slice(last)) total += lcXWeight(ch.codePointAt(0));
+  return total;
+}
+function lcXUrls(s){
+  const out = []; let m;
+  const re = new RegExp(LC_X_URL_RE.source, 'gi');
+  while ((m = re.exec(s)) !== null){
+    if (s[m.index - 1] === '@') continue;
+    const url = m[0].replace(/[.,;:!?'")\]]+$/, '');
+    if (!url){ re.lastIndex = m.index + 1; continue; }
+    out.push({ index: m.index, text: url });
+    re.lastIndex = m.index + url.length;
+  }
+  return out;
+}
+function lcXLength(text){
+  if (!text) return 0;
+  const s = text.normalize('NFC');
+  let total = 0, cursor = 0;
+  lcXUrls(s).forEach(u => { total += lcXPlain(s.slice(cursor, u.index)) + 23; cursor = u.index + u.text.length; });
+  return total + lcXPlain(s.slice(cursor));
+}
+
+// ---------- fix-first: three plain buckets ----------
+const LC_TIER_RANK = { must:0, check:1, style:2 };
+const LC_TIER_LABEL = { must:'Must fix', check:'Check', style:'Polish' };
+function lcRowHas(row, fn){ return row.perPlatform.some(pp => { try { return fn(pp.text || ''); } catch (e) { return false; } }); }
+function lcTierFor(row){
+  if (row.status === 'good') return null;
+  const id = row.chk.id;
+  if (id === 'privacy') return row.status === 'warn' ? 'must' : 'check';          // key/card = must; email/phone = check (may be on purpose)
+  if (id === 'markdown') return lcRowHas(row, t => cfMdFindPlaceholders(t).length > 0) ? 'must' : 'check';  // "[Your Name]" left in
+  if (id === 'dates' || id === 'timeamb' || id === 'stats' || id === 'numbers' || id === 'hidden') return 'check';
+  if (id === 'absolute') return row.status === 'warn' ? 'check' : 'style';
+  if (id === 'linkplacement') return lcPostsTo('linkedin') ? 'check' : 'style';
+  return 'style';
+}
+const LC_ACTIONS = {
+  hook:'Sharpen the first line', authenticity:'Rewrite the phrases that sound like AI', translation:'Loosen the stiff, formal phrasing',
+  generic:'Add one specific detail — a number, a name or a date', jargon:'Explain or swap the jargon', passive:'Say who did it',
+  readability:'Shorten the longest sentences', wall:'Break up the long paragraph', emoji:'Use fewer emoji', hashtags:'Trim or fix the hashtags',
+  linkplacement:'Consider moving the link to the first comment (LinkedIn)', markdown:'Remove formatting symbols that won’t show up',
+  numbers:'Double-check how the big number reads in English', privacy:'Make sure the email or phone number is meant to be public',
+  structural:'Vary the rhythm — sentence length, em dashes', stats:'Add a source for the number', dates:'Write the date so it can’t be misread',
+  absolute:'Soften the claim that sounds too sure', timeamb:'Add a time zone or the exact day', rhetorical:'Cut a filler question',
+  hidden:'Remove the hidden characters'
+};
+function lcActionFor(row){
+  const id = row.chk.id;
+  if (id === 'privacy' && row.status === 'warn') return 'Remove the key, token or card number before posting';
+  if (id === 'markdown' && lcRowHas(row, t => cfMdFindPlaceholders(t).length > 0)) return 'Fill in the leftover placeholder';
+  return LC_ACTIONS[id] || row.chk.label;
+}
+function lcHasSafeFix(row){
+  const t = row.perPlatform.map(pp => pp.text || '').join('\n');
+  if (row.chk.id === 'hidden') return lcHiddenScan(t).length > 0;
+  if (row.chk.id === 'markdown') return !cfMdFindPlaceholders(t).length && (lcFixMarkdown(t).count + lcFixBullets(t).count) > 0;
+  return false;
+}
+// Where in the pasted text is the first thing a row flagged? Read it back out of the row's highlighted copy.
+function lcUnescapeHtml(s){ return s.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&'); }
+function lcFirstMarkIn(text, html){
+  if (!html) return null;
+  const re = /<br>|<mark\b([^>]*)>([\s\S]*?)<\/mark>|<[^>]+>|[^<]+/g;
+  let m, offset = 0;
+  while ((m = re.exec(html)) !== null){
+    if (m[0] === '<br>'){ offset += 1; continue; }
+    if (m[0].startsWith('<mark')){
+      const inner = lcUnescapeHtml(m[2].replace(/<br>/g, '\n').replace(/<[^>]+>/g, ''));
+      if (!/hit-ok/.test(m[1]) && inner){
+        if (text.substr(offset, inner.length) === inner) return { start: offset, len: inner.length };
+        const at = text.indexOf(inner);
+        return at >= 0 ? { start: at, len: inner.length } : null;
+      }
+      offset += inner.length;
+      continue;
+    }
+    if (m[0].startsWith('<')) continue;
+    offset += lcUnescapeHtml(m[0]).length;
+  }
+  return null;
+}
+function lcLocate(row){
+  const pp = row.perPlatform[0];
+  if (!pp || !pp.text || row.status === 'good') return null;
+  if (row.chk.id === 'hidden'){ const h = lcHiddenScan(pp.text)[0]; return h ? { start: h.index, len: h.text.length } : null; }
+  return lcFirstMarkIn(pp.text, pp.result.markedHtml);
+}
+function lcSelectInInput(loc){
+  const el = input;
+  el.focus({ preventScroll:true });
+  el.setSelectionRange(loc.start, loc.start + loc.len);
+  const cs = getComputedStyle(el);
+  const lh = parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 1.55 || 24;
+  const perLine = Math.max(20, Math.floor(el.clientWidth / ((parseFloat(cs.fontSize) || 16) * 0.55)));
+  const lines = el.value.slice(0, loc.start).split('\n').reduce((n, l) => n + Math.max(1, Math.ceil(l.length / perLine)), 0) - 1;
+  el.scrollTop = Math.max(0, lines * lh - el.clientHeight / 3);
+  el.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+
+// ---------- safe fixes: only things with exactly one right answer ----------
+// Leftover chatbot lines are matched narrowly on purpose — "Here's what I learned…" is a real hook,
+// "Sure! Here's a LinkedIn post:" is not. Every change shows up in "What changes?" and can be undone.
+const LC_CHAT_INTRO_RES = [
+  /^(?:sure|certainly|absolutely|of course|okay|ok|great question|got it|no problem|happy to help)\b[!,.:—–-]?[^\n]{0,120}?\b(?:here(?:'|’)s|here is|here are|below is|below are)\b[^\n]{0,160}$/i,
+  /^(?:sure|certainly|absolutely|of course)\s*[!.]$/i,
+  /^here(?:(?:'|’)s| is| are)\b[^\n]{0,140}\b(?:your|for you|revised|polished|improved|rewritten|refined|updated|shorter|longer|cleaner|tighter|draft|suggested|alternative)\b[^\n]{0,80}:$/i,
+  /^(?:(?:linkedin|twitter|x|instagram|threads)\s+)?(?:post|thread|tweet|caption|draft|option|version)(?:\s+(?:draft|version|\d+))?\s*:$/i
+];
+const LC_CHAT_OUTRO_RES = [
+  /^let me know if you(?:(?:'|’)d| would)? (?:like|want|need)\b[^\n]{0,40}\b(?:me to|changes|adjustments|tweaks|edits|revisions|version|versions|variations|options|shorter|longer|tone)\b/i,
+  /^(?:i )?hope (?:this|that) helps[!.]?$/i,
+  /^feel free to (?:adjust|tweak|edit|modify|customi[sz]e|change|personali[sz]e)\b/i,
+  /^would you like me to\b/i,
+  /^if you(?:(?:'|’)d| would) like,? i can\b/i,
+  /^i can also (?:make|create|write|adjust|provide|tweak|shorten|expand|draft)\b/i
+];
+const LC_RULE_LINE_RE = /^\s*(?:-{3,}|\*{3,}|_{3,})\s*$/;
+function lcChatPlain(line){ return line.trim().replace(/^[*_#>\s]+/, '').replace(/[*_\s]+$/, ''); }
+function lcFindChatter(text){
+  const lines = text.split('\n');
+  const nonEmpty = [];
+  lines.forEach((l, i) => { if (l.trim()) nonEmpty.push(i); });
+  if (nonEmpty.length < 2) return [];   // a single line is never "chatbot intro + your post"
+  const found = [];
+  const first = nonEmpty[0], last = nonEmpty[nonEmpty.length - 1];
+  if (LC_CHAT_INTRO_RES.some(re => re.test(lcChatPlain(lines[first])))) found.push({ line: first, kind:'intro', text: lines[first].trim() });
+  if (LC_CHAT_OUTRO_RES.some(re => re.test(lcChatPlain(lines[last])))) found.push({ line: last, kind:'outro', text: lines[last].trim() });
+  return found;
+}
+function lcRemoveChatter(text){
+  const found = lcFindChatter(text);
+  if (!found.length) return { text, count: 0 };
+  const lines = text.split('\n');
+  const drop = new Set();
+  found.forEach(f => {
+    drop.add(f.line);
+    const step = f.kind === 'intro' ? 1 : -1;
+    let j = f.line + step;
+    while (j >= 0 && j < lines.length && !lines[j].trim()) j += step;
+    if (j >= 0 && j < lines.length && LC_RULE_LINE_RE.test(lines[j])) drop.add(j);
+  });
+  const out = lines.filter((l, i) => !drop.has(i)).join('\n').replace(/^(?:[ \t]*\n)+/, '').replace(/(?:\n[ \t]*)+$/, '');
+  return { text: out, count: found.length };
+}
+function lcFixMarkdown(text){
+  let n = 0;
+  let t = text;
+  t = t.replace(/\*\*([^*\n]{1,100}?)\*\*/g, (m, a) => { n++; return a; });
+  t = t.replace(/__([^_\n]{1,100}?)__/g, (m, a) => { n++; return a; });
+  t = t.replace(/~~([^~\n]{1,100}?)~~/g, (m, a) => { n++; return a; });
+  t = t.replace(/`([^`\n]{1,100}?)`/g, (m, a) => { n++; return a; });
+  t = t.replace(/^ {0,3}#{1,6}\s+(.+)$/gm, (m, a) => { n++; return a; });
+  t = t.replace(/\[([^\]\n]{1,60})\]\((https?:\/\/[^\s)]+)\)/g, (m, a, u) => { n++; return a + ' (' + u + ')'; });
+  return { text: t, count: n };
+}
+function lcFixBullets(text){
+  let n = 0;
+  const t = text.replace(/^([ \t]*)[-*][ \t]+(?=\S)/gm, (m, ind) => { n++; return ind + '• '; });
+  return { text: t, count: n };
+}
+function lcHiddenFix(text, cats){
+  let count = 0;
+  for (let pass = 0; pass < 5; pass++){
+    const hits = lcHiddenScan(text).filter(h => cats.has(h.cat));
+    if (!hits.length) break;
+    if (pass === 0) count = hits.length;
+    let out = '', cursor = 0;
+    hits.forEach(h => { out += text.slice(cursor, h.index) + h.fix; cursor = h.index + h.text.length; });
+    text = out + text.slice(cursor);
+  }
+  return { text, count };
+}
+function lcFixSpaces(text){
+  let n = 0;
+  let t = text.replace(/[ \t]+$/gm, () => { n++; return ''; });
+  t = t.replace(/(\S) {2,}(?=\S)/g, (m, a) => { n++; return a + ' '; });
+  return { text: t, count: n };
+}
+const LC_FIX_ORDER = ['chatter', 'markdown', 'bullets', 'hidden', 'fullwidth', 'spacing', 'spaces'];
+const LC_FIX_LABELS = {
+  chatter:'Leftover chatbot line (“Sure! Here’s a post:”, “Let me know if you’d like changes”)',
+  markdown:'Formatting symbols that won’t show up (**, #, `, [text](link))',
+  bullets:'Dash bullets → •',
+  hidden:'Invisible or look-alike characters',
+  fullwidth:'Full-width punctuation in English text (，→ ,)',
+  spacing:'Space before punctuation',
+  spaces:'Double spaces and spaces at line ends'
+};
+function lcApplyFix(id, text){
+  switch (id){
+    case 'chatter': return lcRemoveChatter(text);
+    case 'markdown': return lcFixMarkdown(text);
+    case 'bullets': return lcFixBullets(text);
+    case 'hidden': return lcHiddenFix(text, new Set(['invisible', 'space']));
+    case 'fullwidth': return lcHiddenFix(text, new Set(['fullwidth']));
+    case 'spacing': return lcHiddenFix(text, new Set(['spacing']));
+    case 'spaces': return lcFixSpaces(text);
+  }
+  return { text, count: 0 };
+}
+function lcSafeFixScan(text){
+  return LC_FIX_ORDER.map(id => ({ id, label: LC_FIX_LABELS[id], count: lcApplyFix(id, text).count })).filter(c => c.count > 0);
+}
+function lcSafeFixApply(text, ids){
+  let total = 0;
+  LC_FIX_ORDER.forEach(id => { if (!ids.includes(id)) return; const r = lcApplyFix(id, text); total += r.count; text = r.text; });
+  return { text, count: total };
+}
+// Word-level before/after for the "What changes?" preview.
+function lcTokens(s){ return s.match(/[\p{L}\p{N}_'’]+|\s+|[\s\S]/gu) || []; }
+function lcDiff(a, b){
+  const A = lcTokens(a), B = lcTokens(b);
+  let s = 0;
+  while (s < A.length && s < B.length && A[s] === B[s]) s++;
+  let ea = A.length, eb = B.length;
+  while (ea > s && eb > s && A[ea - 1] === B[eb - 1]){ ea--; eb--; }
+  const a2 = A.slice(s, ea), b2 = B.slice(s, eb), n = a2.length, m = b2.length;
+  if (n * m > 3e6) return null;
+  const W = m + 1, dp = new Uint16Array((n + 1) * W);
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--)
+    dp[i * W + j] = a2[i] === b2[j] ? dp[(i + 1) * W + j + 1] + 1 : Math.max(dp[(i + 1) * W + j], dp[i * W + j + 1]);
+  const ops = [];
+  A.slice(0, s).forEach(t => ops.push(['=', t]));
+  let i = 0, j = 0;
+  while (i < n && j < m){
+    if (a2[i] === b2[j]){ ops.push(['=', a2[i]]); i++; j++; }
+    else if (dp[(i + 1) * W + j] >= dp[i * W + j + 1]){ ops.push(['-', a2[i]]); i++; }
+    else { ops.push(['+', b2[j]]); j++; }
+  }
+  while (i < n) ops.push(['-', a2[i++]]);
+  while (j < m) ops.push(['+', b2[j++]]);
+  A.slice(ea).forEach(t => ops.push(['=', t]));
+  return ops;
+}
+function lcVisibleWs(t){
+  return Array.from(t).map(ch => {
+    const cp = ch.codePointAt(0);
+    if (LC_HC_INVISIBLE[cp] !== undefined || LC_HC_SPACES[cp] !== undefined) return '\u0001U+' + cp.toString(16).toUpperCase().padStart(4, '0') + '\u0002';
+    if (ch === ' ') return '·';
+    if (ch === '\n') return '↵\n';
+    if (ch === '\t') return '→';
+    return ch;
+  }).join('');
+}
+function lcDiffHtml(ops){
+  const merged = [];
+  ops.forEach(([t, s]) => { const last = merged[merged.length - 1]; if (last && last[0] === t) last[1] += s; else merged.push([t, s]); });
+  let html = '';
+  merged.forEach(([t, s], i) => {
+    if (t === '='){
+      if (s.length > 90){
+        const head = i === 0 ? '' : s.slice(0, 40), tail = i === merged.length - 1 ? '' : s.slice(-40);
+        html += lcEsc(head) + '<span class="lc-gap"> … </span>' + lcEsc(tail);
+      } else html += lcEsc(s);
+    } else {
+      const vis = lcEsc(lcVisibleWs(s)).replace(/\u0001([^\u0002]*)\u0002/g, '<span class="lc-code">$1</span>');
+      html += t === '-' ? `<del>${vis}</del>` : `<ins>${vis}</ins>`;
+    }
+  });
+  return html;
+}
+function lcTargetName(el, i){
+  if (el.id === 'linkedinText') return 'LinkedIn post';
+  if (el.id === 'input') return 'Your draft';
+  const k = [...tweetContainer.querySelectorAll('textarea')].indexOf(el);
+  return k >= 0 ? 'Tweet ' + (k + 1) : 'Draft ' + (i + 1);
+}
+function lcAfterFix(n){
+  if (input.dataset.demo === '1' || !n) return;   // practice runs don't count
+  const h = lcHistory();
+  h.fixes.push({ ts: Date.now(), n });
+  lcSaveHistory(h);
+  if (n > 0) lcMarkUsed('fix');
+}
+function lcRenderFixPanel(slot, targets, onFixed){
+  targets = (targets || []).filter(Boolean);
+  const per = targets.map(el => ({ el, cats: lcSafeFixScan(el.value) }));
+  const agg = {};
+  per.forEach(p => p.cats.forEach(c => { agg[c.id] = (agg[c.id] || 0) + c.count; }));
+  const ids = LC_FIX_ORDER.filter(id => agg[id]);
+  slot.innerHTML = '';
+  if (!ids.length) return;
+  const total = ids.reduce((n, id) => n + agg[id], 0);
+  const box = document.createElement('div');
+  box.className = 'lc-fix';
+  box.innerHTML = `<div class="lc-fix-row"><p><strong>${total} safe fix${total === 1 ? '' : 'es'}</strong> — things with only one right answer, like hidden characters and leftover formatting. Nothing else in your wording changes.</p><button type="button" class="lc-fix-go"></button></div>
+    <button type="button" class="lc-linkbtn lc-fix-toggle" aria-expanded="false">What changes?</button>
+    <div class="lc-fix-detail" hidden>
+      <ul class="lc-fix-cats">${ids.map(id => `<li><label><input type="checkbox" checked data-fix="${id}"> <span>${lcEsc(LC_FIX_LABELS[id])} <b>${agg[id]}</b></span></label></li>`).join('')}</ul>
+      <div class="lc-fix-preview"></div>
+    </div>`;
+  slot.appendChild(box);
+  const go = box.querySelector('.lc-fix-go'), toggle = box.querySelector('.lc-fix-toggle');
+  const detail = box.querySelector('.lc-fix-detail'), preview = box.querySelector('.lc-fix-preview');
+  const selected = () => [...box.querySelectorAll('[data-fix]')].filter(c => c.checked).map(c => c.dataset.fix);
+  function refresh(){
+    const sel = selected();
+    const n = sel.reduce((k, id) => k + (agg[id] || 0), 0);
+    go.disabled = n === 0;
+    go.textContent = n === 0 ? 'Nothing selected' : (n === 1 ? 'Fix it' : (sel.length === ids.length ? 'Fix all ' + n : 'Fix ' + n));
+    if (detail.hidden) return;
+    preview.innerHTML = '';
+    per.forEach((p, i) => {
+      const after = lcSafeFixApply(p.el.value, sel).text;
+      if (after === p.el.value) return;
+      const ops = lcDiff(p.el.value, after);
+      preview.insertAdjacentHTML('beforeend', (targets.length > 1 ? `<div class="lc-diff-label">${lcEsc(lcTargetName(p.el, i))}</div>` : '') +
+        `<div class="lc-diff">${ops ? lcDiffHtml(ops) : 'Too long to preview here — the fixes still work, and you can undo them.'}</div>`);
+    });
+  }
+  toggle.addEventListener('click', () => {
+    detail.hidden = !detail.hidden;
+    toggle.setAttribute('aria-expanded', String(!detail.hidden));
+    toggle.textContent = detail.hidden ? 'What changes?' : 'Hide changes';
+    refresh();
+  });
+  box.querySelectorAll('[data-fix]').forEach(c => c.addEventListener('change', refresh));
+  go.addEventListener('click', () => {
+    const sel = selected();
+    if (!sel.length) return;
+    const before = targets.map(el => el.value);
+    let fixed = 0;
+    targets.forEach(el => { const r = lcSafeFixApply(el.value, sel); if (r.text !== el.value){ fixed += r.count; lcReplaceAll(el, r.text); } });
+    lcAfterFix(fixed);
+    if (onFixed) onFixed();
+    lcToast(`Fixed ${fixed} thing${fixed === 1 ? '' : 's'}.`, { label:'Undo', run: () => {
+      targets.forEach((el, i) => { if (el.value !== before[i]) lcReplaceAll(el, before[i]); });
+      lcAfterFix(-fixed);
+      if (onFixed) onFixed();
+      lcToast('Undone — your text is back the way it was.');
+    }});
+  });
+  refresh();
+}
+
+// ---------- copy it ready for each platform ----------
+const LC_PLATFORMS = [
+  { id:'linkedin',  name:'LinkedIn',  limit:3000, len: s => s.length, openUrl: () => 'https://www.linkedin.com/feed/', openLabel:'Open LinkedIn' },
+  { id:'x',         name:'X',         limit:280,  len: lcXLength, split:true, openUrl: t => 'https://x.com/intent/tweet?text=' + encodeURIComponent(t), openLabel:'Open X with this text' },
+  { id:'threads',   name:'Threads',   limit:500,  len: s => s.length, split:true, openUrl: t => 'https://www.threads.com/intent/post?text=' + encodeURIComponent(t), openLabel:'Open Threads with this text' },
+  { id:'instagram', name:'Instagram', limit:2200, len: s => s.length, openUrl: null }
+];
+function lcPlatformOrder(){
+  const chosen = (lcSettings().platforms || []).filter(id => LC_PLATFORMS.some(p => p.id === id));
+  return [...chosen.map(id => LC_PLATFORMS.find(p => p.id === id)), ...LC_PLATFORMS.filter(p => !chosen.includes(p.id))];
+}
+function lcPrimaryPlatform(){ const c = (lcSettings().platforms || [])[0]; return LC_PLATFORMS.find(p => p.id === c) || null; }
+// On copy we only remove what never shows up as intended: invisible characters and markdown markers.
+function lcCleanForPlatform(text){
+  const steps = [];
+  let t = String(text || '').replace(/\r\n?/g, '\n');
+  const h = lcHiddenFix(t, new Set(['invisible', 'space']));
+  if (h.count) steps.push(h.count + ' hidden character' + (h.count === 1 ? '' : 's'));
+  t = h.text;
+  const md = lcFixMarkdown(t);
+  if (md.count) steps.push(md.count + ' formatting mark' + (md.count === 1 ? '' : 's'));
+  t = md.text.replace(/[ \t]+$/gm, '');
+  return { text: t, note: steps.length ? 'removed ' + steps.join(' and ') : '' };
+}
+function lcSplitLinks(text){
+  const links = cfLinkFind(text);
+  if (!links.length) return null;
+  let out = '', cursor = 0;
+  links.forEach((l, i) => {
+    out += text.slice(cursor, l.index) + (links.length > 1 ? `(link ${i + 1} in the first comment)` : '(link in the first comment)');
+    cursor = l.index + l.text.length;
+  });
+  out += text.slice(cursor);
+  return { post: out, comment: links.length > 1 ? links.map((l, i) => `${i + 1}. ${l.text}`).join('\n') : links[0].text, count: links.length };
+}
+function lcRecordCopy(platform, text){
+  if (input.dataset.demo === '1') return;          // the practice example is never remembered
+  const t = String(text || '').slice(0, 4000);
+  if (!t.trim()) return;
+  const now = Date.now();
+  const list = (lcStore('lc_pending_posts', []) || []).filter(e => e && now - e.ts < 7 * 864e5);
+  const dup = list.find(e => e.platform === platform && e.text === t);
+  if (dup) dup.ts = now;
+  else list.push({ id: now.toString(36) + Math.random().toString(36).slice(2, 6), ts: now, platform, text: t, asked: 0 });
+  lcSave('lc_pending_posts', list.slice(-10));
+  const h = lcHistory();
+  h.copies.push({ ts: now, p: platform });
+  lcSaveHistory(h);
+  lcMarkUsed('copy');
+}
+function lcCountLabel(p, n){ return `${n.toLocaleString('en-US')} / ${p.limit.toLocaleString('en-US')}${n > p.limit ? ' · too long' : ''}`; }
+function lcRenderCopyBar(slot){
+  const box = document.createElement('div');
+  box.className = 'lc-copy';
+  box.innerHTML = `<div class="lc-copy-head">Ready to post? <span>Copy it cleaned up for:</span></div><div class="lc-copy-btns"></div><div class="lc-copy-note" hidden></div><div class="lc-parts" hidden></div>`;
+  const btns = box.querySelector('.lc-copy-btns');
+  lcPlatformOrder().forEach(p => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'lc-copy-btn'; b.dataset.platform = p.id;
+    b.innerHTML = `<span>${p.name}</span><small></small>`;
+    b.addEventListener('click', () => lcCopyFor(p, box, b));
+    btns.appendChild(b);
+  });
+  slot.innerHTML = '';
+  slot.appendChild(box);
+  lcRefreshCopyCounts();
+}
+function lcRefreshCopyCounts(){
+  const clean = lcCleanForPlatform(input.value).text;
+  document.querySelectorAll('.lc-copy-btn[data-platform]').forEach(b => {
+    const p = LC_PLATFORMS.find(x => x.id === b.dataset.platform);
+    if (!p) return;
+    const n = p.len(clean);
+    b.classList.toggle('is-over', n > p.limit);
+    b.dataset.count = lcCountLabel(p, n);
+    if (!b.classList.contains('copied')) b.querySelector('small').textContent = b.dataset.count;
+  });
+}
+let lcCopyRefreshTimer = null;
+input.addEventListener('input', () => { clearTimeout(lcCopyRefreshTimer); lcCopyRefreshTimer = setTimeout(lcRefreshCopyCounts, 250); });
+function lcFlashCopyBtn(btn){
+  btn.classList.add('copied');
+  btn.querySelector('small').textContent = 'Copied ✓';
+  clearTimeout(btn._lcT);
+  btn._lcT = setTimeout(() => { btn.classList.remove('copied'); btn.querySelector('small').textContent = btn.dataset.count || ''; }, 1800);
+}
+async function lcCopyFor(p, box, btn){
+  const note = box.querySelector('.lc-copy-note'), partsEl = box.querySelector('.lc-parts');
+  const clean = lcCleanForPlatform(input.value);
+  const n = p.len(clean.text);
+  partsEl.hidden = true; partsEl.innerHTML = '';
+  if (n > p.limit){
+    if (p.split){
+      const parts = splitIntoTweets(clean.text, p.limit, 9, p.len);
+      note.innerHTML = `<strong>Too long for one ${p.name} post</strong> (${n.toLocaleString('en-US')} / ${p.limit}). Here it is as a ${parts.length}-part thread — post part 1, then reply to it with part 2, and so on.`;
+      lcRenderParts(partsEl, parts, p);
+    } else {
+      note.innerHTML = `<strong>Over ${p.name}’s ${p.limit.toLocaleString('en-US')}-character limit</strong> by ${(n - p.limit).toLocaleString('en-US')}. Shorten it a little, then copy again.`;
+    }
+    note.hidden = false;
+    return;
+  }
+  const ok = await lcCopyText(clean.text);
+  if (!ok){ note.textContent = 'Couldn’t copy automatically — select the text in the box above and copy it yourself.'; note.hidden = false; return; }
+  lcFlashCopyBtn(btn);
+  lcRecordCopy(p.id, clean.text);
+  let html = `<strong>Copied for ${p.name}.</strong>${clean.note ? ' We ' + clean.note + '.' : ''}`;
+  if (p.openUrl) html += ` <a href="${lcEsc(p.openUrl(clean.text))}" target="_blank" rel="noopener">${p.openLabel} &rarr;</a>`;
+  if (p.id === 'linkedin'){
+    const sp = lcSplitLinks(clean.text);
+    if (sp) html += `<span class="muted">This post has ${sp.count === 1 ? 'a link' : sp.count + ' links'}. LinkedIn tends to show posts with links to fewer people (mostly company pages), so you can put ${sp.count === 1 ? 'it' : 'them'} in the first comment instead:</span><span class="lc-link-steps"><button type="button" class="lc-show" data-step="post">1 · Copy post without the link</button><button type="button" class="lc-show" data-step="comment">2 · Copy the link for your comment</button></span>`;
+  }
+  note.innerHTML = html;
+  note.hidden = false;
+  note.querySelectorAll('[data-step]').forEach(b => b.addEventListener('click', async () => {
+    const sp = lcSplitLinks(lcCleanForPlatform(input.value).text);
+    if (!sp) return;
+    if (await lcCopyText(b.dataset.step === 'post' ? sp.post : sp.comment)){
+      lcFlashCopied(b);
+      if (b.dataset.step === 'post') lcRecordCopy('linkedin', sp.post);
+    }
+  }));
+}
+function lcRenderParts(el, parts, p){
+  el.innerHTML = '';
+  parts.forEach((t, i) => {
+    const d = document.createElement('div');
+    d.className = 'lc-part';
+    d.innerHTML = `<div class="lc-part-text"></div><div class="lc-part-row"><span class="muted">Part ${i + 1} of ${parts.length} · ${p.len(t)} / ${p.limit}</span><button type="button" class="voice-copy-btn">Copy part ${i + 1}</button></div>`;
+    d.querySelector('.lc-part-text').textContent = t;
+    d.querySelector('button').addEventListener('click', async ev => {
+      const b = ev.currentTarget;
+      if (await lcCopyText(t)){ lcFlashCopied(b); if (i === 0) lcRecordCopy(p.id, parts.join('\n\n')); }
+    });
+    el.appendChild(d);
+  });
+  el.hidden = false;
+}
+// AI LinkedIn draft: same optional "link in the first comment" two-step, behind the review checkbox.
+function lcUpdateLiLinks(){
+  const box = document.getElementById('lcLiLinks');
+  if (!box) return;
+  const sp = lcSplitLinks(linkedinText.value);
+  const key = sp ? String(sp.count) : '';
+  if (box.dataset.key === key) return;
+  box.dataset.key = key;
+  if (!sp){ box.hidden = true; box.innerHTML = ''; return; }
+  box.hidden = false;
+  box.innerHTML = `<div>This post has ${sp.count === 1 ? 'a link' : sp.count + ' links'}. LinkedIn tends to show posts with links to fewer people (mostly company pages). Optional: put ${sp.count === 1 ? 'it' : 'them'} in the first comment.</div><div class="lc-link-steps"><button type="button" class="voice-copy-btn" data-step="post">1 · Copy post without the link</button><button type="button" class="voice-copy-btn" data-step="comment">2 · Copy the link for your comment</button></div>`;
+  box.querySelectorAll('[data-step]').forEach(b => b.addEventListener('click', async () => {
+    if (!reviewCheck.checked){ nudgeReviewGate(b); return; }
+    const cur = lcSplitLinks(lcCleanForPlatform(linkedinText.value).text);
+    if (!cur) return;
+    if (await lcCopyText(b.dataset.step === 'post' ? cur.post : cur.comment)){
+      lcFlashCopied(b);
+      if (b.dataset.step === 'post') lcRecordCopy('linkedin', cur.post);
+    }
+  }));
+}
+linkedinText.addEventListener('input', lcUpdateLiLinks);
+
+// ---------- inputs that would only give confusing results ----------
+function lcInputGuard(text){
+  const t = text.trim();
+  if (/^\S+$/.test(t)){
+    const u = lcXUrls(t);
+    if (u.length === 1 && u[0].index === 0 && u[0].text.length >= t.length - 1) return { kind:'url' };
+  }
+  const letters = (t.match(/\p{L}/gu) || []).length;
+  const hangul = (t.match(/\p{Script=Hangul}/gu) || []).length;
+  const kana = (t.match(/[\p{Script=Hiragana}\p{Script=Katakana}]/gu) || []).length;
+  const han = (t.match(/\p{Script=Han}/gu) || []).length;
+  if (letters >= 6 && (hangul + kana + han) / letters >= 0.3){
+    return { kind:'cjk', lang: hangul >= kana + han ? 'Korean' : (kana > 0 ? 'Japanese' : 'Chinese') };
+  }
+  return null;
+}
+
+// ---------- phones: Paste button, and Check/Copy kept under your thumb ----------
+(function lcMobile(){
+  const pasteBtn = document.getElementById('lcPasteBtn');
+  if (pasteBtn) pasteBtn.addEventListener('click', async () => {
+    let t = null;
+    try { if (navigator.clipboard && navigator.clipboard.readText) t = await navigator.clipboard.readText(); } catch (e) { t = null; }
+    if (t === null){ input.focus(); lcToast('Press and hold inside the box, then tap Paste.'); return; }
+    if (!t.trim()){ lcToast('Your clipboard is empty — copy your post first.'); return; }
+    const before = input.value;
+    lcReplaceAll(input, t);
+    hideDraftBanner();
+    if (before.trim()) lcToast('Replaced the box with what you copied.', { label:'Undo', run: () => lcReplaceAll(input, before) });
+    else lcToast('Pasted. Press “Just check it” when you’re ready.');
+  });
+
+  const bar = document.getElementById('lcSticky');
+  if (!bar) return;
+  const mq = window.matchMedia('(max-width: 640px)');
+  let checkVisible = true, typing = false;
+  function update(){
+    const show = mq.matches && input.value.trim().length > 0 && !checkVisible && !typing && !document.body.classList.contains('lc-coach-on');
+    bar.classList.toggle('show', show);
+    document.body.classList.toggle('lc-has-sticky', show);
+  }
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(es => { checkVisible = es[0].isIntersecting; update(); }).observe(instantCheckBtn);
+  }
+  input.addEventListener('input', update);
+  // The on-screen keyboard is up while a box is focused: keep the bar out of its way.
+  document.addEventListener('focusin', e => { if (e.target.matches && e.target.matches('textarea, input')){ typing = true; update(); } });
+  document.addEventListener('focusout', () => { typing = false; setTimeout(update, 60); });
+  if (mq.addEventListener) mq.addEventListener('change', update); else if (mq.addListener) mq.addListener(update);
+  bar.querySelector('.lc-sticky-check').addEventListener('click', () => {
+    runInputCheck();
+    instantResultsEl.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+  bar.querySelector('.lc-sticky-copy').addEventListener('click', async () => {
+    const p = lcPrimaryPlatform();
+    const clean = lcCleanForPlatform(input.value);
+    if (p && p.len(clean.text) > p.limit){
+      runInputCheck();
+      lcToast(`Too long for ${p.name} (${p.len(clean.text)} / ${p.limit}) — see “Ready to post?” below.`);
+      const c = instantResultsEl.querySelector('.lc-copy');
+      if (c) c.scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
+    const ok = await lcCopyText(clean.text);
+    if (ok) lcRecordCopy(p ? p.id : 'other', clean.text);
+    lcToast(ok ? ('Copied' + (p ? ' for ' + p.name : '') + (clean.note ? ' — ' + clean.note : '') + '.') : 'Couldn’t copy — select the text and copy it yourself.');
+  });
+  update();
+})();
+
+// ============================================================================
+// 2026-11-10 round 2 — the Helper card, a 30-second example tour, and a small local history.
+// Everything here stays in this browser (localStorage) and is never sent anywhere.
+// The Helper is plain rules, not AI: it can only suggest things this site really does.
+// ============================================================================
+function lcWhen(ts){
+  const d = new Date(ts);
+  const time = d.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  const day = lcLocalDate(ts);
+  if (day === lcLocalDate()) return 'today at ' + time;
+  if (day === lcLocalDate(y.getTime())) return 'yesterday at ' + time;
+  if (Date.now() - ts < 6 * 864e5) return d.toLocaleDateString('en-US', { weekday:'long' }) + ' at ' + time;
+  return d.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+}
+function lcWeekKey(){ const d = new Date(); d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return lcLocalDate(d.getTime()); }
+function lcSafeGet(k){ try { return localStorage.getItem(k); } catch (e) { return null; } }
+function lcHistory(){
+  const h = lcStore('lc_history', null) || {};
+  return { checks: Array.isArray(h.checks) ? h.checks : [], fixes: Array.isArray(h.fixes) ? h.fixes : [], copies: Array.isArray(h.copies) ? h.copies : [] };
+}
+function lcSaveHistory(h){
+  const cut = Date.now() - 60 * 864e5, keep = { checks:60, fixes:100, copies:100 };
+  Object.keys(keep).forEach(k => { h[k] = (h[k] || []).filter(e => e && e.ts > cut).slice(-keep[k]); });
+  lcSave('lc_history', h);
+}
+function lcTodayState(){ const s = lcStore('lc_today', null); return (s && typeof s === 'object') ? s : {}; }
+function lcSaveToday(s){ lcSave('lc_today', s); }
+function lcMarkUsed(what){ const s = lcTodayState(); s.used = Object.assign({}, s.used, { [what]: Date.now() }); lcSaveToday(s); }
+function lcAfterCheck(rows, source){
+  if ((source === 'input' && input.dataset.demo === '1') || lcQuiet) return;   // practice runs and re-draws don't count
+  const h = lcHistory(), now = Date.now(), src = source === 'drafts' ? 'd' : 'i';
+  const ids = rows.filter(r => r.status !== 'good').map(r => r.chk.id);
+  const last = h.checks[h.checks.length - 1];
+  // Checking again a few minutes later (after a fix, say) is still the same post: merge, don't count it twice.
+  if (last && last.src === src && now - last.ts < 15 * 60 * 1000) last.ids = [...new Set([...(last.ids || []), ...ids])];
+  else h.checks.push({ ts: now, ids, src });
+  lcSaveHistory(h);
+}
+function lcCheckInfo(id){ return CF_CHECKS.find(c => c.id === id) || { label: id, more: '/app' }; }
+function lcLogPosted(e){
+  const entries = lcStore('lc_post_journal', []) || [];
+  entries.push({ id: Date.now() + '-' + Math.random().toString(36).slice(2, 7), ts: e.ts, date: lcLocalDate(e.ts),
+    platform: e.platform === 'x' ? 'twitter' : (e.platform === 'linkedin' ? 'linkedin' : 'other'),
+    text: e.text, note: 'Logged from the “Did you post it?” question.', flagged: 'no' });
+  if (!lcSave('lc_post_journal', entries)) return false;
+  lcSave('lc_pending_posts', (lcStore('lc_pending_posts', []) || []).filter(x => x && x.id !== e.id));
+  lcMarkUsed('journal');
+  return true;
+}
+
+// ---------- the Helper card: one suggestion per visit, picked by plain rules ----------
+const LC_NEWS = { id:'2026-11-10', date:'2026-11-10', text:'A “Fix these first” list, one-tap safe fixes, Copy for X that counts characters the way X does, a tool finder (Ctrl+K), plain-English explanations — also in Korean — and settings it remembers.' };
+const lcTodayEl = document.getElementById('lcToday');
+function lcTodayHide(){ document.body.classList.remove('lc-today-first'); if (lcTodayEl && !lcTodayEl.hidden){ lcTodayEl.hidden = true; lcTodayEl.innerHTML = ''; } }
+function lcTodayCandidates(st, prevLast){
+  const now = Date.now(), today = lcLocalDate(), h = lcHistory(), used = st.used || {}, done = st.done || {};
+  const out = [];
+  // 1) You copied something to post — did it go out? One tap logs it in the Post Journal.
+  const journal = lcStore('lc_post_journal', []) || [];
+  const logged = new Set(journal.map(j => String(j.text || '').trim()));
+  const all = (lcStore('lc_pending_posts', []) || []).filter(e => e && e.text && now - e.ts < 7 * 864e5);
+  const pend = all.filter(e => !logged.has(e.text.trim()));
+  if (pend.length !== all.length) lcSave('lc_pending_posts', pend);
+  const ask = pend.filter(e => now - e.ts > 20 * 60 * 1000 && (e.asked || 0) < 2 && e.snooze !== today).sort((a, b) => b.ts - a.ts)[0];
+  if (ask) out.push({ id:'posted:' + ask.id, kind:'posted', e: ask });
+  // 2) Once a week: how the last 7 days went.
+  const week = lcWeekKey(), c7 = h.checks.filter(c => now - c.ts < 7 * 864e5);
+  if (st.week !== week && c7.length >= 2) out.push({ id:'week:' + week, kind:'week', c7, h });
+  // 3) The same check keeps flagging your posts.
+  const recent = h.checks.slice(-5);
+  if (recent.length >= 3){
+    const counts = {};
+    recent.forEach(c => new Set(c.ids || []).forEach(id => { counts[id] = (counts[id] || 0) + 1; }));
+    const top = Object.entries(counts)
+      .filter(([id, n]) => n >= 3 && !(done['issue:' + id] && now - done['issue:' + id] < 14 * 864e5) && !lcIsMuted(id))
+      .sort((a, b) => b[1] - a[1])[0];
+    if (top) out.push({ id:'issue:' + top[0], kind:'issue', check: top[0], n: top[1], of: recent.length });
+  }
+  // 4) Something new shipped since the last visit.
+  if (prevLast && prevLast < new Date(LC_NEWS.date + 'T00:00:00').getTime() && st.news !== LC_NEWS.id) out.push({ id:'news:' + LC_NEWS.id, kind:'news' });
+  // 5) Never ran a check and never saw the example: offer the 30-second tour.
+  if (!h.checks.length && !used.demo) out.push({ id:'first', kind:'first' });
+  // 6) One handy thing they haven't used yet — people don't use what they don't know exists.
+  const mac = /Mac|iPhone|iPad/.test(navigator.platform || '');
+  const tips = [
+    { id:'tip:finder', show: !lcSafeGet('lc_finder_used'), title:'Find a tool by describing it',
+      body:`Press ${mac ? '⌘K' : 'Ctrl+K'} and type what you need in your own words — English or Korean, like “tweet too long” or “억 영어로”.`,
+      act:{ label:'Try it', run: () => { if (window.lcFinderOpen) window.lcFinderOpen(); } } },
+    { id:'tip:copy', show: !used.copy && h.checks.length >= 1, title:'Copy it ready for the platform',
+      body:'After a check, “Copy for X” counts characters the way X does — Korean and emoji count as 2 — and turns a long post into a numbered thread.' },
+    { id:'tip:voice', show: !lcSafeGet('lc_voice_profile') && h.checks.length >= 2, title:'Make AI drafts sound like you',
+      body:'Paste one post you wrote yourself, once. The drafter matches your tone from then on. It’s saved in this browser only.',
+      act:{ label:'Set it up', run: () => { const v = document.getElementById('voiceBox'); if (v) v.scrollIntoView({ behavior:'smooth', block:'start' }); } } },
+    { id:'tip:journal', show: !journal.length && h.copies.length >= 2, title:'Keep a private log of what you post',
+      body:'Post Journal remembers what you published and how it did, so you can see what works for you. It stays in this browser.',
+      act:{ label:'Open Post Journal', href:'/post-journal' } },
+  ];
+  const tip = tips.find(t => t.show && !done[t.id]);
+  if (tip) out.push({ id: tip.id, kind:'tip', tip });
+  return out;
+}
+function lcTodayRender(c, st){
+  const el = lcTodayEl;
+  const main = (label, attr) => `<button type="button" class="lc-btn-main" ${attr}>${label}</button>`;
+  const soft = (label, attr) => `<button type="button" class="lc-btn-soft" ${attr}>${label}</button>`;
+  const link = (label, href, cls) => `<a class="${cls || 'lc-btn-soft'}" href="${lcEsc(href)}">${label}</a>`;
+  let title = '', body = '', acts = '';
+  if (c.kind === 'posted'){
+    const p = LC_PLATFORMS.find(x => x.id === c.e.platform);
+    const snip = c.e.text.replace(/\s+/g, ' ').trim();
+    title = 'Did you post it?';
+    body = `You copied this for ${p ? p.name : 'posting'} ${lcWhen(c.e.ts)}: <span class="lc-today-quote">“${lcEsc(snip.length > 90 ? snip.slice(0, 88).trim() + '…' : snip)}”</span>`;
+    acts = main('Yes — log it', 'data-t="yes"') + soft('Not yet', 'data-t="notyet"');
+  } else if (c.kind === 'week'){
+    const now = Date.now();
+    const fixes = Math.max(0, c.h.fixes.filter(f => now - f.ts < 7 * 864e5).reduce((a, f) => a + (f.n || 0), 0));
+    const copies = c.h.copies.filter(f => now - f.ts < 7 * 864e5).length;
+    const counts = {};
+    c.c7.forEach(x => new Set(x.ids || []).forEach(id => { counts[id] = (counts[id] || 0) + 1; }));
+    const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+    const n = c.c7.length;
+    title = 'Your last 7 days';
+    body = `${n} check${n === 1 ? '' : 's'} · ${fixes} one-tap fix${fixes === 1 ? '' : 'es'} · ${copies} cop${copies === 1 ? 'y' : 'ies'} for posting.`
+      + (top && top[1] >= 2 ? ` Most common: <strong>${lcEsc(lcCheckInfo(top[0]).label)}</strong> (${top[1]} of ${n}).` : ' Nothing came up more than once.');
+    acts = (top && top[1] >= 2 ? link('How to fix that', lcCheckInfo(top[0]).more) : '') + soft('Got it', 'data-t="close"');
+    st.week = lcWeekKey();
+  } else if (c.kind === 'issue'){
+    const how = LC_ACTIONS[c.check];
+    title = 'This keeps coming up';
+    body = `<strong>${lcEsc(lcCheckInfo(c.check).label)}</strong> was flagged in ${c.n} of your last ${c.of} checks.${how ? ' The quick fix: ' + lcEsc(how.charAt(0).toLowerCase() + how.slice(1)) + '.' : ''}`;
+    acts = link('1-minute guide', lcCheckInfo(c.check).more, 'lc-btn-main') + soft('Got it', `data-t="done" data-k="issue:${lcEsc(c.check)}"`);
+  } else if (c.kind === 'news'){
+    title = 'New since your last visit';
+    body = lcEsc(LC_NEWS.text);
+    acts = link('See what changed', '/changelog') + soft('Got it', 'data-t="close"');
+    st.news = LC_NEWS.id;
+  } else if (c.kind === 'first'){
+    title = 'See it work in 30 seconds';
+    body = 'Try a sample post with a few common mistakes planted in it. Nothing to type, and one tap puts your own text back.';
+    acts = main('Try an example', 'data-t="demo"');
+  } else if (c.kind === 'tip'){
+    title = lcEsc(c.tip.title); body = lcEsc(c.tip.body);
+    if (c.tip.act && c.tip.act.href) acts += link(c.tip.act.label, c.tip.act.href, 'lc-btn-main');
+    else if (c.tip.act) acts += main(c.tip.act.label, 'data-t="act"');
+    acts += soft('Got it', `data-t="done" data-k="${c.tip.id}"`);
+  }
+  el.innerHTML = `<div class="lc-today-head"><span class="lc-today-label">Helper</span><button type="button" class="lc-today-x" data-t="snooze" aria-label="Hide suggestions until tomorrow" title="Hide until tomorrow">&times;</button></div>`
+    + `<p class="lc-today-title">${title}</p><p class="lc-today-body">${body}</p>`
+    + `<div class="lc-today-actions">${acts}<button type="button" class="lc-today-off" data-t="off">Turn off suggestions</button></div>`;
+  el.dataset.kind = c.kind;
+  el.hidden = false;
+  document.body.classList.toggle('lc-today-first', c.kind === 'first');
+  lcSaveToday(st);
+  el.querySelectorAll('[data-t]').forEach(b => b.addEventListener('click', () => lcTodayAct(b.dataset.t, c, b)));
+}
+function lcTodayAct(t, c, btn){
+  const st = lcTodayState();
+  if (t === 'snooze'){ st.snooze = lcLocalDate(); lcSaveToday(st); lcTodayHide(); return; }
+  if (t === 'off'){
+    st.off = true; lcSaveToday(st); lcTodayHide();
+    lcToast('Suggestions are off.', { label:'Undo', run: () => { const s = lcTodayState(); delete s.off; lcSaveToday(s); } });
+    return;
+  }
+  if (t === 'close'){ lcTodayHide(); return; }
+  if (t === 'done' || t === 'act'){
+    const key = t === 'act' ? c.tip.id : btn.dataset.k;
+    st.done = Object.assign({}, st.done, { [key]: Date.now() });
+    lcSaveToday(st); lcTodayHide();
+    if (t === 'act') c.tip.act.run();
+    return;
+  }
+  if (t === 'demo'){ lcTodayHide(); lcDemoStart(); return; }
+  if (t === 'notyet'){
+    const list = lcStore('lc_pending_posts', []) || [];
+    const e = list.find(x => x && x.id === c.e.id);
+    if (e){ e.asked = (e.asked || 0) + 1; e.snooze = lcLocalDate(); lcSave('lc_pending_posts', list); }
+    lcTodayHide();
+    return;
+  }
+  if (t === 'yes'){
+    const ok = lcLogPosted(c.e);
+    lcTodayEl.querySelector('.lc-today-title').textContent = ok ? 'Logged in your Post Journal' : 'Couldn’t save that';
+    lcTodayEl.querySelector('.lc-today-body').textContent = ok
+      ? 'Later, add how it did — likes, comments, anything you noticed. That’s how you find out what works for you.'
+      : 'Your browser storage might be full or blocked.';
+    const acts = lcTodayEl.querySelector('.lc-today-actions');
+    acts.innerHTML = (ok ? '<a class="lc-btn-main" href="/post-journal">Open Post Journal</a>' : '') + '<button type="button" class="lc-btn-soft" data-close>Done</button>';
+    acts.querySelector('[data-close]').addEventListener('click', lcTodayHide);
+  }
+}
+
+// ---------- "Try an example": a sample post with planted mistakes, and a 3-step tour ----------
+const LC_DEMO_TEXT = "Sure! Here's a LinkedIn post about our launch:\n\nIn today's fast-paced world, small teams need simple tools. **We launched our scheduling app today.** 73% of freelancers say they lose hours every week to back-and-forth emails.\n\nJoin our live demo on 03/04 at 9:00 AM. Questions? Call me at (415) 555-0134.";
+const LC_DEMO_SIG = 'small teams need simple tools';
+const LC_COACH = [
+  { target: () => input, next:'Next',
+    text:'This sample post has a few common mistakes planted in it — the kind that slip through when you’re in a hurry.' },
+  { target: () => instantCheckBtn, next:'Run the check', run: () => runInputCheck(),
+    text:'Press this. All 21 checks run instantly, right here in your browser — nothing is sent anywhere.' },
+  { target: () => instantResultsEl.querySelector('.lc-top') || instantResultsEl, next:'Now try yours', last:true,
+    text:'Start with these three. The green box just above fixes the chatbot line and the ** marks in one tap.' },
+];
+let lcDemoPrev = null, lcCoach = null;
+function lcDemoStart(){
+  lcTodayHide();
+  hideDraftBanner();
+  if (input.dataset.demo !== '1') lcDemoPrev = input.value;
+  input.dataset.demo = '1';
+  input.value = LC_DEMO_TEXT;
+  input.dispatchEvent(new Event('input'));
+  instantResultsEl.innerHTML = '';
+  instantResultsEl.style.display = 'none';
+  lcMarkUsed('demo');
+  lcCoachStart();
+}
+function lcDemoRestore(){
+  lcCoachEnd();
+  if (input.dataset.demo !== '1'){ lcDemoPrev = null; return; }   // they already replaced the example with their own text
+  delete input.dataset.demo;
+  const prev = lcDemoPrev || '';
+  lcDemoPrev = null;
+  clearTimeout(draftSaveTimer);   // never let the example's pending autosave touch the saved draft
+  input.value = prev;
+  if (prev) input.dispatchEvent(new Event('input'));
+  else {
+    inputCount.textContent = '0 characters';
+    inputTip.style.display = 'none';
+    try { const raw = localStorage.getItem(DRAFT_KEY); if (raw && String(JSON.parse(raw).text || '').trim()) draftRestoreBanner.style.display = 'flex'; } catch (e) {}
+  }
+  instantResultsEl.innerHTML = '';
+  instantResultsEl.style.display = 'none';
+  input.focus();
+}
+function lcCoachStart(){
+  lcCoachEnd();
+  lcCoach = { i: 0, box: null, target: null };
+  document.body.classList.add('lc-coach-on');
+  document.addEventListener('keydown', lcCoachKey);
+  window.addEventListener('resize', lcCoachPlace);
+  window.addEventListener('scroll', lcCoachPlace, { passive:true });
+  lcCoachShow();
+}
+function lcCoachEnd(){
+  if (!lcCoach) return;
+  if (lcCoach.box) lcCoach.box.remove();
+  if (lcCoach.target) lcCoach.target.classList.remove('lc-coach-target');
+  lcCoach = null;
+  document.body.classList.remove('lc-coach-on');
+  document.removeEventListener('keydown', lcCoachKey);
+  window.removeEventListener('resize', lcCoachPlace);
+  window.removeEventListener('scroll', lcCoachPlace);
+}
+function lcCoachKey(e){ if (e.key === 'Escape') lcCoachEnd(); }
+function lcCoachShow(){
+  const step = LC_COACH[lcCoach.i];
+  const target = step.target();
+  if (lcCoach.target) lcCoach.target.classList.remove('lc-coach-target');
+  lcCoach.target = target;
+  target.classList.add('lc-coach-target');
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'center' });
+  if (!lcCoach.box){
+    const b = document.createElement('div');
+    b.className = 'lc-coach';
+    b.setAttribute('role', 'dialog');
+    b.setAttribute('aria-label', 'Quick tour');
+    document.body.appendChild(b);
+    lcCoach.box = b;
+  }
+  const b = lcCoach.box;
+  b.innerHTML = `<span class="lc-coach-step">Step ${lcCoach.i + 1} of ${LC_COACH.length}</span><div class="lc-coach-text">${step.text}</div>`
+    + `<div class="lc-coach-actions"><button type="button" data-c="end">${step.last ? 'Keep the example' : 'Skip tour'}</button><button type="button" class="lc-coach-main" data-c="next">${step.next}</button></div>`;
+  b.querySelector('[data-c="next"]').addEventListener('click', lcCoachNext);
+  b.querySelector('[data-c="end"]').addEventListener('click', lcCoachEnd);
+  lcCoachPlace();
+  setTimeout(lcCoachPlace, 400);
+  b.querySelector('.lc-coach-main').focus({ preventScroll:true });
+}
+function lcCoachNext(){
+  if (!lcCoach) return;
+  const step = LC_COACH[lcCoach.i];
+  if (step.last){ lcDemoRestore(); return; }
+  if (step.run) step.run();
+  lcCoach.i++;
+  lcCoachShow();
+}
+function lcCoachPlace(){
+  if (!lcCoach || !lcCoach.box || !lcCoach.target) return;
+  const r = lcCoach.target.getBoundingClientRect(), b = lcCoach.box;
+  const vw = document.documentElement.clientWidth, vh = window.innerHeight, bw = b.offsetWidth, bh = b.offsetHeight;
+  let top = r.bottom + 12;
+  if (top + bh > vh - 8) top = r.top - bh - 12;
+  top = Math.max(8, Math.min(top, vh - bh - 8));
+  const left = Math.max(16, Math.min(r.left, vw - bw - 16));
+  b.style.top = Math.round(top + window.scrollY) + 'px';
+  b.style.left = Math.round(left + window.scrollX) + 'px';
+}
+document.getElementById('lcDemoBtn').addEventListener('click', lcDemoStart);
+// The finder (Ctrl/⌘+K) hands over a post someone pasted into it: check it right here.
+window.lcFinderCheck = function(text){
+  lcCoachEnd();
+  hideDraftBanner();
+  lcTodayHide();
+  delete input.dataset.demo;
+  const before = input.value;
+  input.value = text;
+  input.dispatchEvent(new Event('input'));
+  runInputCheck();
+  const box = document.getElementById('instantCheckBox');
+  if (box) box.scrollIntoView({ behavior:'smooth', block:'start' });
+  if (before.trim() && before !== text) lcToast('Replaced the box with that post.', { label:'Undo', run: () => { input.value = before; input.dispatchEvent(new Event('input')); } });
+};
+// Pressing the real Check button during step 2 moves the tour on, too.
+instantCheckBtn.addEventListener('click', () => { if (lcCoach && lcCoach.i === 1){ lcCoach.i = 2; setTimeout(() => { if (lcCoach) lcCoachShow(); }, 30); } });
+input.addEventListener('input', () => {
+  if (input.dataset.demo === '1' && !input.value.includes(LC_DEMO_SIG)) delete input.dataset.demo;   // replaced with their own text
+  lcTodayHide();   // the Helper never sits on top of what you're writing
+});
+
+// ============================================================================
+// 2026-11-10 round 3 — every result explained in plain words (and in Korean if you like),
+// and a setup you pick once: where you post, your first language, checks or words to stop flagging.
+// Explanations are pre-written: your text is never translated or sent anywhere.
+// ============================================================================
+const LC_EXPLAIN = {
+  hook: { what:'Your first line decides whether people tap “see more”.', why:'On LinkedIn and X only the first line or two show before the post is cut off.', fix:'Open with the most specific thing you have: a number, a result, or a surprise.', ex:['I’m excited to share some news.', 'We cut onboarding from 9 steps to 2.'],
+    ko:{ name:'첫 문장', act:'첫 문장을 더 구체적으로', what:'첫 줄이 “더 보기”를 누르게 만드는지 봐요.', why:'링크드인과 X는 글이 접히기 전 첫 한두 줄만 보여줘요.', fix:'가장 구체적인 것(숫자, 결과, 의외의 사실)으로 시작하세요.' } },
+  authenticity: { what:'Some phrases show up so often in AI writing that readers now notice them.', why:'Even if you wrote it yourself, these phrases make people wonder whether you did.', fix:'Say the same thing the way you’d say it to a friend.', ex:['In today’s fast-paced world, this is a game-changer.', 'This saves me about an hour a week.'],
+    ko:{ name:'AI 같은 표현', act:'AI 같은 표현을 내 말로', what:'AI 글에 너무 자주 나와서 독자들이 알아보는 표현이에요.', why:'직접 썼더라도 이런 표현이 있으면 “AI가 쓴 건가?” 하고 의심받아요.', fix:'친구에게 말하듯 같은 내용을 내 말로 바꿔 보세요.' } },
+  translation: { what:'The wording is correct, but formal in a way that reads like a translation.', why:'Social posts read best when they sound like someone talking.', fix:'Swap formal phrases for everyday ones: “in order to” → “to”, “utilize” → “use”.', ex:['We would like to inform you that we have commenced operations.', 'We’re open.'],
+    ko:{ name:'번역투', act:'딱딱한 표현을 일상어로', what:'문법은 맞지만 번역한 것처럼 딱딱하게 읽히는 표현이에요.', why:'소셜 글은 말하듯 써야 자연스럽게 읽혀요.', fix:'딱딱한 표현을 일상 표현으로 바꾸세요. “in order to” → “to”, “utilize” → “use”.' } },
+  generic: { what:'The post makes claims without a number, a name or a date.', why:'Specific details are what make a post feel real and worth sharing.', fix:'Add one concrete detail: how many, who, when, or what exactly.', ex:['Our tool helps teams work better.', 'Our tool saved a 5-person team 6 hours in March.'],
+    ko:{ name:'너무 일반적', act:'숫자·이름·날짜 하나 넣기', what:'숫자·이름·날짜 없이 막연한 말만 있어요.', why:'구체적인 내용이 있어야 글이 진짜처럼 느껴지고 공유돼요.', fix:'얼마나, 누가, 언제, 정확히 무엇을 — 하나만 넣어 보세요.' } },
+  jargon: { what:'Industry words or acronyms your readers may not know.', why:'When a reader has to stop and look something up, many just scroll on.', fix:'Spell out an acronym the first time, or use the plain word.', ex:['Our CAC dropped after we fixed the funnel.', 'We now spend less to win each customer.'],
+    ko:{ name:'전문용어·약어', act:'전문용어를 쉬운 말로', what:'독자가 모를 수 있는 업계 용어나 약어예요.', why:'찾아봐야 하는 단어가 나오면 많은 사람이 그냥 넘겨요.', fix:'약어는 처음 나올 때 풀어 쓰거나, 쉬운 단어로 바꾸세요.' } },
+  passive: { what:'The sentence hides who did the action.', why:'Readers trust a post more when it’s clear who did what.', fix:'Put the person who acted first.', ex:['Mistakes were made.', 'We made mistakes.'],
+    ko:{ name:'수동태', act:'누가 했는지 밝히기', what:'누가 했는지가 문장에서 빠져 있어요.', why:'누가 무엇을 했는지 분명해야 더 믿음이 가요.', fix:'행동한 사람을 문장 앞에 두세요.' } },
+  readability: { what:'Some sentences are long or packed with long words.', why:'Most people read posts on a phone, quickly.', fix:'Split the longest sentence in two. About 15–20 words per sentence is comfortable.', ex:['Because we wanted every customer to have a great first experience, we decided to rebuild onboarding from scratch.', 'We wanted every customer to have a great first day. So we rebuilt onboarding.'],
+    ko:{ name:'읽기 쉬움', act:'가장 긴 문장 나누기', what:'문장이 길거나 긴 단어가 많아요.', why:'대부분 휴대폰으로 빠르게 읽어요.', fix:'가장 긴 문장을 둘로 나누세요. 한 문장에 15~20단어 정도가 편해요.' } },
+  wall: { what:'A long block of text with no line breaks.', why:'On a phone, a big block looks like work, so people skip it.', fix:'Break it into short paragraphs of one to three sentences.',
+    ko:{ name:'글 덩어리', act:'긴 문단 나누기', what:'줄바꿈 없이 긴 문단이에요.', why:'휴대폰에서 큰 글 덩어리는 읽기 부담스러워서 그냥 넘기게 돼요.', fix:'한 문단을 1~3문장으로 짧게 나누세요.' } },
+  emoji: { what:'A lot of emoji, or emoji used in place of words.', why:'A few help; many make a post look spammy, and screen readers read each one aloud.', fix:'Keep the one to three that add meaning, and don’t swap a word for an emoji.',
+    ko:{ name:'이모지', act:'이모지 줄이기', what:'이모지가 많거나 단어 대신 쓰였어요.', why:'몇 개는 도움이 되지만 많으면 스팸처럼 보이고, 화면 낭독기는 하나하나 소리 내어 읽어요.', fix:'의미를 더하는 1~3개만 남기고, 단어를 이모지로 바꾸지 마세요.' } },
+  hashtags: { what:'Too many hashtags, or tags that are hard to read.', why:'A long string of tags looks like spam, and #alllowercasewords are hard to read.', fix:'Use a few relevant tags and capitalize each word.', ex:['#remotework #productivity #startup #growth #success', '#RemoteWork #Productivity'],
+    ko:{ name:'해시태그', act:'해시태그 정리', what:'해시태그가 너무 많거나 읽기 어려워요.', why:'태그가 길게 이어지면 스팸처럼 보이고, 소문자로 붙여 쓴 태그는 읽기 힘들어요.', fix:'관련 있는 몇 개만 쓰고, 단어마다 첫 글자를 대문자로 쓰세요(#RemoteWork).' } },
+  linkplacement: { what:'Your post has a link in the body.', why:'LinkedIn tends to show posts with outside links to fewer people, especially from company pages.', fix:'Optional: put the link in the first comment and say so in the post.',
+    ko:{ name:'링크 위치', act:'링크를 첫 댓글로(선택)', what:'본문에 링크가 있어요.', why:'링크드인은 외부 링크가 있는 글을 덜 보여주는 경향이 있어요(특히 회사 페이지).', fix:'선택 사항이에요. 링크는 첫 댓글에 넣고, 본문에 “링크는 댓글에”라고 적으세요.' } },
+  markdown: { what:'Markdown symbols like ** or ###, or a leftover placeholder like [Your Name].', why:'LinkedIn and X don’t turn ** into bold — readers just see the stars.', fix:'Remove the symbols (the one-tap fix does it) and fill in any placeholder.', ex:['**Big news**: we launched.', 'Big news: we launched.'],
+    ko:{ name:'서식 기호', act:'서식 기호 지우기', what:'** 나 ### 같은 마크다운 기호, 또는 [Your Name] 같은 빈칸이 남아 있어요.', why:'링크드인과 X는 **를 굵은 글씨로 바꾸지 않아서 별표가 그대로 보여요.', fix:'기호를 지우고(원탭 수정으로 가능), 빈칸은 채우세요.' } },
+  numbers: { what:'A big number written in a unit English readers may not follow — like 3억, 5 lakh or 2 crore — or a currency that isn’t clear.', why:'English counts in thousands and millions, so other units are easy to misread.', fix:'Convert it — 3억 = 300 million, 5 lakh = 500,000, 2 crore = 20 million — and name the currency.', ex:['We raised 3억 won.', 'We raised 300 million won (KRW).'],
+    ko:{ name:'큰 숫자', act:'큰 숫자를 영어식으로', what:'3억, 5 lakh처럼 영어권 독자가 바로 이해하기 어려운 단위나, 어떤 통화인지 불분명한 금액이에요.', why:'영어는 thousand·million 단위로 세기 때문에 다른 단위는 잘못 읽히기 쉬워요.', fix:'바꿔 쓰세요: 1만 = 10 thousand, 3억 = 300 million. 통화도 밝히세요(KRW, USD).' } },
+  privacy: { what:'An email, phone number, API key, password or card number in the text.', why:'Once it’s posted anyone can copy it, and deleting the post later doesn’t undo that.', fix:'Remove keys and card numbers. Keep a contact only if you mean to publish it.',
+    ko:{ name:'개인정보 노출', act:'연락처가 공개용인지 확인', what:'이메일, 전화번호, API 키, 비밀번호, 카드번호가 들어 있어요.', why:'올리는 순간 누구나 복사할 수 있고, 나중에 글을 지워도 되돌릴 수 없어요.', fix:'키와 카드번호는 지우세요. 연락처는 공개할 생각일 때만 남기세요.' } },
+  structural: { what:'Patterns like lots of em dashes (—), lists of three, or “It’s not X, it’s Y” — or sentences that are all the same length.', why:'None is wrong on its own, but together they make writing feel machine-made.', fix:'Mix short and long sentences, swap some em dashes for commas or periods, and drop one item from a list of three.',
+    ko:{ name:'AI 같은 구조', act:'문장 리듬 바꾸기', what:'엠대시(—)가 많거나, 세 개씩 나열하거나, “It’s not X, it’s Y” 같은 패턴, 또는 문장 길이가 모두 비슷해요.', why:'하나하나는 틀리지 않지만 모이면 기계가 쓴 느낌이 나요.', fix:'짧은 문장과 긴 문장을 섞고, 엠대시 일부를 쉼표나 마침표로 바꾸세요.' } },
+  stats: { what:'A statistic with no source.', why:'Readers wonder where a number came from, and made-up statistics are common in AI drafts.', fix:'Say who measured it and when, in a few words — or cut the number.', ex:['73% of people agree.', '73% of the 400 people in our March survey agreed.'],
+    ko:{ name:'출처 없는 통계', act:'통계 출처 넣기', what:'출처가 없는 통계예요.', why:'독자는 숫자의 출처를 궁금해하고, AI 초안에는 지어낸 통계도 흔해요.', fix:'누가 언제 조사했는지 짧게 밝히거나, 숫자를 빼세요.' } },
+  dates: { what:'A date like 03/04 — March 4 in the US, but 3 April in most other countries.', why:'Some of your readers could turn up on the wrong day.', fix:'Write the month as a word.', ex:['Join us on 03/04.', 'Join us on March 4.'],
+    ko:{ name:'헷갈리는 날짜', act:'날짜를 헷갈리지 않게', what:'03/04처럼 미국에선 3월 4일, 다른 나라에선 4월 3일로 읽히는 날짜예요.', why:'독자 일부가 엉뚱한 날에 올 수 있어요.', fix:'월을 단어로 쓰세요(March 4).' } },
+  absolute: { what:'Words like “always”, “never”, “guaranteed” or “the best”.', why:'Absolute claims invite pushback and are easy to prove wrong.', fix:'Say what you actually know: “usually”, “in our tests”, “one of the best”.', ex:['This always works.', 'This has worked for every client we’ve tried it with.'],
+    ko:{ name:'단정적 표현', act:'단정적 표현 누그러뜨리기', what:'“always”, “never”, “guaranteed”, “the best” 같은 단어예요.', why:'단정적인 말은 반박을 부르고, 틀렸다고 증명되기도 쉬워요.', fix:'아는 만큼만 말하세요: “usually”, “in our tests”.' } },
+  timeamb: { what:'A time with no time zone (9 AM), or words like “tomorrow” that change meaning depending on when someone reads the post.', why:'Your readers live in different time zones, and many see a post days later.', fix:'Add the day and the zone.', ex:['Live demo tomorrow at 9 AM.', 'Live demo on Tuesday, March 4, at 9 AM ET.'],
+    ko:{ name:'헷갈리는 시간', act:'시간대·날짜 붙이기', what:'시간대 없는 시각(9 AM)이나, 읽는 때에 따라 뜻이 바뀌는 “tomorrow” 같은 말이에요.', why:'독자는 서로 다른 시간대에 살고, 며칠 뒤에 글을 보기도 해요.', fix:'날짜와 시간대를 함께 쓰세요(한국 시간이면 KST).' } },
+  rhetorical: { what:'Questions you don’t really expect readers to answer, like “Ever wondered why…?”.', why:'One can hook a reader; several in a row read like filler — and they’re a common AI habit.', fix:'Turn the question into the answer: say the point directly.', ex:['Ever wondered why most launches fail?', 'Most launches fail for one reason: nobody was waiting for them.'],
+    ko:{ name:'수사 의문문', act:'군더더기 질문 빼기', what:'“Ever wondered why…?”처럼 답을 기대하지 않는 질문이에요.', why:'하나는 관심을 끌지만 여러 개면 군더더기처럼 읽히고, AI가 자주 쓰는 습관이기도 해요.', fix:'질문 대신 하고 싶은 말을 바로 하세요.' } },
+  hidden: { what:'Invisible characters, like the narrow space (U+202F) some AI tools add.', why:'They can break hashtags and search, and look odd in some apps.', fix:'Remove them — the one-tap fix does it and keeps emoji intact.',
+    ko:{ name:'숨은 문자', act:'숨은 문자 지우기', what:'일부 AI 도구가 넣는 좁은 공백(U+202F) 같은 보이지 않는 문자예요.', why:'해시태그나 검색을 깨뜨리고, 일부 앱에서 이상하게 보여요.', fix:'지우세요. 원탭 수정이 이모지는 그대로 두고 지워줘요.' } },
+};
+const LC_LANGS = [['en', 'English'], ['ko', '한국어'], ['ja', '日本語'], ['zh', '中文'], ['hi', 'हिन्दी'], ['es', 'Español'], ['other', 'Other']];
+const LC_LANG_COMMON = { ko: ['numbers', 'translation'], ja: ['numbers', 'hidden', 'translation'], zh: ['numbers', 'hidden', 'translation'], hi: ['numbers', 'translation'], es: ['translation'] };
+const LC_LANG_WRITERS = { ko: 'Korean', ja: 'Japanese', zh: 'Chinese', hi: 'Hindi', es: 'Spanish' };
+function lcSaveSettings(s){ lcSave('lc_settings', s); }
+function lcIgnored(cat, term){
+  const list = ((lcSettings().ignore || {})[cat]) || [];
+  if (!list.length) return false;
+  const t = String(term || '').toLowerCase().replace(/’/g, "'").trim();
+  return list.some(w => w === t || (cat !== 'jargon' && w.includes(t)));
+}
+function lcKo(){ return lcSettings().explain === 'ko'; }
+function lcCheckLabel(chk){
+  const k = LC_EXPLAIN[chk.id] && LC_EXPLAIN[chk.id].ko;
+  return lcKo() && k ? `${chk.label} <span class="lc-ko-name" lang="ko">(${k.name})</span>` : chk.label;
+}
+function lcActionKo(row){
+  if (!lcKo()) return '';
+  const id = row.chk.id, k = LC_EXPLAIN[id] && LC_EXPLAIN[id].ko;
+  if (!k) return '';
+  let t = k.act;
+  if (id === 'privacy' && row.status === 'warn') t = 'API 키·카드번호 지우기';
+  if (id === 'markdown' && lcRowHas(row, x => cfMdFindPlaceholders(x).length > 0)) t = '남은 빈칸 채우기';
+  return `<span class="lc-top-ko" lang="ko">${t}</span>`;
+}
+function lcExplainHtml(id){
+  const ex = LC_EXPLAIN[id];
+  if (!ex) return '';
+  const s = lcSettings(), ko = s.explain === 'ko' && ex.ko;
+  let h = '';
+  if ((LC_LANG_COMMON[s.lang] || []).includes(id)) h += `<p class="lc-ex-common">Common for ${LC_LANG_WRITERS[s.lang]} writers</p>`;
+  h += ko
+    ? `<p lang="ko"><strong>쉽게 말하면:</strong> ${ex.ko.what}</p><p lang="ko"><strong>왜 중요해요:</strong> ${ex.ko.why}</p><p lang="ko"><strong>이렇게 고쳐요:</strong> ${ex.ko.fix}</p>`
+    : `<p><strong>In plain words:</strong> ${ex.what}</p><p><strong>Why it matters:</strong> ${ex.why}</p><p><strong>Try this:</strong> ${ex.fix}</p>`;
+  if (ex.ex) h += `<p class="lc-ex-pair"><span class="lc-sr">Example. Before:</span><span class="lc-ex-before">${lcEsc(ex.ex[0])}</span><span aria-hidden="true">→</span><span class="lc-sr">After:</span><span class="lc-ex-after">${lcEsc(ex.ex[1])}</span></p>`;
+  h += `<button type="button" class="lc-linkbtn" data-lc-explain="${ko ? 'en' : 'ko'}">${ko ? 'Explain in English' : '<span lang="ko">한국어로 설명 보기</span>'}</button>`;
+  return `<div class="lc-explain" data-explain-for="${id}">${h}</div>`;
+}
+function lcMarkedTerms(row){
+  const seen = new Set(), out = [];
+  row.perPlatform.forEach(pp => {
+    const html = pp.result && pp.result.markedHtml;
+    if (!html) return;
+    for (const m of html.matchAll(/<mark\b([^>]*)>([\s\S]*?)<\/mark>/g)){
+      if (/hit-ok/.test(m[1])) continue;
+      const t = lcUnescapeHtml(m[2].replace(/<br>/g, ' ').replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
+      const key = t.toLowerCase();
+      if (t && t.length <= 60 && !seen.has(key)){ seen.add(key); out.push(t); }
+    }
+  });
+  return out;
+}
+function lcRowExtrasHtml(row){
+  const id = row.chk.id;
+  let h = lcExplainHtml(id);
+  if (['jargon', 'authenticity', 'translation'].includes(id) && row.status !== 'good'){
+    const terms = lcMarkedTerms(row).slice(0, 8);
+    if (terms.length) h += `<div class="lc-ignore"><span>Fine for your readers? Stop flagging:</span>${terms.map(t => `<button type="button" class="lc-chip" data-lc-ignore="${id}" data-term="${lcEsc(t)}" aria-label="Stop flagging ${lcEsc(t)}">${lcEsc(t)} ✕</button>`).join('')}</div>`;
+  }
+  if (lcIsMuted(id)) h += `<button type="button" class="lc-linkbtn lc-mute" data-lc-unmute="${id}">Show this check again</button>`;
+  else if (row.status !== 'good') h += `<button type="button" class="lc-linkbtn lc-mute" data-lc-mute="${id}">Don’t show this check</button>`;
+  return h;
+}
+// Re-run whichever results are on screen, so a setting change shows up right away.
+var lcQuiet = false;   // re-showing results after a setting change is not a new check: keep it out of history
+function lcRerunVisible(){
+  lcQuiet = true;
+  try {
+    if (instantResultsEl.querySelector('.cf-item')) runInputCheck();
+    if (checkallResultsEl.querySelector('.cf-item')) runAllChecks();
+  } finally { lcQuiet = false; }
+  lcRenderPrefs();
+}
+function lcSwapExplainLang(){
+  document.querySelectorAll('.cf-item[data-check]').forEach(item => {
+    const chk = CF_CHECKS.find(c => c.id === item.dataset.check);
+    if (!chk) return;
+    const old = item.querySelector('.lc-explain');
+    if (old){ const tmp = document.createElement('div'); tmp.innerHTML = lcExplainHtml(chk.id); old.replaceWith(tmp.firstElementChild); }
+    const label = item.querySelector('.cf-label');
+    if (label) label.innerHTML = lcCheckLabel(chk);
+  });
+  document.querySelectorAll('.lc-top-item[data-top]').forEach(li => {
+    const old = li.querySelector('.lc-top-ko');
+    if (old) old.remove();
+    const id = li.dataset.top, k = LC_EXPLAIN[id] && LC_EXPLAIN[id].ko;
+    if (lcKo() && k){
+      const span = document.createElement('span');
+      span.className = 'lc-top-ko'; span.lang = 'ko';
+      const txt = li.querySelector('.lc-top-text').textContent;
+      span.textContent = /key, token or card/.test(txt) ? 'API 키·카드번호 지우기' : (/placeholder/.test(txt) ? '남은 빈칸 채우기' : k.act);
+      li.querySelector('.lc-top-text').appendChild(span);
+    }
+  });
+  lcWireExplainToggles(document);
+  lcRenderPrefs();
+}
+function lcWireExplainToggles(root){
+  root.querySelectorAll('[data-lc-explain]').forEach(b => {
+    if (b.dataset.wired) return;
+    b.dataset.wired = '1';
+    b.addEventListener('click', () => {
+      const s = lcSettings();
+      s.explain = b.dataset.lcExplain;
+      lcSaveSettings(s);
+      lcSwapExplainLang();
+    });
+  });
+}
+function lcWireRowExtras(targetEl, opts){
+  lcWireExplainToggles(targetEl);
+  targetEl.querySelectorAll('[data-lc-ignore]').forEach(b => b.addEventListener('click', () => {
+    const cat = b.dataset.lcIgnore, term = b.dataset.term.toLowerCase().replace(/’/g, "'");
+    const s = lcSettings();
+    s.ignore = Object.assign({}, s.ignore);
+    s.ignore[cat] = [...new Set([...(s.ignore[cat] || []), term])];
+    lcSaveSettings(s);
+    lcRerunVisible();
+    lcToast(`Won’t flag “${b.dataset.term}” again.`, { label:'Undo', run: () => { const s2 = lcSettings(); s2.ignore[cat] = (s2.ignore[cat] || []).filter(w => w !== term); lcSaveSettings(s2); lcRerunVisible(); } });
+  }));
+  targetEl.querySelectorAll('[data-lc-mute], [data-lc-unmute]').forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.lcMute || b.dataset.lcUnmute, mute = !!b.dataset.lcMute;
+    const s = lcSettings();
+    s.muted = (s.muted || []).filter(x => x !== id);
+    if (mute) s.muted.push(id);
+    lcSaveSettings(s);
+    lcRerunVisible();
+    if (mute) lcToast(`Hidden “${lcCheckInfo(id).label}”. It’s listed under “hidden by you”.`, { label:'Undo', run: () => { const s2 = lcSettings(); s2.muted = (s2.muted || []).filter(x => x !== id); lcSaveSettings(s2); lcRerunVisible(); } });
+  }));
+}
+
+// ---------- "Make Loosecopy fit you": asked once, right after your first check ----------
+function lcChipsHtml(group, items, selected, multi){
+  return `<div class="lc-chips" data-group="${group}" role="group">` + items.map(([v, label]) =>
+    `<button type="button" class="lc-chip" data-v="${v}" aria-pressed="${selected.includes(v) ? 'true' : 'false'}"${selected.includes(v) ? ` data-order="${selected.indexOf(v)}"` : ''}${v === 'ko' || /[^\x00-\x7f]/.test(label) ? ` lang="${v}"` : ''}>${label}</button>`).join('') + `</div>`;
+}
+function lcWireChips(root, onChange){
+  root.querySelectorAll('.lc-chips').forEach(g => {
+    const multi = g.dataset.group === 'platforms';
+    g.querySelectorAll('.lc-chip').forEach(c => c.addEventListener('click', () => {
+      if (multi){
+        const on = c.getAttribute('aria-pressed') !== 'true';
+        c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if (on) c.dataset.order = String(100 + (++lcChipSeq)); else delete c.dataset.order;   // the first one you pick counts as your main platform
+      }
+      else g.querySelectorAll('.lc-chip').forEach(x => x.setAttribute('aria-pressed', x === c ? 'true' : 'false'));
+      if (onChange) onChange(g.dataset.group);
+    }));
+  });
+}
+let lcChipSeq = 0;
+function lcReadChips(root, group){
+  return [...root.querySelectorAll(`.lc-chips[data-group="${group}"] .lc-chip[aria-pressed="true"]`)]
+    .sort((a, b) => Number(a.dataset.order || 0) - Number(b.dataset.order || 0)).map(c => c.dataset.v);
+}
+const LC_PLATFORM_CHIPS = [['linkedin', 'LinkedIn'], ['x', 'X'], ['threads', 'Threads'], ['instagram', 'Instagram']];
+function lcRenderAsk(slot, opts){
+  const s = lcSettings();
+  if (s.asked || opts.source !== 'input' || input.dataset.demo === '1') return;
+  slot.innerHTML = `<div class="lc-ask" role="group" aria-labelledby="lcAskTitle"><p id="lcAskTitle"><strong>Make Loosecopy fit you</strong> <span class="muted">— asked once, takes 10 seconds</span></p>`
+    + `<p class="lc-ask-q">Where do you post?</p>${lcChipsHtml('platforms', LC_PLATFORM_CHIPS, [], true)}`
+    + `<p class="lc-ask-q">Your first language</p>${lcChipsHtml('lang', LC_LANGS, [], false)}`
+    + `<div class="lc-ask-actions"><button type="button" class="lc-btn-main" data-ask="save">Save</button><button type="button" class="lc-btn-soft" data-ask="skip">Not now</button><span class="muted">Saved in this browser only — no account.</span></div></div>`;
+  const card = slot.firstElementChild;
+  lcWireChips(card);
+  card.querySelector('[data-ask="skip"]').addEventListener('click', () => { const s2 = lcSettings(); s2.asked = Date.now(); lcSaveSettings(s2); slot.innerHTML = ''; lcRenderPrefs(); });
+  card.querySelector('[data-ask="save"]').addEventListener('click', () => {
+    const s2 = lcSettings();
+    s2.platforms = lcReadChips(card, 'platforms');
+    const lang = lcReadChips(card, 'lang')[0];
+    if (lang) s2.lang = lang;
+    if (lang === 'ko' && !s2.explain) s2.explain = 'ko';
+    s2.asked = Date.now();
+    lcSaveSettings(s2);
+    lcRerunVisible();
+    lcToast(lang === 'ko' ? 'Saved. Explanations are now also in Korean — change it anytime under “Your setup”.' : 'Saved. Change it anytime under “Your setup”.');
+  });
+}
+
+// ---------- "Your setup": one chip that opens everything you've chosen ----------
+const lcPrefsEl = document.getElementById('lcPrefs');
+function lcRenderPrefs(keepOpen){
+  if (!lcPrefsEl) return;
+  const s = lcSettings();
+  const open = keepOpen === true || !!lcPrefsEl.querySelector('.lc-prefs-panel');
+  if (!s.asked && !open){ lcPrefsEl.innerHTML = ''; return; }
+  const plats = (s.platforms || []).map(id => (LC_PLATFORMS.find(p => p.id === id) || {}).name).filter(Boolean);
+  const muted = s.muted || [];
+  const ign = Object.values(s.ignore || {}).reduce((a, l) => a + (l || []).length, 0);
+  const summary = [plats.length ? 'Posting to ' + plats.join(', ') : 'No platforms picked', s.explain === 'ko' ? 'Korean explanations' : '', muted.length ? muted.length + ' check' + (muted.length === 1 ? '' : 's') + ' hidden' : '', ign ? ign + ' word' + (ign === 1 ? '' : 's') + ' ignored' : ''].filter(Boolean).join(' · ');
+  let html = `<button type="button" class="lc-prefs-chip" aria-expanded="${open ? 'true' : 'false'}" aria-controls="lcPrefsPanel">⚙ Your setup: ${lcEsc(summary)} · ${open ? 'Close' : 'Edit'}</button>`;
+  if (open){
+    const today = lcTodayState();
+    html += `<div class="lc-prefs-panel" id="lcPrefsPanel">`
+      + `<p class="lc-ask-q">Where do you post?</p>${lcChipsHtml('platforms', LC_PLATFORM_CHIPS, s.platforms || [], true)}`
+      + `<p class="lc-ask-q">Your first language</p>${lcChipsHtml('lang', LC_LANGS, s.lang ? [s.lang] : [], false)}`
+      + `<p class="lc-ask-q">Explanations</p>${lcChipsHtml('explain', [['en', 'English'], ['ko', '한국어']], [s.explain === 'ko' ? 'ko' : 'en'], false)}`
+      + `<p class="lc-ask-q">Checks you hid</p><div class="lc-prefs-row">${muted.length ? muted.map(id => `<button type="button" class="lc-chip" data-unmute="${id}" aria-label="Show ${lcEsc(lcCheckInfo(id).label)} again">${lcEsc(lcCheckInfo(id).label)} ✕</button>`).join('') : '<span class="lc-prefs-none">None</span>'}</div>`
+      + `<p class="lc-ask-q">Words you said are fine</p><div class="lc-prefs-row">${ign ? Object.entries(s.ignore).flatMap(([cat, l]) => (l || []).map(w => `<button type="button" class="lc-chip" data-unignore="${cat}" data-term="${lcEsc(w)}" aria-label="Flag ${lcEsc(w)} again">${lcEsc(w)} ✕</button>`)).join('') : '<span class="lc-prefs-none">None</span>'}</div>`
+      + `<p class="lc-ask-q">Helper suggestions</p>${lcChipsHtml('helper', [['on', 'On'], ['off', 'Off']], [today.off ? 'off' : 'on'], false)}`
+      + `<p class="lc-ask-q">Your data</p><p><button type="button" class="lc-linkbtn" data-prefs="forget">Forget what the Helper remembers</button> <span class="muted">— copied posts, check history and this setup. Your journal, voice sample and saved draft stay.</span></p>`
+      + `<div class="lc-ask-actions"><button type="button" class="lc-btn-main" data-prefs="done">Done</button><span class="muted">Saved in this browser only. On another device, pick again — it takes 10 seconds.</span></div></div>`;
+  }
+  lcPrefsEl.innerHTML = html;
+  lcPrefsEl.querySelector('.lc-prefs-chip').addEventListener('click', () => { if (open) lcPrefsEl.innerHTML = ''; lcRenderPrefs(!open); if (!open) { const f = lcPrefsEl.querySelector('.lc-chip'); if (f) f.focus(); } });
+  if (!open) return;
+  const panel = lcPrefsEl.querySelector('.lc-prefs-panel');
+  lcWireChips(panel, group => {
+    const s2 = lcSettings();
+    if (group === 'platforms') s2.platforms = lcReadChips(panel, 'platforms');
+    if (group === 'lang') s2.lang = lcReadChips(panel, 'lang')[0];
+    if (group === 'explain') s2.explain = lcReadChips(panel, 'explain')[0];
+    if (group === 'helper'){ const t = lcTodayState(); if (lcReadChips(panel, 'helper')[0] === 'off') t.off = true; else { delete t.off; delete t.snooze; } lcSaveToday(t); return; }
+    s2.asked = s2.asked || Date.now();
+    lcSaveSettings(s2);
+    const v = document.activeElement && document.activeElement.dataset ? document.activeElement.dataset.v : null;
+    if (group === 'explain') lcSwapExplainLang(); else lcRerunVisible();
+    lcRenderPrefs(true);
+    // keep keyboard focus on the chip you just pressed after the panel redraws
+    const again = v && lcPrefsEl.querySelector(`.lc-chips[data-group="${group}"] .lc-chip[data-v="${v}"]`);
+    if (again) again.focus();
+  });
+  panel.querySelectorAll('[data-unmute]').forEach(b => b.addEventListener('click', () => { const s2 = lcSettings(); s2.muted = (s2.muted || []).filter(x => x !== b.dataset.unmute); lcSaveSettings(s2); lcRerunVisible(); lcRenderPrefs(true); }));
+  panel.querySelectorAll('[data-unignore]').forEach(b => b.addEventListener('click', () => { const s2 = lcSettings(); const cat = b.dataset.unignore; s2.ignore[cat] = (s2.ignore[cat] || []).filter(w => w !== b.dataset.term); lcSaveSettings(s2); lcRerunVisible(); lcRenderPrefs(true); }));
+  const forget = panel.querySelector('[data-prefs="forget"]');
+  forget.addEventListener('click', () => {
+    if (!forget.dataset.armed){   // two taps, no pop-up: the first one only asks
+      forget.dataset.armed = '1';
+      forget.textContent = 'Tap again to forget it all';
+      setTimeout(() => { if (forget.isConnected){ delete forget.dataset.armed; forget.textContent = 'Forget what the Helper remembers'; } }, 5000);
+      return;
+    }
+    ['lc_pending_posts', 'lc_history', 'lc_today', 'lc_settings', 'lc_finder_used'].forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });
+    lcPrefsEl.innerHTML = '';
+    lcRerunVisible();
+    lcToast('Forgotten. Your journal, voice sample and saved draft are untouched.');
+  });
+  panel.querySelector('[data-prefs="done"]').addEventListener('click', () => { lcPrefsEl.innerHTML = ''; lcRenderPrefs(false); const c = lcPrefsEl.querySelector('.lc-prefs-chip'); if (c) c.focus(); });
+}
+lcRenderPrefs();
+
+(function lcTodayInit(){
+  if (!lcTodayEl) return;
+  const st = lcTodayState();
+  const returning = !st.first && ['lc_post_journal', 'lc_voice_profile', 'lc_draft_autosave', 'lc_theme', 'lc_fontscale'].some(k => lcSafeGet(k) !== null);
+  const prevLast = st.last || (returning ? 1 : 0);
+  st.first = st.first || Date.now();
+  st.last = Date.now();
+  lcSaveToday(st);
+  const today = lcLocalDate();
+  if (st.off || st.snooze === today) return;
+  if (draftRestoreBanner && draftRestoreBanner.style.display === 'flex') return;   // "want your draft back?" already asks first
+  if (input.value.trim()) return;
+  st.seen = st.seen || {};
+  const pick = lcTodayCandidates(st, prevLast).find(c => {
+    const s = st.seen[c.id];
+    if (!s) return true;
+    if (c.kind === 'issue' && Date.now() - new Date(s.last + 'T00:00:00').getTime() > 14 * 864e5) return true;   // may come back two weeks later
+    return !(s.days >= 2 && s.last !== today);   // the same suggestion shows on two days at most
+  });
+  if (!pick) return;
+  const s = (pick.kind === 'issue' && st.seen[pick.id] && Date.now() - new Date(st.seen[pick.id].last + 'T00:00:00').getTime() > 14 * 864e5) ? { days:0, last:'' } : (st.seen[pick.id] || { days:0, last:'' });
+  if (s.last !== today){ s.days += 1; s.last = today; }
+  st.seen[pick.id] = s;
+  const keys = Object.keys(st.seen);
+  if (keys.length > 60) keys.sort((a, b) => (st.seen[a].last < st.seen[b].last ? -1 : 1)).slice(0, keys.length - 60).forEach(k => delete st.seen[k]);
+  lcTodayRender(pick, st);
+})();
 </script>
+<script src="/finder.js?v=20261110" defer></script>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>

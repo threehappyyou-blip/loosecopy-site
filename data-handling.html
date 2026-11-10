@@ -205,9 +205,11 @@
     <ul>
       <li>If you join the waitlist: your email address. That form is handled by Formspree, a third-party form service — they hold the submission, and we get a notification. We don't run our own database of emails outside of that.</li>
       <li>If you send an issue report: what you wrote, plus your email only if you added one. It goes through the same Formspree form service, the same way.</li>
+      <li>If you press “Ask us to build it” in the tool finder: only the words you typed into the finder, through the same Formspree form. Nothing else from the page goes with it, and nothing is sent until you press the button.</li>
       <li>Anonymous tallies, nothing more: page visits, counted by Cloudflare Web Analytics (no cookies, nothing you type), and — when you copy a draft — which platform it was for and whether you'd edited it, so we can see how often drafts get changed before posting. Never your text, and nothing tied to you.</li>
       <li>Nothing else on our servers. There's still no login and no account — if you set up "Your voice" in the generator, that's saved in your own browser, not with us, and sent along with your text each time you generate, the same way the text itself is.</li>
       <li>Same for the post journal — if you log what you posted, those entries are written to your browser's local storage only. There's no endpoint on our end that receives them.</li>
+      <li>Same for the Helper on the check page — your setup (where you post, your first language, checks or words you asked us to stop flagging), a short history of which checks flagged your posts (never the text), and posts you copied in the last 7 days so it can ask “Did you post it?”. It all lives in your browser's local storage. To wipe it, open “Your setup” on the check page and choose “Forget what the Helper remembers”.</li>
       <li>Nothing from Google AdSense, which runs on this site now — Google and its ad partners may set their own cookies to serve ads, separate from anything listed here. Details and opt-out links are on the <a href="/privacy-policy">Privacy Policy</a>.</li>
       <li>Nothing from Ko-fi either — the "Support" link on every page sends you to Ko-fi's own site to donate if you choose to; we never see your payment details.</li>
     </ul>
@@ -217,7 +219,7 @@
     <h2>What we don't store</h2>
     <ul>
       <li>The text you paste in. It's sent to generate your drafts and isn't written to a database on our end.</li>
-      <li>Your generated drafts, once they're back in your browser. Close the tab and they're gone unless you copied them somewhere.</li>
+      <li>Your generated drafts, once they're back in your browser. Close the tab and they're gone from our side — if you copied one, your browser keeps that copy for up to 7 days for the “Did you post it?” question, and clears it the next time you open the check page after that.</li>
       <li>Any history of what you've generated before, since nothing above is tied to an account.</li>
     </ul>
   </div>

@@ -91,6 +91,7 @@
   .wordmark{font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:700;}
   .wordmark em{font-style:normal;color:var(--accent);}
   .nav-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  @media (max-width:400px){ .nav-group{gap:6px;} }
   .icon-btn{
     background:var(--paper-card);border:1px solid var(--border);color:var(--ink-soft);
     border-radius:var(--radius-sm);width:34px;height:34px;font-size:0.9rem;cursor:pointer;
@@ -415,6 +416,7 @@
   <div class="wrap">
     <div class="wordmark">Loose<em>copy</em></div>
     <div class="nav-group">
+      <span data-lc-finder-slot></span>
       <a class="nav-cta" href="/app">Check it &rarr;</a>
       <button id="fontDec" class="icon-btn fontsize-btn" type="button" aria-label="Decrease text size" title="Decrease text size">A&minus;</button>
       <button id="fontInc" class="icon-btn fontsize-btn" type="button" aria-label="Increase text size" title="Increase text size">A+</button>
@@ -490,6 +492,7 @@
       <p class="sub">Paste anything you're about to post — written by you, by AI, or both. Run it through 21 free checks that don't call an AI model at all: privacy leaks, phrasing that sounds like AI wrote it, readability, currency mix-ups, leftover markdown, and more.</p>
       <a class="btn-primary hero-primary-cta" href="/app">Check your draft free, no signup &rarr;</a>
       <p class="form-note">Free to use. Paste something, see what needs fixing in seconds.</p>
+      <div class="lcf-inline-wrap" data-lc-finder="inline"></div>
 
       <div class="stat-strip" data-reveal>
         <span class="stat-chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> 21 rule-based checks</span>
@@ -708,6 +711,7 @@
   sweep();
 })();</script>
 
+<script src="/finder.js?v=20261110" defer></script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2d9e6201235044e7a6102cf102d0fdfc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

@@ -296,7 +296,7 @@
   <h1>Which date did you mean? Check MM/DD vs DD/MM</h1>
   <p class="lede">Paste your draft and find any numeric date — like <code>3/4/2026</code> — that genuinely reads two different ways depending on where your reader lives. Americans read month-first (March 4); most of the rest of the world reads day-first (April 3). This only flags dates where <em>both</em> readings are actually possible — it leaves ISO dates ("2026-03-04") and spelled-out dates ("March 4, 2026") alone, since those already read the same way everywhere.</p>
 
-  <div class="examples"><b>Ambiguous:</b> 3/4/2026, 03-04-26, 9.10.2026 &nbsp;&middot;&nbsp; <b>Not ambiguous:</b> 2026-03-04 (ISO), 25/12/2026 (25 can only be a day), March 4 2026</div>
+  <div class="examples"><b>Ambiguous:</b> 3/4/2026, 03-04-26, 9.10.2026, on 03/04 &nbsp;&middot;&nbsp; <b>Not ambiguous:</b> 2026-03-04 (ISO), 25/12/2026 (25 can only be a day), March 4 2026</div>
 
   <textarea id="input" placeholder="Paste your draft here..."></textarea>
   <div class="row">
@@ -318,7 +318,7 @@
   <p class="disclaimer">This checks the <em>format</em> only, not whether the date itself is correct. A date is flagged as ambiguous only when both the first and second number could plausibly be a month (1–12) and they differ — "25/12/2026" isn't flagged because 25 can only be a day. If you genuinely mean the same date either way (like 3/3/2026), it's left alone too.</p>
   <section class="lc-more" aria-label="About this ambiguous date checker">
   <h2>How the date checker works</h2>
-<p>It finds numeric dates written with slashes, dashes or dots and flags the ones that could be two different days. A date counts as ambiguous only when both of the first two numbers could be a month (1 to 12) and they're different, so 3/4/2026 is flagged but 25/12/2026 isn't.</p>
+<p>It finds numeric dates written with slashes, dashes or dots and flags the ones that could be two different days. A date counts as ambiguous only when both of the first two numbers could be a month (1 to 12) and they're different, so 3/4/2026 is flagged but 25/12/2026 isn't. Dates without a year count too when they clearly read as a date — written with a leading zero, like “03/04”, or right after a word like “on” or “by” — so fractions such as “3/4 of users” and scores like “9/10” are left alone.</p>
 <p>ISO dates like 2026-03-04 and dates with the month written out are left alone, since everyone reads them the same way. It checks the format only, not whether the date is right.</p>
   <h2>Examples</h2>
 <div class="lc-ex"><div><span class="lc-ex-h">Before</span>Webinar on <code>03/04/2026</code></div><div><span class="lc-ex-h">After</span>Webinar on 4 March 2026</div></div><div class="lc-ex"><div><span class="lc-ex-h">Before</span>Offer ends <code>06.07.26</code></div><div><span class="lc-ex-h">After</span>Offer ends 6 July 2026</div></div><div class="lc-ex"><div><span class="lc-ex-h">Before</span>Applications due <code>12/11</code></div><div><span class="lc-ex-h">After</span>Applications due 11 December</div></div>
@@ -414,6 +414,23 @@
       const ambiguous = a <= 12 && b <= 12 && a !== b;
       hits.push({ index: m.index, text: m[0], cls: ambiguous ? 'hit-date' : 'hit-ok', ambiguous });
     }
+    // Day/month with no year ("03/04", "on 3/4"): flagged only when it clearly reads as a date —
+    // zero-padded, or right after a date word — never fractions ("3/4 of users"), scores or "24/7".
+    const shortRe = /(^|[^\d\/.])(\d{1,2})\/(\d{1,2})(?![\d\/])/g;
+    while ((m = shortRe.exec(t)) !== null) {
+      const start = m.index + m[1].length, len = m[2].length + 1 + m[3].length;
+      const a = parseInt(m[2], 10), b = parseInt(m[3], 10);
+      if (a < 1 || a > 31 || b < 1 || b > 31) continue;
+      const before = t.slice(Math.max(0, start - 16), start).toLowerCase(), after = t.slice(start + len, start + len + 10).toLowerCase();
+      if (/^\s*(of|out of|stars?|points?|ratio)\b/.test(after)) continue;
+      const padded = (m[2].length === 2 && m[2][0] === '0') || (m[3].length === 2 && m[3][0] === '0');
+      const dateWord = /\b(on|by|until|till|from|before|after|since|due|deadline|starting|starts|ends?|launch(?:es|ing)?|mon|tue|wed|thu|fri|sat|sun)[a-z]*[\s,.:]*$/.test(before);
+      if (!padded && !dateWord) continue;
+      if (looksLikeVersionPrefix(t, start)) continue;
+      const ambiguous = a <= 12 && b <= 12 && a !== b;
+      hits.push({ index: start, text: m[2] + '/' + m[3], cls: ambiguous ? 'hit-date' : 'hit-ok', ambiguous });
+    }
+    hits.sort((x, y) => x.index - y.index);
     return hits;
   }
 
